@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Combat Systems and Tactical Play: When Dice Meet Steel</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Combat Systems and Tactical Play: When Dice Meet Steel</h1>
+        <p class="subtitle">From First Blood to Final Victory</p>
+    </header>
+
+    <main>
+        <section class="introduction">
+            <h2>The Theater of Violence</h2>
+            <p>Combat in GURPS is like conducting a deadly orchestra—every participant has their moment to act, timing is everything, and one wrong move can end the performance permanently. Unlike many game systems that treat combat as a mini-game separate from the rest of play, GURPS combat uses the same core mechanics you've already learned, but adds layers of tactical depth that reward smart thinking and realistic tactics.</p>
+            
+            <div class="analogy-box">
+                <h3>The Chess Match Analogy</h3>
+                <p>Think of GURPS combat like speed chess played with real consequences. Each turn represents a few seconds of intense action where you must choose your move carefully—attack aggressively, defend cautiously, maneuver for advantage, or attempt something unexpected. Like chess, every piece (character) has different capabilities, and victory often goes to the player who thinks several moves ahead rather than the one with the most powerful pieces.</p>
+            </div>
+        </section>
+
+        <section class="combat-sequence">
+            <h2>The Dance of Battle: Combat Sequence</h2>
+            
+            <p>GURPS combat flows in a structured sequence that simulates the chaos of real fighting while keeping gameplay organized and fair:</p>
+
+            <div class="mermaid">
+                flowchart TD
+                    A[Combat Begins] --> B[Determine Initiative]
+                    B --> C[Character Acts in Order]
+                    C --> D{Attack Action?}
+                    D -->|Yes| E[Roll to Hit]
+                    D -->|No| F[Other Action]
+                    E --> G{Hit Successful?}
+                    G -->|Yes| H[Defender Chooses Defense]
+                    G -->|No| I[Attack Misses]
+                    H --> J{Defense Successful?}
+                    J -->|No| K[Roll Damage]
+                    J -->|Yes| L[Attack Avoided]
+                    K --> M[Apply Damage to HP]
+                    F --> N[Next Character's Turn]
+                    I --> N
+                    L --> N
+                    M --> N
+                    N --> O{Combat Over?}
+                    O -->|No| C
+                    O -->|Yes| P[Combat Ends]
+                    
+                    style A fill:#e1f5fe
+                    style E fill:#fff3e0
+                    style H fill:#f3e5f5
+                    style K fill:#ffebee
+                    style P fill:#e8f5e8
+            </div>
+
+            <h3>Initiative: Who Goes First?</h3>
+            <p>Basic Speed determines your place in the action sequence, like your position in a relay race. Higher Basic Speed means you react faster to danger and opportunities.</p>
+
+            <div class="initiative-example">
+                <h4>Initiative Example: The Warehouse Confrontation</h4>
+                <p>Our heroes encounter armed criminals in an abandoned warehouse:</p>
+                
+                <table class="initiative-table">
+                    <tr>
+                        <th>Character</th>
+                        <th>Basic Speed</th>
+                        <th>Combat Position</th>
+                    </tr>
+                    <tr>
+                        <td>Jack "Ace" Morrison (Action Hero)</td>
+                        <td>6.25</td>
+                        <td>Goes first - military training pays off</td>
+                    </tr>
+                    <tr>
+                        <td>Criminal Leader</td>
+                        <td>5.75</td>
+                        <td>Second - experienced but older</td>
+                    </tr>
+                    <tr>
+                        <td>Detective Sarah</td>
+                        <td>5.75</td>
+                        <td>Tied for second - police training</td>
+                    </tr>
+                    <tr>
+                        <td>Dr. Elena (Archaeologist)</td>
+                        <td>5.25</td>
+                        <td>Fourth - not built for combat</td>
+                    </tr>
+                    <tr>
+                        <td>Thug #1</td>
+                        <td>5.0</td>
+                        <td>Fifth - muscle, not brains</td>
+                    </tr>
+                </table>
+            </div>
+
+            <h3>The One-Second Turn</h3>
+            <p>Each combat turn represents one second of real time. In that second, a character can typically do one of these:</p>
+
+            <ul>
+                <li><strong>Attack:</strong> Strike with weapon or fist</li>
+                <li><strong>Move:</strong> Run up to Basic Move in yards</li>
+                <li><strong>Concentrate:</strong> Aim, cast a spell, or focus on a task</li>
+                <li><strong>Ready:</strong> Draw a weapon, reload, or prepare equipment</li>
+                <li><strong>All-Out Attack:</strong> Aggressive assault, trading defense for offense</li>
+                <li><strong>All-Out Defense:</strong> Pure defense, giving up attacks for protection</li>
+            </ul>
+        </section>
+
+        <section class="attack-mechanics">
+            <h2>The Art of Attack: Landing the Blow</h2>
+            
+            <h3>Attack Rolls: Skill vs. Reality</h3>
+            <p>Attacking in GURPS uses the same 3d6 ≤ target number system you've learned, but the target number comes from your weapon skill modified by circumstances:</p>
+
+            <pre><code>Base Target Number = Weapon Skill
++ Range Modifier (close range = bonus, long range = penalty)
++ Size Modifier (larger targets easier to hit)
++ Position Modifier (flanking, high ground, etc.)
++ Equipment Modifier (weapon quality, sights, etc.)
++ Circumstance Modifier (lighting, weather, distractions)
+= Final Attack Target Number</code></pre>
+
+            <h3>Range and Accuracy</h3>
+            <p>GURPS uses realistic range modifiers—even skilled shooters struggle at long distances:</p>
+
+            <svg width="700" height="300" style="margin: 20px auto; display: block;">
+                <!-- Create range effectiveness chart -->
+                <defs>
+                    <pattern id="targetGrid" width="20" height="20" patternUnits="userSpaceOnUse">
+                        <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#e0e0e0" stroke-width="1"/>
+                    </pattern>
+                </defs>
+                <rect width="700" height="300" fill="url(#targetGrid)" />
+                
+                <!-- Axes -->
+                <line x1="50" y1="250" x2="650" y2="250" stroke="black" stroke-width="2"/>
+                <line x1="50" y1="250" x2="50" y2="50" stroke="black" stroke-width="2"/>
+                
+                <!-- Range effectiveness curve (diminishing accuracy) -->
+                <path d="M 50,100 Q 150,120 250,150 Q 400,180 550,220 Q 600,240 650,250" 
+                      fill="none" stroke="red" stroke-width="3"/>
+                
+                <!-- Range markers -->
+                <g font-size="10" text-anchor="middle">
+                    <line x1="100" y1="245" x2="100" y2="255" stroke="black" stroke-width="2"/>
+                    <text x="100" y="270">Point Blank</text>
+                    
+                    <line x1="200" y1="245" x2="200" y2="255" stroke="black" stroke-width="2"/>
+                    <text x="200" y="270">Close</text>
+                    
+                    <line x1="350" y1="245" x2="350" y2="255" stroke="black" stroke-width="2"/>
+                    <text x="350" y="270">Medium</text>
+                    
+                    <line x1="500" y1="245" x2="500" y2="255" stroke="black" stroke-width="2"/>
+                    <text x="500" y="270">Long</text>
+                    
+                    <line x1="600" y1="245" x2="600" y2="255" stroke="black" stroke-width="2"/>
+                    <text x="600" y="270">Extreme</text>
+                </g>
+                
+                <!-- Labels -->
+                <text x="350" y="30" font-size="16" font-weight="bold" text-anchor="middle">Combat Effectiveness vs Range</text>
+                <text x="350" y="285" font-size="12" text-anchor="middle">Range</text>
+                <text x="25" y="150" font-size="12" text-anchor="middle" transform="rotate(-90 25 150)">Hit Chance</text>
+                
+                <!-- Modifier callouts -->
+                <text x="100" y="90" font-size="11" text-anchor="middle" fill="green">+3</text>
+                <text x="200" y="115" font-size="11" text-anchor="middle" fill="green">+1</text>
+                <text x="350" y="165" font-size="11" text-anchor="middle" fill="orange">-3</text>
+                <text x="500" y="205" font-size="11" text-anchor="middle" fill="red">-7</text>
+                <text x="600" y="235" font-size="11" text-anchor="middle" fill="red">-10</text>
+            </svg>
+
+            <h3>Size Matters: Target Size Modifiers</h3>
+            <p>Bigger targets are easier to hit, smaller ones harder—common sense made mechanical:</p>
+
+            <div class="size-examples">
+                <div class="size-category">
+                    <h4>Human-Sized Targets (Size 0)</h4>
+                    <p>Average adults, most equipment</p>
+                    <p><strong>Modifier:</strong> 0</p>
+                </div>
+
+                <div class="size-category">
+                    <h4>Large Targets (+2 to +4)</h4>
+                    <p>Cars, small buildings, giants</p>
+                    <p><strong>Example:</strong> Shooting at a car gets +3</p>
+                </div>
+
+                <div class="size-category">
+                    <h4>Small Targets (-2 to -4)</h4>
+                    <p>Children, specific body parts, small animals</p>
+                    <p><strong>Example:</strong> Targeting someone's hand gets -4</p>
+                </div>
+
+                <div class="size-category">
+                    <h4>Tiny Targets (-6 or worse)</h4>
+                    <p>Precise shots, small mechanisms</p>
+                    <p><strong>Example:</strong> Shooting the lock off a door gets -6</p>
+                </div>
+            </div>
+
+            <div class="attack-example">
+                <h4>Complete Attack Example</h4>
+                <p>Jack fires his pistol at the criminal leader across the warehouse:</p>
+                <ul>
+                    <li><strong>Base Skill:</strong> Guns (Pistol)-15</li>
+                    <li><strong>Range:</strong> 20 yards = -7 penalty</li>
+                    <li><strong>Target Size:</strong> Human = 0</li>
+                    <li><strong>Cover:</strong> Target behind crate = -2</li>
+                    <li><strong>Aiming:</strong> Took previous turn to aim = +1</li>
+                </ul>
+                <p><strong>Final Target:</strong> 15 - 7 + 0 - 2 + 1 = 7</p>
+                <p><strong>Roll:</strong> Jack rolls 6—success by 1! The bullet wings the criminal leader.</p>
+            </div>
+        </section>
+
+        <section class="defense-mechanics">
+            <h2>The Shield and the Sword: Active Defenses</h2>
+            
+            <p>GURPS combat shines in its defense system. When attacked, defenders don't just stand there—they actively try to avoid harm through dodge, block, or parry. It's like a conversation where every statement gets a response.</p>
+
+            <h3>Three Pillars of Defense</h3>
+
+            <div class="defense-types">
+                <div class="defense-type">
+                    <h4>Dodge (DX-based)</h4>
+                    <p>Getting out of the way entirely</p>
+                    <p><strong>Base Value:</strong> Basic Speed + 3</p>
+                    <p><strong>Best Against:</strong> Ranged attacks, area effects, when unarmed</p>
+                    <p><strong>Limitations:</strong> Can't dodge if you don't see the attack coming</p>
+                    
+                    <div class="defense-example">
+                        <p><strong>Example:</strong> Sarah (Basic Speed 5.75) has Dodge 8. When the thug swings a crowbar at her, she tries to dodge—rolls 7, success! She ducks under the swing.</p>
+                    </div>
+                </div>
+
+                <div class="defense-type">
+                    <h4>Block (DX-based)</h4>
+                    <p>Using a shield or weapon to intercept attacks</p>
+                    <p><strong>Base Value:</strong> (DX + Shield Skill) ÷ 2</p>
+                    <p><strong>Best Against:</strong> Melee attacks, projectiles</p>
+                    <p><strong>Limitations:</strong> Need appropriate equipment, limited arc of protection</p>
+                    
+                    <div class="defense-example">
+                        <p><strong>Example:</strong> A medieval knight with DX 12 and Shield-14 has Block 13. He raises his shield against an arrow—rolls 11, success! The arrow embeds harmlessly in the shield.</p>
+                    </div>
+                </div>
+
+                <div class="defense-type">
+                    <h4>Parry (DX-based)</h4>
+                    <p>Using a weapon to deflect incoming attacks</p>
+                    <p><strong>Base Value:</strong> (DX + Weapon Skill) ÷ 2</p>
+                    <p><strong>Best Against:</strong> Melee attacks, some projectiles</p>
+                    <p><strong>Limitations:</strong> Need appropriate weapon, some attacks can't be parried</p>
+                    
+                    <div class="defense-example">
+                        <p><strong>Example:</strong> A fencer with DX 13 and Rapier-16 has Parry 14. Against a sword thrust, she rolls 12—success! She deflects the blade with a clever twist of her wrist.</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Choosing Your Defense</h3>
+            <p>Smart fighters match their defense to the situation:</p>
+
+            <div class="defense-strategy">
+                <table class="defense-table">
+                    <tr>
+                        <th>Situation</th>
+                        <th>Best Defense</th>
+                        <th>Reasoning</th>
+                    </tr>
+                    <tr>
+                        <td>Sniper shot from unknown direction</td>
+                        <td>Dodge</td>
+                        <td>Can't block/parry what you can't see</td>
+                    </tr>
+                    <tr>
+                        <td>Sword duel with expert fencer</td>
+                        <td>Parry</td>
+                        <td>Use weapon skill, maintain attacking position</td>
+                    </tr>
+                    <tr>
+                        <td>Multiple attackers surrounding you</td>
+                        <td>Dodge</td>
+                        <td>Works against attacks from any direction</td>
+                    </tr>
+                    <tr>
+                        <td>Arrows while carrying a shield</td>
+                        <td>Block</td>
+                        <td>Shields provide best protection vs projectiles</td>
+                    </tr>
+                    <tr>
+                        <td>Grenade explosion</td>
+                        <td>Dodge</td>
+                        <td>Can't block area effects</td>
+                    </tr>
+                </table>
+            </div>
+
+            <h3>Defense Penalties and Limitations</h3>
+            <p>Defending isn't always easy or possible:</p>
+
+            <ul>
+                <li><strong>Multiple Attacks:</strong> Each defense after the first in a turn gets -1 cumulative penalty</li>
+                <li><strong>Surprise:</strong> Can't defend if you don't know the attack is coming</li>
+                <li><strong>Retreat:</strong> Give ground to get +3 to dodge, +1 to parry</li>
+                <li><strong>All-Out Attack:</strong> Trade all defenses for better attacks</li>
+                <li><strong>Stunned:</strong> Injury can reduce defense values</li>
+            </ul>
+        </section>
+
+        <section class="damage-system">
+            <h2>When Steel Meets Flesh: Damage and Injury</h2>
+            
+            <p>GURPS damage isn't just hit points—it's a simulation of realistic injury that affects performance. Think of it like a car taking damage: minor dents might not affect performance, but major damage starts limiting what the engine can do.</p>
+
+            <h3>Types of Damage</h3>
+
+            <div class="mermaid">
+                graph TD
+                    A[Damage Types] --> B[Crushing]
+                    A --> C[Cutting]
+                    A --> D[Impaling]
+                    A --> E[Piercing]
+                    A --> F[Burning]
+                    A --> G[Toxic]
+                    
+                    B --> B1[Blunt impacts<br/>Clubs, falls, explosions]
+                    B --> B2[1x damage to HP]
+                    
+                    C --> C1[Sharp edges<br/>Swords, axes, claws]
+                    C --> C2[1.5x damage to HP]
+                    
+                    D --> D1[Deep penetration<br/>Spears, stakes, arrows]
+                    D --> D2[2x damage to HP]
+                    
+                    E --> E1[Small holes<br/>Bullets, needles]
+                    E --> E2[Variable multiplier<br/>based on size]
+                    
+                    F --> F1[Heat and energy<br/>Fire, lasers, electricity]
+                    F --> F2[1x damage, ongoing effects]
+                    
+                    G --> G1[Poison and disease<br/>Venom, radiation]
+                    G --> G2[Often affects HT directly]
+            </div>
+
+            <h3>Damage Calculation</h3>
+            <p>When an attack connects, you roll damage dice and apply the appropriate multiplier:</p>
+
+            <div class="damage-example">
+                <h4>Damage Example: The Sword Strike</h4>
+                <p>Jack's combat knife (1d6+1 cutting damage) hits the criminal leader:</p>
+                
+                <ol>
+                    <li><strong>Roll basic damage:</strong> Rolls 4, +1 = 5 points</li>
+                    <li><strong>Apply damage type:</strong> Cutting × 1.5 = 7.5, round down to 7</li>
+                    <li><strong>Subtract armor:</strong> Leather jacket stops 1 point = 6 damage</li>
+                    <li><strong>Apply to HP:</strong> Criminal had 12 HP, now has 6 HP</li>
+                </ol>
+                
+                <p>The criminal is now at exactly half HP—he's hurt but still dangerous.</p>
+            </div>
+
+            <h3>Injury Effects: The Death Spiral</h3>
+            <p>GURPS models how injury affects performance through graduated penalties:</p>
+
+            <div class="injury-track">
+                <canvas id="injuryChart" width="600" height="400"></canvas>
+                <script>
+                    const canvas = document.getElementById('injuryChart');
+                    const ctx = canvas.getContext('2d');
+                    
+                    // Draw HP track for character with 12 HP
+                    const maxHP = 12;
+                    const barWidth = 40;
+                    const barHeight = 25;
+                    const startX = 50;
+                    const startY = 50;
+                    
+                    // Draw HP bars
+                    for (let i = 0; i < maxHP; i++) {
+                        const x = startX + (i % 6) * (barWidth + 5);
+                        const y = startY + Math.floor(i / 6) * (barHeight + 5);
+                        
+                        // Color based on injury level
+                        let color = '#4CAF50'; // Green (healthy)
+                        if (i >= maxHP * 0.67) color = '#FFC107'; // Yellow (minor injury)
+                        if (i >= maxHP * 0.33) color = '#FF9800'; // Orange (major injury)
+                        if (i >= maxHP) color = '#F44336'; // Red (critical)
+                        
+                        ctx.fillStyle = color;
+                        ctx.fillRect(x, y, barWidth, barHeight);
+                        ctx.strokeStyle = 'black';
+                        ctx.strokeRect(x, y, barWidth, barHeight);
+                        
+                        // HP number
+                        ctx.fillStyle = 'black';
+                        ctx.font = '12px Arial';
+                        ctx.textAlign = 'center';
+                        ctx.fillText((maxHP - i).toString(), x + barWidth/2, y + barHeight/2 + 4);
+                    }
+                    
+                    // Add injury thresholds
+                    ctx.fillStyle = 'black';
+                    ctx.font = '14px Arial';
+                    ctx.textAlign = 'left';
+                    
+                    ctx.fillText('HP 12-9: No penalties (75-100%)', 350, 70);
+                    ctx.fillText('HP 8-7: -1 to all rolls (50-66%)', 350, 95);
+                    ctx.fillText('HP 6-4: -2 to all rolls (25-50%)', 350, 120);
+                    ctx.fillText('HP 3-1: -3 to all rolls (<25%)', 350, 145);
+                    ctx.fillText('HP 0: Unconscious, dying', 350, 170);
+                    ctx.fillText('HP -12: Death', 350, 195);
+                    
+                    // Title
+                    ctx.font = '16px Arial';
+                    ctx.textAlign = 'center';
+                    ctx.fillText('GURPS Injury Track (12 HP Character)', 300, 30);
+                    
+                    // Current damage indicator
+                    ctx.fillStyle = 'red';
+                    ctx.font = '12px Arial';
+                    ctx.fillText('X', startX + 6 * (barWidth + 5) / 2, startY + barHeight/2 + 4);
+                    ctx.fillText('Current: 6 HP (-2 penalty)', 350, 220);
+                </script>
+            </div>
+
+            <h3>Shock and Stunning</h3>
+            <p>Major injuries can temporarily incapacitate even tough characters:</p>
+
+            <div class="shock-rules">
+                <h4>Shock Penalties</h4>
+                <p>When you take damage equal to or greater than HP/4 in a single attack, make a HT roll or be stunned for one turn. Like getting the wind knocked out of you.</p>
+                
+                <div class="shock-example">
+                    <p><strong>Example:</strong> Elena (12 HP) takes 8 points from a club hit. That's more than 3 points (12÷4), so she must roll vs HT 10. She rolls 13—failure! Elena is stunned and can only defend next turn as she recovers from the blow.</p>
+                </div>
+            </div>
+
+            <h3>Death and Dying</h3>
+            <p>GURPS characters don't just drop dead at 0 HP—they fight to survive:</p>
+
+            <ul>
+                <li><strong>0 to -HP:</strong> Unconscious and dying, lose 1 HP per minute</li>
+                <li><strong>-HP to -5×HP:</strong> Make HT rolls to avoid death</li>
+                <li><strong>-5×HP or worse:</strong> Instant death (for most characters)</li>
+                <li><strong>Medical care:</strong> First Aid or Surgery can stabilize dying characters</li>
+            </ul>
+        </section>
+
+        <section class="tactical-options">
+            <h2>Beyond Hack and Slash: Advanced Combat Options</h2>
+            
+            <p>GURPS combat offers rich tactical choices beyond "I attack the monster." Like a chess master, experienced players use position, timing, and clever tactics to overcome stronger opponents.</p>
+
+            <h3>Maneuvers and Special Attacks</h3>
+
+            <div class="maneuver-grid">
+                <div class="maneuver">
+                    <h4>All-Out Attack</h4>
+                    <p><strong>Trade:</strong> All defenses for +4 attack or extra attacks</p>
+                    <p><strong>Use When:</strong> Overwhelming weak enemies, finishing moves</p>
+                    <p><strong>Risk:</strong> Vulnerable to counterattacks</p>
+                </div>
+
+                <div class="maneuver">
+                    <h4>All-Out Defense</h4>
+                    <p><strong>Trade:</strong> All attacks for +2 to all defenses</p>
+                    <p><strong>Use When:</strong> Outnumbered, waiting for help, protecting others</p>
+                    <p><strong>Benefit:</strong> Very hard to hit</p>
+                </div>
+
+                <div class="maneuver">
+                    <h4>Aim</h4>
+                    <p><strong>Trade:</strong> This turn's action for accuracy next turn</p>
+                    <p><strong>Benefit:</strong> +1 per turn aimed (max +3)</p>
+                    <p><strong>Use When:</strong> Long-range shots, precision strikes</p>
+                </div>
+
+                <div class="maneuver">
+                    <h4>Move and Attack</h4>
+                    <p><strong>Trade:</strong> Full attack bonus for mobility</p>
+                    <p><strong>Penalty:</strong> All attacks at -4</p>
+                    <p><strong>Use When:</strong> Charging, hit-and-run tactics</p>
+                </div>
+
+                <div class="maneuver">
+                    <h4>Feint</h4>
+                    <p><strong>Contest:</strong> Your weapon skill vs opponent's Perception</p>
+                    <p><strong>Benefit:</strong> Reduce their defenses next turn</p>
+                    <p><strong>Use When:</strong> Fighting defensive enemies</p>
+                </div>
+
+                <div class="maneuver">
+                    <h4>Grappling</h4>
+                    <p><strong>Contest:</strong> DX vs DX, ST vs ST</p>
+                    <p><strong>Benefit:</strong> Control opponent's actions</p>
+                    <p><strong>Use When:</strong> Subduing without killing, disarming</p>
+                </div>
+            </div>
+
+            <h3>Targeting Body Parts</h3>
+            <p>Skilled fighters can target specific areas for tactical advantage:</p>
+
+            <div class="body-targets">
+                <table class="targeting-table">
+                    <tr>
+                        <th>Target</th>
+                        <th>Penalty</th>
+                        <th>Special Effects</th>
+                        <th>Tactical Use</th>
+                    </tr>
+                    <tr>
+                        <td>Skull</td>
+                        <td>-7</td>
+                        <td>×4 damage, knockdown</td>
+                        <td>Instant takedown attempts</td>
+                    </tr>
+                    <tr>
+                        <td>Vitals</td>
+                        <td>-3</td>
+                        <td>×3 damage to chest/abdomen</td>
+                        <td>Maximum damage efficiency</td>
+                    </tr>
+                    <tr>
+                        <td>Arms</td>
+                        <td>-2</td>
+                        <td>Cripple limb, drop weapons</td>
+                        <td>Disarming, limiting attacks</td>
+                    </tr>
+                    <tr>
+                        <td>Legs</td>
+                        <td>-2</td>
+                        <td>Cripple limb, reduce mobility</td>
+                        <td>Preventing escape/pursuit</td>
+                    </tr>
+                    <tr>
+                        <td>Hands</td>
+                        <td>-4</td>
+                        <td>Drop held items</td>
+                        <td>Precise disarming</td>
+                    </tr>
+                    <tr>
+                        <td>Eyes</td>
+                        <td>-9</td>
+                        <td>Blindness, massive penalties</td>
+                        <td>Desperation moves only</td>
+                    </tr>
+                </table>
+            </div>
+
+            <h3>Environmental Tactics</h3>
+            <p>Smart fighters use their surroundings as weapons:</p>
+
+            <div class="environmental-tactics">
+                <h4>Positioning and Terrain</h4>
+                <ul>
+                    <li><strong>High Ground:</strong> +1 to attack, +1 to defense</li>
+                    <li><strong>Flanking:</strong> Attack from side/rear for bonuses</li>
+                    <li><strong>Cover:</strong> Walls, trees, cars provide protection</li>
+                    <li><strong>Chokepoints:</strong> Narrow passages limit enemy numbers</li>
+                    <li><strong>Darkness:</strong> Hide your approach, confuse enemies</li>
+                </ul>
+
+                <h4>Improvised Weapons</h4>
+                <ul>
+                    <li><strong>Chairs, bottles, tools:</strong> 1d6 crushing damage</li>
+                    <li><strong>Thrown objects:</strong> Distraction or minor damage</li>
+                    <li><strong>Environmental hazards:</strong> Push enemies into dangers</li>
+                    <li><strong>Blinding attacks:</strong> Throw sand, use flashlights</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="combat-examples">
+            <h2>Putting It All Together: Complete Combat Examples</h2>
+            
+            <h3>Example One: The Alley Ambush</h3>
+            <p>Detective Sarah investigates suspicious activity behind a warehouse. Two thugs with crowbars try to ambush her:</p>
+
+            <div class="combat-round">
+                <h4>Turn 1: Initiative and Opening Moves</h4>
+                
+                <div class="character-action">
+                    <h5>Sarah (Speed 5.75) - Goes First</h5>
+                    <p><strong>Action:</strong> Draw pistol (Ready maneuver)</p>
+                    <p><strong>Position:</strong> Back to alley wall, good defensive position</p>
+                    <p><strong>Result:</strong> Weapon ready, can defend normally</p>
+                </div>
+
+                <div class="character-action">
+                    <h5>Thug #1 (Speed 5.0)</h5>
+                    <p><strong>Action:</strong> All-Out Attack with crowbar</p>
+                    <p><strong>Target Number:</strong> Brawling-11 +4 (All-Out) = 15</p>
+                    <p><strong>Roll:</strong> 12 - Success by 3!</p>
+                    <p><strong>Sarah's Defense:</strong> Cannot parry (no melee weapon), chooses Dodge 8</p>
+                    <p><strong>Defense Roll:</strong> 9 - Failure by 1!</p>
+                    <p><strong>Damage:</strong> 2d6+2 crushing = rolls 8+2 = 10 points!</p>
+                    <p><strong>Effect:</strong> Sarah takes 10 damage (down to 1 HP), must roll vs HT for shock</p>
+                    <p><strong>Shock Roll:</strong> Rolls 11 vs HT 12 - Success! Stays conscious but badly hurt</p>
+                </div>
+
+                <div class="character-action">
+                    <h5>Thug #2 (Speed 5.0)</h5>
+                    <p><strong>Action:</strong> Move to flank Sarah</p>
+                    <p><strong>Result:</strong> Now attacking from side, will get bonus next turn</p>
+                </div>
+            </div>
+
+            <div class="combat-round">
+                <h4>Turn 2: Desperate Measures</h4>
+                
+                <div class="character-action">
+                    <h5>Sarah (at 1 HP, -3 to all rolls)</h5>
+                    <p><strong>Action:</strong> All-Out Attack (Double) - two shots</p>
+                    <p><strong>First Shot:</strong> Guns-12 +4 (All-Out) -3 (injury) = 13, rolls 10 - Success!</p>
+                    <p><strong>Second Shot:</strong> Same target number, rolls 15 - Miss!</p>
+                    <p><strong>Damage to Thug #1:</strong> 2d6+2 piercing = 7×1.5 = 10 points (down and out!)</p>
+                </div>
+
+                <div class="character-action">
+                    <h5>Thug #2 (flanking position)</h5>
+                    <p><strong>Action:</strong> Attack Sarah (she can't defend due to All-Out Attack)</p>
+                    <p><strong>Target:</strong> Brawling-11 +2 (flanking) = 13, rolls 8 - Success!</p>
+                    <p><strong>Damage:</strong> 2d6+2 = 9 points</p>
+                    <p><strong>Result:</strong> Sarah drops to -8 HP, unconscious and dying!</p>
+                </div>
+            </div>
+
+            <div class="aftermath">
+                <h4>Aftermath: Consequences of Violence</h4>
+                <p>Sarah's aggressive tactic worked partially—she eliminated one threat—but the cost was severe. She's now unconscious and will die without medical attention. This demonstrates GURPS combat's deadliness and the importance of tactical thinking over pure aggression.</p>
+            </div>
+
+            <h3>Example Two: The Tactical Approach</h3>
+            <p>Jack encounters the same scenario but uses different tactics:</p>
+
+            <div class="tactical-combat">
+                <h4>Jack's Approach: Mobility and Cover</h4>
+                
+                <div class="tactical-turn">
+                    <h5>Turn 1: Assessment and Positioning</h5>
+                    <p><strong>Jack's Action:</strong> Move to cover behind dumpster, draw pistol</p>
+                    <p><strong>Thug Reactions:</strong> Must advance into open to reach Jack</p>
+                    <p><strong>Result:</strong> Jack forces enemies to come to him on his terms</p>
+                </div>
+
+                <div class="tactical-turn">
+                    <h5>Turn 2: Aimed Fire</h5>
+                    <p><strong>Jack's Action:</strong> Aim at closest thug</p>
+                    <p><strong>Thugs:</strong> Advance but still not in melee range</p>
+                    <p><strong>Result:</strong> +1 to next attack, enemies must expose themselves</p>
+                </div>
+
+                <div class="tactical-turn">
+                    <h5>Turn 3: Precise Elimination</h5>
+                    <p><strong>Jack's Shot:</strong> Guns-15 +1 (aim) = 16, rolls 9 - Success by 7!</p>
+                    <p><strong>Damage:</strong> 2d6+2 piercing × 1.5 = 13 points (first thug down)</p>
+                    <p><strong>Second Thug:</strong> Attacks but Jack defenses normally (not All-Out)</p>
+                    <p><strong>Result:</strong> Jack parries with pistol, continues controlling the fight</p>
+                </div>
+            </div>
+
+            <div class="tactical-lesson">
+                <h4>Tactical Lessons</h4>
+                <ul>
+                    <li><strong>Patience pays:</strong> Taking time to aim dramatically improved hit chances</li>
+                    <li><strong>Cover matters:</strong> Positioning forced enemies to fight on Jack's terms</li>
+                    <li><strong>Balanced approach:</strong> Not using All-Out Attack preserved defensive options</li>
+                    <li><strong>Range advantage:</strong> Using a ranged weapon against melee attackers</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="armor-and-equipment">
+            <h2>Tools of War: Armor and Equipment</h2>
+            
+            <h3>Armor: The Last Line of Defense</h3>
+            <p>Armor in GURPS provides Damage Resistance (DR)—it subtracts directly from incoming damage. Think of it like the crumple zone in a car: it absorbs impact before it reaches you.</p>
+
+            <div class="armor-types">
+                <table class="armor-table">
+                    <tr>
+                        <th>Armor Type</th>
+                        <th>DR</th>
+                        <th>Coverage</th>
+                        <th>Penalties</th>
+                        <th>Best Against</th>
+                    </tr>
+                    <tr>
+                        <td>Leather Jacket</td>
+                        <td>1</td>
+                        <td>Torso, arms</td>
+                        <td>None</td>
+                        <td>Minor cuts, abrasions</td>
+                    </tr>
+                    <tr>
+                        <td>Kevlar Vest</td>
+                        <td>4</td>
+                        <td>Torso only</td>
+                        <td>-1 DX in hot weather</td>
+                        <td>Bullets, stabbing</td>
+                    </tr>
+                    <tr>
+                        <td>Medieval Mail</td>
+                        <td>4</td>
+                        <td>Torso, arms</td>
+                        <td>-2 DX, noisy</td>
+                        <td>Cutting attacks</td>
+                    </tr>
+                    <tr>
+                        <td>Plate Armor</td>
+                        <td>7</td>
+                        <td>Full body</td>
+                        <td>-4 DX, very heavy</td>
+                        <td>All medieval weapons</td>
+                    </tr>
+                    <tr>
+                        <td>Riot Gear</td>
+                        <td>3*</td>
+                        <td>Full body</td>
+                        <td>-2 DX, vision limits</td>
+                        <td>Blunt impacts, chemicals</td>
+                    </tr>
+                </table>
+                <p><em>*Riot gear has special properties against different damage types</em></p>
+            </div>
+
+            <h3>Weapons: Extensions of Intent</h3>
+            <p>Weapons in GURPS have distinct characteristics that affect tactical choices:</p>
+
+            <div class="weapon-categories">
+                <div class="weapon-type">
+                    <h4>Melee Weapons</h4>
+                    <ul>
+                        <li><strong>Reach:</strong> How far you can strike (1-5 yards)</li>
+                        <li><strong>Parry Modifier:</strong> Some weapons parry better than others</li>
+                        <li><strong>Damage Type:</strong> Cutting, crushing, or impaling</li>
+                        <li><strong>Requirements:</strong> Minimum ST to use effectively</li>
+                    </ul>
+                    
+                    <div class="weapon-examples">
+                        <p><strong>Knife:</strong> 1d6-1 cutting, reach 1, easy to conceal</p>
+                        <p><strong>Sword:</strong> 2d6 cutting, reach 1-2, balanced offense/defense</p>
+                        <p><strong>Spear:</strong> 1d6+1 impaling, reach 1-2, excellent vs charges</p>
+                    </div>
+                </div>
+
+                <div class="weapon-type">
+                    <h4>Ranged Weapons</h4>
+                    <ul>
+                        <li><strong>Accuracy:</strong> Bonus to aimed shots</li>
+                        <li><strong>Range:</strong> Effective distance brackets</li>
+                        <li><strong>Rate of Fire:</strong> How many shots per turn</li>
+                        <li><strong>Recoil:</strong> Penalty for rapid fire</li>
+                    </ul>
+                    
+                    <div class="weapon-examples">
+                        <p><strong>Pistol:</strong> 2d6+2 piercing, easy to conceal, moderate range</p>
+                        <p><strong>Rifle:</strong> 7d6 piercing, high accuracy, long range</p>
+                        <p><strong>Shotgun:</strong> Variable damage, devastating close range</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Equipment Quality and Modification</h3>
+            <p>Not all equipment is created equal:</p>
+
+            <div class="equipment-quality">
+                <h4>Quality Levels</h4>
+                <ul>
+                    <li><strong>Cheap (-1):</strong> Unreliable, breaks easily</li>
+                    <li><strong>Average (0):</strong> Standard quality</li>
+                    <li><strong>Fine (+1):</strong> Well-made, reliable</li>
+                    <li><strong>Very Fine (+2):</strong> Masterwork quality</li>
+                    <li><strong>Superb (+3):</strong> Legendary craftsmanship</li>
+                </ul>
+
+                <div class="quality-example">
+                    <p><strong>Example:</strong> A master gunsmith's custom pistol (+2 quality) gives +2 to all attack rolls—the difference between missing and hitting in critical moments.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="practice-activities">
+            <h2>Practice Activities</h2>
+            
+            <div class="activity">
+                <h3>Activity 1: Combat Sequence Walkthrough</h3>
+                <p>Create a simple combat scenario with 3 characters and walk through 2 complete turns:</p>
+                <ul>
+                    <li>Character A: Trained soldier with rifle (DX 12, Guns-14, Basic Speed 6.0)</li>
+                    <li>Character B: Street thug with knife (DX 11, Knife-12, Basic Speed 5.5)</li>
+                    <li>Character C: Civilian trying to escape (DX 10, no combat skills, Basic Speed 5.25)</li>
+                </ul>
+                <p>Determine initiative order, choose actions for each character, and resolve attacks/defenses.</p>
+            </div>
+
+            <div class="activity">
+                <h3>Activity 2: Tactical Decision Analysis</h3>
+                <p>For each scenario, choose the best maneuver and explain your reasoning:</p>
+                <ul>
+                    <li><strong>Scenario A:</strong> You're outnumbered 3-to-1 but have better armor and weapons</li>
+                    <li><strong>Scenario B:</strong> Single opponent with higher skill but you have ranged weapon advantage</li>
+                    <li><strong>Scenario C:</strong> Need to subdue someone without killing them</li>
+                    <li><strong>Scenario D:</strong> Protecting a non-combatant while under fire</li>
+                </ul>
+            </div>
+
+            <div class="activity">
+                <h3>Activity 3: Damage Calculation Practice</h3>
+                <p>Calculate final damage for these attacks:</p>
+                <ul>
+                    <li>Broadsword (3d6 cutting) rolls 14 damage against chainmail (DR 4)</li>
+                    <li>Pistol (2d6+2 piercing, small) rolls 9 damage against kevlar vest (DR 4*)</li>
+                    <li>Club (2d6 crushing) rolls 8 damage against leather armor (DR 1)</li>
+                    <li>Knife thrust to vitals (1d6 impaling ×3) rolls 4 damage, no armor</li>
+                </ul>
+                <p>Remember to apply damage type multipliers and armor protection correctly.</p>
+            </div>
+
+            <div class="activity">
+                <h3>Activity 4: Environmental Tactics Design</h3>
+                <p>Design a combat encounter that emphasizes environmental factors:</p>
+                <ul>
+                    <li>Choose a location (warehouse, rooftop, forest, etc.)</li>
+                    <li>Identify 3 environmental features that affect combat</li>
+                    <li>Explain how each side could use these features tactically</li>
+                    <li>Include at least one environmental hazard</li>
+                </ul>
+            </div>
+
+            <div class="activity">
+                <h3>Activity 5: Equipment Matching Challenge</h3>
+                <p>Match appropriate equipment to these combat roles and explain your choices:</p>
+                <ul>
+                    <li><strong>Stealth Assassin:</strong> Needs to kill quietly and escape</li>
+                    <li><strong>Bodyguard:</strong> Must protect client while looking professional</li>
+                    <li><strong>Riot Police:</strong> Control crowds without lethal force</li>
+                    <li><strong>Medieval Knight:</strong> Battlefield dominance in armor combat</li>
+                </ul>
+                <p>Consider weapons, armor, and special equipment for each role.</p>
+            </div>
+        </section>
+
+        <section class="advanced-topics">
+            <h2>Advanced Combat Topics</h2>
+            
+            <ul>
+                <li><strong>Vehicle Combat:</strong> Fighting in and against cars, boats, and aircraft</li>
+                <li><strong>Mass Combat:</strong> Handling battles with dozens or hundreds of participants</li>
+                <li><strong>Magical Combat:</strong> How spells integrate with physical fighting</li>
+                <li><strong>Cyberpunk Combat:</strong> High-tech weapons and cybernetic enhancements</li>
+                <li><strong>Underwater Combat:</strong> Special rules for aquatic environments</li>
+                <li><strong>Zero-G Combat:</strong> Fighting in space or weightless conditions</li>
+                <li><strong>Chase Scenes:</strong> Extended pursuits combining movement and combat</li>
+                <li><strong>Siege Warfare:</strong> Attacking and defending fortified positions</li>
+            </ul>
+        </section>
+
+        <section class="combat-philosophy">
+            <h2>Combat Philosophy: Making Violence Matter</h2>
+            
+            <h3>When to Fight, When to Flee</h3>
+            <p>GURPS combat is deadly enough that smart characters avoid unnecessary fights. Combat should feel like a serious decision, not the default solution to every problem.</p>
+
+            <div class="violence-alternatives">
+                <h4>Alternatives to Combat</h4>
+                <ul>
+                    <li><strong>Negotiation:</strong> Talk your way out of trouble</li>
+                    <li><strong>Stealth:</strong> Avoid the fight entirely</li>
+                    <li><strong>Intimidation:</strong> Make enemies back down</li>
+                    <li><strong>Distraction:</strong> Create opportunities to escape</li>
+                    <li><strong>Environmental solutions:</strong> Use surroundings to your advantage</li>
+                </ul>
+            </div>
+
+            <h3>Combat as Character Development</h3>
+            <p>How characters fight reveals who they are:</p>
+
+            <ul>
+                <li><strong>The Professional:</strong> Efficient, precise, no wasted motion</li>
+                <li><strong>The Berserker:</strong> All-out aggression, damn the consequences</li>
+                <li><strong>The Protector:</strong> Defensive, shields others from harm</li>
+                <li><strong>The Tactician:</strong> Uses environment and positioning</li>
+                <li><strong>The Survivor:</strong> Fights dirty, uses any advantage</li>
+            </ul>
+
+            <h3>Consequences and Recovery</h3>
+            <p>GURPS combat has lasting consequences that affect future adventures:</p>
+
+            <ul>
+                <li><strong>Physical injuries:</strong> Take time to heal, affect performance</li>
+                <li><strong>Mental trauma:</strong> Witnessing or causing violence affects psychology</li>
+                <li><strong>Social consequences:</strong> Violence often attracts unwanted attention</li>
+                <li><strong>Equipment damage:</strong> Weapons and armor wear out, break</li>
+                <li><strong>Reputation effects:</strong> How you fight affects how others see you</li>
+            </ul>
+        </section>
+
+        <section class="conclusion">
+            <h2>Conclusion: The Art of Virtual Violence</h2>
+            
+            <p>GURPS combat represents one of gaming's most sophisticated attempts to model realistic fighting while maintaining playability and dramatic tension. You've learned that combat isn't just about rolling dice—it's about making tactical decisions under pressure, managing resources (health, equipment, positioning), and accepting consequences for your choices.</p>
+
+            <p>The system rewards smart thinking over raw statistics. A clever player with a weaker character can defeat a stronger but less tactically minded opponent through superior positioning, better equipment choices, and strategic use of maneuvers. This makes every fight a mental challenge as much as a statistical contest.</p>
+
+            <div class="key-combat-takeaways">
+                <h3>Essential Combat Principles</h3>
+                <ul>
+                    <li><strong>Initiative matters:</strong> Going first often means winning</li>
+                    <li><strong>Defense is active:</strong> You choose how to avoid attacks</li>
+                    <li><strong>Damage accumulates:</strong> Injury penalties create death spirals</li>
+                    <li><strong>Tactics trump stats:</strong> Smart play beats raw power</li>
+                    <li><strong>Equipment affects outcomes:</strong> Right tools for the right job</li>
+                    <li><strong>Environment shapes combat:</strong> Use everything around you</li>
+                    <li><strong>Consequences persist:</strong> Violence has lasting effects</li>
+                </ul>
+            </div>
+
+            <div class="next-steps">
+                <h3>Beyond Physical Combat</h3>
+                <p>In our next lecture, we'll explore GURPS' approach to magic and supernatural powers—how the same mechanical foundation supports everything from subtle enchantments to reality-bending superhuman abilities. You'll learn how magic integrates with the systems you already know while opening entirely new tactical and narrative possibilities.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Next: <a href="/gurps_magic.html">Magic Systems and Supernatural Powers</a></p>
+        <p>Remember: The best fight is the one you don't have to have!</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Character Creation Deep Dive: Building Your Perfect GURPS Character</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Character Creation Deep Dive: Building Your Perfect GURPS Character</h1>
+        <p class="subtitle">From Concept to Character Sheet</p>
+    </header>
+
+    <main>
+        <section class="introduction">
+            <h2>The Art and Science of Character Creation</h2>
+            <p>Creating a GURPS character is like designing a custom car. You start with a vision—maybe a sleek sports car or a rugged off-road vehicle—then you allocate your budget across engine power, handling, comfort features, and safety equipment. Every choice has trade-offs, and the final result should reflect both your artistic vision and practical needs.</p>
+            
+            <div class="analogy-box">
+                <h3>The Character Budget Analogy</h3>
+                <p>Think of your character points as money in your bank account. You have a fixed amount to spend, and every purchase affects your remaining budget. Want to be super-strong? That costs points. Need lots of skills? Each one requires investment. The key is balancing what you want with what you can afford, just like furnishing your first apartment.</p>
+            </div>
+        </section>
+
+        <section class="character-creation-process">
+            <h2>The Complete Character Creation Process</h2>
+            
+            <div class="mermaid">
+                flowchart TD
+                    A[Start with Concept] --> B[Set Campaign Points]
+                    B --> C[Buy Attributes]
+                    C --> D[Calculate Secondary Characteristics]
+                    D --> E[Select Advantages]
+                    E --> F[Select Disadvantages]
+                    F --> G[Choose Skills]
+                    G --> H[Buy Equipment]
+                    H --> I[Final Details & Background]
+                    I --> J[Character Complete!]
+                    
+                    style A fill:#e1f5fe
+                    style B fill:#f3e5f5
+                    style C fill:#fff3e0
+                    style D fill:#e8f5e8
+                    style E fill:#fff8e1
+                    style F fill:#ffebee
+                    style G fill:#f1f8e9
+                    style H fill:#e3f2fd
+                    style I fill:#fce4ec
+                    style J fill:#e8f5e8
+            </div>
+
+            <h3>Step One: Character Concept</h3>
+            <p>Before you spend a single point, you need a clear vision. This isn't just "I want to be a fighter"—it's understanding who your character is as a person. Consider these guiding questions:</p>
+            
+            <div class="concept-questions">
+                <ul>
+                    <li><strong>What's their background?</strong> Military veteran? Street kid? University professor?</li>
+                    <li><strong>What drives them?</strong> Justice? Revenge? Knowledge? Family?</li>
+                    <li><strong>What are they good at?</strong> Problem-solving? Combat? Social situations?</li>
+                    <li><strong>What are their flaws?</strong> Everyone has weaknesses that make them interesting</li>
+                    <li><strong>How do they fit the campaign?</strong> Match the genre and power level</li>
+                </ul>
+            </div>
+
+            <div class="example-box">
+                <h4>Concept Example: Dr. Elena Vasquez</h4>
+                <p><strong>Core Concept:</strong> A brilliant archaeologist who gets pulled into supernatural mysteries</p>
+                <p><strong>Background:</strong> Former university professor, now freelance researcher specializing in pre-Columbian artifacts</p>
+                <p><strong>Drive:</strong> Uncovering historical truth, protecting cultural heritage</p>
+                <p><strong>Strengths:</strong> Research, languages, academic connections, problem-solving</p>
+                <p><strong>Flaws:</strong> Physically unimposing, too trusting, obsessed with her work</p>
+                <p><strong>Campaign Role:</strong> Knowledge specialist in a modern occult investigation team</p>
+            </div>
+        </section>
+
+        <section class="point-allocation">
+            <h2>Point Allocation Strategies</h2>
+            
+            <h3>Understanding Point Levels</h3>
+            <p>Different campaigns use different point totals, like different budget levels for car shopping:</p>
+
+            <div class="point-levels">
+                <div class="point-level">
+                    <h4>75-100 Points: "Competent Normal"</h4>
+                    <p>Realistic modern characters, slightly above average</p>
+                    <p><strong>Examples:</strong> Police detective, skilled mechanic, small-town doctor</p>
+                </div>
+
+                <div class="point-level">
+                    <h4>125-150 Points: "Heroic"</h4>
+                    <p>Action movie protagonists, elite professionals</p>
+                    <p><strong>Examples:</strong> Special forces soldier, world-class surgeon, master thief</p>
+                </div>
+
+                <div class="point-level">
+                    <h4>200-250 Points: "Cinematic"</h4>
+                    <p>Larger-than-life heroes, early supers</p>
+                    <p><strong>Examples:</strong> Pulp adventure heroes, low-level superheroes</p>
+                </div>
+
+                <div class="point-level">
+                    <h4>400+ Points: "Superhuman"</h4>
+                    <p>Comic book superheroes, mythic figures</p>
+                    <p><strong>Examples:</strong> Superman-level heroes, demigods</p>
+                </div>
+            </div>
+
+            <h3>The 40-30-30 Rule</h3>
+            <p>A good starting guideline for point allocation:</p>
+            <ul>
+                <li><strong>40% on Attributes:</strong> Your character's raw potential</li>
+                <li><strong>30% on Skills:</strong> What they've learned to do</li>
+                <li><strong>30% on Advantages/Disadvantages:</strong> Special traits and complications</li>
+            </ul>
+
+            <div class="budget-example">
+                <h4>150-Point Character Budget Breakdown</h4>
+                <canvas id="budgetChart" width="400" height="300"></canvas>
+                <script>
+                    const canvas = document.getElementById('budgetChart');
+                    const ctx = canvas.getContext('2d');
+                    
+                    // Draw pie chart
+                    const centerX = 200;
+                    const centerY = 150;
+                    const radius = 100;
+                    
+                    // Attributes (40% = 60 points) - Orange
+                    ctx.beginPath();
+                    ctx.moveTo(centerX, centerY);
+                    ctx.arc(centerX, centerY, radius, 0, 0.4 * 2 * Math.PI);
+                    ctx.fillStyle = '#FF8C00';
+                    ctx.fill();
+                    ctx.stroke();
+                    
+                    // Skills (30% = 45 points) - Blue
+                    ctx.beginPath();
+                    ctx.moveTo(centerX, centerY);
+                    ctx.arc(centerX, centerY, radius, 0.4 * 2 * Math.PI, 0.7 * 2 * Math.PI);
+                    ctx.fillStyle = '#4169E1';
+                    ctx.fill();
+                    ctx.stroke();
+                    
+                    // Traits (30% = 45 points) - Green
+                    ctx.beginPath();
+                    ctx.moveTo(centerX, centerY);
+                    ctx.arc(centerX, centerY, radius, 0.7 * 2 * Math.PI, 2 * Math.PI);
+                    ctx.fillStyle = '#32CD32';
+                    ctx.fill();
+                    ctx.stroke();
+                    
+                    // Labels
+                    ctx.fillStyle = 'black';
+                    ctx.font = '14px Arial';
+                    ctx.fillText('Attributes: 60pts', 50, 50);
+                    ctx.fillText('Skills: 45pts', 50, 70);
+                    ctx.fillText('Traits: 45pts', 50, 90);
+                </script>
+            </div>
+        </section>
+
+        <section class="attribute-optimization">
+            <h2>Optimizing Your Attributes</h2>
+            
+            <h3>Attribute Cost Scaling</h3>
+            <p>Attributes get more expensive as they increase, like luxury car features. The difference between "good" and "great" costs more than the difference between "poor" and "good":</p>
+
+            <pre><code>Attribute Level | Cost per Level | Total Cost | Real-World Equivalent
+10 (Average)    | Base (0)       | 0 points   | Typical adult
+11              | 10 points      | 10 points  | Fit/Smart person
+12              | 20 points      | 30 points  | Athlete/Professional
+13              | 30 points      | 60 points  | Elite performer
+14              | 40 points      | 100 points| World-class talent
+15              | 50 points      | 150 points| Olympic/Genius level</code></pre>
+
+            <h3>Smart Attribute Buying</h3>
+            <p>Consider these strategies when allocating attribute points:</p>
+
+            <div class="strategy-box">
+                <h4>The "Good Enough" Approach</h4>
+                <p>Buy attributes to 12-13 for your character's specialties, 11 for secondary areas, and leave others at 10. This gives you competence without breaking the bank.</p>
+                <p><strong>Example:</strong> A scholar might have IQ 13, DX 11, HT 11, ST 10</p>
+            </div>
+
+            <div class="strategy-box">
+                <h4>The "Specialist" Approach</h4>
+                <p>Maximize one attribute (14-15) and keep others moderate. Expensive but creates clear character identity.</p>
+                <p><strong>Example:</strong> A strongman with ST 16, but DX 10, IQ 10, HT 12</p>
+            </div>
+
+            <div class="strategy-box">
+                <h4>The "Balanced Hero" Approach</h4>
+                <p>All attributes at 12-13. More expensive but creates a versatile character.</p>
+                <p><strong>Example:</strong> Action hero with ST 12, DX 13, IQ 12, HT 13</p>
+            </div>
+
+            <div class="real-world-example">
+                <h4>Building Dr. Elena Vasquez's Attributes</h4>
+                <p>For our 150-point archaeologist, focusing on mental abilities:</p>
+                <ul>
+                    <li><strong>ST 9 [-10 points]:</strong> Slightly below average, reflects academic lifestyle</li>
+                    <li><strong>DX 11 [20 points]:</strong> Decent coordination for fieldwork</li>
+                    <li><strong>IQ 14 [80 points]:</strong> Brilliant mind, her main asset</li>
+                    <li><strong>HT 10 [0 points]:</strong> Average health</li>
+                </ul>
+                <p><strong>Total: 90 points spent on attributes (60% of budget)</strong></p>
+                <p>This leaves 60 points for skills and traits—reasonable for a knowledge-focused character.</p>
+            </div>
+        </section>
+
+        <section class="advantages-deep-dive">
+            <h2>Advantages: Your Character's Superpowers</h2>
+            
+            <p>Advantages are like special equipment for your character's soul—they provide capabilities beyond what attributes and skills alone can offer. Think of them as your character's "special features package."</p>
+
+            <h3>Categories of Advantages</h3>
+
+            <div class="mermaid">
+                mindmap
+                  root)Advantages(
+                    Mental
+                      Eidetic Memory
+                        [Perfect recall]
+                        [Research bonus]
+                      Mathematical Ability
+                        [Complex calculations]
+                        [Pattern recognition]
+                      Language Talent
+                        [Learn languages easily]
+                        [Cultural understanding]
+                    Physical
+                      Enhanced ST/DX/IQ/HT
+                        [Better than human limits]
+                        [Expensive but powerful]
+                      Acute Senses
+                        [Better vision/hearing]
+                        [Notice hidden things]
+                      Damage Resistance
+                        [Natural armor]
+                        [Survive more damage]
+                    Social
+                      Charisma
+                        [Natural leadership]
+                        [People like you]
+                      Status
+                        [Social position]
+                        [Access and respect]
+                      Wealth
+                        [Financial resources]
+                        [Better equipment]
+                    Supernatural
+                      Magic
+                        [Cast spells]
+                        [Bend reality]
+                      Psionics
+                        [Mental powers]
+                        [Telepathy, telekinesis]
+                      Powers
+                        [Superhuman abilities]
+                        [Flight, energy blasts]
+            </div>
+
+            <h3>Choosing Advantages Wisely</h3>
+            <p>Select advantages that support your character concept and campaign style:</p>
+
+            <div class="advantage-examples">
+                <div class="advantage-category">
+                    <h4>For Combat Characters</h4>
+                    <ul>
+                        <li><strong>Enhanced ST/DX [expensive]:</strong> Hit harder, move better</li>
+                        <li><strong>Combat Reflexes [15 pts]:</strong> Better initiative, harder to surprise</li>
+                        <li><strong>High Pain Threshold [10 pts]:</strong> Ignore injury penalties</li>
+                        <li><strong>Danger Sense [15 pts]:</strong> Supernatural awareness of threats</li>
+                    </ul>
+                </div>
+
+                <div class="advantage-category">
+                    <h4>For Social Characters</h4>
+                    <ul>
+                        <li><strong>Charisma [5 pts/level]:</strong> Natural leadership and likability</li>
+                        <li><strong>Voice [10 pts]:</strong> Compelling, beautiful speaking voice</li>
+                        <li><strong>Appearance [variable]:</strong> Physical attractiveness</li>
+                        <li><strong>Status [variable]:</strong> Social position and recognition</li>
+                    </ul>
+                </div>
+
+                <div class="advantage-category">
+                    <h4>For Knowledge Characters</h4>
+                    <ul>
+                        <li><strong>Eidetic Memory [5/10 pts]:</strong> Perfect or near-perfect recall</li>
+                        <li><strong>Language Talent [10 pts]:</strong> Learn languages easily</li>
+                        <li><strong>Contacts [variable]:</strong> Reliable sources of information</li>
+                        <li><strong>Cultural Familiarity [variable]:</strong> Understand different societies</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="elena-advantages">
+                <h4>Dr. Elena's Advantages</h4>
+                <p>For our archaeologist, let's select advantages that support her role:</p>
+                <ul>
+                    <li><strong>Eidetic Memory [5 pts]:</strong> Remember every detail of research</li>
+                    <li><strong>Language Talent [10 pts]:</strong> Crucial for reading ancient texts</li>
+                    <li><strong>Contact Group (Academic Network) [10 pts]:</strong> University colleagues worldwide</li>
+                    <li><strong>Cultural Familiarity (Various) [6 pts]:</strong> Understands different historical cultures</li>
+                </ul>
+                <p><strong>Total: 31 points in advantages</strong></p>
+            </div>
+        </section>
+
+        <section class="disadvantages-deep-dive">
+            <h2>Disadvantages: The Price of Interesting</h2>
+            
+            <p>Disadvantages are like plot hooks with mechanical bite. They're not just limitations—they're story generators that give you extra character points while making your character more interesting and human. Think of them as the "character flaws" that make heroes relatable.</p>
+
+            <h3>Types of Disadvantages</h3>
+
+            <div class="disadvantage-types">
+                <div class="disadvantage-type">
+                    <h4>Mental Disadvantages</h4>
+                    <p>Affect thinking, personality, or decision-making</p>
+                    <p><strong>Examples:</strong> Overconfidence, Curious, Absent-Minded, Phobias</p>
+                    <p><strong>Story Impact:</strong> Drive character actions and create complications</p>
+                </div>
+
+                <div class="disadvantage-type">
+                    <h4>Physical Disadvantages</h4>
+                    <p>Limit physical capabilities or create vulnerabilities</p>
+                    <p><strong>Examples:</strong> Bad Sight, One Arm, Chronic Pain, Allergies</p>
+                    <p><strong>Story Impact:</strong> Create tactical challenges and roleplaying opportunities</p>
+                </div>
+
+                <div class="disadvantage-type">
+                    <h4>Social Disadvantages</h4>
+                    <p>Affect relationships and social interactions</p>
+                    <p><strong>Examples:</strong> Social Stigma, Bad Reputation, Shyness, Honesty</p>
+                    <p><strong>Story Impact:</strong> Complicate social situations and relationships</p>
+                </div>
+
+                <div class="disadvantage-type">
+                    <h4>Supernatural Disadvantages</h4>
+                    <p>Exotic limitations or vulnerabilities</p>
+                    <p><strong>Examples:</strong> Vulnerability to silver, Cannot cross running water</p>
+                    <p><strong>Story Impact:</strong> Create specific tactical weaknesses</p>
+                </div>
+            </div>
+
+            <h3>The Art of Picking Good Disadvantages</h3>
+            <p>Great disadvantages enhance your character concept while providing interesting story complications:</p>
+
+            <div class="disadvantage-guidelines">
+                <h4>Guidelines for Choosing Disadvantages</h4>
+                <ul>
+                    <li><strong>Match your concept:</strong> A scholar might be Absent-Minded, not Bloodthirsty</li>
+                    <li><strong>Consider frequency:</strong> Choose flaws that will come up regularly</li>
+                    <li><strong>Balance severity:</strong> Mix minor irritations with major complications</li>
+                    <li><strong>Think story:</strong> What makes your character's life more interesting?</li>
+                    <li><strong>Avoid "free points":</strong> Don't pick disadvantages you'll never encounter</li>
+                </ul>
+            </div>
+
+            <div class="elena-disadvantages">
+                <h4>Dr. Elena's Disadvantages</h4>
+                <p>Let's give Elena some interesting flaws that fit her character:</p>
+                <ul>
+                    <li><strong>Curious [-5 pts]:</strong> Must investigate mysteries, even when dangerous</li>
+                    <li><strong>Honesty [-10 pts]:</strong> Won't lie or cheat, believes in truth</li>
+                    <li><strong>Obsession (Preserving History) [-10 pts]:</strong> Sometimes prioritizes artifacts over people</li>
+                    <li><strong>Pacifism (Cannot Harm Innocents) [-10 pts]:</strong> Strong moral code</li>
+                    <li><strong>Workaholic [-5 pts]:</strong> Has trouble relaxing or maintaining relationships</li>
+                </ul>
+                <p><strong>Total: -40 points, giving Elena 40 extra points to spend elsewhere!</strong></p>
+            </div>
+
+            <div class="disadvantage-interactions">
+                <h4>How Disadvantages Create Story</h4>
+                <p>Elena's disadvantages work together to create interesting scenarios:</p>
+                <ul>
+                    <li>Her <strong>Curiosity</strong> gets the team into supernatural trouble</li>
+                    <li>Her <strong>Honesty</strong> prevents her from lying to authorities</li>
+                    <li>Her <strong>Obsession</strong> might make her protect an artifact over team safety</li>
+                    <li>Her <strong>Pacifism</strong> creates moral dilemmas in combat situations</li>
+                    <li>Her <strong>Workaholic</strong> nature strains personal relationships</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="skill-selection">
+            <h2>Skills: Building Your Character's Toolkit</h2>
+            
+            <p>Skills are your character's learned abilities—their professional toolkit. Unlike a video game where you might be "a mage" or "a fighter," GURPS lets you build a unique combination of abilities that reflects your character's background and interests.</p>
+
+            <h3>Skill Point Economics</h3>
+            <p>Skills follow the law of diminishing returns—early points give big improvements, later points cost more for smaller gains:</p>
+
+            <pre><code>Points Spent | Skill Level | Improvement | Best Use
+1 point      | Attribute-1 | +1         | Dabbling/basics
+2 points     | Attribute+0 | +1         | Competent amateur
+4 points     | Attribute+1 | +1         | Professional level
+8 points     | Attribute+2 | +1         | Expert level
+12 points    | Attribute+3 | +1         | Master level
+16 points    | Attribute+4 | +1         | World-class expert</code></pre>
+
+            <h3>The Pyramid Strategy</h3>
+            <p>Build your skills like a pyramid—one primary skill at high level, several secondary skills at moderate level, many tertiary skills at basic level:</p>
+
+            <svg width="500" height="300" style="margin: 20px auto; display: block;">
+                <!-- Pyramid structure -->
+                <rect x="200" y="50" width="100" height="40" fill="#FF6B6B" stroke="black" stroke-width="2"/>
+                <text x="250" y="75" text-anchor="middle" font-size="12" fill="white">Primary (8+ pts)</text>
+                
+                <rect x="150" y="100" width="80" height="35" fill="#4ECDC4" stroke="black" stroke-width="2"/>
+                <rect x="270" y="100" width="80" height="35" fill="#4ECDC4" stroke="black" stroke-width="2"/>
+                <text x="190" y="120" text-anchor="middle" font-size="10">Secondary</text>
+                <text x="310" y="120" text-anchor="middle" font-size="10">Secondary</text>
+                <text x="250" y="130" text-anchor="middle" font-size="10">(4 pts each)</text>
+                
+                <rect x="100" y="145" width="60" height="30" fill="#45B7D1" stroke="black" stroke-width="2"/>
+                <rect x="170" y="145" width="60" height="30" fill="#45B7D1" stroke="black" stroke-width="2"/>
+                <rect x="240" y="145" width="60" height="30" fill="#45B7D1" stroke="black" stroke-width="2"/>
+                <rect x="310" y="145" width="60" height="30" fill="#45B7D1" stroke="black" stroke-width="2"/>
+                <text x="250" y="165" text-anchor="middle" font-size="10">Tertiary (1-2 pts each)</text>
+                
+                <!-- Labels -->
+                <text x="250" y="200" text-anchor="middle" font-size="14" font-weight="bold">The Skill Pyramid</text>
+                <text x="250" y="220" text-anchor="middle" font-size="12">One expertise, several competencies, many basics</text>
+            </svg>
+
+            <h3>Essential Skill Categories</h3>
+
+            <div class="skill-categories">
+                <div class="skill-category">
+                    <h4>Physical Skills (DX-based)</h4>
+                    <ul>
+                        <li><strong>Combat:</strong> Guns, Melee weapons, Brawling</li>
+                        <li><strong>Athletic:</strong> Climbing, Swimming, Acrobatics</li>
+                        <li><strong>Technical:</strong> Driving, Piloting, Lockpicking</li>
+                        <li><strong>Crafting:</strong> Mechanic, Electronics Repair</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h4>Mental Skills (IQ-based)</h4>
+                    <ul>
+                        <li><strong>Academic:</strong> History, Science, Law, Medicine</li>
+                        <li><strong>Languages:</strong> Foreign languages and ancient scripts</li>
+                        <li><strong>Professional:</strong> Computer Operation, Research, Teaching</li>
+                        <li><strong>Occult:</strong> Hidden Lore, Religious studies</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h4>Social Skills (IQ-based)</h4>
+                    <ul>
+                        <li><strong>Communication:</strong> Diplomacy, Fast-Talk, Public Speaking</li>
+                        <li><strong>Information:</strong> Streetwise, Intelligence Analysis</li>
+                        <li><strong>Influence:</strong> Psychology, Intimidation, Leadership</li>
+                        <li><strong>Deception:</strong> Acting, Disguise, Detect Lies</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h4>Perception Skills (IQ-based)</h4>
+                    <ul>
+                        <li><strong>Awareness:</strong> Observation, Search, Tracking</li>
+                        <li><strong>Investigation:</strong> Forensics, Criminology</li>
+                        <li><strong>Survival:</strong> Navigation, Weather sense</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="elena-skills">
+                <h4>Dr. Elena's Skill Package</h4>
+                <p>With her remaining 29 points (60 total budget - 31 advantages), Elena needs skills that support her archaeological expertise:</p>
+
+                <h5>Primary Skills (8 points each)</h5>
+                <ul>
+                    <li><strong>Archaeology [8 pts] → IQ+2 (16):</strong> Her main professional expertise</li>
+                    <li><strong>Research [8 pts] → IQ+2 (16):</strong> Finding information in libraries and databases</li>
+                </ul>
+
+                <h5>Secondary Skills (4 points each)</h5>
+                <ul>
+                    <li><strong>History (Pre-Columbian) [4 pts] → IQ+1 (15):</strong> Specialized historical knowledge</li>
+                    <li><strong>Language (Ancient Mayan) [4 pts] → IQ+1 (15):</strong> Read primary sources</li>
+                </ul>
+
+                <h5>Tertiary Skills (1-2 points each)</h5>
+                <ul>
+                    <li><strong>Anthropology [2 pts] → IQ+0 (14):</strong> Understanding ancient cultures</li>
+                    <li><strong>Photography [1 pt] → IQ-1 (13):</strong> Documenting finds</li>
+                    <li><strong>Geology [1 pt] → IQ-1 (13):</strong> Understanding sites and materials</li>
+                    <li><strong>Computer Operation [1 pt] → IQ-1 (13):</strong> Modern research tools</li>
+                    <li><strong>Driving (Automobile) [1 pt] → DX-1 (10):</strong> Getting to remote sites</li>
+                </ul>
+
+                <p><strong>Total: 30 points spent on skills</strong></p>
+                <p>Elena now has world-class expertise in archaeology and research, solid knowledge in related fields, and basic competence in supporting skills.</p>
+            </div>
+        </section>
+
+        <section class="character-examples">
+            <h2>Complete Character Examples</h2>
+            
+            <h3>Character Template: The Action Hero</h3>
+            <div class="character-sheet">
+                <h4>Jack "Ace" Morrison - 150-Point Action Hero</h4>
+                
+                <div class="character-stats">
+                    <h5>Attributes [90 points]</h5>
+                    <ul>
+                        <li>ST 12 [20] - Strong enough for action scenes</li>
+                        <li>DX 13 [60] - Excellent coordination for combat/stunts</li>
+                        <li>IQ 11 [20] - Smart enough to figure out plots</li>
+                        <li>HT 12 [20] - Tough and resilient</li>
+                    </ul>
+
+                    <h5>Secondary Characteristics</h5>
+                    <ul>
+                        <li>HP: 12, Will: 11, Per: 11, FP: 12</li>
+                        <li>Basic Speed: 6.25, Basic Move: 6</li>
+                    </ul>
+
+                    <h5>Advantages [25 points]</h5>
+                    <ul>
+                        <li>Combat Reflexes [15] - Hard to surprise, bonus to initiative</li>
+                        <li>Luck [15] - Can reroll one bad roll per game session</li>
+                        <li>High Pain Threshold [10] - Ignore injury penalties</li>
+                        <li>Contacts (Intelligence Agency) [5] - Information and backup</li>
+                    </ul>
+
+                    <h5>Disadvantages [-20 points]</h5>
+                    <ul>
+                        <li>Code of Honor (Soldier's) [-10] - Won't abandon allies</li>
+                        <li>Duty (Government Agency) [-10] - Must take assignments</li>
+                    </ul>
+
+                    <h5>Skills [55 points]</h5>
+                    <ul>
+                        <li>Guns (Pistol) [8] → DX+2 (15) - Expert marksman</li>
+                        <li>Brawling [4] → DX+1 (14) - Good hand-to-hand fighter</li>
+                        <li>Driving (Automobile) [4] → DX+1 (14) - Stunt driving</li>
+                        <li>Stealth [4] → DX+1 (14) - Move quietly</li>
+                        <li>Tactics [4] → IQ+1 (12) - Military planning</li>
+                        <li>And various other skills at 1-2 points each</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>Character Template: The Mystic Scholar</h3>
+            <div class="character-sheet">
+                <h4>Professor Marcus Blackwood - 200-Point Occult Investigator</h4>
+                
+                <div class="character-stats">
+                    <h5>Attributes [90 points]</h5>
+                    <ul>
+                        <li>ST 9 [-10] - Academic lifestyle, not physical</li>
+                        <li>DX 10 [0] - Average coordination</li>
+                        <li>IQ 15 [100] - Brilliant scholar and researcher</li>
+                        <li>HT 10 [0] - Average health</li>
+                    </ul>
+
+                    <h5>Advantages [65 points]</h5>
+                    <ul>
+                        <li>Magery 3 [35] - Powerful magical ability</li>
+                        <li>Eidetic Memory [5] - Perfect recall</li>
+                        <li>Language Talent [10] - Learn languages easily</li>
+                        <li>Status 2 (University Professor) [10] - Academic standing</li>
+                        <li>Wealth (Comfortable) [10] - Tenured professor salary</li>
+                    </ul>
+
+                    <h5>Disadvantages [-40 points]</h5>
+                    <ul>
+                        <li>Curious [-5] - Must investigate mysteries</li>
+                        <li>Sense of Duty (Students) [-5] - Protects his students</li>
+                        <li>Weirdness Magnet [-15] - Strange things happen around him</li>
+                        <li>Workaholic [-5] - Always researching</li>
+                        <li>Enemy (Dark Cult) [-10] - They want his knowledge</li>
+                    </ul>
+
+                    <h5>Skills [85 points]</h5>
+                    <ul>
+                        <li>Thaumatology [12] → IQ+3 (18) - Magical theory master</li>
+                        <li>Occultism [8] → IQ+2 (17) - Hidden knowledge expert</li>
+                        <li>Research [8] → IQ+2 (17) - Finding information</li>
+                        <li>Various magical spells [40+ points]</li>
+                        <li>Languages and other academic skills</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="common-mistakes">
+            <h2>Common Character Creation Mistakes</h2>
+            
+            <div class="mistake-warning">
+                <h3>The "Everything at 18" Problem</h3>
+                <p><strong>Mistake:</strong> New players often want to max out important attributes</p>
+                <p><strong>Why it's bad:</strong> Extremely expensive, leaves no points for skills or interesting traits</p>
+                <p><strong>Better approach:</strong> Attributes at 12-14 are effective and affordable</p>
+            </div>
+
+            <div class="mistake-warning">
+                <h3>The "Skill Overbuyer" Problem</h3>
+                <p><strong>Mistake:</strong> Spending 16+ points on single skills</p>
+                <p><strong>Why it's bad:</strong> Massive point investment for small improvement</p>
+                <p><strong>Better approach:</strong> 4-8 points per skill gives good bang for buck</p>
+            </div>
+
+            <div class="mistake-warning">
+                <h3>The "Free Points" Problem</h3>
+                <p><strong>Mistake:</strong> Taking disadvantages that never affect gameplay</p>
+                <p><strong>Why it's bad:</strong> Exploits the system, creates boring characters</p>
+                <p><strong>Better approach:</strong> Choose disadvantages that create interesting story complications</p>
+            </div>
+
+            <div class="mistake-warning">
+                <h3>The "One-Trick Pony" Problem</h3>
+                <p><strong>Mistake:</strong> Creating characters who can only do one thing well</p>
+                <p><strong>Why it's bad:</strong> Boring when that one thing isn't relevant</p>
+                <p><strong>Better approach:</strong> Have a primary specialty but be competent in several areas</p>
+            </div>
+        </section>
+
+        <section class="practice-activities">
+            <h2>Practice Activities</h2>
+            
+            <div class="activity">
+                <h3>Activity 1: Point Budget Challenge</h3>
+                <p>You have 125 points to create a character. Spend exactly 125 points (no more, no less) on:</p>
+                <ul>
+                    <li>A modern-day emergency room doctor</li>
+                    <li>A medieval knight</li>
+                    <li>A space ship pilot</li>
+                </ul>
+                <p>For each character, justify your choices and explain how they reflect the character concept.</p>
+            </div>
+
+            <div class="activity">
+                <h3>Activity 2: Disadvantage Storytelling</h3>
+                <p>Pick three disadvantages from different categories (mental, physical, social). Write a short paragraph for each explaining how it would create interesting story complications in a typical adventure scenario.</p>
+            </div>
+
+            <div class="activity">
+                <h3>Activity 3: Skill Pyramid Construction</h3>
+                <p>You have 40 points to spend on skills for a private investigator. Create a skill pyramid with:</p>
+                <ul>
+                    <li>1 primary skill (8+ points)</li>
+                    <li>2-3 secondary skills (4 points each)</li>
+                    <li>Several tertiary skills (1-2 points each)</li>
+                </ul>
+                <p>Explain your choices and how they work together.</p>
+            </div>
+
+            <div class="activity">
+                <h3>Activity 4: Character Optimization Challenge</h3>
+                <p>Take the Dr. Elena character we built and rebuild her as:</p>
+                <ul>
+                    <li>A 100-point "realistic" version</li>
+                    <li>A 250-point "cinematic" version</li>
+                </ul>
+                <p>What changes at different point levels? What stays the same?</p>
+            </div>
+
+            <div class="activity">
+                <h3>Activity 5: Template Creation</h3>
+                <p>Create a 150-point character template for a "supernatural investigator" that other players could use as a starting point. Include:</p>
+                <ul>
+                    <li>Suggested attribute ranges</li>
+                    <li>Essential advantages and disadvantages</li>
+                    <li>Core skill package</li>
+                    <li>Optional variations</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="further-exploration">
+            <h2>Advanced Character Creation Topics</h2>
+            
+            <ul>
+                <li><strong>Racial Templates:</strong> Non-human characters and their special traits</li>
+                <li><strong>Professional Templates:</strong> Ready-made character concepts for quick creation</li>
+                <li><strong>Power Level Considerations:</strong> Balancing characters in mixed-power campaigns</li>
+                <li><strong>Character Advancement:</strong> How characters grow and change over time</li>
+                <li><strong>Alternative Attributes:</strong> When to use Will, Perception, and other secondary characteristics</li>
+                <li><strong>Exotic Advantages:</strong> Supernatural powers, magic, and psionics</li>
+                <li><strong>Equipment and Gear:</strong> Choosing the right tools for your character</li>
+                <li><strong>Background and Motivation:</strong> Creating compelling character histories</li>
+            </ul>
+        </section>
+
+        <section class="conclusion">
+            <h2>Conclusion: From Points to Personality</h2>
+            
+            <p>Character creation in GURPS is both an art and a science. You've learned the mechanics—how to allocate points efficiently, choose effective combinations of traits, and avoid common pitfalls. But remember that the numbers on your character sheet are just the foundation. The real character emerges through play, as you discover how these mechanical choices translate into personality, story, and memorable moments around the gaming table.</p>
+
+            <p>Your character sheet is like a musical instrument—well-crafted and properly tuned, but it only comes alive when you play it. The best GURPS characters aren't necessarily the most optimized; they're the ones that create interesting stories and fun gameplay for everyone at the table.</p>
+
+            <div class="next-steps">
+                <h3>Ready for Action?</h3>
+                <p>In our next lecture, we'll explore the core mechanics that bring your character to life—how to make skill rolls, when to use different types of tests, and how success and failure drive the story forward. You'll learn the fundamental resolution systems that govern everything from picking locks to solving mysteries to surviving deadly encounters.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Next:<a href="/gurps_core.html" >Core Mechanics and Resolution Systems</a></p>
+        <p>Remember: A great character is more than the sum of their points!</p>
+    </footer>
+</body>
+</html>

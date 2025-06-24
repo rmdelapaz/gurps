@@ -1,0 +1,1656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GURPS Introduction Tutorial</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+</head>
+<body>
+    <header>
+        <h1>GURPS Introduction Tutorial</h1>
+        <p><em>Your Complete Guide to the Generic Universal RolePlaying System</em></p>
+    </header>
+
+    <main>
+        <section>
+            <h2>Welcome to GURPS</h2>
+            <p>Imagine a toolkit so flexible you could build a medieval fantasy adventure, a space opera, a modern spy thriller, or a superhero comic book story using the same core rules. That's GURPS – the Generic Universal RolePlaying System. While D&D is like a specialized tool designed specifically for fantasy adventures, GURPS is like a Swiss Army knife capable of handling any setting, any genre, any story you can imagine.</p>
+            
+            <p>GURPS operates on the principle that good game mechanics should be invisible and universal. Whether you're swinging a sword at a dragon, hacking a computer system, or negotiating a trade agreement with aliens, the same core resolution system handles it all. This makes GURPS incredibly powerful for creative storytelling, though it requires more up-front decision-making than simpler systems.</p>
+
+            <div class="mermaid">
+                graph TD
+                    A[GURPS Core System] --> B[Any Genre]
+                    A --> C[Realistic Simulation]
+                    A --> D[Flexible Character Creation]
+                    A --> E[Unified Mechanics]
+                    
+                    B --> F[Fantasy]
+                    B --> G[Sci-Fi]
+                    B --> H[Modern]
+                    B --> I[Historical]
+                    B --> J[Horror]
+                    B --> K[Superheroes]
+                    
+                    C --> L[Physics-Based]
+                    C --> M[Detailed Combat]
+                    C --> N[Realistic Consequences]
+                    
+                    D --> O[Point-Buy System]
+                    D --> P[Advantages/Disadvantages]
+                    D --> Q[Skill-Based]
+                    
+                    E --> R[3d6 Roll-Under]
+                    E --> S[Consistent Difficulty]
+                    E --> T[Scalable Complexity]
+                    
+                    style A fill:#4CAF50
+                    style B fill:#2196F3
+                    style C fill:#FF9800
+                    style D fill:#9C27B0
+                    style E fill:#F44336
+            </div>
+        </section>
+
+        <section>
+            <h2>What Makes GURPS Different</h2>
+            <p>Understanding GURPS's unique approach helps you appreciate both its strengths and when it might be the right choice for your gaming needs.</p>
+
+            <h3>Universal Mechanics</h3>
+
+            <h4>One System, Every Setting</h4>
+            <p>Unlike game systems designed for specific genres, GURPS uses the same core mechanics whether you're:</p>
+            <ul>
+                <li><strong>Playing a wizard:</strong> Casting spells uses the same skill system as any other action</li>
+                <li><strong>Piloting a starship:</strong> The same difficulty and success mechanics apply</li>
+                <li><strong>Performing surgery:</strong> Medical procedures use familiar skill roll mechanics</li>
+                <li><strong>Fighting with swords or guns:</strong> Combat follows consistent principles</li>
+            </ul>
+
+            <h4>Simulation Philosophy</h4>
+            <p>GURPS aims to simulate reality as closely as possible:</p>
+            <ul>
+                <li><strong>Physics matters:</strong> Armor protects by absorbing damage, not making you harder to hit</li>
+                <li><strong>Consequences are realistic:</strong> Getting shot actually affects your ability to function</li>
+                <li><strong>Skills work logically:</strong> Being good at one thing doesn't automatically make you good at everything</li>
+                <li><strong>Characters feel human:</strong> Even heroes have limitations and weaknesses</li>
+            </ul>
+
+            <h3>Point-Based Character Creation</h3>
+
+            <h4>Build Exactly What You Want</h4>
+            <p>Instead of random generation or class restrictions, GURPS gives you a "budget" of character points to spend:</p>
+            <ul>
+                <li><strong>Attributes:</strong> Strength, Intelligence, Health, Dexterity</li>
+                <li><strong>Advantages:</strong> Special abilities, talents, and beneficial traits</li>
+                <li><strong>Skills:</strong> What your character knows how to do</li>
+                <li><strong>Disadvantages:</strong> Flaws that give you extra points to spend elsewhere</li>
+            </ul>
+
+            <h4>Complete Customization</h4>
+            <p>Want to play a brilliant but physically weak scientist? A strong but slow-witted bruiser? A charismatic leader who's unlucky? GURPS lets you build exactly the character concept you envision without class-based restrictions.</p>
+
+            <h3>Scalable Complexity</h3>
+
+            <h4>Choose Your Detail Level</h4>
+            <p>GURPS can be as simple or complex as your group prefers:</p>
+            <ul>
+                <li><strong>Basic GURPS:</strong> Simple rules for quick play</li>
+                <li><strong>Full GURPS:</strong> Detailed simulation for maximum realism</li>
+                <li><strong>Modular rules:</strong> Add complexity only where you want it</li>
+                <li><strong>House rules:</strong> Easy to modify for your specific needs</li>
+            </ul>
+
+            <svg width="500" height="300" viewBox="0 0 500 300">
+                <!-- Comparison chart: GURPS vs Traditional RPGs -->
+                <rect x="50" y="50" width="180" height="200" fill="#E3F2FD" stroke="#1976D2" stroke-width="2"/>
+                <text x="140" y="40" text-anchor="middle" font-family="Arial" font-size="12" fill="#333" font-weight="bold">Traditional RPGs</text>
+                
+                <rect x="270" y="50" width="180" height="200" fill="#E8F5E8" stroke="#4CAF50" stroke-width="2"/>
+                <text x="360" y="40" text-anchor="middle" font-family="Arial" font-size="12" fill="#333" font-weight="bold">GURPS</text>
+                
+                <!-- Traditional RPG features -->
+                <text x="60" y="80" font-family="Arial" font-size="10" fill="#333">✓ Genre-specific rules</text>
+                <text x="60" y="100" font-family="Arial" font-size="10" fill="#333">✓ Character classes</text>
+                <text x="60" y="120" font-family="Arial" font-size="10" fill="#333">✓ Level-based progression</text>
+                <text x="60" y="140" font-family="Arial" font-size="10" fill="#333">✓ Fixed ability packages</text>
+                <text x="60" y="160" font-family="Arial" font-size="10" fill="#333">✓ Simple to learn</text>
+                <text x="60" y="180" font-family="Arial" font-size="10" fill="#333">✓ Quick character creation</text>
+                <text x="60" y="200" font-family="Arial" font-size="10" fill="#333">✓ Focused gameplay</text>
+                <text x="60" y="220" font-family="Arial" font-size="10" fill="#333">✓ Established conventions</text>
+                
+                <!-- GURPS features -->
+                <text x="280" y="80" font-family="Arial" font-size="10" fill="#333">✓ Universal mechanics</text>
+                <text x="280" y="100" font-family="Arial" font-size="10" fill="#333">✓ Complete customization</text>
+                <text x="280" y="120" font-family="Arial" font-size="10" fill="#333">✓ Point-based advancement</text>
+                <text x="280" y="140" font-family="Arial" font-size="10" fill="#333">✓ Build any concept</text>
+                <text x="280" y="160" font-family="Arial" font-size="10" fill="#333">✓ Realistic simulation</text>
+                <text x="280" y="180" font-family="Arial" font-size="10" fill="#333">✓ Detailed character creation</text>
+                <text x="280" y="200" font-family="Arial" font-size="10" fill="#333">✓ Any genre possible</text>
+                <text x="280" y="220" font-family="Arial" font-size="10" fill="#333">✓ Scalable complexity</text>
+                
+                <!-- Arrow showing choice -->
+                <text x="250" y="280" text-anchor="middle" font-family="Arial" font-size="12" fill="#333" font-weight="bold">Choose Based on Your Preferences</text>
+            </svg>
+        </section>
+
+        <section>
+            <h2>Core Mechanics: The 3d6 System</h2>
+            <p>GURPS uses a beautifully simple core mechanic that creates realistic probability curves and makes success feel earned rather than random.</p>
+
+            <h3>The Basic Roll</h3>
+
+            <h4>Roll 3d6, Roll Low</h4>
+            <p>Unlike most RPGs that use single dice and try to roll high, GURPS uses three six-sided dice and aims to roll equal to or under your target number:</p>
+            <ul>
+                <li><strong>Target number:</strong> Your skill level or attribute</li>
+                <li><strong>Success:</strong> Roll equal to or under the target</li>
+                <li><strong>Failure:</strong> Roll over the target number</li>
+                <li><strong>Example:</strong> If you have Sword skill 14, you succeed on a roll of 14 or less</li>
+            </ul>
+
+            <h4>Why 3d6 is Superior</h4>
+            <p>Rolling three dice creates a bell curve instead of flat probability:</p>
+            <ul>
+                <li><strong>10-11 are most common:</strong> Average results happen most often</li>
+                <li><strong>3-5 and 16-18 are rare:</strong> Extreme results are appropriately uncommon</li>
+                <li><strong>Predictable success rates:</strong> You can reasonably estimate your chances</li>
+                <li><strong>Realistic feeling:</strong> Most attempts at familiar tasks succeed</li>
+            </ul>
+
+            <h3>Success and Failure Levels</h3>
+
+            <h4>Degrees of Success</h4>
+            <p>GURPS recognizes that not all successes are equal:</p>
+            <ul>
+                <li><strong>Critical Success:</strong> Roll 3-4, or 5-6 if skill is 15+</li>
+                <li><strong>Success by 5+:</strong> Exceptional success with extra benefits</li>
+                <li><strong>Regular Success:</strong> You accomplish what you intended</li>
+                <li><strong>Success by 1:</strong> Barely made it, minimal success</li>
+            </ul>
+
+            <h4>Degrees of Failure</h4>
+            <ul>
+                <li><strong>Failure by 1:</strong> Close call, minor setback</li>
+                <li><strong>Regular Failure:</strong> Didn't accomplish the task</li>
+                <li><strong>Failure by 5+:</strong> Significant failure with complications</li>
+                <li><strong>Critical Failure:</strong> Roll 17-18, something goes very wrong</li>
+            </ul>
+
+            <h3>Modifiers: Adjusting for Circumstances</h3>
+
+            <h4>Difficulty Modifiers</h4>
+            <p>The GM adds or subtracts numbers from your effective skill based on circumstances:</p>
+            <ul>
+                <li><strong>+4:</strong> Very Easy (reading in good light)</li>
+                <li><strong>+2:</strong> Easy (familiar task in good conditions)</li>
+                <li><strong>0:</strong> Average (standard conditions)</li>
+                <li><strong>-2:</strong> Hard (challenging but doable)</li>
+                <li><strong>-4:</strong> Very Hard (pushing your limits)</li>
+                <li><strong>-6:</strong> Extremely Hard (near impossible)</li>
+            </ul>
+
+            <h4>Situational Modifiers</h4>
+            <ul>
+                <li><strong>Equipment:</strong> Good tools give bonuses, poor tools give penalties</li>
+                <li><strong>Environment:</strong> Darkness, noise, weather affect performance</li>
+                <li><strong>Time:</strong> Rushing gives penalties, taking extra time gives bonuses</li>
+                <li><strong>Character state:</strong> Injury, fatigue, or stress impose penalties</li>
+            </ul>
+
+            <div class="mermaid">
+                graph LR
+                    A[Declare Action] --> B[Determine Skill Level]
+                    B --> C[Apply Modifiers]
+                    C --> D[Roll 3d6]
+                    D --> E{Compare to Target}
+                    E -->|Roll ≤ Target| F[Success]
+                    E -->|Roll > Target| G[Failure]
+                    F --> H[Determine Degree]
+                    G --> I[Determine Consequence]
+                    
+                    style A fill:#E3F2FD
+                    style F fill:#C8E6C9
+                    style G fill:#FFCDD2
+                    style H fill:#E8F5E8
+                    style I fill:#FFF3E0
+            </div>
+
+            <h3>Probability and Target Numbers</h3>
+
+            <h4>Understanding Your Chances</h4>
+            <p>Knowing the probabilities helps you make informed decisions:</p>
+            <ul>
+                <li><strong>Skill 10:</strong> 50% success chance (most skills start here)</li>
+                <li><strong>Skill 12:</strong> 74% success chance (trained professional)</li>
+                <li><strong>Skill 14:</strong> 91% success chance (expert level)</li>
+                <li><strong>Skill 16:</strong> 98% success chance (world-class master)</li>
+            </ul>
+
+            <h4>Effective Skill Levels</h4>
+            <p>Modifiers change your effective skill for that roll:</p>
+            <ul>
+                <li><strong>Sword-14 with -2 penalty:</strong> Effective skill 12 (74% chance)</li>
+                <li><strong>Computer-12 with +2 bonus:</strong> Effective skill 14 (91% chance)</li>
+                <li><strong>Stealth-13 with -4 penalty:</strong> Effective skill 9 (37% chance)</li>
+            </ul>
+
+            <svg width="400" height="250" viewBox="0 0 400 250">
+                <!-- 3d6 probability curve -->
+                <line x1="50" y1="200" x2="350" y2="200" stroke="#333" stroke-width="2"/>
+                <line x1="50" y1="200" x2="50" y2="50" stroke="#333" stroke-width="2"/>
+                
+                <!-- Probability bars -->
+                <rect x="60" y="190" width="15" height="10" fill="#FF6B6B"/>
+                <text x="67" y="220" text-anchor="middle" font-family="Arial" font-size="8" fill="#333">3</text>
+                
+                <rect x="80" y="180" width="15" height="20" fill="#4ECDC4"/>
+                <text x="87" y="220" text-anchor="middle" font-family="Arial" font-size="8" fill="#333">4</text>
+                
+                <rect x="100" y="170" width="15" height="30" fill="#45B7D1"/>
+                <text x="107" y="220" text-anchor="middle" font-family="Arial" font-size="8" fill="#333">5</text>
+                
+                <rect x="120" y="150" width="15" height="50" fill="#96CEB4"/>
+                <text x="127" y="220" text-anchor="middle" font-family="Arial" font-size="8" fill="#333">6</text>
+                
+                <!-- Peak of curve -->
+                <rect x="160" y="80" width="15" height="120" fill="#FFEAA7"/>
+                <text x="167" y="220" text-anchor="middle" font-family="Arial" font-size="8" fill="#333">10</text>
+                
+                <rect x="180" y="80" width="15" height="120" fill="#FFEAA7"/>
+                <text x="187" y="220" text-anchor="middle" font-family="Arial" font-size="8" fill="#333">11</text>
+                
+                <!-- Declining side -->
+                <rect x="220" y="150" width="15" height="50" fill="#96CEB4"/>
+                <text x="227" y="220" text-anchor="middle" font-family="Arial" font-size="8" fill="#333">15</text>
+                
+                <rect x="280" y="190" width="15" height="10" fill="#FF6B6B"/>
+                <text x="287" y="220" text-anchor="middle" font-family="Arial" font-size="8" fill="#333">18</text>
+                
+                <!-- Labels -->
+                <text x="200" y="40" text-anchor="middle" font-family="Arial" font-size="14" fill="#333" font-weight="bold">3d6 Probability Distribution</text>
+                <text x="30" y="130" text-anchor="middle" font-family="Arial" font-size="10" fill="#333" transform="rotate(-90 30 130)">Frequency</text>
+                <text x="200" y="240" text-anchor="middle" font-family="Arial" font-size="10" fill="#333">Roll Result</text>
+            </svg>
+        </section>
+
+        <section>
+            <h2>Character Creation: Building Your Hero</h2>
+            <p>GURPS character creation is like being handed a box of components and told to build exactly the character you envision. It requires more decisions than class-based systems, but offers unlimited flexibility.</p>
+
+            <h3>The Four Basic Attributes</h3>
+
+            <h4>Strength (ST)</h4>
+            <ul>
+                <li><strong>Measures:</strong> Physical power and health</li>
+                <li><strong>Used for:</strong> Melee damage, lifting, carrying capacity</li>
+                <li><strong>Default:</strong> 10 (average human)</li>
+                <li><strong>Cost:</strong> 10 points per level</li>
+                <li><strong>Examples:</strong> ST 8 (weak), ST 12 (athletic), ST 16 (very strong)</li>
+            </ul>
+
+            <h4>Dexterity (DX)</h4>
+            <ul>
+                <li><strong>Measures:</strong> Agility, coordination, and manual dexterity</li>
+                <li><strong>Used for:</strong> Most physical skills, ranged attacks, defense</li>
+                <li><strong>Default:</strong> 10 (average human)</li>
+                <li><strong>Cost:</strong> 20 points per level</li>
+                <li><strong>Examples:</strong> DX 8 (clumsy), DX 12 (graceful), DX 16 (superhuman)</li>
+            </ul>
+
+            <h4>Intelligence (IQ)</h4>
+            <ul>
+                <li><strong>Measures:</strong> Reasoning ability and mental capacity</li>
+                <li><strong>Used for:</strong> Most mental skills, spells, learning</li>
+                <li><strong>Default:</strong> 10 (average human)</li>
+                <li><strong>Cost:</strong> 20 points per level</li>
+                <li><strong>Examples:</strong> IQ 8 (slow), IQ 12 (bright), IQ 16 (genius)</li>
+            </ul>
+
+            <h4>Health (HT)</h4>
+            <ul>
+                <li><strong>Measures:</strong> Vitality, resistance to disease, and recovery</li>
+                <li><strong>Used for:</strong> Consciousness rolls, disease resistance, healing</li>
+                <li><strong>Default:</strong> 10 (average human)</li>
+                <li><strong>Cost:</strong> 10 points per level</li>
+                <li><strong>Examples:</strong> HT 8 (sickly), HT 12 (robust), HT 16 (incredibly hardy)</li>
+            </ul>
+
+            <h3>Secondary Characteristics</h3>
+
+            <h4>Derived from Attributes</h4>
+            <p>These are calculated from your basic attributes but can be modified:</p>
+
+            <h5>Hit Points (HP)</h5>
+            <ul>
+                <li><strong>Formula:</strong> Equal to ST by default</li>
+                <li><strong>Purpose:</strong> How much damage you can take</li>
+                <li><strong>Modification cost:</strong> 2 points per HP</li>
+            </ul>
+
+            <h5>Fatigue Points (FP)</h5>
+            <ul>
+                <li><strong>Formula:</strong> Equal to HT by default</li>
+                <li><strong>Purpose:</strong> Energy for sustained effort</li>
+                <li><strong>Modification cost:</strong> 3 points per FP</li>
+            </ul>
+
+            <h5>Basic Speed</h5>
+            <ul>
+                <li><strong>Formula:</strong> (HT + DX) ÷ 4</li>
+                <li><strong>Purpose:</strong> Initiative and movement rate</li>
+                <li><strong>Modification cost:</strong> 5 points per 0.25 increase</li>
+            </ul>
+
+            <h5>Basic Move</h5>
+            <ul>
+                <li><strong>Formula:</strong> Basic Speed (drop fractions)</li>
+                <li><strong>Purpose:</strong> How far you move in one second</li>
+                <li><strong>Modification cost:</strong> 5 points per level</li>
+            </ul>
+
+            <h3>Advantages: What Makes You Special</h3>
+
+            <h4>Types of Advantages</h4>
+
+            <h5>Physical Advantages</h5>
+            <ul>
+                <li><strong>Acute Senses [2/level]:</strong> Better hearing, vision, etc.</li>
+                <li><strong>Ambidexterity [5]:</strong> No penalty for off-hand use</li>
+                <li><strong>High Pain Threshold [10]:</strong> +3 to resist torture, shock</li>
+                <li><strong>Rapid Healing [5]:</strong> Heal faster from injuries</li>
+            </ul>
+
+            <h5>Mental Advantages</h5>
+            <ul>
+                <li><strong>Eidetic Memory [5]:</strong> Perfect recall</li>
+                <li><strong>Lightning Calculator [2]:</strong> Instant math in your head</li>
+                <li><strong>Language Talent [10]:</strong> Learn languages easily</li>
+                <li><strong>Mathematical Ability [10]:</strong> Bonus to math-related skills</li>
+            </ul>
+
+            <h5>Social Advantages</h5>
+            <ul>
+                <li><strong>Charisma [5/level]:</strong> Bonus to influence others</li>
+                <li><strong>Reputation [Variable]:</strong> People know and respect you</li>
+                <li><strong>Status [5/level]:</strong> Social rank and privileges</li>
+                <li><strong>Wealth [Variable]:</strong> Starting money and income</li>
+            </ul>
+
+            <h5>Supernatural Advantages</h5>
+            <ul>
+                <li><strong>Magery [15]:</strong> Ability to cast spells</li>
+                <li><strong>Clairvoyance [50]:</strong> See distant locations</li>
+                <li><strong>Telepathy [50]:</strong> Read minds</li>
+                <li><strong>Telekinesis [5/level]:</strong> Move objects with your mind</li>
+            </ul>
+
+            <h3>Disadvantages: Flaws That Define You</h3>
+
+            <h4>Physical Disadvantages</h4>
+            <ul>
+                <li><strong>Bad Sight [-25]:</strong> Require corrective lenses</li>
+                <li><strong>Lame [-15]:</strong> Reduced movement due to injury</li>
+                <li><strong>One Arm [-20]:</strong> Missing or useless limb</li>
+                <li><strong>Chronic Pain [-2×level]:</strong> Regular debilitating pain</li>
+            </ul>
+
+            <h4>Mental Disadvantages</h4>
+            <ul>
+                <li><strong>Absent-Minded [-15]:</strong> Often forget important details</li>
+                <li><strong>Compulsive Behavior [-5 to -15]:</strong> Must perform certain actions</li>
+                <li><strong>Phobia [-Variable]:</strong> Irrational fear of specific things</li>
+                <li><strong>Short Attention Span [-10]:</strong> Difficulty concentrating</li>
+            </ul>
+
+            <h4>Social Disadvantages</h4>
+            <ul>
+                <li><strong>Bad Reputation [-5/level]:</strong> People think poorly of you</li>
+                <li><strong>Enemy [-Variable]:</strong> Someone actively opposes you</li>
+                <li><strong>Poverty [-Variable]:</strong> Limited money and resources</li>
+                <li><strong>Social Stigma [-Variable]:</strong> Society discriminates against you</li>
+            </ul>
+
+            <div class="mermaid">
+                graph TD
+                    A[Character Points Budget] --> B[Attributes]
+                    A --> C[Advantages]
+                    A --> D[Skills]
+                    A --> E[Disadvantages Give Points Back]
+                    
+                    B --> F[ST: Physical Power]
+                    B --> G[DX: Coordination]
+                    B --> H[IQ: Mental Ability]
+                    B --> I[HT: Health/Vitality]
+                    
+                    C --> J[Physical Traits]
+                    C --> K[Mental Abilities]
+                    C --> L[Social Benefits]
+                    C --> M[Supernatural Powers]
+                    
+                    D --> N[Combat Skills]
+                    D --> O[Professional Skills]
+                    D --> P[Social Skills]
+                    D --> Q[Academic Skills]
+                    
+                    E --> R[Physical Flaws]
+                    E --> S[Mental Quirks]
+                    E --> T[Social Problems]
+                    
+                    style A fill:#4CAF50
+                    style E fill:#FF9800
+                    style B fill:#2196F3
+                    style C fill:#9C27B0
+                    style D fill:#F44336
+            </div>
+        </section>
+
+        <section>
+            <h2>Skills: What Your Character Can Do</h2>
+            <p>GURPS uses a comprehensive skill system where you buy exactly the abilities you want. Unlike class-based systems, there are no restrictions on what skills you can learn.</p>
+
+            <h3>Skill Difficulty Levels</h3>
+
+            <h4>Easy Skills</h4>
+            <ul>
+                <li><strong>Base level:</strong> Attribute - 0</li>
+                <li><strong>Point cost:</strong> 1 point for attribute level, 2 for +1, 4 for +2, etc.</li>
+                <li><strong>Examples:</strong> Brawling, Climbing, Hiking, First Aid</li>
+                <li><strong>Concept:</strong> Things most people can learn quickly</li>
+            </ul>
+
+            <h4>Average Skills</h4>
+            <ul>
+                <li><strong>Base level:</strong> Attribute - 1</li>
+                <li><strong>Point cost:</strong> 1 point for attribute-1, 2 for attribute, 4 for +1, etc.</li>
+                <li><strong>Examples:</strong> Driving, Guns, Computer Operation, Fast-Talk</li>
+                <li><strong>Concept:</strong> Professional skills requiring moderate training</li>
+            </ul>
+
+            <h4>Hard Skills</h4>
+            <ul>
+                <li><strong>Base level:</strong> Attribute - 2</li>
+                <li><strong>Point cost:</strong> 1 point for attribute-2, 2 for attribute-1, 4 for attribute, etc.</li>
+                <li><strong>Examples:</strong> Surgery, Electronics, Law, Tactics</li>
+                <li><strong>Concept:</strong> Complex skills requiring extensive education</li>
+            </ul>
+
+            <h4>Very Hard Skills</h4>
+            <ul>
+                <li><strong>Base level:</strong> Attribute - 3</li>
+                <li><strong>Point cost:</strong> 1 point for attribute-3, 2 for attribute-2, 4 for attribute-1, etc.</li>
+                <li><strong>Examples:</strong> Magical spells, advanced sciences, exotic weapons</li>
+                <li><strong>Concept:</strong> Highly specialized or supernatural abilities</li>
+            </ul>
+
+            <h3>Skill Categories</h3>
+
+            <h4>DX-Based Skills (Physical)</h4>
+            <ul>
+                <li><strong>Combat skills:</strong> Sword, Guns, Bow, Karate</li>
+                <li><strong>Athletic skills:</strong> Acrobatics, Swimming, Stealth</li>
+                <li><strong>Manual skills:</strong> Lockpicking, Sleight of Hand, Artistry</li>
+                <li><strong>Vehicle skills:</strong> Driving, Piloting, Boating</li>
+            </ul>
+
+            <h4>IQ-Based Skills (Mental)</h4>
+            <ul>
+                <li><strong>Academic skills:</strong> History, Mathematics, Physics</li>
+                <li><strong>Professional skills:</strong> Engineering, Medicine, Law</li>
+                <li><strong>Investigation skills:</strong> Research, Detective, Forensics</li>
+                <li><strong>Magical skills:</strong> Spell casting, Thaumatology</li>
+            </ul>
+
+            <h4>HT-Based Skills (Physical Endurance)</h4>
+            <ul>
+                <li><strong>Endurance skills:</strong> Running, Swimming (endurance aspects)</li>
+                <li><strong>Resistance skills:</strong> Poison resistance, Disease resistance</li>
+                <li><strong>Recovery skills:</strong> Some healing-related abilities</li>
+            </ul>
+
+            <h4>Will-Based Skills (Mental Resistance)</h4>
+            <ul>
+                <li><strong>Mental resistance:</strong> Meditation, Mental Strength</li>
+                <li><strong>Social resistance:</strong> Resisting Intimidation or Fast-Talk</li>
+                <li><strong>Supernatural resistance:</strong> Resisting mind control</li>
+            </ul>
+
+            <h3>Skill Defaults and Relationships</h3>
+
+            <h4>Default Usage</h4>
+            <p>Many skills can be used untrained at default levels:</p>
+            <ul>
+                <li><strong>Guns default to DX-4:</strong> Anyone can try to shoot</li>
+                <li><strong>First Aid defaults to IQ-4:</strong> Basic medical help</li>
+                <li><strong>Driving defaults to DX-5:</strong> Most people can drive poorly</li>
+            </ul>
+
+            <h4>Skill Relationships</h4>
+            <p>Related skills can substitute for each other at penalties:</p>
+            <ul>
+                <li><strong>Sword can default to Knife-2:</strong> Both are melee weapons</li>
+                <li><strong>Electronics defaults to Engineer-6:</strong> Related technical fields</li>
+                <li><strong>Languages default to each other:</strong> Related languages at -2 to -4</li>
+            </ul>
+
+            <h3>Building Skill Packages</h3>
+
+            <h4>Professional Templates</h4>
+            <p>Common character types and their typical skills:</p>
+
+            <h5>Soldier Template</h5>
+            <ul>
+                <li><strong>Primary combat:</strong> Guns (Rifle), Tactics, Soldier</li>
+                <li><strong>Secondary:</strong> First Aid, Camouflage, Survival</li>
+                <li><strong>Physical:</strong> Hiking, Climbing, Swimming</li>
+                <li><strong>Total cost:</strong> Approximately 30-40 points</li>
+            </ul>
+
+            <h5>Scholar Template</h5>
+            <ul>
+                <li><strong>Academic core:</strong> Research, Writing, Teaching</li>
+                <li><strong>Specialization:</strong> 2-3 related knowledge skills</li>
+                <li><strong>Languages:</strong> 2-3 relevant languages</li>
+                <li><strong>Total cost:</strong> Approximately 25-35 points</li>
+            </ul>
+
+            <h5>Investigator Template</h5>
+            <ul>
+                <li><strong>Investigation:</strong> Criminology, Forensics, Observation</li>
+                <li><strong>Social:</strong> Interrogation, Streetwise, Fast-Talk</li>
+                <li><strong>Physical:</strong> Stealth, Shadowing, Photography</li>
+                <li><strong>Total cost:</strong> Approximately 35-45 points</li>
+            </ul>
+
+            <svg width="500" height="200" viewBox="0 0 500 200">
+                <!-- Skill difficulty progression chart -->
+                <text x="250" y="20" text-anchor="middle" font-family="Arial" font-size="14" fill="#333" font-weight="bold">Skill Difficulty and Point Costs</text>
+                
+                <!-- Easy skills -->
+                <rect x="50" y="40" width="80" height="120" fill="#C8E6C9" stroke="#4CAF50" stroke-width="2"/>
+                <text x="90" y="55" text-anchor="middle" font-family="Arial" font-size="11" fill="#333" font-weight="bold">Easy</text>
+                <text x="90" y="70" text-anchor="middle" font-family="Arial" font-size="9" fill="#333">Attribute+0</text>
+                <text x="90" y="85" text-anchor="middle" font-family="Arial" font-size="8" fill="#666">1pt → Attr level</text>
+                <text x="90" y="97" text-anchor="middle" font-family="Arial" font-size="8" fill="#666">2pts → Attr+1</text>
+                <text x="90" y="109" text-anchor="middle" font-family="Arial" font-size="8" fill="#666">4pts → Attr+2</text>
+                <text x="90" y="130" text-anchor="middle" font-family="Arial" font-size="9" fill="#333">Ex: Brawling</text>
+                <text x="90" y="145" text-anchor="middle" font-family="Arial" font-size="9" fill="#333">First Aid</text>
+                
+                <!-- Average skills -->
+                <rect x="150" y="40" width="80" height="120" fill="#E1F5FE" stroke="#2196F3" stroke-width="2"/>
+                <text x="190" y="55" text-anchor="middle" font-family="Arial" font-size="11" fill="#333" font-weight="bold">Average</text>
+                <text x="190" y="70" text-anchor="middle" font-family="Arial" font-size="9" fill="#333">Attribute-1</text>
+                <text x="190" y="85" text-anchor="middle" font-family="Arial" font-size="8" fill="#666">1pt → Attr-1</text>
+                <text x="190" y="97" text-anchor="middle" font-family="Arial" font-size="8" fill="#666">2pts → Attr level</text>
+                <text x="190" y="109" text-anchor="middle" font-family="Arial" font-size="8" fill="#666">4pts → Attr+1</text>
+                <text x="190" y="130" text-anchor="middle" font-family="Arial" font-size="9" fill="#333">Ex: Driving</text>
+                <text x="190" y="145" text-anchor="middle" font-family="Arial" font-size="9" fill="#333">Guns</text>
+                
+                <!-- Hard skills -->
+                <rect x="250" y="40" width="80" height="120" fill="#FFF3E0" stroke="#FF9800" stroke-width="2"/>
+                <text x="290" y="55" text-anchor="middle" font-family="Arial" font-size="11" fill="#333" font-weight="bold">Hard</text>
+                <text x="290" y="70" text-anchor="middle" font-family="Arial" font-size="9" fill="#333">Attribute-2</text>
+                <text x="290" y="85" text-anchor="middle" font-family="Arial" font-size="8" fill="#666">1pt → Attr-2</text>
+                <text x="290" y="97" text-anchor="middle" font-family="Arial" font-size="8" fill="#666">2pts → Attr-1</text>
+                <text x="290" y="109" text-anchor="middle" font-family="Arial" font-size="8" fill="#666">4pts → Attr level</text>
+                <text x="290" y="130" text-anchor="middle" font-family="Arial" font-size="9" fill="#333">Ex: Surgery</text>
+                <text x="290" y="145" text-anchor="middle" font-family="Arial" font-size="9" fill="#333">Electronics</text>
+                
+                <!-- Very Hard skills -->
+                <rect x="350" y="40" width="80" height="120" fill="#FFEBEE" stroke="#F44336" stroke-width="2"/>
+                <text x="390" y="55" text-anchor="middle" font-family="Arial" font-size="11" fill="#333" font-weight="bold">Very Hard</text>
+                <text x="390" y="70" text-anchor="middle" font-family="Arial" font-size="9" fill="#333">Attribute-3</text>
+                <text x="390" y="85" text-anchor="middle" font-family="Arial" font-size="8" fill="#666">1pt → Attr-3</text>
+                <text x="390" y="97" text-anchor="middle" font-family="Arial" font-size="8" fill="#666">2pts → Attr-2</text>
+                <text x="390" y="109" text-anchor="middle" font-family="Arial" font-size="8" fill="#666">4pts → Attr-1</text>
+                <text x="390" y="130" text-anchor="middle" font-family="Arial" font-size="9" fill="#333">Ex: Spells</text>
+                <text x="390" y="145" text-anchor="middle" font-family="Arial" font-size="9" fill="#333">Quantum Physics</text>
+                
+                <text x="250" y="180" text-anchor="middle" font-family="Arial" font-size="10" fill="#666">Higher point costs for higher skill levels continue the progression</text>
+            </svg>
+        </section>
+
+        <section>
+            <h2>Combat: Realistic and Tactical</h2>
+            <p>GURPS combat emphasizes realism and tactical decision-making. Unlike systems where fighters automatically get better at avoiding being hit, GURPS separates the ability to hit from the ability to avoid damage.</p>
+
+            <h3>Combat Sequence</h3>
+
+            <h4>Initiative and Turns</h4>
+            <ol>
+                <li><strong>Determine initiative:</strong> Roll 3d6 + Basic Speed</li>
+                <li><strong>Act in order:</strong> Highest result goes first</li>
+                <li><strong>One second per turn:</strong> Each combat round is one second</li>
+                <li><strong>Declare and resolve:</strong> State action, then roll dice</li>
+            </ol>
+
+            <h4>Actions Available</h4>
+
+            <h5>Attacks</h5>
+            <ul>
+                <li><strong>Attack:</strong> Strike with weapon or unarmed</li>
+                <li><strong>All-Out Attack:</strong> Bonus to hit, but no defense</li>
+                <li><strong>Feint:</strong> Fake attack to reduce enemy defense</li>
+                <li><strong>Move and Attack:</strong> Move and strike at penalty</li>
+            </ul>
+
+            <h5>Defenses</h5>
+            <ul>
+                <li><strong>Block:</strong> Use shield or weapon to stop attack</li>
+                <li><strong>Dodge:</strong> Move out of the way</li>
+                <li><strong>Parry:</strong> Deflect attack with weapon</li>
+                <li><strong>All-Out Defense:</strong> Bonus to all defenses, no attacks</li>
+            </ul>
+
+            <h5>Other Actions</h5>
+            <ul>
+                <li><strong>Move:</strong> Change position without attacking</li>
+                <li><strong>Ready:</strong> Draw weapon or prepare item</li>
+                <li><strong>Aim:</strong> Improve accuracy for ranged attacks</li>
+                <li><strong>Wait:</strong> Delay action to interrupt enemy</li>
+            </ul>
+
+            <h3>Attack and Defense Mechanics</h3>
+
+            <h4>Making an Attack</h4>
+            <ol>
+                <li><strong>Roll to hit:</strong> 3d6 vs weapon skill</li>
+                <li><strong>Apply hit location:</strong> Random or targeted body part</li>
+                <li><strong>Defender chooses defense:</strong> Block, Dodge, or Parry</li>
+                <li><strong>Roll defense:</strong> 3d6 vs defense value</li>
+                <li><strong>If defense fails:</strong> Attack hits, roll damage</li>
+            </ol>
+
+            <h4>Damage and Protection</h4>
+
+            <h5>Weapon Damage</h5>
+            <ul>
+                <li><strong>Thrust weapons:</strong> Based on ST (knife, spear)</li>
+                <li><strong>Swing weapons:</strong> Higher damage from leverage (sword, axe)</li>
+                <li><strong>Ranged weapons:</strong> Fixed damage (gun, bow)</li>
+                <li><strong>Modifiers:</strong> Weapon adds to basic damage</li>
+            </ul>
+
+            <h5>Armor Protection</h5>
+            <ul>
+                <li><strong>Damage Resistance (DR):</strong> Subtracts from damage</li>
+                <li><strong>Location-specific:</strong> Different body parts can have different armor</li>
+                <li><strong>Damage types:</strong> Some armor better against certain attacks</li>
+                <li><strong>Realistic protection:</strong> Armor stops damage, doesn't make you harder to hit</li>
+            </ul>
+
+            <h4>Injury and Consequences</h4>
+
+            <h5>Hit Points and Injury</h5>
+            <ul>
+                <li><strong>Hit Points:</strong> Total damage you can absorb</li>
+                <li><strong>Injury effects:</strong> Penalties based on current HP</li>
+                <li><strong>Knockdown:</strong> Major hits can knock you down</li>
+                <li><strong>Stunning:</strong> Some hits cause temporary incapacitation</li>
+            </ul>
+
+            <h5>Shock and Pain</h5>
+            <ul>
+                <li><strong>Shock penalties:</strong> Recent injuries affect performance</li>
+                <li><strong>Pain tolerance:</strong> Some characters handle pain better</li>
+                <li><strong>Cumulative effects:</strong> Multiple injuries compound</li>
+                <li><strong>Recovery time:</strong> Realistic healing rates</li>
+            </ul>
+
+            <h3>Tactical Options</h3>
+
+            <h4>Advanced Combat Maneuvers</h4>
+
+            <h5>Targeted Attacks</h5>
+            <ul>
+                <li><strong>Called shots:</strong> Target specific body parts at penalty</li>
+                <li><strong>Vitals targeting:</strong> High damage but very difficult</li>
+                <li><strong>Limb targeting:</strong> Disable arms or legs</li>
+                <li><strong>Equipment attacks:</strong> Strike weapons or armor</li>
+            </ul>
+
+            <h5>Special Attacks</h5>
+            <ul>
+                <li><strong>Grappling:</strong> Grab and control opponents</li>
+                <li><strong>Disarming:</strong> Remove enemy weapons</li>
+                <li><strong>Tripping:</strong> Knock enemies down</li>
+                <li><strong>Combination attacks:</strong> Multiple strikes in sequence</li>
+            </ul>
+
+            <h4>Environmental Factors</h4>
+            <ul>
+                <li><strong>Terrain:</strong> Footing affects movement and defense</li>
+                <li><strong>Visibility:</strong> Darkness imposes attack penalties</li>
+                <li><strong>Range:</strong> Distance affects accuracy</li>
+                <li><strong>Position:</strong> Higher ground provides advantages</li>
+            </ul>
+
+            <div class="mermaid">
+                graph TD
+                    A[Combat Turn] --> B[Declare Action]
+                    B --> C{Attack or Other?}
+                    
+                    C -->|Attack| D[Roll vs Weapon Skill]
+                    C -->|Other| E[Resolve Action]
+                    
+                    D --> F{Hit?}
+                    F -->|Yes| G[Defender Chooses Defense]
+                    F -->|No| H[Attack Misses]
+                    
+                    G --> I[Roll Defense]
+                    I --> J{Defense Succeeds?}
+                    
+                    J -->|No| K[Roll Damage]
+                    J -->|Yes| L[Attack Blocked/Dodged]
+                    
+                    K --> M[Apply Armor DR]
+                    M --> N[Subtract from HP]
+                    N --> O[Check for Knockdown/Stun]
+                    
+                    E --> P[Next Person's Turn]
+                    H --> P
+                    L --> P
+                    O --> P
+                    
+                    style A fill:#E3F2FD
+                    style D fill:#FFF3E0
+                    style K fill:#FFCDD2
+                    style P fill:#E8F5E8
+            </div>
+        </section>
+
+        <section>
+            <h2>Magic and Spells</h2>
+            <p>GURPS treats magic as a collection of skills, just like any other abilities. This creates a flexible, realistic approach to supernatural powers that can scale from subtle mysticism to world-shaking sorcery.</p>
+
+            <h3>The Magic System</h3>
+
+            <h4>Magery Advantage</h4>
+            <p>To cast spells, you need the Magery advantage:</p>
+            <ul>
+                <li><strong>Magery 0 [15 points]:</strong> Can cast spells but at -5 penalty</li>
+                <li><strong>Magery 1 [15 points]:</strong> Cast spells normally</li>
+                <li><strong>Magery 2 [25 points]:</strong> +1 to all spell skills</li>
+                <li><strong>Magery 3 [35 points]:</strong> +2 to all spell skills, can learn exclusive spells</li>
+            </ul>
+
+            <h4>Spells as Skills</h4>
+            <p>Each spell is a separate Very Hard IQ-based skill:</p>
+            <ul>
+                <li><strong>Prerequisites:</strong> Must know certain spells before learning others</li>
+                <li><strong>Spell skill:</strong> Higher skill means easier casting and more options</li>
+                <li><strong>Energy cost:</strong> Spells drain Fatigue Points (FP)</li>
+                <li><strong>Time to cast:</strong> Most spells take 1-3 seconds</li>
+            </ul>
+
+            <h3>Spell Categories</h3>
+
+            <h4>Animal Spells</h4>
+            <ul>
+                <li><strong>Beast Summoning:</strong> Call animals to aid you</li>
+                <li><strong>Animal Control:</strong> Command natural animals</li>
+                <li><strong>Shape Shifting:</strong> Transform into animal forms</li>
+                <li><strong>Beast Speech:</strong> Communicate with animals</li>
+            </ul>
+
+            <h4>Body Control Spells</h4>
+            <ul>
+                <li><strong>Lend Health:</strong> Transfer HP to others</li>
+                <li><strong>Heal:</strong> Restore lost Hit Points</li>
+                <li><strong>Cure Disease:</strong> Remove illnesses</li>
+                <li><strong>Neutralize Poison:</strong> Counter toxins</li>
+            </ul>
+
+            <h4>Communication and Empathy</h4>
+            <ul>
+                <li><strong>Mind Reading:</strong> Read surface thoughts</li>
+                <li><strong>Telepathy:</strong> Mental communication</li>
+                <li><strong>Emotion Control:</strong> Manipulate feelings</li>
+                <li><strong>Suggestion:</strong> Plant ideas in minds</li>
+            </ul>
+
+            <h4>Earth Spells</h4>
+            <ul>
+                <li><strong>Shape Earth:</strong> Mold stone and soil</li>
+                <li><strong>Earth to Stone:</strong> Strengthen materials</li>
+                <li><strong>Stone to Earth:</strong> Weaken structures</li>
+                <li><strong>Earthquake:</strong> Shake the ground</li>
+            </ul>
+
+            <h4>Fire Spells</h4>
+            <ul>
+                <li><strong>Ignite Fire:</strong> Start flames</li>
+                <li><strong>Create Fire:</strong> Conjure magical flames</li>
+                <li><strong>Fireball:</strong> Hurl explosive fire</li>
+                <li><strong>Resist Fire:</strong> Protection from heat</li>
+            </ul>
+
+            <h4>Water Spells</h4>
+            <ul>
+                <li><strong>Purify Water:</strong> Clean contaminated liquids</li>
+                <li><strong>Create Water:</strong> Conjure pure water</li>
+                <li><strong>Shape Water:</strong> Control liquid movement</li>
+                <li><strong>Breathe Water:</strong> Function underwater</li>
+            </ul>
+
+            <h3>Casting Mechanics</h3>
+
+            <h4>Basic Spell Casting</h4>
+            <ol>
+                <li><strong>Meet prerequisites:</strong> Know required spells</li>
+                <li><strong>Spend energy:</strong> Pay FP cost</li>
+                <li><strong>Roll spell skill:</strong> 3d6 vs spell skill level</li>
+                <li><strong>Apply results:</strong> Success means spell works</li>
+            </ol>
+
+            <h4>Spell Energy Costs</h4>
+            <ul>
+                <li><strong>Low cost spells:</strong> 1-2 FP (Light, Ignite Fire)</li>
+                <li><strong>Medium cost spells:</strong> 3-5 FP (Heal, Fireball)</li>
+                <li><strong>High cost spells:</strong> 6+ FP (Major healing, Teleportation)</li>
+                <li><strong>Maintenance:</strong> Some spells cost FP per minute to maintain</li>
+            </ul>
+
+            <h4>Spell Failure</h4>
+            <ul>
+                <li><strong>Normal failure:</strong> Spell doesn't work, still costs FP</li>
+                <li><strong>Critical failure:</strong> Spell backfires, possible dangerous effects</li>
+                <li><strong>Energy recovery:</strong> Rest 1 FP per 10 minutes normally</li>
+                <li><strong>Meditation:</strong> Recover FP faster with Meditation skill</li>
+            </ul>
+
+            <h3>Alternative Magic Systems</h3>
+
+            <h4>Ritual Magic</h4>
+            <ul>
+                <li><strong>Longer casting times:</strong> Minutes or hours instead of seconds</li>
+                <li><strong>More powerful effects:</strong> Greater flexibility and scope</li>
+                <li><strong>Group casting:</strong> Multiple mages can contribute</li>
+                <li><strong>Material components:</strong> Require special ingredients</li>
+            </ul>
+
+            <h4>Clerical Magic</h4>
+            <ul>
+                <li><strong>Divine source:</strong> Power comes from deities</li>
+                <li><strong>Moral restrictions:</strong> Must follow divine codes</li>
+                <li><strong>Different spell lists:</strong> Focus on healing and protection</li>
+                <li><strong>Prayer requirement:</strong> Must maintain favor with deity</li>
+            </ul>
+
+            <h4>Threshold-Limited Magic</h4>
+            <ul>
+                <li><strong>Mana limitations:</strong> Magic availability varies by location</li>
+                <li><strong>Spell stability:</strong> Powerful magic affects magical field</li>
+                <li><strong>Research requirements:</strong> New spells must be invented</li>
+                <li><strong>Academic approach:</strong> Magic as scholarly pursuit</li>
+            </ul>
+
+            <svg width="400" height="300" viewBox="0 0 400 300">
+                <!-- Magic system diagram -->
+                <circle cx="200" cy="150" r="80" fill="#F3E5F5" stroke="#9C27B0" stroke-width="3"/>
+                <text x="200" y="155" text-anchor="middle" font-family="Arial" font-size="12" fill="#333" font-weight="bold">Spell Casting</text>
+                
+                <!-- Prerequisites -->
+                <rect x="50" y="50" width="80" height="40" fill="#E8F5E8" stroke="#4CAF50" stroke-width="2" rx="5"/>
+                <text x="90" y="75" text-anchor="middle" font-family="Arial" font-size="10" fill="#333">Prerequisites</text>
+                
+                <!-- Energy -->
+                <rect x="270" y="50" width="80" height="40" fill="#E3F2FD" stroke="#2196F3" stroke-width="2" rx="5"/>
+                <text x="310" y="75" text-anchor="middle" font-family="Arial" font-size="10" fill="#333">Energy (FP)</text>
+                
+                <!-- Skill roll -->
+                <rect x="50" y="210" width="80" height="40" fill="#FFF3E0" stroke="#FF9800" stroke-width="2" rx="5"/>
+                <text x="90" y="235" text-anchor="middle" font-family="Arial" font-size="10" fill="#333">Skill Roll</text>
+                
+                <!-- Results -->
+                <rect x="270" y="210" width="80" height="40" fill="#FFEBEE" stroke="#F44336" stroke-width="2" rx="5"/>
+                <text x="310" y="235" text-anchor="middle" font-family="Arial" font-size="10" fill="#333">Spell Effect</text>
+                
+                <!-- Connecting lines -->
+                <line x1="130" y1="70" x2="160" y2="120" stroke="#666" stroke-width="2"/>
+                <line x1="270" y1="70" x2="240" y2="120" stroke="#666" stroke-width="2"/>
+                <line x1="130" y1="230" x2="160" y2="180" stroke="#666" stroke-width="2"/>
+                <line x1="270" y1="230" x2="240" y2="180" stroke="#666" stroke-width="2"/>
+                
+                <text x="200" y="20" text-anchor="middle" font-family="Arial" font-size="14" fill="#333" font-weight="bold">GURPS Magic System</text>
+                <text x="200" y="290" text-anchor="middle" font-family="Arial" font-size="10" fill="#666">All four elements required for successful spell casting</text>
+            </svg>
+        </section>
+
+        <section>
+            <h2>Game Master's Guide to GURPS</h2>
+            <p>Running GURPS requires a different approach than class-based systems. The GM has more tools for customization but also more decisions to make about how the world works.</p>
+
+            <h3>Setting the Framework</h3>
+
+            <h4>Choose Your Complexity Level</h4>
+
+            <h5>Lite GURPS</h5>
+            <ul>
+                <li><strong>Use basic rules only:</strong> Ignore optional complexity</li>
+                <li><strong>Simple character creation:</strong> Templates instead of point-buy</li>
+                <li><strong>Fast combat:</strong> Skip detailed hit locations and injuries</li>
+                <li><strong>Streamlined skills:</strong> Combine related skills into broad categories</li>
+            </ul>
+
+            <h5>Standard GURPS</h5>
+            <ul>
+                <li><strong>Core rules:</strong> Full Basic Set rules</li>
+                <li><strong>Detailed characters:</strong> Point-buy with advantages/disadvantages</li>
+                <li><strong>Tactical combat:</strong> Full combat system with all options</li>
+                <li><strong>Comprehensive skills:</strong> Detailed skill system</li>
+            </ul>
+
+            <h5>Advanced GURPS</h5>
+            <ul>
+                <li><strong>Optional rules:</strong> Add systems from supplements</li>
+                <li><strong>Detailed simulation:</strong> Maximum realism and complexity</li>
+                <li><strong>Specialized systems:</strong> Custom rules for specific genres</li>
+                <li><strong>Extended campaigns:</strong> Long-term character development</li>
+            </ul>
+
+            <h4>Define Your Campaign's Scope</h4>
+
+            <h5>Technology Level (TL)</h5>
+            <ul>
+                <li><strong>TL 0:</strong> Stone Age (before 8000 BC)</li>
+                <li><strong>TL 1:</strong> Bronze Age (3500-1200 BC)</li>
+                <li><strong>TL 2:</strong> Iron Age (1200 BC-500 AD)</li>
+                <li><strong>TL 3:</strong> Medieval (500-1450 AD)</li>
+                <li><strong>TL 4:</strong> Age of Sail (1450-1730)</li>
+                <li><strong>TL 5:</strong> Industrial Revolution (1730-1880)</li>
+                <li><strong>TL 6:</strong> Mechanized Age (1880-1940)</li>
+                <li><strong>TL 7:</strong> Nuclear Age (1940-1980)</li>
+                <li><strong>TL 8:</strong> Digital Age (1980-2025)</li>
+                <li><strong>TL 9:</strong> Microtech Age (2025-2070)</li>
+                <li><strong>TL 10+:</strong> Robotic Age and beyond</li>
+            </ul>
+
+            <h5>Supernatural Elements</h5>
+            <ul>
+                <li><strong>No magic:</strong> Realistic, historical campaigns</li>
+                <li><strong>Low magic:</strong> Rare, subtle supernatural elements</li>
+                <li><strong>Standard magic:</strong> Magic exists but isn't dominant</li>
+                <li><strong>High magic:</strong> Magic is common and powerful</li>
+                <li><strong>Super magic:</strong> Magic dominates daily life</li>
+            </ul>
+
+            <h3>Character Point Budgets</h3>
+
+            <h4>Campaign Power Levels</h4>
+
+            <h5>Ordinary Humans (25-50 points)</h5>
+            <ul>
+                <li><strong>Concept:</strong> Realistic modern people</li>
+                <li><strong>Examples:</strong> Students, clerks, typical citizens</li>
+                <li><strong>Limitations:</strong> Few special abilities</li>
+                <li><strong>Advantages:</strong> Very relatable characters</li>
+            </ul>
+
+            <h5>Competent Individuals (100-150 points)</h5>
+            <ul>
+                <li><strong>Concept:</strong> Skilled professionals</li>
+                <li><strong>Examples:</strong> Soldiers, doctors, detectives</li>
+                <li><strong>Capabilities:</strong> Good at their specialties</li>
+                <li><strong>Versatility:</strong> Some secondary skills</li>
+            </ul>
+
+            <h5>Exceptional Characters (200-300 points)</h5>
+            <ul>
+                <li><strong>Concept:</strong> Action movie protagonists</li>
+                <li><strong>Examples:</strong> Special forces, master thieves, brilliant scientists</li>
+                <li><strong>Abilities:</strong> Multiple areas of expertise</li>
+                <li><strong>Special traits:</strong> Some minor advantages</li>
+            </ul>
+
+            <h5>Heroic Characters (400-500 points)</h5>
+            <ul>
+                <li><strong>Concept:</strong> Larger-than-life heroes</li>
+                <li><strong>Examples:</strong> Fantasy heroes, pulp adventurers</li>
+                <li><strong>Capabilities:</strong> Exceptional in multiple areas</li>
+                <li><strong>Powers:</strong> Significant advantages and abilities</li>
+            </ul>
+
+            <h5>Legendary Characters (750+ points)</h5>
+            <ul>
+                <li><strong>Concept:</strong> Mythic heroes, demigods</li>
+                <li><strong>Examples:</strong> Superheroes, ancient legends</li>
+                <li><strong>Scale:</strong> World-changing capabilities</li>
+                <li><strong>Powers:</strong> Supernatural or superhuman abilities</li>
+            </ul>
+
+            <h3>Running Different Genres</h3>
+
+            <h4>Fantasy Campaigns</h4>
+            <ul>
+                <li><strong>Magic system:</strong> Choose appropriate spell complexity</li>
+                <li><strong>Technology level:</strong> Usually TL 3-4</li>
+                <li><strong>Races:</strong> Define non-human character options</li>
+                <li><strong>Social structure:</strong> Medieval or ancient societies</li>
+            </ul>
+
+            <h4>Modern Campaigns</h4>
+            <ul>
+                <li><strong>Technology:</strong> TL 8 equipment and capabilities</li>
+                <li><strong>Skills emphasis:</strong> Professional and technical skills</li>
+                <li><strong>Realism level:</strong> How cinematic vs. realistic</li>
+                <li><strong>Supernatural:</strong> Hidden or non-existent</li>
+            </ul>
+
+            <h4>Science Fiction</h4>
+            <ul>
+                <li><strong>Technology level:</strong> TL 9+ with advanced equipment</li>
+                <li><strong>Space travel:</strong> Define FTL rules and limitations</li>
+                <li><strong>Aliens:</strong> Design non-human species and cultures</li>
+                <li><strong>Psionics:</strong> Mental powers as alternative to magic</li>
+                <li><strong>Social evolution:</strong> How society changed with technology</li>
+            </ul>
+
+            <h4>Horror Campaigns</h4>
+            <ul>
+                <li><strong>Fragility:</strong> Characters more vulnerable than usual</li>
+                <li><strong>Sanity rules:</strong> Mental stress and breaking points</li>
+                <li><strong>Limited information:</strong> Mystery and uncertainty</li>
+                <li><strong>Atmosphere:</strong> Emphasis on mood and tension</li>
+                <li><strong>Consequences:</strong> Actions have serious, lasting effects</li>
+            </ul>
+
+            <h3>Session Management</h3>
+
+            <h4>Pacing and Flow</h4>
+            <ul>
+                <li><strong>Skill rolls:</strong> Don't roll for everything, focus on important actions</li>
+                <li><strong>Combat speed:</strong> Use simplified rules for minor encounters</li>
+                <li><strong>Character moments:</strong> Give everyone chances to use their specialties</li>
+                <li><strong>Realistic consequences:</strong> Actions have logical results</li>
+            </ul>
+
+            <h4>Customization Guidelines</h4>
+            <ul>
+                <li><strong>House rules:</strong> Modify systems that don't fit your campaign</li>
+                <li><strong>Optional rules:</strong> Add complexity only where needed</li>
+                <li><strong>Character approval:</strong> Review builds to ensure campaign fit</li>
+                <li><strong>Advancement:</strong> Award points based on character growth and story contribution</li>
+            </ul>
+
+            <div class="mermaid">
+                mindmap
+                  root)GM Decisions(
+                    Campaign Framework
+                      Complexity Level
+                      Technology Level
+                      Magic/Supernatural
+                      Character Power Level
+                    Genre Considerations
+                      Fantasy Elements
+                      Modern Realism
+                      Sci-Fi Technology
+                      Horror Atmosphere
+                    Session Management
+                      Pacing Choices
+                      Rule Modifications
+                      Character Approval
+                      Point Awards
+                    Player Support
+                      Learning Assistance
+                      Character Guidance
+                      Rule Clarification
+                      Story Integration
+            </div>
+        </section>
+
+        <section>
+            <h2>Your First GURPS Character</h2>
+            <p>Creating your first GURPS character can seem overwhelming with all the options available. Here's a step-by-step guide to building a functional, interesting character.</p>
+
+            <h3>Step-by-Step Character Creation</h3>
+
+            <h4>Step 1: Character Concept</h4>
+            <p>Start with a simple, clear idea:</p>
+            <ul>
+                <li><strong>Archetype:</strong> What role do they fill? (warrior, scholar, scout, leader)</li>
+                <li><strong>Background:</strong> What did they do before adventuring?</li>
+                <li><strong>Personality:</strong> One or two defining traits</li>
+                <li><strong>Goals:</strong> What do they want to achieve?</li>
+            </ul>
+
+            <h4>Step 2: Determine Point Budget</h4>
+            <p>Ask your GM for the campaign's point total:</p>
+            <ul>
+                <li><strong>100-150 points:</strong> Competent professional</li>
+                <li><strong>200-250 points:</strong> Exceptional individual</li>
+                <li><strong>300+ points:</strong> Heroic character</li>
+            </ul>
+
+            <h4>Step 3: Set Attributes</h4>
+            <p>Spend roughly 40-60% of points on attributes:</p>
+
+            <h5>Balanced Character (150 points)</h5>
+            <ul>
+                <li><strong>ST 11 [10]:</strong> Slightly above average strength</li>
+                <li><strong>DX 12 [40]:</strong> Good coordination</li>
+                <li><strong>IQ 12 [40]:</strong> Above average intelligence</li>
+                <li><strong>HT 11 [10]:</strong> Good health</li>
+                <li><strong>Total:</strong> 100 points</li>
+            </ul>
+
+            <h5>Specialist Character (150 points)</h5>
+            <ul>
+                <li><strong>ST 10 [0]:</strong> Average strength</li>
+                <li><strong>DX 14 [80]:</strong> Excellent coordination</li>
+                <li><strong>IQ 11 [20]:</strong> Above average intelligence</li>
+                <li><strong>HT 10 [0]:</strong> Average health</li>
+                <li><strong>Total:</strong> 100 points (focused on physical skills)</li>
+            </ul>
+
+            <h4>Step 4: Add Advantages (10-30 points)</h4>
+            <p>Choose 2-4 advantages that fit your concept:</p>
+
+            <h5>Combat Character</h5>
+            <ul>
+                <li><strong>Combat Reflexes [15]:</strong> +1 to initiative, hard to surprise</li>
+                <li><strong>High Pain Threshold [10]:</strong> Ignore shock penalties</li>
+                <li><strong>Fit [5]:</strong> Extra Fatigue Points</li>
+            </ul>
+
+            <h5>Social Character</h5>
+            <ul>
+                <li><strong>Charisma 2 [10]:</strong> +2 to influence skills</li>
+                <li><strong>Voice [10]:</strong> +2 to singing and public speaking</li>
+                <li><strong>Attractive [4]:</strong> +1 to social interactions</li>
+            </ul>
+
+            <h5>Mental Character</h5>
+            <ul>
+                <li><strong>Eidetic Memory [5]:</strong> Perfect recall</li>
+                <li><strong>Language Talent [10]:</strong> Learn languages easily</li>
+                <li><strong>Mathematical Ability [10]:</strong> +3 to math skills</li>
+            </ul>
+
+            <h4>Step 5: Take Disadvantages (-10 to -40 points)</h4>
+            <p>Flaws that give you extra points to spend:</p>
+
+            <h5>Physical Disadvantages</h5>
+            <ul>
+                <li><strong>Bad Sight (Nearsighted) [-25]:</strong> Need glasses</li>
+                <li><strong>Hard of Hearing [-10]:</strong> -4 to hearing rolls</li>
+                <li><strong>Lame (Limping) [-10]:</strong> Reduced movement</li>
+            </ul>
+
+            <h5>Mental Disadvantages</h5>
+            <ul>
+                <li><strong>Absent-Minded [-15]:</strong> Forget details under stress</li>
+                <li><strong>Curious [-5 to -15]:</strong> Must investigate mysteries</li>
+                <li><strong>Overconfidence [-5 to -15]:</strong> Overestimate abilities</li>
+            </ul>
+
+            <h5>Social Disadvantages</h5>
+            <ul>
+                <li><strong>Sense of Duty [-2 to -15]:</strong> Feel responsible for others</li>
+                <li><strong>Honesty [-10 to -15]:</strong> Cannot lie or cheat</li>
+                <li><strong>Code of Honor [-5 to -15]:</strong> Personal moral code</li>
+            </ul>
+
+            <h4>Step 6: Buy Skills (remaining points)</h4>
+            <p>Focus on your character's specialty, then add breadth:</p>
+
+            <h5>Combat Character Skills</h5>
+            <ul>
+                <li><strong>Primary weapon [8-12 points]:</strong> Sword-15 or Guns-15</li>
+                <li><strong>Secondary combat [4-8 points]:</strong> Shield-13 or Tactics-12</li>
+                <li><strong>Athletic skills [6-10 points]:</strong> Climbing, Swimming</li>
+                <li><strong>Utility skills [4-8 points]:</strong> First Aid, Survival</li>
+            </ul>
+
+            <h5>Social Character Skills</h5>
+            <ul>
+                <li><strong>Influence skills [12-16 points]:</strong> Fast-Talk, Diplomacy</li>
+                <li><strong>Information skills [8-12 points]:</strong> Streetwise, Savoir-Faire</li>
+                <li><strong>Knowledge skills [6-10 points]:</strong> Current Events, Politics</li>
+                <li><strong>Backup skills [4-8 points]:</strong> Basic combat or technical</li>
+            </ul>
+
+            <h3>Sample Characters</h3>
+
+            <h4>Jake Steel - Modern Action Hero (150 points)</h4>
+
+            <h5>Attributes [100]</h5>
+            <ul>
+                <li>ST 12 [20], DX 13 [60], IQ 11 [20], HT 11 [10]</li>
+            </ul>
+
+            <h5>Advantages [25]</h5>
+            <ul>
+                <li>Combat Reflexes [15], High Pain Threshold [10]</li>
+            </ul>
+
+            <h5>Disadvantages [-15]</h5>
+            <ul>
+                <li>Sense of Duty (Innocent people) [-10], Overconfidence [-5]</li>
+            </ul>
+
+            <h5>Skills [40]</h5>
+            <ul>
+                <li>Guns (Pistol)-15 [8], Guns (Rifle)-15 [4], Brawling-14 [2], Driving-14 [4], Tactics-11 [4], Intimidation-12 [4], First Aid-12 [2], Streetwise-12 [4], Leadership-12 [4], Fast-Talk-12 [4], Electronics (Security)-11 [4]</li>
+            </ul>
+
+            <h4>Dr. Sarah Chen - Scientist (150 points)</h4>
+
+            <h5>Attributes [80]</h5>
+            <ul>
+                <li>ST 9 [-10], DX 11 [20], IQ 14 [80], HT 10 [0]</li>
+            </ul>
+
+            <h5>Advantages [30]</h5>
+            <ul>
+                <li>Eidetic Memory [5], Mathematical Ability [10], Language Talent [10], Status 1 [5]</li>
+            </ul>
+
+            <h5>Disadvantages [-20]</h5>
+            <ul>
+                <li>Curious [-10], Absent-Minded [-15], Wealth (Struggling) [+5]</li>
+            </ul>
+
+            <h5>Skills [60]</h5>
+            <ul>
+                <li>Research-16 [8], Computer Operation-15 [4], Physics-15 [8], Chemistry-14 [4], Biology-13 [2], Mathematics-16 [4], Writing-13 [2], Teaching-13 [2], Electronics (Computers)-13 [2], English-14 [2], Mandarin-14 [2], Latin-13 [1], German-13 [1], Library Use-15 [2], Fast-Talk-13 [2]</li>
+            </ul>
+
+            <svg width="500" height="300" viewBox="0 0 500 300">
+                <!-- Character creation flowchart -->
+                <rect x="50" y="30" width="80" height="40" fill="#E8F5E8" stroke="#4CAF50" stroke-width="2" rx="5"/>
+                <text x="90" y="55" text-anchor="middle" font-family="Arial" font-size="10" fill="#333" font-weight="bold">1. Concept</text>
+                
+                <rect x="150" y="30" width="80" height="40" fill="#E3F2FD" stroke="#2196F3" stroke-width="2" rx="5"/>
+                <text x="190" y="55" text-anchor="middle" font-family="Arial" font-size="10" fill="#333" font-weight="bold">2. Point Budget</text>
+                
+                <rect x="250" y="30" width="80" height="40" fill="#FFF3E0" stroke="#FF9800" stroke-width="2" rx="5"/>
+                <text x="290" y="55" text-anchor="middle" font-family="Arial" font-size="10" fill="#333" font-weight="bold">3. Attributes</text>
+                
+                <rect x="350" y="30" width="80" height="40" fill="#F3E5F5" stroke="#9C27B0" stroke-width="2" rx="5"/>
+                <text x="390" y="55" text-anchor="middle" font-family="Arial" font-size="10" fill="#333" font-weight="bold">4. Advantages</text>
+                
+                <rect x="150" y="120" width="80" height="40" fill="#FFEBEE" stroke="#F44336" stroke-width="2" rx="5"/>
+                <text x="190" y="145" text-anchor="middle" font-family="Arial" font-size="10" fill="#333" font-weight="bold">5. Disadvantages</text>
+                
+                <rect x="250" y="120" width="80" height="40" fill="#E0F2F1" stroke="#009688" stroke-width="2" rx="5"/>
+                <text x="290" y="145" text-anchor="middle" font-family="Arial" font-size="10" fill="#333" font-weight="bold">6. Skills</text>
+                
+                <!-- Point allocation diagram -->
+                <circle cx="200" cy="220" r="60" fill="#FFF9C4" stroke="#F57F17" stroke-width="3"/>
+                <text x="200" y="225" text-anchor="middle" font-family="Arial" font-size="12" fill="#333" font-weight="bold">150 Points</text>
+                
+                <!-- Point breakdown -->
+                <text x="80" y="250" font-family="Arial" font-size="9" fill="#333">Attributes: 60-90</text>
+                <text x="180" y="250" font-family="Arial" font-size="9" fill="#333">Advantages: 10-30</text>
+                <text x="280" y="250" font-family="Arial" font-size="9" fill="#333">Skills: 40-60</text>
+                <text x="380" y="250" font-family="Arial" font-size="9" fill="#333">From Disadvantages: +10-40</text>
+                
+                <!-- Flow arrows -->
+                <path d="M 130 50 L 150 50" stroke="#666" stroke-width="2" fill="none" marker-end="url(#arrowhead4)"/>
+                <path d="M 230 50 L 250 50" stroke="#666" stroke-width="2" fill="none" marker-end="url(#arrowhead4)"/>
+                <path d="M 330 50 L 350 50" stroke="#666" stroke-width="2" fill="none" marker-end="url(#arrowhead4)"/>
+                <path d="M 190 70 L 190 120" stroke="#666" stroke-width="2" fill="none" marker-end="url(#arrowhead4)"/>
+                <path d="M 230 140 L 250 140" stroke="#666" stroke-width="2" fill="none" marker-end="url(#arrowhead4)"/>
+                
+                <defs>
+                    <marker id="arrowhead4" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+                        <polygon points="0 0, 8 3, 0 6" fill="#666"/>
+                    </marker>
+                </defs>
+                
+                <text x="250" y="15" text-anchor="middle" font-family="Arial" font-size="14" fill="#333" font-weight="bold">GURPS Character Creation Process</text>
+                <text x="250" y="290" text-anchor="middle" font-family="Arial" font-size="10" fill="#666">Typical point allocation for balanced 150-point character</text>
+            </svg>
+        </section>
+
+        <section>
+            <h2>Playing Your First Session</h2>
+            <p>GURPS sessions flow differently than class-based RPGs. Understanding these differences helps you participate effectively and enjoy the unique aspects of the system.</p>
+
+            <h3>What to Expect</h3>
+
+            <h4>Session Pace</h4>
+            <ul>
+                <li><strong>Slower character creation:</strong> More options mean more decisions</li>
+                <li><strong>Detailed combat:</strong> Tactical options take time to resolve</li>
+                <li><strong>Skill-focused gameplay:</strong> Many scenes revolve around skill use</li>
+                <li><strong>Realistic consequences:</strong> Actions have logical, lasting effects</li>
+            </ul>
+
+            <h4>Player Responsibilities</h4>
+            <ul>
+                <li><strong>Know your character:</strong> Understand your abilities and limitations</li>
+                <li><strong>Think tactically:</strong> Consider realistic approaches to problems</li>
+                <li><strong>Ask questions:</strong> Clarify rules and situations</li>
+                <li><strong>Contribute ideas:</strong> GURPS rewards creative problem-solving</li>
+            </ul>
+
+            <h3>Common Situations</h3>
+
+            <h4>Skill Challenges</h4>
+            <p>Much of GURPS gameplay involves skill rolls:</p>
+
+            <h5>Simple Skill Use</h5>
+            <ul>
+                <li><strong>Player:</strong> "I want to hack into their computer system"</li>
+                <li><strong>GM:</strong> "Roll against Computer Hacking, but it's a secure system, so -4"</li>
+                <li><strong>Player:</strong> "My skill is 14, so I need 10 or less. I rolled 9 - success!"</li>
+                <li><strong>GM:</strong> "You break through their security and access the files"</li>
+            </ul>
+
+            <h5>Extended Challenges</h5>
+            <ul>
+                <li><strong>Complex tasks:</strong> May require multiple rolls</li>
+                <li><strong>Time pressure:</strong> Limited attempts before consequences</li>
+                <li><strong>Team efforts:</strong> Multiple characters contributing</li>
+                <li><strong>Varying difficulties:</strong> Different aspects have different modifiers</li>
+            </ul>
+
+            <h4>Combat Encounters</h4>
+
+            <h5>Tactical Thinking</h5>
+            <ul>
+                <li><strong>Position matters:</strong> Range, cover, and height affect outcomes</li>
+                <li><strong>Equipment choices:</strong> Right tool for the right job</li>
+                <li><strong>Defensive options:</strong> When to block, dodge, or parry</li>
+                <li><strong>Target selection:</strong> Where to aim for maximum effect</li>
+            </ul>
+
+            <h5>Damage Consequences</h5>
+            <ul>
+                <li><strong>Injury effects:</strong> Wounds affect performance</li>
+                <li><strong>Realistic recovery:</strong> Healing takes time</li>
+                <li><strong>Equipment damage:</strong> Gear can be destroyed</li>
+                <li><strong>Knockout potential:</strong> One good hit can end a fight</li>
+            </ul>
+
+            <h3>Tips for New Players</h3>
+
+            <h4>Character Optimization</h4>
+            <ul>
+                <li><strong>Focus on concept:</strong> Build character personality first</li>
+                <li><strong>Specialize smartly:</strong> Be very good at a few things</li>
+                <li><strong>Take useful disadvantages:</strong> Flaws should create roleplay opportunities</li>
+                <li><strong>Don't min-max excessively:</strong> Extreme builds can be unplayable</li>
+            </ul>
+
+            <h4>Gameplay Strategies</h4>
+            <ul>
+                <li><strong>Use your skills:</strong> Look for opportunities to apply your expertise</li>
+                <li><strong>Think realistically:</strong> Consider what would actually work</li>
+                <li><strong>Collaborate effectively:</strong> Combine different character strengths</li>
+                <li><strong>Manage resources:</strong> Fatigue and equipment are limited</li>
+            </ul>
+
+            <h4>Learning the System</h4>
+            <ul>
+                <li><strong>Start simple:</strong> Use basic rules until comfortable</li>
+                <li><strong>Ask for help:</strong> GURPS veterans love sharing knowledge</li>
+                <li><strong>Reference materials:</strong> Keep skill lists and basic charts handy</li>
+                <li><strong>Practice between sessions:</strong> Review character abilities</li>
+            </ul>
+
+            <div class="mermaid">
+                sequenceDiagram
+                    participant GM as Game Master
+                    participant P1 as Player 1
+                    participant P2 as Player 2
+                    participant Dice as 3d6 Roll
+                    
+                    GM->>P1: Describes situation needing skill
+                    P1->>GM: "I use my Lockpicking skill"
+                    GM->>P1: "It's a complex lock, -2 penalty"
+                    P1->>GM: "My skill is 15, so I need 13 or less"
+                    P1->>Dice: Rolls 3d6
+                    Dice-->>GM: Result: 11
+                    GM->>P1: "Success! The lock clicks open"
+                    P2->>GM: "I keep watch while they work"
+                    GM->>P2: "Roll Perception to spot trouble"
+                    P2->>Dice: Rolls 3d6 vs Perception
+                    Dice-->>GM: Result: 8
+                    GM->>P2: "You notice a guard approaching!"
+            </div>
+        </section>
+
+        <section>
+            <h2>Beyond the Basics: Growing with GURPS</h2>
+            <p>GURPS's strength lies in its expandability. As you become comfortable with the core system, you can add complexity and explore new genres and play styles.</p>
+
+            <h3>Advanced Rules and Options</h3>
+
+            <h4>Optional Combat Systems</h4>
+            <ul>
+                <li><strong>Detailed hit locations:</strong> Specific body part targeting</li>
+                <li><strong>Injury consequences:</strong> Realistic wound effects</li>
+                <li><strong>Tactical combat:</strong> Hex-based positioning</li>
+                <li><strong>Mass combat:</strong> Large-scale battle rules</li>
+            </ul>
+
+            <h4>Extended Character Options</h4>
+            <ul>
+                <li><strong>Alternative abilities:</strong> Powers, psionics, chi abilities</li>
+                <li><strong>Social mechanics:</strong> Detailed influence and reputation</li>
+                <li><strong>Mental disadvantages:</strong> Psychological realism</li>
+                <li><strong>Exotic backgrounds:</strong> Non-human characters</li>
+            </ul>
+
+            <h4>Specialized Subsystems</h4>
+            <ul>
+                <li><strong>Vehicle design:</strong> Build custom spaceships or robots</li>
+                <li><strong>Magic systems:</strong> Alternative approaches to supernatural power</li>
+                <li><strong>Technology rules:</strong> Detailed equipment and inventions</li>
+                <li><strong>Economic systems:</strong> Wealth, trade, and business</li>
+            </ul>
+
+            <h3>Exploring Different Genres</h3>
+
+            <h4>Genre-Specific Supplements</h4>
+            <ul>
+                <li><strong>GURPS Fantasy:</strong> Magic, monsters, and medieval adventures</li>
+                <li><strong>GURPS Space:</strong> Science fiction campaigns and alien worlds</li>
+                <li><strong>GURPS Horror:</strong> Psychological terror and supernatural dread</li>
+                <li><strong>GURPS Supers:</strong> Superhero adventures and comic book action</li>
+                <li><strong>GURPS Historical series:</strong> Accurate period campaigns</li>
+            </ul>
+
+            <h4>Setting Books</h4>
+            <ul>
+                <li><strong>Infinite Worlds:</strong> Parallel dimension hopping</li>
+                <li><strong>Discworld:</strong> Terry Pratchett's humorous fantasy</li>
+                <li><strong>Transhuman Space:</strong> Hard science fiction future</li>
+                <li><strong>Banestorm:</strong> High fantasy with dimensional refugees</li>
+            </ul>
+
+            <h3>Campaign Development</h3>
+
+            <h4>Character Advancement</h4>
+            <ul>
+                <li><strong>Point awards:</strong> GM gives points for good play and character growth</li>
+                <li><strong>Realistic improvement:</strong> Skills advance through use and study</li>
+                <li><strong>Attribute increases:</strong> Expensive but possible improvement</li>
+                <li><strong>New advantages:</strong> Gaining abilities through training or events</li>
+            </ul>
+
+            <h4>Long-term Play</h4>
+            <ul>
+                <li><strong>Character evolution:</strong> Personalities change through experience</li>
+                <li><strong>Reputation building:</strong> Actions create lasting consequences</li>
+                <li><strong>Relationship networks:</strong> Contacts and enemies accumulate</li>
+                <li><strong>Legacy creation:</strong> Characters leave marks on the world</li>
+            </ul>
+
+            <h3>Community Resources</h3>
+
+            <h4>Official Support</h4>
+            <ul>
+                <li><strong>Steve Jackson Games:</strong> Publisher website with resources</li>
+                <li><strong>Pyramid magazine:</strong> Official GURPS content and articles</li>
+                <li><strong>GURPS Basic Set:</strong> Core rules for all play</li>
+                <li><strong>Genre supplements:</strong> Specialized rules for different settings</li>
+            </ul>
+
+            <h4>Community Resources</h4>
+            <ul>
+                <li><strong>GURPS forums:</strong> Active discussion communities</li>
+                <li><strong>Character generators:</strong> Software tools for creation</li>
+                <li><strong>Fan websites:</strong> Rules summaries and house rules</li>
+                <li><strong>Online groups:</strong> Virtual GURPS gaming communities</li>
+            </ul>
+
+            <h4>Learning Materials</h4>
+            <ul>
+                <li><strong>GURPS Lite:</strong> Free simplified rules</li>
+                <li><strong>Tutorial adventures:</strong> Designed for new players</li>
+                <li><strong>Quick-start sets:</strong> Genre-specific introductions</li>
+                <li><strong>Video tutorials:</strong> Online rules explanations</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Why Choose GURPS?</h2>
+            <p>GURPS isn't the right system for every player or every campaign, but when it fits, it offers unmatched flexibility and depth.</p>
+
+            <h3>GURPS Excels When...</h3>
+
+            <h4>Flexibility is Paramount</h4>
+            <ul>
+                <li><strong>Genre mixing:</strong> Fantasy characters in space, time travelers, crossovers</li>
+                <li><strong>Unique concepts:</strong> Characters that don't fit standard classes</li>
+                <li><strong>Realistic simulation:</strong> Campaigns emphasizing logical consequences</li>
+                <li><strong>Long-term development:</strong> Characters that grow and change significantly</li>
+            </ul>
+
+            <h4>Players Want Control</h4>
+            <ul>
+                <li><strong>Character customization:</strong> Build exactly what you envision</li>
+                <li><strong>Skill specialization:</strong> Be uniquely good at specific things</li>
+                <li><strong>Background integration:</strong> Mechanics that reflect character history</li>
+                <li><strong>Meaningful choices:</strong> Decisions that have real consequences</li>
+            </ul>
+
+            <h4>Realism Matters</h4>
+            <ul>
+                <li><strong>Physics-based:</strong> Rules that follow natural laws</li>
+                <li><strong>Skill-based progression:</strong> Improvement through practice</li>
+                <li><strong>Realistic combat:</strong> Armor protects, injuries matter</li>
+                <li><strong>Logical outcomes:</strong> Actions have believable results</li>
+            </ul>
+
+            <h3>Consider Other Systems When...</h3>
+
+            <h4>Simplicity is Key</h4>
+            <ul>
+                <li><strong>New players:</strong> Groups unfamiliar with RPGs</li>
+                <li><strong>Casual play:</strong> Infrequent sessions or pickup games</li>
+                <li><strong>Fast action:</strong> Preference for quick resolution over detail</li>
+                <li><strong>Genre conventions:</strong> Want familiar fantasy/sci-fi tropes</li>
+            </ul>
+
+            <h4>Specific Genre Focus</h4>
+            <ul>
+                <li><strong>D&D-style fantasy:</strong> Classes and levels feel right</li>
+                <li><strong>Superhero adventures:</strong> Specialized systems might fit better</li>
+                <li><strong>Horror campaigns:</strong> Dedicated systems create better atmosphere</li>
+                <li><strong>Narrative focus:</strong> Story games with different priorities</li>
+            </ul>
+
+            <h3>Making the GURPS Decision</h3>
+
+            <h4>Questions to Ask Your Group</h4>
+            <ul>
+                <li><strong>Complexity tolerance:</strong> How much detail do you want?</li>
+                <li><strong>Character concepts:</strong> Do you have ideas that don't fit standard classes?</li>
+                <li><strong>Campaign scope:</strong> Will you stick to one genre or mix elements?</li>
+                <li><strong>Realism preference:</strong> Do you want logical, physics-based rules?</li>
+                <li><strong>Learning investment:</strong> Are you willing to learn a complex system?</li>
+            </ul>
+
+            <h4>Starting Small</h4>
+            <ul>
+                <li><strong>GURPS Lite:</strong> Try simplified rules first</li>
+                <li><strong>One-shots:</strong> Test the system with short adventures</li>
+                <li><strong>Familiar genres:</strong> Start with settings you know well</li>
+                <li><strong>Gradual complexity:</strong> Add advanced rules as you learn</li>
+                <li><strong>Experienced GM:</strong> Learning is easier with knowledgeable guide</li>
+            </ul>
+
+            <div class="mermaid">
+                graph TD
+                    A[Considering GURPS?] --> B{Want Maximum Flexibility?}
+                    A --> C{Prefer Simplicity?}
+                    A --> D{Need Realism?}
+                    A --> E{Genre-Specific Focus?}
+                    
+                    B -->|Yes| F[GURPS is Great]
+                    B -->|No| G[Consider Alternatives]
+                    
+                    C -->|Yes| H[Try Simpler Systems]
+                    C -->|No| I[GURPS Could Work]
+                    
+                    D -->|Yes| F
+                    D -->|No| J[GURPS Still Viable]
+                    
+                    E -->|Yes| K[Specialized Systems]
+                    E -->|No| F
+                    
+                    F --> L[Start with GURPS Lite]
+                    I --> L
+                    J --> L
+                    
+                    G --> M[D&D, Savage Worlds, etc.]
+                    H --> M
+                    K --> N[Genre-Specific Games]
+                    
+                    style F fill:#C8E6C9
+                    style L fill:#E8F5E8
+                    style M fill:#E3F2FD
+                    style N fill:#FFF3E0
+            </div>
+        </section>
+
+        <section>
+            <h2>Your GURPS Journey Begins</h2>
+            <p>GURPS represents a different philosophy of roleplaying – one that prioritizes flexibility, realism, and player agency over simplicity and convention. It's not necessarily better or worse than other systems, but it offers unique advantages for the right players and campaigns.</p>
+
+            <h3>What You've Learned</h3>
+            <ul>
+                <li><strong>Universal mechanics:</strong> One system for any genre or setting</li>
+                <li><strong>Point-based creation:</strong> Build exactly the character you envision</li>
+                <li><strong>Skill-based gameplay:</strong> Success through competence, not luck</li>
+                <li><strong>Realistic simulation:</strong> Rules that follow logical principles</li>
+                <li><strong>Infinite customization:</strong> Modify any aspect to fit your needs</li>
+            </ul>
+
+            <h3>Next Steps</h3>
+            <ul>
+                <li><strong>Download GURPS Lite:</strong> Try the free simplified rules</li>
+                <li><strong>Create a character:</strong> Use the point-buy system to build someone interesting</li>
+                <li><strong>Find a group:</strong> Look for GURPS players in your area or online</li>
+                <li><strong>Start simple:</strong> Begin with familiar genres and basic rules</li>
+                <li><strong>Expand gradually:</strong> Add complexity as you learn and grow</li>
+            </ul>
+
+            <h3>The GURPS Promise</h3>
+            <p>GURPS doesn't promise to be the easiest system to learn or the fastest to play. Instead, it promises to give you the tools to create exactly the character you want and to play in exactly the world you envision. It treats players as creative partners rather than passengers, offering unprecedented control over both character and story.</p>
+
+            <p>Whether you're exploring the furthest reaches of space, delving into ancient dungeons, solving modern mysteries, or facing cosmic horror, GURPS provides the framework to make those adventures feel real, meaningful, and uniquely yours.</p>
+
+            <p>The system's depth rewards investment. The more you learn about GURPS, the more you discover what's possible. Characters can be anyone from any background with any combination of skills and traits. Campaigns can span genres, time periods, and realities. Stories can focus on intimate character drama or world-spanning epic adventure.</p>
+
+            <p>Welcome to GURPS – where every character is unique, every story is possible, and the only limits are your imagination and your willingness to roll three dice.</p>
+        </section>
+
+        <footer>
+            <p><em>In GURPS, you don't just play a character – you become exactly who you choose to be, in any world you dare to explore.</em></p>
+            <p><strong>Estimated Reading/Activity Time:</strong> 25-30 minutes</p>
+        </footer>
+    </main>
+</body>
+</html>

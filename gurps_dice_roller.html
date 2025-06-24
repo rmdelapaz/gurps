@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GURPS RPG Dice Roller</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <style>
+        body {
+            font-family: 'Times New Roman', 'Georgia', serif;
+            background: #f8f9fa;
+            color: #2c3e50;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            position: relative;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 20px,
+                #e9ecef 20px,
+                #e9ecef 21px
+            );
+            opacity: 0.3;
+            z-index: -1;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        h1 {
+            font-size: 3.2em;
+            margin-bottom: 10px;
+            color: #2c3e50;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .subtitle {
+            font-size: 1.3em;
+            color: #6c757d;
+            margin-bottom: 30px;
+            font-weight: 500;
+            font-style: italic;
+        }
+        
+        .dice-section {
+            background: #ffffff;
+            border-radius: 8px;
+            padding: 25px;
+            margin: 20px 0;
+            border: 1px solid #dee2e6;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .quick-btn {
+            background: #495057;
+            border: 1px solid #343a40;
+            border-radius: 6px;
+            color: #ffffff;
+            padding: 12px 18px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+        
+        .quick-btn:hover {
+            background: #343a40;
+            transform: translateY(-1px);
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+        }
+        
+        .dice-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            margin: 25px 0;
+        }
+        
+        .die-type {
+            background: #ffffff;
+            border-radius: 8px;
+            padding: 15px;
+            border: 2px solid;
+            transition: all 0.3s ease;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .die-type:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+        
+        .d6 { border-color: #dc3545; }
+        .d6special { border-color: #fd7e14; }
+        
+        .die-name {
+            font-size: 1.3em;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        
+        .die-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin: 10px 0;
+        }
+        
+        .die-count {
+            background: #ffffff;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            padding: 6px 10px;
+            color: #495057;
+            text-align: center;
+            width: 50px;
+            font-size: 1.1em;
+            font-weight: 600;
+        }
+        
+        .die-btn {
+            background: #6c757d;
+            border: none;
+            border-radius: 4px;
+            color: white;
+            padding: 6px 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: 1em;
+        }
+        
+        .die-btn:hover {
+            background: #5a6268;
+        }
+        
+        .skill-section {
+            background: #e3f2fd;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px solid #2196f3;
+        }
+        
+        .skill-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin: 15px 0;
+        }
+        
+        .skill-label {
+            font-size: 1.2em;
+            font-weight: 600;
+            color: #1976d2;
+        }
+        
+        .skill-input {
+            background: #ffffff;
+            border: 1px solid #2196f3;
+            border-radius: 4px;
+            padding: 8px 12px;
+            color: #1976d2;
+            text-align: center;
+            width: 80px;
+            font-size: 1.1em;
+            font-weight: 600;
+        }
+        
+        .modifier-section {
+            background: #fff3e0;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px solid #ff9800;
+        }
+        
+        .modifier-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin: 15px 0;
+        }
+        
+        .modifier-btn {
+            background: #6c757d;
+            border: 1px solid #5a6268;
+            border-radius: 4px;
+            color: white;
+            padding: 8px 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: 0.9em;
+        }
+        
+        .modifier-btn:hover {
+            background: #5a6268;
+        }
+        
+        .damage-section {
+            background: #ffebee;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px solid #f44336;
+        }
+        
+        .damage-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .damage-btn {
+            background: #dc3545;
+            border: 1px solid #c82333;
+            border-radius: 6px;
+            color: white;
+            padding: 10px 18px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: 1em;
+        }
+        
+        .damage-btn:hover {
+            background: #c82333;
+            transform: translateY(-1px);
+        }
+        
+        .roll-btn {
+            background: #2c3e50;
+            border: 1px solid #34495e;
+            border-radius: 8px;
+            color: #ffffff;
+            padding: 20px 50px;
+            font-size: 2em;
+            font-weight: 700;
+            cursor: pointer;
+            margin: 30px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .roll-btn:hover {
+            background: #34495e;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .clear-btn {
+            background: #6c757d;
+            border: 1px solid #5a6268;
+            border-radius: 6px;
+            color: white;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin: 10px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+        
+        .clear-btn:hover {
+            background: #5a6268;
+        }
+        
+        .results {
+            background: #ffffff;
+            border-radius: 8px;
+            padding: 30px;
+            margin: 30px 0;
+            border: 1px solid #dee2e6;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .result-total {
+            font-size: 4em;
+            font-weight: 700;
+            margin: 20px 0;
+            padding: 25px;
+            background: #34495e;
+            border-radius: 8px;
+            border: 1px solid #2c3e50;
+            color: #ffffff;
+        }
+        
+        .success-result {
+            font-size: 1.8em;
+            font-weight: 600;
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid;
+        }
+        
+        .critical-success {
+            background: #d4edda;
+            border-color: #28a745;
+            color: #155724;
+        }
+        
+        .success {
+            background: #cce5ff;
+            border-color: #007bff;
+            color: #004085;
+        }
+        
+        .failure {
+            background: #f8d7da;
+            border-color: #dc3545;
+            color: #721c24;
+        }
+        
+        .critical-failure {
+            background: #f5c6cb;
+            border-color: #721c24;
+            color: #721c24;
+        }
+        
+        .margin-result {
+            font-size: 1.3em;
+            margin: 10px 0;
+            color: #495057;
+            font-weight: 500;
+        }
+        
+        .result-breakdown {
+            font-size: 1.2em;
+            margin: 15px 0;
+            color: #495057;
+            font-weight: 500;
+            background: #f8f9fa;
+            padding: 12px;
+            border-radius: 6px;
+            border: 1px solid #dee2e6;
+        }
+        
+        .dice-results {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 25px 0;
+            flex-wrap: wrap;
+        }
+        
+        .result-die {
+            width: 60px;
+            height: 60px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4em;
+            font-weight: 700;
+            color: white;
+            border: 1px solid #495057;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            background: #dc3545;
+        }
+        
+        .result-die.critical-roll {
+            animation: critical-glow 1s infinite alternate;
+        }
+        
+        @keyframes critical-glow {
+            from { 
+                transform: scale(1);
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+            to { 
+                transform: scale(1.05);
+                box-shadow: 0 4px 8px rgba(220, 53, 69, 0.3);
+            }
+        }
+        
+        .damage-result {
+            background: #ffebee;
+            border: 1px solid #f44336;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 15px 0;
+            color: #c62828;
+            font-weight: 600;
+            font-size: 1.1em;
+        }
+        
+        .reaction-table {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 15px 0;
+            text-align: left;
+        }
+        
+        .reaction-table h4 {
+            margin: 0 0 10px 0;
+            color: #495057;
+            text-align: center;
+        }
+        
+        .reaction-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 3px 0;
+            border-bottom: 1px solid #dee2e6;
+            font-size: 0.9em;
+        }
+        
+        .reaction-item.current {
+            background: #fff3cd;
+            padding: 6px 8px;
+            margin: 0 -8px;
+            border-radius: 4px;
+            font-weight: 600;
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>GURPS</h1>
+        <div class="subtitle">Generic Universal RolePlaying System</div>
+        
+        <div class="dice-section">
+            <h2>🎯 Quick Rolls</h2>
+            <div class="quick-actions">
+                <button class="quick-btn" onclick="quickRoll('skill')">📊 Skill Check</button>
+                <button class="quick-btn" onclick="quickRoll('attribute')">💪 Attribute Check</button>
+                <button class="quick-btn" onclick="quickRoll('attack')">⚔️ Attack Roll</button>
+                <button class="quick-btn" onclick="quickRoll('damage')">💥 Damage Roll</button>
+                <button class="quick-btn" onclick="quickRoll('reaction')">😊 Reaction Roll</button>
+                <button class="quick-btn" onclick="quickRoll('fright')">😨 Fright Check</button>
+                <button class="quick-btn" onclick="quickRoll('contest')">🤝 Quick Contest</button>
+                <button class="quick-btn" onclick="quickRoll('defense')">🛡️ Defense Roll</button>
+            </div>
+        </div>
+        
+        <div class="dice-section">
+            <h2>🎲 Dice Pool</h2>
+            <div class="dice-grid">
+                <div class="die-type d6">
+                    <div class="die-name">d6</div>
+                    <div class="die-controls">
+                        <button class="die-btn" onclick="changeDieCount('d6', -1)">-</button>
+                        <input type="number" class="die-count" id="d6-count" value="3" min="0" max="20" />
+                        <button class="die-btn" onclick="changeDieCount('d6', 1)">+</button>
+                    </div>
+                </div>
+                
+                <div class="die-type d6special">
+                    <div class="die-name">Damage d6</div>
+                    <div class="die-controls">
+                        <button class="die-btn" onclick="changeDieCount('damage', -1)">-</button>
+                        <input type="number" class="die-count" id="damage-count" value="0" min="0" max="20" />
+                        <button class="die-btn" onclick="changeDieCount('damage', 1)">+</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="skill-section">
+                <h3>🎯 Target Number</h3>
+                <div class="skill-controls">
+                    <span class="skill-label">Skill/Attribute Level:</span>
+                    <input type="number" class="skill-input" id="skill-level" value="10" placeholder="10" />
+                    <button class="modifier-btn" onclick="setSkillLevel(8)">Poor (8)</button>
+                    <button class="modifier-btn" onclick="setSkillLevel(10)">Average (10)</button>
+                    <button class="modifier-btn" onclick="setSkillLevel(12)">Good (12)</button>
+                    <button class="modifier-btn" onclick="setSkillLevel(14)">Excellent (14)</button>
+                    <button class="modifier-btn" onclick="setSkillLevel(16)">Exceptional (16)</button>
+                </div>
+            </div>
+            
+            <div class="modifier-section">
+                <h3>⚡ Modifiers</h3>
+                <div class="modifier-controls">
+                    <span class="skill-label">Total Modifier:</span>
+                    <input type="number" class="skill-input" id="modifier" value="0" placeholder="0" />
+                    <button class="modifier-btn" onclick="addModifier(-4)">Very Hard (-4)</button>
+                    <button class="modifier-btn" onclick="addModifier(-2)">Hard (-2)</button>
+                    <button class="modifier-btn" onclick="addModifier(0)">Normal (0)</button>
+                    <button class="modifier-btn" onclick="addModifier(2)">Easy (+2)</button>
+                    <button class="modifier-btn" onclick="addModifier(4)">Very Easy (+4)</button>
+                </div>
+            </div>
+            
+            <div class="damage-section">
+                <h3>💥 Damage Types</h3>
+                <div class="damage-controls">
+                    <button class="damage-btn" onclick="rollDamage('1d6')">Light (1d6)</button>
+                    <button class="damage-btn" onclick="rollDamage('2d6')">Medium (2d6)</button>
+                    <button class="damage-btn" onclick="rollDamage('3d6')">Heavy (3d6)</button>
+                    <button class="damage-btn" onclick="rollDamage('4d6')">Severe (4d6)</button>
+                    <button class="damage-btn" onclick="rollDamage('1d6-1')">Thrust-1 (1d6-1)</button>
+                    <button class="damage-btn" onclick="rollDamage('1d6+2')">Swing+2 (1d6+2)</button>
+                </div>
+            </div>
+            
+            <button class="roll-btn" onclick="rollDice()">🎲 Roll</button>
+            <button class="clear-btn" onclick="clearAll()">Clear All</button>
+        </div>
+        
+        <div id="results" class="results" style="display: none;">
+            <div class="result-total" id="total-result">0</div>
+            <div id="success-result" class="success-result" style="display: none;"></div>
+            <div id="margin-result" class="margin-result" style="display: none;"></div>
+            <div class="result-breakdown" id="breakdown"></div>
+            <div class="dice-results" id="dice-display"></div>
+            <div id="damage-text" class="damage-result" style="display: none;"></div>
+            <div id="reaction-table" class="reaction-table" style="display: none;">
+                <h4>Reaction Table</h4>
+                <div class="reaction-item"><span>3</span><span>Disastrous</span></div>
+                <div class="reaction-item"><span>4</span><span>Very Bad</span></div>
+                <div class="reaction-item"><span>5</span><span>Bad</span></div>
+                <div class="reaction-item"><span>6</span><span>Poor</span></div>
+                <div class="reaction-item"><span>7</span><span>Neutral</span></div>
+                <div class="reaction-item"><span>8</span><span>Neutral</span></div>
+                <div class="reaction-item"><span>9</span><span>Good</span></div>
+                <div class="reaction-item"><span>10</span><span>Good</span></div>
+                <div class="reaction-item"><span>11</span><span>Very Good</span></div>
+                <div class="reaction-item"><span>12</span><span>Very Good</span></div>
+                <div class="reaction-item"><span>13</span><span>Excellent</span></div>
+                <div class="reaction-item"><span>14</span><span>Excellent</span></div>
+                <div class="reaction-item"><span>15</span><span>Excellent</span></div>
+                <div class="reaction-item"><span>16</span><span>Excellent</span></div>
+                <div class="reaction-item"><span>17</span><span>Excellent</span></div>
+                <div class="reaction-item"><span>18</span><span>Excellent</span></div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        let lastRollType = '';
+        
+        function changeDieCount(dieType, change) {
+            const input = document.getElementById(dieType + '-count');
+            const newValue = Math.max(0, Math.min(20, parseInt(input.value) + change));
+            input.value = newValue;
+        }
+        
+        function setSkillLevel(level) {
+            document.getElementById('skill-level').value = level;
+        }
+        
+        function addModifier(mod) {
+            document.getElementById('modifier').value = mod;
+        }
+        
+        function quickRoll(type) {
+            clearAll();
+            lastRollType = type;
+            
+            switch (type) {
+                case 'skill':
+                    document.getElementById('d6-count').value = 3;
+                    setSkillLevel(12);
+                    addModifier(0);
+                    break;
+                case 'attribute':
+                    document.getElementById('d6-count').value = 3;
+                    setSkillLevel(10);
+                    addModifier(0);
+                    break;
+                case 'attack':
+                    document.getElementById('d6-count').value = 3;
+                    setSkillLevel(14);
+                    addModifier(-2);
+                    break;
+                case 'damage':
+                    document.getElementById('d6-count').value = 0;
+                    document.getElementById('damage-count').value = 2;
+                    document.getElementById('skill-level').value = '';
+                    break;
+                case 'reaction':
+                    document.getElementById('d6-count').value = 3;
+                    document.getElementById('skill-level').value = '';
+                    addModifier(0);
+                    break;
+                case 'fright':
+                    document.getElementById('d6-count').value = 3;
+                    setSkillLevel(10); // Will roll
+                    addModifier(0);
+                    break;
+                case 'contest':
+                    document.getElementById('d6-count').value = 3;
+                    setSkillLevel(12);
+                    addModifier(0);
+                    break;
+                case 'defense':
+                    document.getElementById('d6-count').value = 3;
+                    setSkillLevel(10);
+                    addModifier(0);
+                    break;
+            }
+            
+            rollDice();
+        }
+        
+        function rollDamage(diceString) {
+            clearAll();
+            lastRollType = 'damage-specific';
+            
+            // Parse dice string (e.g., "2d6", "1d6+2", "1d6-1")
+            let match = diceString.match(/(\d+)d6([+-]\d+)?/);
+            if (match) {
+                const diceCount = parseInt(match[1]);
+                const modifier = match[2] ? parseInt(match[2]) : 0;
+                
+                document.getElementById('d6-count').value = 0;
+                document.getElementById('damage-count').value = diceCount;
+                document.getElementById('modifier').value = modifier;
+                document.getElementById('skill-level').value = '';
+            }
+            
+            rollDice();
+        }
+        
+        function rollDice() {
+            const d6Count = parseInt(document.getElementById('d6-count').value) || 0;
+            const damageCount = parseInt(document.getElementById('damage-count').value) || 0;
+            const skillLevel = parseInt(document.getElementById('skill-level').value) || null;
+            const modifier = parseInt(document.getElementById('modifier').value) || 0;
+            
+            let allRolls = [];
+            let total = 0;
+            
+            // Roll regular d6s
+            for (let i = 0; i < d6Count; i++) {
+                const roll = Math.floor(Math.random() * 6) + 1;
+                allRolls.push({ value: roll, type: 'd6', isDamage: false });
+                total += roll;
+            }
+            
+            // Roll damage d6s
+            for (let i = 0; i < damageCount; i++) {
+                const roll = Math.floor(Math.random() * 6) + 1;
+                allRolls.push({ value: roll, type: 'd6', isDamage: true });
+                total += roll;
+            }
+            
+            // Add modifier to total
+            total += modifier;
+            
+            displayResults(allRolls, total, skillLevel, modifier);
+        }
+        
+        function calculateSuccess(roll, target) {
+            if (!target) return null;
+            
+            const margin = target - roll;
+            
+            // Critical failure: 17-18, or 10+ over target
+            if (roll >= 17 || margin <= -10) {
+                return { 
+                    type: 'critical-failure', 
+                    text: '💀 CRITICAL FAILURE!', 
+                    margin: margin 
+                };
+            }
+            // Critical success: 3-4, or 10+ under target
+            else if (roll <= 4 || margin >= 10) {
+                return { 
+                    type: 'critical-success', 
+                    text: '🌟 CRITICAL SUCCESS!', 
+                    margin: margin 
+                };
+            }
+            // Regular success: roll at or under target
+            else if (roll <= target) {
+                return { 
+                    type: 'success', 
+                    text: '✅ SUCCESS!', 
+                    margin: margin 
+                };
+            }
+            // Regular failure: roll over target
+            else {
+                return { 
+                    type: 'failure', 
+                    text: '❌ FAILURE', 
+                    margin: margin 
+                };
+            }
+        }
+        
+        function getReactionText(roll) {
+            const reactions = {
+                3: 'Disastrous',
+                4: 'Very Bad',
+                5: 'Bad',
+                6: 'Poor',
+                7: 'Neutral',
+                8: 'Neutral',
+                9: 'Good',
+                10: 'Good',
+                11: 'Very Good',
+                12: 'Very Good'
+            };
+            
+            if (roll >= 13) return 'Excellent';
+            return reactions[roll] || 'Excellent';
+        }
+        
+        function displayResults(rolls, total, skillLevel, modifier) {
+            const resultsDiv = document.getElementById('results');
+            const totalDiv = document.getElementById('total-result');
+            const breakdownDiv = document.getElementById('breakdown');
+            const diceDisplay = document.getElementById('dice-display');
+            const successDiv = document.getElementById('success-result');
+            const marginDiv = document.getElementById('margin-result');
+            const damageDiv = document.getElementById('damage-text');
+            const reactionDiv = document.getElementById('reaction-table');
+            
+            // Display total
+            totalDiv.textContent = total;
+            
+            // Calculate success for skill rolls
+            if (skillLevel !== null && rolls.some(r => !r.isDamage)) {
+                const effectiveTarget = skillLevel + (modifier || 0);
+                const successResult = calculateSuccess(total - (modifier || 0), effectiveTarget);
+                
+                if (successResult) {
+                    successDiv.style.display = 'block';
+                    successDiv.className = `success-result ${successResult.type}`;
+                    successDiv.textContent = successResult.text;
+                    
+                    marginDiv.style.display = 'block';
+                    if (successResult.margin > 0) {
+                        marginDiv.textContent = `Margin of Success: ${successResult.margin}`;
+                    } else if (successResult.margin < 0) {
+                        marginDiv.textContent = `Margin of Failure: ${Math.abs(successResult.margin)}`;
+                    } else {
+                        marginDiv.textContent = 'Exactly made it!';
+                    }
+                }
+            } else {
+                successDiv.style.display = 'none';
+                marginDiv.style.display = 'none';
+            }
+            
+            // Special handling for reaction rolls
+            if (lastRollType === 'reaction') {
+                reactionDiv.style.display = 'block';
+                const reactionItems = reactionDiv.querySelectorAll('.reaction-item');
+                reactionItems.forEach(item => item.classList.remove('current'));
+                
+                // Find and highlight current reaction
+                const rollValue = Math.min(18, Math.max(3, total));
+                reactionItems.forEach(item => {
+                    const value = parseInt(item.querySelector('span').textContent);
+                    if (value === rollValue || (rollValue >= 13 && value >= 13)) {
+                        item.classList.add('current');
+                    }
+                });
+            } else {
+                reactionDiv.style.display = 'none';
+            }
+            
+            // Create breakdown text
+            const parts = [];
+            
+            const regularDice = rolls.filter(r => !r.isDamage);
+            const damageDice = rolls.filter(r => r.isDamage);
+            
+            if (regularDice.length > 0) {
+                parts.push(`${regularDice.length}d6: ${regularDice.map(r => r.value).join(', ')}`);
+            }
+            
+            if (damageDice.length > 0) {
+                parts.push(`Damage: ${damageDice.map(r => r.value).join(', ')}`);
+            }
+            
+            if (modifier !== 0) {
+                parts.push(`Modifier: ${modifier >= 0 ? '+' : ''}${modifier}`);
+            }
+            
+            if (skillLevel !== null) {
+                const effectiveTarget = skillLevel + (modifier || 0);
+                parts.push(`vs Target ${effectiveTarget}`);
+            }
+            
+            breakdownDiv.textContent = parts.join(' | ');
+            
+            // Display individual dice
+            diceDisplay.innerHTML = '';
+            rolls.forEach(roll => {
+                const die = document.createElement('div');
+                die.className = 'result-die';
+                if (roll.isDamage) {
+                    die.style.background = '#fd7e14';
+                }
+                die.textContent = roll.value;
+                
+                // Special effects for critical rolls
+                if (!roll.isDamage && rolls.filter(r => !r.isDamage).length === 3) {
+                    const rollTotal = rolls.filter(r => !r.isDamage).reduce((sum, r) => sum + r.value, 0);
+                    if (rollTotal <= 4 || rollTotal >= 17) {
+                        die.classList.add('critical-roll');
+                    }
+                }
+                
+                diceDisplay.appendChild(die);
+            });
+            
+            // Damage display
+            if (damageDice.length > 0 || lastRollType.includes('damage')) {
+                damageDiv.style.display = 'block';
+                if (lastRollType === 'damage-specific') {
+                    damageDiv.innerHTML = `💥 DAMAGE DEALT: ${total} points<br><small>Apply to target's HP after armor reduction.</small>`;
+                } else {
+                    damageDiv.innerHTML = `💥 TOTAL DAMAGE: ${total} points<br><small>This is the raw damage before armor.</small>`;
+                }
+            } else {
+                damageDiv.style.display = 'none';
+            }
+            
+            resultsDiv.style.display = 'block';
+        }
+        
+        function clearAll() {
+            document.getElementById('d6-count').value = 3;
+            document.getElementById('damage-count').value = 0;
+            document.getElementById('skill-level').value = 10;
+            document.getElementById('modifier').value = 0;
+            lastRollType = '';
+            document.getElementById('results').style.display = 'none';
+        }
+        
+        // Keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                rollDice();
+            } else if (e.key === 'Escape') {
+                clearAll();
+            } else if (e.key === 's' || e.key === 'S') {
+                quickRoll('skill');
+            } else if (e.key === 'a' || e.key === 'A') {
+                quickRoll('attack');
+            } else if (e.key === 'd' || e.key === 'D') {
+                quickRoll('damage');
+            }
+        });
+    </script>
+</body>
+</html>

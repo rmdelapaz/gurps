@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>150 GURPS Character Names</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+    <style>
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background: 
+                linear-gradient(135deg, #2c3e50 0%, #34495e 25%, #ecf0f1 50%, #bdc3c7 75%, #95a5a6 100%),
+                radial-gradient(circle at 20% 80%, rgba(52, 73, 94, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(189, 195, 199, 0.1) 0%, transparent 50%);
+            background-size: 400% 400%, 100% 100%, 100% 100%;
+            animation: subtleShift 15s ease infinite;
+            color: #2c3e50;
+            position: relative;
+        }
+        @keyframes subtleShift {
+            0%, 100% { background-position: 0% 50%, 0% 0%, 0% 0%; }
+            50% { background-position: 100% 50%, 0% 0%, 0% 0%; }
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 98px,
+                    rgba(52, 73, 94, 0.03) 100px
+                ),
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 98px,
+                    rgba(52, 73, 94, 0.03) 100px
+                );
+            pointer-events: none;
+            z-index: -1;
+        }
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 10px;
+            padding: 35px;
+            box-shadow: 
+                0 10px 30px rgba(0,0,0,0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            border: 2px solid #7f8c8d;
+            backdrop-filter: blur(5px);
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            font-size: 2.4em;
+            margin-bottom: 25px;
+            text-shadow: 
+                1px 1px 2px rgba(0,0,0,0.1);
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        h2 {
+            color: #34495e;
+            border-bottom: 3px solid #7f8c8d;
+            padding-bottom: 8px;
+            margin-top: 35px;
+            font-weight: bold;
+            font-size: 1.4em;
+        }
+        .name-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 18px;
+            margin: 25px 0;
+        }
+        .name-card {
+            background: linear-gradient(145deg, #ffffff, #f8f9fa);
+            padding: 18px;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+            box-shadow: 
+                0 3px 12px rgba(0,0,0,0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.7);
+            transition: all 0.3s ease;
+            border: 1px solid #bdc3c7;
+        }
+        .name-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 
+                0 6px 20px rgba(52, 152, 219, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9);
+            border-left-color: #e74c3c;
+            background: linear-gradient(145deg, #ffffff, #fcfdfe);
+        }
+        .name-card:nth-child(3n+1) {
+            border-left-color: #e74c3c;
+        }
+        .name-card:nth-child(3n+2) {
+            border-left-color: #27ae60;
+        }
+        .name-card:nth-child(3n+3) {
+            border-left-color: #f39c12;
+        }
+        .name {
+            font-weight: bold;
+            color: #2c3e50;
+            font-size: 1.15em;
+            margin-bottom: 5px;
+        }
+        .origin {
+            font-size: 0.9em;
+            color: #7f8c8d;
+            font-style: italic;
+            margin-bottom: 3px;
+        }
+        .genre-suggestion {
+            font-size: 0.85em;
+            color: #34495e;
+            margin-top: 8px;
+            font-weight: 500;
+        }
+        .genre-tag {
+            background: linear-gradient(45deg, #3498db, #2980b9);
+            color: white;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.7em;
+            margin-top: 6px;
+            margin-right: 4px;
+            display: inline-block;
+            font-weight: bold;
+        }
+        .tl-tag {
+            background: linear-gradient(45deg, #27ae60, #229954);
+            color: white;
+            padding: 2px 6px;
+            border-radius: 8px;
+            font-size: 0.65em;
+            margin-left: 3px;
+            display: inline-block;
+            font-weight: bold;
+        }
+        .tips-section {
+            background: rgba(236, 240, 241, 0.8);
+            padding: 25px;
+            border-radius: 8px;
+            margin: 30px 0;
+            border: 2px solid #bdc3c7;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        }
+        .example-box {
+            background: rgba(52, 152, 219, 0.08);
+            border: 2px solid #3498db;
+            border-radius: 6px;
+            padding: 20px;
+            margin: 18px 0;
+        }
+        .analogy-box {
+            background: rgba(231, 76, 60, 0.08);
+            border: 2px solid #e74c3c;
+            border-radius: 6px;
+            padding: 20px;
+            margin: 18px 0;
+        }
+        .gurps-box {
+            background: rgba(39, 174, 96, 0.08);
+            border: 2px solid #27ae60;
+            border-radius: 6px;
+            padding: 20px;
+            margin: 18px 0;
+        }
+        .canvas-container {
+            text-align: center;
+            margin: 25px 0;
+        }
+        canvas {
+            border: 3px solid #7f8c8d;
+            border-radius: 8px;
+            max-width: 100%;
+            box-shadow: 
+                0 5px 15px rgba(0,0,0,0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        }
+        .genre-legend {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 12px;
+            margin: 25px 0;
+        }
+        .genre-item {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 12px;
+            border-radius: 6px;
+            border: 1px solid #bdc3c7;
+            text-align: center;
+            font-weight: bold;
+            font-size: 0.9em;
+            transition: transform 0.2s ease;
+        }
+        .genre-item:hover {
+            transform: scale(1.02);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .realistic-text {
+            color: #7f8c8d;
+            font-weight: bold;
+        }
+        .cinematic-text {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        .universal-text {
+            color: #3498db;
+            font-weight: bold;
+        }
+        .tech-level-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.9em;
+        }
+        .tech-level-table th,
+        .tech-level-table td {
+            border: 1px solid #bdc3c7;
+            padding: 8px;
+            text-align: left;
+        }
+        .tech-level-table th {
+            background: #ecf0f1;
+            font-weight: bold;
+        }
+        .tech-level-table tr:nth-child(even) {
+            background: rgba(236, 240, 241, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎯 150 GURPS Character Names 🎯</h1>
+        
+        <div class="tips-section">
+            <h2>🌐 GURPS: The Universal System for Universal Names</h2>
+            <p>The <span class="universal-text">Generic Universal RolePlaying System</span> is designed to handle any genre, any setting, any time period. Names in GURPS must be equally versatile, working whether you're playing a <span class="realistic-text">realistic modern spy</span>, a <span class="cinematic-text">cinematic space opera hero</span>, or anything in between. From TL0 stone age warriors to TL12 galactic empires, these names span the breadth of human imagination.</p>
+            
+            <table class="tech-level-table">
+                <tr>
+                    <th>Tech Level</th>
+                    <th>Era</th>
+                    <th>Examples</th>
+                    <th>Naming Style</th>
+                </tr>
+                <tr>
+                    <td>TL0-2</td>
+                    <td>Stone Age to Iron Age</td>
+                    <td>Prehistoric, Ancient</td>
+                    <td>Simple, Nature-based</td>
+                </tr>
+                <tr>
+                    <td>TL3-4</td>
+                    <td>Medieval to Renaissance</td>
+                    <td>Knights, Classical Fantasy</td>
+                    <td>Traditional, Regional</td>
+                </tr>
+                <tr>
+                    <td>TL5-6</td>
+                    <td>Industrial Revolution</td>
+                    <td>Victorian, Wild West</td>
+                    <td>Historical, Formal</td>
+                </tr>
+                <tr>
+                    <td>TL7-8</td>
+                    <td>Modern Era</td>
+                    <td>WWII to Present</td>
+                    <td>Contemporary, Global</td>
+                </tr>
+                <tr>
+                    <td>TL9-10</td>
+                    <td>Near Future</td>
+                    <td>Cyberpunk, Space</td>
+                    <td>Evolved, Tech-influenced</td>
+                </tr>
+                <tr>
+                    <td>TL11-12</td>
+                    <td>Far Future</td>
+                    <td>Star Trek, Ultra-Tech</td>
+                    <td>Advanced, Exotic</td>
+                </tr>
+            </table>
+
+            <div class="genre-legend">
+                <div class="genre-item"><strong>ACTION/ADVENTURE</strong><br>Thrilling Heroics</div>
+                <div class="genre-item"><strong>HORROR</strong><br>Dark Mysteries</div>
+                <div class="genre-item"><strong>FANTASY</strong><br>Magic & Wonder</div>
+                <div class="genre-item"><strong>SCI-FI</strong><br>Future Visions</div>
+                <div class="genre-item"><strong>HISTORICAL</strong><br>Past Eras</div>
+                <div class="genre-item"><strong>MODERN</strong><br>Contemporary</div>
+                <div class="genre-item"><strong>SUPERS</strong><br>Superheroic</div>
+                <div class="genre-item"><strong>SPACE</strong><br>Galactic</div>
+                <div class="genre-item"><strong>STEAMPUNK</strong><br>Victorian Tech</div>
+                <div class="genre-item"><strong>CYBERPUNK</strong><br>High Tech/Low Life</div>
+                <div class="genre-item"><strong>POST-APOC</strong><br>After the Fall</div>
+                <div class="genre-item"><strong>MYSTERY</strong><br>Investigation</div>
+            </div>
+        </div>
+
+        <div class="mermaid">
+            graph TD
+                A[GURPS Character Creation] --> B[Choose Genre]
+                A --> C[Choose Tech Level]
+                A --> D[Choose Campaign Style]
+                A --> E[Choose Name]
+                B --> F[Action/Adventure]
+                B --> G[Horror/Mystery]
+                B --> H[Fantasy/Magic]
+                B --> I[Sci-Fi/Space]
+                C --> J[TL0-4: Historical]
+                C --> K[TL5-8: Modern]
+                C --> L[TL9-12: Future]
+                D --> M[Realistic Campaign]
+                D --> N[Cinematic Campaign]
+                E --> O[Cultural Background]
+                E --> P[Professional Identity]
+                E --> Q[Personal Quirks]
+                O --> R[Regional Names]
+                P --> S[Career-based]
+                Q --> T[Disadvantages/Advantages]
+                R --> U[Final Name Choice]
+                S --> U
+                T --> U
+        </div>
+
+        <div class="canvas-container">
+            <canvas id="gurpsWheel" width="550" height="550"></canvas>
+            <p><em>GURPS Genre & Tech Level Selector - Click to determine your campaign parameters!</em></p>
+        </div>
+
+        <h2>⚔️ Male Character Names (50)</h2>
+        <div class="name-grid" id="maleNames"></div>
+
+        <h2>👑 Female Character Names (50)</h2>
+        <div class="name-grid" id="femaleNames"></div>
+
+        <h2>🌟 Gender-Neutral Character Names (50)</h2>
+        <div class="name-grid" id="neutralNames"></div>
+
+        <div class="gurps-box">
+            <h3>🎯 GURPS Universal Naming Principles</h3>
+            <p><strong>Genre Flexibility:</strong> Names work across multiple GURPS genres and <span class="universal-text">tech levels</span>.</p>
+            <p><strong>Realistic vs. Cinematic:</strong> Names suitable for both <span class="realistic-text">gritty realism</span> and <span class="cinematic-text">over-the-top action</span>.</p>
+            <p><strong>Cultural Authenticity:</strong> Names that respect real-world cultures while maintaining <span class="universal-text">gaming accessibility</span>.</p>
+            <p><strong>Character Point Integration:</strong> Names that can reflect advantages, disadvantages, and character backgrounds.</p>
+        </div>
+
+        <div class="example-box">
+            <h3>🌍 Cross-Genre Name Applications</h3>
+            <p><strong>Historical Campaign (TL3):</strong> "Sir Marcus Blackwood" works as a medieval knight or Renaissance noble.</p>
+            <p><strong>Modern Spy Thriller (TL8):</strong> "Agent Marcus Black" adapts the same character concept to contemporary espionage.</p>
+            <p><strong>Space Opera (TL11):</strong> "Commander Marcus Voidwalker" transforms the name for galactic adventures.</p>
+            <p><strong>Cyberpunk (TL9):</strong> "Marcus 'Blackhat' Grid" gives the character a digital age identity.</p>
+        </div>
+
+        <div class="analogy-box">
+            <h3>🎲 GURPS Naming Like Universal Design</h3>
+            <p><strong>Like Modular Architecture:</strong> Names should be adaptable components that work in different campaign "buildings."</p>
+            <p><strong>Like Swiss Army Knives:</strong> One name should serve multiple functions across different genres and settings.</p>
+            <p><strong>Like Universal Translators:</strong> Names should communicate character concepts regardless of the specific game world.</p>
+        </div>
+
+        <div class="tips-section">
+            <h2>⚡ Advanced GURPS Naming Strategies</h2>
+            
+            <h3>Tech Level Considerations</h3>
+            <p><strong>TL0-2 (Stone/Bronze Age):</strong> Simple, nature-based names reflecting tribal societies</p>
+            <p><strong>TL3-4 (Medieval/Renaissance):</strong> Traditional names with regional variants and nobility indicators</p>
+            <p><strong>TL5-6 (Industrial):</strong> Formal Victorian names reflecting social class and profession</p>
+            <p><strong>TL7-8 (Modern):</strong> Contemporary global names with cultural diversity</p>
+            <p><strong>TL9-10 (Near Future):</strong> Evolved modern names with technological influences</p>
+            <p><strong>TL11-12 (Far Future):</strong> Exotic names reflecting post-human development</p>
+            
+            <h3>Campaign Style Integration</h3>
+            <p><strong class="realistic-text">Realistic Campaigns:</strong> Names should sound authentic and grounded in real-world naming conventions</p>
+            <p><strong class="cinematic-text">Cinematic Campaigns:</strong> Names can be more dramatic and memorable, like action movie characters</p>
+            <p><strong class="universal-text">Four-Color Campaigns:</strong> Names should capture the larger-than-life nature of superheroic fiction</p>
+
+            <h3>Character Point Considerations</h3>
+            <p>GURPS names can reflect character creation choices:</p>
+            <ul>
+                <li><strong>Social Status:</strong> Names reflecting wealth, poverty, or nobility</li>
+                <li><strong>Cultural Backgrounds:</strong> Names indicating specific ethnic or national origins</li>
+                <li><strong>Professional Identity:</strong> Names that suggest careers or specializations</li>
+                <li><strong>Reputation:</strong> Names that hint at fame, infamy, or recognition</li>
+            </ul>
+        </div>
+
+        <div class="example-box">
+            <h3>📚 Genre-Specific Applications</h3>
+            <p><strong>GURPS Dungeon Fantasy:</strong> Names suitable for classic fantasy adventuring with clear archetypal roles.</p>
+            <p><strong>GURPS Action:</strong> Names that work for modern action heroes, spies, and elite operatives.</p>
+            <p><strong>GURPS Horror:</strong> Names that can be ordinary citizens thrust into extraordinary terror.</p>
+            <p><strong>GURPS Space:</strong> Names adaptable for space exploration, trade, and galactic politics.</p>
+            <p><strong>GURPS Monster Hunters:</strong> Names for modern-day supernatural investigators and warriors.</p>
+        </div>
+
+        <div class="gurps-box">
+            <h3>🌟 GURPS Character Integration</h3>
+            <p><strong>Advantage Integration:</strong> Names can reflect <span class="universal-text">advantages</span> like Charisma, Reputation, or Social Status.</p>
+            <p><strong>Disadvantage Reflection:</strong> Names might hint at <span class="realistic-text">disadvantages</span> like Social Stigma or Secret Identity.</p>
+            <p><strong>Skill Specialization:</strong> Professional names that suggest character <span class="cinematic-text">skill investments</span>.</p>
+            <p><strong>Background Integration:</strong> Names that support character backstories and <span class="universal-text">campaign themes</span>.</p>
+        </div>
+
+        <div class="tips-section">
+            <h2>🚀 Universal GURPS Applications</h2>
+            <ul>
+                <li><strong>Cross-Genre Campaigns:</strong> Names that work when switching between different <span class="universal-text">genre conventions</span></li>
+                <li><strong>Time Travel Adventures:</strong> Names that adapt to different <span class="realistic-text">historical periods</span></li>
+                <li><strong>Alternate History:</strong> Names that work in <span class="cinematic-text">changed timelines</span></li>
+                <li><strong>Multi-Universal:</strong> Names suitable for dimension-hopping adventures</li>
+                <li><strong>Character Evolution:</strong> Names that grow with advancing character point totals</li>
+                <li><strong>Campaign Longevity:</strong> Names that remain interesting across long-term play</li>
+            </ul>
+        </div>
+
+        <div class="mermaid">
+            pie title GURPS Name Versatility Factors
+                "Genre Adaptability" : 25
+                "Tech Level Flexibility" : 20
+                "Cultural Authenticity" : 18
+                "Character Point Integration" : 15
+                "Campaign Style Compatibility" : 12
+                "Long-term Playability" : 10
+        </div>
+
+        <div class="example-box">
+            <h3>🎯 The GURPS Advantage</h3>
+            <p>GURPS's greatest strength is its <span class="universal-text">universal adaptability</span>. A well-chosen character name should embody this same flexibility, working equally well whether your character is a <span class="realistic-text">TL3 knight</span> fighting dragons, a <span class="cinematic-text">TL8 action hero</span> saving the world, or a <span class="universal-text">TL11 space captain</span> exploring distant galaxies. The best GURPS names are like the system itself: simple enough to be accessible, flexible enough to be universal, and detailed enough to be compelling.</p>
+        </div>
+    </div>
+
+    <script>
+        // GURPS character name data with universal genre compatibility
+        const maleNames = [
+            {name: "Marcus Blackwood", origin: "Anglo-Saxon", genre: "Historical/Modern", tl: "TL3-8"},
+            {name: "Viktor Steelborn", origin: "Germanic", genre: "Fantasy/Sci-Fi", tl: "TL0-12"},
+            {name: "Chen Wei-Ming", origin: "Chinese", genre: "Universal", tl: "TL4-9"},
+            {name: "Dmitri Volkov", origin: "Slavic", genre: "Action/Espionage", tl: "TL6-8"},
+            {name: "Carlos Mendoza", origin: "Hispanic", genre: "Modern/Action", tl: "TL7-9"},
+            {name: "Kai Nakamura", origin: "Japanese", genre: "Cyberpunk/Modern", tl: "TL8-10"},
+            {name: "Erik Nordstrom", origin: "Scandinavian", genre: "Historical/Fantasy", tl: "TL2-6"},
+            {name: "Ahmed Al-Rashid", origin: "Arabic", genre: "Historical/Modern", tl: "TL4-8"},
+            {name: "Jack Sterling", origin: "English", genre: "Action/Adventure", tl: "TL5-9"},
+            {name: "Giovanni Rosetti", origin: "Italian", genre: "Historical/Crime", tl: "TL4-8"},
+            {name: "Rajesh Patel", origin: "Indian", genre: "Modern/Sci-Fi", tl: "TL7-11"},
+            {name: "Thomas Ashford", origin: "English", genre: "Historical/Horror", tl: "TL4-7"},
+            {name: "Nikolai Petrov", origin: "Russian", genre: "Espionage/Action", tl: "TL6-9"},
+            {name: "Samuel Thornfield", origin: "Anglo-Saxon", genre: "Victorian/Steampunk", tl: "TL5-6"},
+            {name: "Hiroshi Tanaka", origin: "Japanese", genre: "Modern/Cyberpunk", tl: "TL8-10"},
+            {name: "Gabriel Santos", origin: "Portuguese", genre: "Modern/Action", tl: "TL7-9"},
+            {name: "Alexander Cross", origin: "Greek/English", genre: "Universal", tl: "TL4-10"},
+            {name: "Omar Hassan", origin: "Arabic", genre: "Modern/Historical", tl: "TL5-8"},
+            {name: "Lucien Dubois", origin: "French", genre: "Horror/Historical", tl: "TL4-7"},
+            {name: "Mikhail Kozlov", origin: "Russian", genre: "Action/Sci-Fi", tl: "TL6-11"},
+            {name: "Sebastian Vale", origin: "Latin", genre: "Gothic/Horror", tl: "TL4-8"},
+            {name: "Finn O'Sullivan", origin: "Irish", genre: "Historical/Modern", tl: "TL4-8"},
+            {name: "André Lavigne", origin: "French", genre: "Espionage/Romance", tl: "TL6-8"},
+            {name: "Magnus Ironhand", origin: "Norse", genre: "Fantasy/Historical", tl: "TL0-4"},
+            {name: "David Blackstone", origin: "Hebrew/English", genre: "Mystery/Action", tl: "TL5-9"},
+            {name: "Yuki Sato", origin: "Japanese", genre: "Modern/Sci-Fi", tl: "TL8-11"},
+            {name: "Francesco Moretti", origin: "Italian", genre: "Renaissance/Crime", tl: "TL4-8"},
+            {name: "Hans Mueller", origin: "German", genre: "Historical/War", tl: "TL5-8"},
+            {name: "Kenji Yamamoto", origin: "Japanese", genre: "Martial Arts/Modern", tl: "TL7-9"},
+            {name: "Rafael Silva", origin: "Portuguese", genre: "Adventure/Modern", tl: "TL6-9"},
+            {name: "Alexei Volkov", origin: "Russian", genre: "Spy/Action", tl: "TL7-9"},
+            {name: "Connor MacLeod", origin: "Scottish", genre: "Historical/Fantasy", tl: "TL3-6"},
+            {name: "Leo Castellano", origin: "Italian", genre: "Crime/Family", tl: "TL6-8"},
+            {name: "Soren Eriksson", origin: "Danish", genre: "Viking/Medieval", tl: "TL2-4"},
+            {name: "Mateo Rodriguez", origin: "Spanish", genre: "Adventure/Western", tl: "TL5-7"},
+            {name: "Jin Wu", origin: "Chinese", genre: "Martial Arts/Fantasy", tl: "TL3-8"},
+            {name: "Klaus Richter", origin: "German", genre: "War/Espionage", tl: "TL6-8"},
+            {name: "Vincent Morrow", origin: "English", genre: "Noir/Detective", tl: "TL6-8"},
+            {name: "Enzo Ferrari", origin: "Italian", genre: "Racing/Adventure", tl: "TL7-9"},
+            {name: "Ivan Petrov", origin: "Russian", genre: "Military/Action", tl: "TL6-9"},
+            {name: "Diego Vasquez", origin: "Spanish", genre: "Adventure/Exploration", tl: "TL5-8"},
+            {name: "Kurt Wagner", origin: "German", genre: "Fantasy/Supers", tl: "TL4-9"},
+            {name: "Takeshi Kimura", origin: "Japanese", genre: "Samurai/Modern", tl: "TL4-9"},
+            {name: "Roberto Mendez", origin: "Spanish", genre: "Crime/Action", tl: "TL7-9"},
+            {name: "Aleksandr Kozlov", origin: "Russian", genre: "Cold War/Sci-Fi", tl: "TL7-10"},
+            {name: "Paolo Benedetti", origin: "Italian", genre: "Renaissance/Art", tl: "TL4-6"},
+            {name: "Henri Beaumont", origin: "French", genre: "Nobility/Romance", tl: "TL4-7"},
+            {name: "Gunnar Thorsson", origin: "Norse", genre: "Viking/Fantasy", tl: "TL1-4"},
+            {name: "Joaquin Morales", origin: "Spanish", genre: "Revolution/Western", tl: "TL5-7"},
+            {name: "Lukas Hoffman", origin: "German", genre: "Scholar/Mystery", tl: "TL5-8"}
+        ];
+
+        const femaleNames = [
+            {name: "Isabella Blackwood", origin: "Italian/English", genre: "Historical/Gothic", tl: "TL4-8"},
+            {name: "Natasha Volkov", origin: "Russian", genre: "Espionage/Action", tl: "TL6-9"},
+            {name: "Mei-Lin Chen", origin: "Chinese", genre: "Martial Arts/Modern", tl: "TL4-9"},
+            {name: "Carmen Santos", origin: "Spanish", genre: "Adventure/Romance", tl: "TL5-8"},
+            {name: "Akira Nakamura", origin: "Japanese", genre: "Cyberpunk/Sci-Fi", tl: "TL8-11"},
+            {name: "Elena Petrov", origin: "Russian/Greek", genre: "Spy/Thriller", tl: "TL6-9"},
+            {name: "Sophia Rosetti", origin: "Greek/Italian", genre: "Renaissance/Art", tl: "TL4-7"},
+            {name: "Zara Al-Zahra", origin: "Arabic", genre: "Historical/Adventure", tl: "TL4-8"},
+            {name: "Victoria Sterling", origin: "English", genre: "Victorian/Steampunk", tl: "TL5-6"},
+            {name: "Anastasia Kozlov", origin: "Russian", genre: "Nobility/Revolution", tl: "TL5-8"},
+            {name: "Priya Sharma", origin: "Indian", genre: "Modern/Mystical", tl: "TL7-10"},
+            {name: "Catherine Vale", origin: "English", genre: "Gothic/Horror", tl: "TL5-8"},
+            {name: "Ingrid Nordstrom", origin: "Scandinavian", genre: "Viking/Medieval", tl: "TL2-5"},
+            {name: "Lucia Moretti", origin: "Italian", genre: "Renaissance/Crime", tl: "TL4-8"},
+            {name: "Yuki Tanaka", origin: "Japanese", genre: "Modern/Tech", tl: "TL8-10"},
+            {name: "Margot Dubois", origin: "French", genre: "Resistance/War", tl: "TL6-8"},
+            {name: "Valentina Cross", origin: "Latin", genre: "Action/Adventure", tl: "TL6-10"},
+            {name: "Fatima Hassan", origin: "Arabic", genre: "Historical/Modern", tl: "TL4-8"},
+            {name: "Greta Mueller", origin: "German", genre: "War/Espionage", tl: "TL6-8"},
+            {name: "Sienna Blake", origin: "English", genre: "Mystery/Detective", tl: "TL6-9"},
+            {name: "Chiara Benedetti", origin: "Italian", genre: "Art/Culture", tl: "TL4-8"},
+            {name: "Anya Petrov", origin: "Russian", genre: "Ballet/Drama", tl: "TL6-9"},
+            {name: "Keiko Yamamoto", origin: "Japanese", genre: "Traditional/Modern", tl: "TL4-9"},
+            {name: "Esperanza Rodriguez", origin: "Spanish", genre: "Revolution/Hope", tl: "TL5-8"},
+            {name: "Astrid Eriksson", origin: "Scandinavian", genre: "Viking/Strong", tl: "TL1-4"},
+            {name: "Gabrielle Moreau", origin: "French", genre: "Elegance/Intrigue", tl: "TL5-8"},
+            {name: "Lila Patel", origin: "Indian", genre: "Modern/Tech", tl: "TL7-10"},
+            {name: "Clarissa Thornfield", origin: "English", genre: "Victorian/Gothic", tl: "TL5-7"},
+            {name: "Nadia Volkov", origin: "Russian", genre: "Gymnastics/Spy", tl: "TL7-9"},
+            {name: "Sakura Sato", origin: "Japanese", genre: "Traditional/Beauty", tl: "TL4-9"},
+            {name: "Francesca Rossi", origin: "Italian", genre: "Fashion/Style", tl: "TL6-9"},
+            {name: "Katarina Kozlov", origin: "Russian", genre: "Aristocracy/Fall", tl: "TL5-8"},
+            {name: "Jade Wu", origin: "Chinese", genre: "Martial Arts/Wisdom", tl: "TL3-9"},
+            {name: "Brigitte Lavigne", origin: "French", genre: "Resistance/Courage", tl: "TL6-8"},
+            {name: "Leila Al-Rashid", origin: "Arabic", genre: "Desert/Mystery", tl: "TL4-8"},
+            {name: "Ursula Wagner", origin: "German", genre: "Scholar/Occult", tl: "TL5-8"},
+            {name: "Emilia Santos", origin: "Portuguese", genre: "Exploration/New World", tl: "TL5-7"},
+            {name: "Tessa Blackstone", origin: "English", genre: "Detective/Crime", tl: "TL6-9"},
+            {name: "Ling Zhang", origin: "Chinese", genre: "Acrobat/Spy", tl: "TL6-9"},
+            {name: "Bianca Castellano", origin: "Italian", genre: "Family/Honor", tl: "TL5-8"},
+            {name: "Freya Thorsson", origin: "Norse", genre: "Goddess/Power", tl: "TL0-4"},
+            {name: "Rosa Mendoza", origin: "Spanish", genre: "Folk Hero/Revolution", tl: "TL5-7"},
+            {name: "Helga Richter", origin: "German", genre: "Engineer/War", tl: "TL6-8"},
+            {name: "Marina Petrov", origin: "Russian", genre: "Naval/Adventure", tl: "TL6-9"},
+            {name: "Giulia Ferrari", origin: "Italian", genre: "Speed/Racing", tl: "TL7-9"},
+            {name: "Yoko Kimura", origin: "Japanese", genre: "Tradition/Honor", tl: "TL4-8"},
+            {name: "Dolores Vasquez", origin: "Spanish", genre: "Passion/Drama", tl: "TL5-8"},
+            {name: "Petra Wagner", origin: "German", genre: "Rock/Strength", tl: "TL4-8"},
+            {name: "Camille Beaumont", origin: "French", genre: "Grace/Nobility", tl: "TL4-7"},
+            {name: "Solveig Eriksson", origin: "Norse", genre: "Sun/Strength", tl: "TL1-4"}
+        ];
+
+        const neutralNames = [
+            {name: "River Blackwood", origin: "Nature/English", genre: "Universal", tl: "TL0-12"},
+            {name: "Phoenix Cross", origin: "Mythological", genre: "Fantasy/Sci-Fi", tl: "TL1-11"},
+            {name: "Sage Sterling", origin: "Nature/Wisdom", genre: "Universal", tl: "TL2-10"},
+            {name: "Dakota Stone", origin: "Native American", genre: "Western/Modern", tl: "TL4-9"},
+            {name: "Ash Thornfield", origin: "Nature/English", genre: "Post-Apoc/Gothic", tl: "TL5-10"},
+            {name: "Jordan Vale", origin: "Hebrew/English", genre: "Modern/Action", tl: "TL6-9"},
+            {name: "Storm Nakamura", origin: "Nature/Japanese", genre: "Cyberpunk/Supers", tl: "TL8-11"},
+            {name: "Raven Kozlov", origin: "Nature/Slavic", genre: "Gothic/Spy", tl: "TL5-9"},
+            {name: "Sky Petrov", origin: "Nature/Russian", genre: "Aviation/Adventure", tl: "TL6-10"},
+            {name: "Ocean Santos", origin: "Nature/Portuguese", genre: "Exploration/Mystical", tl: "TL4-9"},
+            {name: "Rowan MacLeod", origin: "Celtic", genre: "Fantasy/Historical", tl: "TL1-6"},
+            {name: "Echo Volkov", origin: "Sound/Russian", genre: "Cyberpunk/Spy", tl: "TL8-10"},
+            {name: "Winter Nordstrom", origin: "Season/Scandinavian", genre: "Fantasy/Modern", tl: "TL2-9"},
+            {name: "Frost Eriksson", origin: "Nature/Norse", genre: "Viking/Fantasy", tl: "TL1-5"},
+            {name: "Blaze Rodriguez", origin: "Fire/Spanish", genre: "Action/Western", tl: "TL5-9"},
+            {name: "Moss O'Sullivan", origin: "Nature/Irish", genre: "Druid/Fantasy", tl: "TL1-6"},
+            {name: "Cipher Chen", origin: "Mystery/Chinese", genre: "Cyberpunk/Spy", tl: "TL8-11"},
+            {name: "Vale Dubois", origin: "Valley/French", genre: "Mystery/Romance", tl: "TL4-8"},
+            {name: "Flux Tanaka", origin: "Change/Japanese", genre: "Sci-Fi/Tech", tl: "TL9-12"},
+            {name: "Ember Mueller", origin: "Fire/German", genre: "Post-Apoc/Fantasy", tl: "TL3-10"},
+            {name: "Zenith Patel", origin: "Peak/Indian", genre: "Achievement/Modern", tl: "TL7-11"},
+            {name: "Void Richter", origin: "Empty/German", genre: "Horror/Sci-Fi", tl: "TL6-11"},
+            {name: "Crystal Blake", origin: "Gem/English", genre: "Fantasy/Modern", tl: "TL3-9"},
+            {name: "Azure Moreau", origin: "Blue/French", genre: "Mystical/Art", tl: "TL4-9"},
+            {name: "Onyx Wagner", origin: "Stone/German", genre: "Dark/Mystery", tl: "TL5-9"},
+            {name: "Indigo Hassan", origin: "Color/Arabic", genre: "Mystical/Trade", tl: "TL4-8"},
+            {name: "Crimson Sato", origin: "Red/Japanese", genre: "Samurai/Modern", tl: "TL4-9"},
+            {name: "Slate Thornfield", origin: "Stone/English", genre: "Industrial/Gothic", tl: "TL5-8"},
+            {name: "Jade Wu", origin: "Stone/Chinese", genre: "Martial Arts/Wisdom", tl: "TL3-9"},
+            {name: "Copper Benedetti", origin: "Metal/Italian", genre: "Craft/Renaissance", tl: "TL4-7"},
+            {name: "Silver Petrov", origin: "Metal/Russian", genre: "Wealth/Action", tl: "TL5-10"},
+            {name: "Gold Sterling", origin: "Metal/English", genre: "Wealth/Adventure", tl: "TL5-9"},
+            {name: "Iron MacLeod", origin: "Metal/Scottish", genre: "Strength/Clan", tl: "TL2-6"},
+            {name: "Steel Cross", origin: "Metal/English", genre: "Strength/Modern", tl: "TL5-10"},
+            {name: "Cobalt Nakamura", origin: "Metal/Japanese", genre: "Tech/Future", tl: "TL8-12"},
+            {name: "Mercury Santos", origin: "Metal/Portuguese", genre: "Speed/Alchemy", tl: "TL4-9"},
+            {name: "Platinum Volkov", origin: "Metal/Russian", genre: "Elite/Luxury", tl: "TL7-11"},
+            {name: "Chrome Richter", origin: "Metal/German", genre: "Cyber/Tech", tl: "TL8-11"},
+            {name: "Neon Chen", origin: "Light/Chinese", genre: "Cyber/City", tl: "TL8-10"},
+            {name: "Prism Blake", origin: "Light/English", genre: "Optics/Science", tl: "TL7-11"},
+            {name: "Spectrum Rodriguez", origin: "Light/Spanish", genre: "Color/Art", tl: "TL6-10"},
+            {name: "Laser Mueller", origin: "Light/German", genre: "Tech/Precision", tl: "TL8-12"},
+            {name: "Pixel Yamamoto", origin: "Digital/Japanese", genre: "Computer/Art", tl: "TL8-11"},
+            {name: "Data Kozlov", origin: "Information/Russian", genre: "Computer/Spy", tl: "TL8-11"},
+            {name: "Binary Eriksson", origin: "Code/Scandinavian", genre: "Computer/Logic", tl: "TL8-12"},
+            {name: "Vector Moretti", origin: "Math/Italian", genre: "Science/Direction", tl: "TL7-11"},
+            {name: "Matrix Petrov", origin: "Math/Russian", genre: "System/Reality", tl: "TL8-12"},
+            {name: "Quantum Sato", origin: "Physics/Japanese", genre: "Science/Mystery", tl: "TL9-12"},
+            {name: "Plasma Wagner", origin: "Physics/German", genre: "Energy/Science", tl: "TL9-12"},
+            {name: "Nova Santos", origin: "Star/Portuguese", genre: "Space/Explosion", tl: "TL8-12"}
+        ];
+
+        // Function to create GURPS-style name cards
+        function createNameCard(nameData) {
+            const genreColors = {
+                'Historical/Modern': '#3498db',
+                'Fantasy/Sci-Fi': '#e74c3c',
+                'Universal': '#27ae60',
+                'Action/Espionage': '#f39c12',
+                'Modern/Action': '#9b59b6',
+                'Cyberpunk/Modern': '#1abc9c',
+                'Historical/Fantasy': '#34495e',
+                'Historical/Crime': '#8e44ad',
+                'Action/Adventure': '#e67e22',
+                'Victorian/Steampunk': '#95a5a6',
+                'Modern/Sci-Fi': '#2980b9',
+                'Gothic/Horror': '#c0392b',
+                'Espionage/Action': '#d35400',
+                'Mystery/Action': '#7f8c8d',
+                'Renaissance/Crime': '#16a085',
+                'Historical/War': '#c0392b',
+                'Martial Arts/Modern': '#f1c40f',
+                'Adventure/Modern': '#e74c3c',
+                'Spy/Action': '#2c3e50',
+                'Historical/Gothic': '#8e44ad',
+                'Spy/Thriller': '#d35400'
+            };
+            
+            const tlColors = {
+                'TL0-12': '#27ae60',
+                'TL3-8': '#3498db',
+                'TL4-9': '#9b59b6',
+                'TL6-8': '#e74c3c',
+                'TL7-9': '#f39c12',
+                'TL8-10': '#1abc9c',
+                'TL2-6': '#34495e',
+                'TL4-8': '#8e44ad',
+                'TL5-9': '#e67e22',
+                'TL5-6': '#95a5a6',
+                'TL7-11': '#2980b9',
+                'TL4-7': '#c0392b'
+            };
+            
+            const genreColor = genreColors[nameData.genre] || '#7f8c8d';
+            const tlColor = tlColors[nameData.tl] || '#95a5a6';
+            
+            return `
+                <div class="name-card">
+                    <div class="name">${nameData.name}</div>
+                    <div class="origin">Origin: ${nameData.origin}</div>
+                    <div class="genre-suggestion">Best for: ${nameData.genre}</div>
+                    <div class="genre-tag" style="background: linear-gradient(45deg, ${genreColor}, #2c3e50);">${nameData.genre}</div>
+                    <div class="tl-tag" style="background: linear-gradient(45deg, ${tlColor}, #27ae60);">${nameData.tl}</div>
+                </div>
+            `;
+        }
+
+        // Populate name grids
+        document.getElementById('maleNames').innerHTML = maleNames.map(createNameCard).join('');
+        document.getElementById('femaleNames').innerHTML = femaleNames.map(createNameCard).join('');
+        document.getElementById('neutralNames').innerHTML = neutralNames.map(createNameCard).join('');
+
+        // Interactive GURPS genre/tech level wheel
+        const canvas = document.getElementById('gurpsWheel');
+        const ctx = canvas.getContext('2d');
+        let spinning = false;
+        let rotation = 0;
+
+        const genres = [
+            'Action/Adventure', 'Horror/Mystery', 'Fantasy/Magic', 'Sci-Fi/Space',
+            'Historical', 'Modern/Contemporary', 'Supers/Comics', 'Steampunk',
+            'Cyberpunk', 'Post-Apocalyptic', 'Espionage/Spy', 'Western'
+        ];
+        
+        const genreColors = [
+            '#e74c3c', '#8e44ad', '#27ae60', '#3498db',
+            '#d35400', '#f39c12', '#1abc9c', '#95a5a6',
+            '#9b59b6', '#c0392b', '#2c3e50', '#e67e22'
+        ];
+
+        function drawGURPSWheel() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            const centerX = canvas.width / 2;
+            const centerY = canvas.height / 2;
+            const radius = 240;
+            
+            // Draw professional background
+            const bgGradient = ctx.createRadialGradient(centerX, centerY, 0, centerX, centerY, radius);
+            bgGradient.addColorStop(0, '#ecf0f1');
+            bgGradient.addColorStop(0.7, '#bdc3c7');
+            bgGradient.addColorStop(1, '#95a5a6');
+            ctx.fillStyle = bgGradient;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            ctx.save();
+            ctx.translate(centerX, centerY);
+            ctx.rotate(rotation);
+            
+            for (let i = 0; i < genres.length; i++) {
+                const startAngle = (i * 2 * Math.PI) / genres.length;
+                const endAngle = ((i + 1) * 2 * Math.PI) / genres.length;
+                
+                // Draw genre sector
+                ctx.beginPath();
+                ctx.arc(0, 0, radius, startAngle, endAngle);
+                ctx.lineTo(0, 0);
+                ctx.fillStyle = genreColors[i];
+                ctx.fill();
+                ctx.strokeStyle = '#34495e';
+                ctx.lineWidth = 2;
+                ctx.stroke();
+                
+                // Draw genre name
+                ctx.save();
+                ctx.rotate(startAngle + (endAngle - startAngle) / 2);
+                ctx.fillStyle = '#ffffff';
+                ctx.font = 'bold 11px Georgia';
+                ctx.textAlign = 'center';
+                ctx.strokeStyle = '#2c3e50';
+                ctx.lineWidth = 2;
+                ctx.strokeText(genres[i], radius * 0.75, 0);
+                ctx.fillText(genres[i], radius * 0.75, 0);
+                ctx.restore();
+            }
+            
+            ctx.restore();
+            
+            // Draw professional pointer
+            ctx.beginPath();
+            ctx.moveTo(centerX + radius + 25, centerY);
+            ctx.lineTo(centerX + radius + 50, centerY - 18);
+            ctx.lineTo(centerX + radius + 50, centerY + 18);
+            ctx.closePath();
+            ctx.fillStyle = '#2c3e50';
+            ctx.fill();
+            ctx.strokeStyle = '#34495e';
+            ctx.lineWidth = 2;
+            ctx.stroke();
+        }
+
+        function spinGURPSWheel() {
+            if (spinning) return;
+            spinning = true;
+            
+            const spinAmount = Math.random() * 16 + 22;
+            const spinDuration = 5000;
+            const startTime = Date.now();
+            
+            function animate() {
+                const elapsed = Date.now() - startTime;
+                const progress = Math.min(elapsed / spinDuration, 1);
+                const easing = 1 - Math.pow(1 - progress, 3);
+                
+                rotation += (spinAmount * (1 - easing)) * 0.06;
+                drawGURPSWheel();
+                
+                if (progress < 1) {
+                    requestAnimationFrame(animate);
+                } else {
+                    spinning = false;
+                    const finalGenre = genres[Math.floor(((rotation % (2 * Math.PI)) / (2 * Math.PI)) * genres.length)];
+                    const randomTL = Math.floor(Math.random() * 13);
+                    alert(`🎯 Your GURPS Campaign: ${finalGenre} at Tech Level ${randomTL}! Time for universal adventure!`);
+                }
+            }
+            
+            animate();
+        }
+
+        canvas.addEventListener('click', spinGURPSWheel);
+        drawGURPSWheel();
+    </script>
+</body>
+</html>

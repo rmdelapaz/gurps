@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Core Mechanics and Resolution Systems: Making the Dice Dance</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Core Mechanics and Resolution Systems: Making the Dice Dance</h1>
+        <p class="subtitle">From Character Sheet to Storytelling</p>
+    </header>
+
+    <main>
+        <section class="introduction">
+            <h2>The Moment of Truth</h2>
+            <p>Imagine you're a jazz musician. You've practiced scales (learned the rules), studied theory (created your character), and now you're on stage with your band. The real magic happens when you translate all that preparation into music—when the mechanical foundation becomes art. GURPS mechanics are like musical notation: they provide structure and consistency, but the real story emerges through how you interpret and play them.</p>
+            
+            <div class="analogy-box">
+                <h3>The Language of Dice</h3>
+                <p>Dice rolls in GURPS are like conversations between players and the story. When you roll dice, you're asking the universe a question: "Can my character do this?" The dice answer with varying degrees of certainty—from "absolutely!" to "not a chance" to "yes, but..." This creates a collaborative storytelling engine where both player intent and random chance shape the narrative.</p>
+            </div>
+        </section>
+
+        <section class="basic-resolution">
+            <h2>The Universal Language: Success Rolls</h2>
+            
+            <p>GURPS uses one fundamental mechanic for almost everything: roll 3d6, try to roll equal to or under your target number. It's elegantly simple—like a universal remote that controls every device in your entertainment center.</p>
+
+            <div class="mermaid">
+                flowchart TD
+                    A[Need to do something?] --> B[Determine target number]
+                    B --> C[Apply modifiers]
+                    C --> D[Roll 3d6]
+                    D --> E{Roll ≤ Target?}
+                    E -->|Yes| F[Success!]
+                    E -->|No| G[Failure]
+                    F --> H[Determine degree of success]
+                    G --> I[Determine degree of failure]
+                    H --> J[GM describes result]
+                    I --> J
+                    
+                    style A fill:#e1f5fe
+                    style F fill:#e8f5e8
+                    style G fill:#ffebee
+                    style J fill:#fff3e0
+            </div>
+
+            <h3>Target Numbers: The Foundation</h3>
+            <p>Your target number comes from three sources, like ingredients in a recipe:</p>
+
+            <div class="target-components">
+                <div class="component">
+                    <h4>Base Value</h4>
+                    <p>Usually an attribute or skill level</p>
+                    <p><strong>Example:</strong> Your Lockpicking skill of 14</p>
+                </div>
+                
+                <div class="component">
+                    <h4>Situational Modifiers</h4>
+                    <p>Bonuses or penalties based on circumstances</p>
+                    <p><strong>Example:</strong> -2 for poor lighting, +1 for high-quality tools</p>
+                </div>
+                
+                <div class="component">
+                    <h4>Final Target Number</h4>
+                    <p>Base + modifiers = what you need to roll under</p>
+                    <p><strong>Example:</strong> 14 - 2 + 1 = 13 or less to succeed</p>
+                </div>
+            </div>
+
+            <h3>The Modifier Scale: Quantifying Difficulty</h3>
+            <p>GURPS uses a consistent modifier scale that reflects real-world difficulty levels:</p>
+
+            <pre><code>Modifier | Difficulty Level        | Real-World Example
++4       | Extremely Easy          | Threading a needle with good light
++2       | Very Easy              | Hitting a barn door at 10 feet
++1       | Easy                   | Making coffee in familiar kitchen
+ 0       | Average                | Normal conditions
+-1       | Hard                   | Driving in light rain
+-2       | Very Hard              | Surgery during earthquake
+-4       | Extremely Hard         | Hitting bullseye while drunk
+-6       | Nearly Impossible      | Performing brain surgery blindfolded
+-8       | Legendary Difficulty   | Catching a bullet with bare hands</code></pre>
+
+            <div class="example-box">
+                <h4>Success Roll Example: The Locked Door</h4>
+                <p>Detective Sarah approaches an old office door. She wants to pick the lock:</p>
+                <ul>
+                    <li><strong>Base Skill:</strong> Lockpicking-12 (she put 2 points into this skill)</li>
+                    <li><strong>Modifiers:</strong> 
+                        <ul>
+                            <li>Old lock: +1 (worn mechanisms easier to manipulate)</li>
+                            <li>Dim hallway lighting: -1</li>
+                            <li>Time pressure (guards approaching): -1</li>
+                        </ul>
+                    </li>
+                    <li><strong>Final Target:</strong> 12 + 1 - 1 - 1 = 11</li>
+                    <li><strong>Roll Result:</strong> She rolls 8—success! The lock clicks open just as footsteps echo down the hall.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="degrees-of-success">
+            <h2>Beyond Pass/Fail: Degrees of Success and Failure</h2>
+            
+            <p>GURPS doesn't just tell you whether you succeed or fail—it tells you how well or badly things go. This creates a spectrum of results that mirrors real life, where success can range from "barely adequate" to "absolutely brilliant."</p>
+
+            <h3>Margin of Success/Failure</h3>
+            <p>Your margin is the difference between your roll and your target number:</p>
+            
+            <div class="margin-calculator">
+                <canvas id="marginChart" width="600" height="200"></canvas>
+                <script>
+                    const canvas = document.getElementById('marginChart');
+                    const ctx = canvas.getContext('2d');
+                    
+                    // Draw scale
+                    const centerX = 300;
+                    const y = 100;
+                    
+                    // Draw horizontal line
+                    ctx.beginPath();
+                    ctx.moveTo(50, y);
+                    ctx.lineTo(550, y);
+                    ctx.strokeStyle = 'black';
+                    ctx.lineWidth = 3;
+                    ctx.stroke();
+                    
+                    // Mark target number
+                    ctx.beginPath();
+                    ctx.moveTo(centerX, y - 20);
+                    ctx.lineTo(centerX, y + 20);
+                    ctx.strokeStyle = 'red';
+                    ctx.lineWidth = 3;
+                    ctx.stroke();
+                    
+                    // Labels
+                    ctx.fillStyle = 'black';
+                    ctx.font = '14px Arial';
+                    ctx.textAlign = 'center';
+                    ctx.fillText('Target: 12', centerX, y - 30);
+                    
+                    // Success examples
+                    ctx.fillStyle = 'green';
+                    ctx.fillText('Roll: 8', 200, y - 10);
+                    ctx.fillText('MoS: 4', 200, y + 15);
+                    ctx.fillText('Roll: 10', 250, y - 10);
+                    ctx.fillText('MoS: 2', 250, y + 15);
+                    
+                    // Failure examples
+                    ctx.fillStyle = 'red';
+                    ctx.fillText('Roll: 14', 350, y - 10);
+                    ctx.fillText('MoF: 2', 350, y + 15);
+                    ctx.fillText('Roll: 16', 400, y - 10);
+                    ctx.fillText('MoF: 4', 400, y + 15);
+                    
+                    // Zone labels
+                    ctx.fillStyle = 'green';
+                    ctx.font = '12px Arial';
+                    ctx.fillText('SUCCESS ZONE', 150, y + 40);
+                    ctx.fillStyle = 'red';
+                    ctx.fillText('FAILURE ZONE', 450, y + 40);
+                </script>
+            </div>
+
+            <h3>Critical Success and Failure</h3>
+            <p>Some rolls are so good or bad they transcend normal success/failure:</p>
+
+            <div class="critical-results">
+                <div class="critical-success">
+                    <h4>Critical Success (Roll of 3-4, or 5-6 if skill 15+)</h4>
+                    <ul>
+                        <li>Automatic success regardless of target number</li>
+                        <li>Exceptional results beyond normal success</li>
+                        <li>Often provides extra benefits or information</li>
+                        <li>Probability: About 1.85% of all rolls</li>
+                    </ul>
+                    <p><strong>Example:</strong> Picking the lock not only opens the door but reveals the security code written inside the mechanism.</p>
+                </div>
+
+                <div class="critical-failure">
+                    <h4>Critical Failure (Roll of 17-18, or 10+ over target)</h4>
+                    <ul>
+                        <li>Automatic failure regardless of target number</li>
+                        <li>Something goes dramatically wrong</li>
+                        <li>Often creates new problems or complications</li>
+                        <li>Probability: About 1.85% of all rolls</li>
+                    </ul>
+                    <p><strong>Example:</strong> Not only does the lock picking fail, but the pick breaks off in the lock and sets off a silent alarm.</p>
+                </div>
+            </div>
+
+            <div class="practical-example">
+                <h4>Degrees in Action: The Research Scene</h4>
+                <p>Dr. Elena researches ancient Mayan astronomical records (Research skill 16):</p>
+                
+                <div class="result-spectrum">
+                    <div class="result">
+                        <h5>Critical Failure (18)</h5>
+                        <p>"You not only find nothing useful, but accidentally delete the digital archive and upset the librarian so much she bans you from the university."</p>
+                    </div>
+                    
+                    <div class="result">
+                        <h5>Failure by 4 (20, target 16)</h5>
+                        <p>"After hours of searching, you find several promising leads but they all turn out to be dead ends or mistranslations."</p>
+                    </div>
+                    
+                    <div class="result">
+                        <h5>Failure by 1 (17, target 16)</h5>
+                        <p>"You find some relevant information but it's incomplete—you know there's more here but need another approach."</p>
+                    </div>
+                    
+                    <div class="result">
+                        <h5>Success by 1 (15, target 16)</h5>
+                        <p>"You find exactly what you were looking for: a reference to the astronomical event mentioned in the artifact."</p>
+                    </div>
+                    
+                    <div class="result">
+                        <h5>Success by 6 (10, target 16)</h5>
+                        <p>"Not only do you find the astronomical reference, but you discover a pattern that reveals the location of three similar sites."</p>
+                    </div>
+                    
+                    <div class="result">
+                        <h5>Critical Success (4)</h5>
+                        <p>"You have a breakthrough moment—connecting this astronomical data to a completely different historical mystery, opening up an entirely new line of investigation."</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="contest-mechanics">
+            <h2>When Characters Clash: Contests and Competitions</h2>
+            
+            <p>Sometimes success isn't just about beating a target number—it's about doing better than someone else. GURPS contests are like dance-offs or cooking competitions: both participants are skilled, but only one can be the best.</p>
+
+            <h3>Types of Contests</h3>
+
+            <div class="mermaid">
+                graph TD
+                    A[Contest Types] --> B[Quick Contest]
+                    A --> C[Regular Contest]
+                    A --> D[Resistance Roll]
+                    
+                    B --> B1[Both roll simultaneously]
+                    B --> B2[Highest success wins]
+                    B --> B3[Ties go to higher skill]
+                    
+                    C --> C1[Repeated rolls over time]
+                    C --> C2[First to X successes wins]
+                    C --> C3[Like arm wrestling match]
+                    
+                    D --> D1[Active vs Passive resistance]
+                    D --> D2[Roll vs fixed number]
+                    D --> D3[Like poison vs Health]
+            </div>
+
+            <h3>Quick Contests: Instant Resolution</h3>
+            <p>For situations where you need immediate results, like two people grabbing for the same gun:</p>
+
+            <div class="contest-example">
+                <h4>Quick Contest Example: The Chase</h4>
+                <p>Sarah (Driving-14) pursues a suspect (Driving-12) through city streets:</p>
+                
+                <table class="contest-table">
+                    <tr>
+                        <th>Character</th>
+                        <th>Skill</th>
+                        <th>Modifiers</th>
+                        <th>Target</th>
+                        <th>Roll</th>
+                        <th>Result</th>
+                    </tr>
+                    <tr>
+                        <td>Sarah</td>
+                        <td>14</td>
+                        <td>+1 (better car)</td>
+                        <td>15</td>
+                        <td>11</td>
+                        <td>Success by 4</td>
+                    </tr>
+                    <tr>
+                        <td>Suspect</td>
+                        <td>12</td>
+                        <td>-2 (panic, damaged car)</td>
+                        <td>10</td>
+                        <td>13</td>
+                        <td>Failure by 3</td>
+                    </tr>
+                </table>
+                
+                <p><strong>Result:</strong> Sarah wins decisively. She not only keeps up but gains ground, forcing the suspect into a dead-end alley.</p>
+            </div>
+
+            <h3>Regular Contests: Extended Challenges</h3>
+            <p>For prolonged struggles where the outcome isn't immediately clear:</p>
+
+            <div class="regular-contest-example">
+                <h4>Regular Contest Example: The Negotiation</h4>
+                <p>Elena tries to convince a museum curator to let her examine restricted artifacts (first to 3 successes wins):</p>
+                
+                <div class="contest-rounds">
+                    <div class="round">
+                        <h5>Round 1: Opening Positions</h5>
+                        <p><strong>Elena (Diplomacy-13):</strong> Rolls 10, success by 3</p>
+                        <p><strong>Curator (Psychology-12):</strong> Rolls 14, failure by 2</p>
+                        <p><strong>Result:</strong> Elena 1, Curator 0. "I can see you're passionate about this research, Dr. Vasquez, but our insurance policies..."</p>
+                    </div>
+                    
+                    <div class="round">
+                        <h5>Round 2: Building Trust</h5>
+                        <p><strong>Elena:</strong> Rolls 8, success by 5 (mentions mutual colleague)</p>
+                        <p><strong>Curator:</strong> Rolls 9, success by 3 (impressed by credentials)</p>
+                        <p><strong>Result:</strong> Elena 2, Curator 1. "Professor Martinez did mention your work... perhaps we could arrange something."</p>
+                    </div>
+                    
+                    <div class="round">
+                        <h5>Round 3: The Close</h5>
+                        <p><strong>Elena:</strong> Rolls 7, success by 6 (offers to share findings)</p>
+                        <p><strong>Curator:</strong> Rolls 15, failure by 3 (swayed by academic cooperation)</p>
+                        <p><strong>Final Result:</strong> Elena 3, Curator 1. "Very well, I'll arrange supervised access for tomorrow morning."</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="situational-mechanics">
+            <h2>Special Circumstances: When Rules Get Creative</h2>
+            
+            <h3>Multiple Attempts: Try, Try Again</h3>
+            <p>Sometimes characters can keep trying until they succeed, but there's always a price:</p>
+
+            <div class="multiple-attempts">
+                <h4>Progressive Difficulty</h4>
+                <p>Each retry after the first gets harder:</p>
+                <ul>
+                    <li><strong>First attempt:</strong> Normal difficulty</li>
+                    <li><strong>Second attempt:</strong> -1 penalty</li>
+                    <li><strong>Third attempt:</strong> -2 penalty</li>
+                    <li><strong>Fourth+ attempts:</strong> -3 penalty (maximum)</li>
+                </ul>
+                
+                <div class="attempt-example">
+                    <h5>Example: Hacking a Computer</h5>
+                    <p>Jack tries to hack into a corporate server (Computer Hacking-13):</p>
+                    <ul>
+                        <li><strong>First try:</strong> Target 13, rolls 15. Failure—system detects intrusion attempt</li>
+                        <li><strong>Second try:</strong> Target 12 (-1), rolls 11. Success—but security is now alert</li>
+                    </li>
+                    <p>Each failure made success more difficult and raised the stakes.</p>
+                </div>
+            </div>
+
+            <h3>Complementary Skills: Teamwork Makes the Dream Work</h3>
+            <p>Sometimes different skills can help each other, like having a good wingman:</p>
+
+            <div class="complementary-example">
+                <h4>Example: The Historical Detective Work</h4>
+                <p>Elena needs to solve an archaeological mystery:</p>
+                <ul>
+                    <li><strong>Primary skill:</strong> Archaeology-16 to interpret the site</li>
+                    <li><strong>Complementary skills:</strong>
+                        <ul>
+                            <li>Geology-13 to understand the soil layers (+1 if successful)</li>
+                            <li>History-15 to place artifacts in context (+2 if successful)</li>
+                            <li>Ancient Languages-15 to read inscriptions (+2 if successful)</li>
+                        </ul>
+                    </li>
+                </ul>
+                <p>If she succeeds at all three complementary rolls, her Archaeology roll gets a +5 bonus, turning her effective skill from 16 to 21!</p>
+            </div>
+
+            <h3>Time and Circumstance Modifiers</h3>
+            <p>Real life doesn't happen in perfect conditions. GURPS accounts for this:</p>
+
+            <div class="time-modifiers">
+                <h4>Time Pressure Effects</h4>
+                <table class="modifier-table">
+                    <tr>
+                        <th>Time Available</th>
+                        <th>Modifier</th>
+                        <th>Example</th>
+                    </tr>
+                    <tr>
+                        <td>Double normal time</td>
+                        <td>+1</td>
+                        <td>Careful research with no deadline</td>
+                    </tr>
+                    <tr>
+                        <td>Normal time</td>
+                        <td>0</td>
+                        <td>Standard working conditions</td>
+                    </tr>
+                    <tr>
+                        <td>Half normal time</td>
+                        <td>-2</td>
+                        <td>Rush job with deadline pressure</td>
+                    </tr>
+                    <tr>
+                        <td>Quarter normal time</td>
+                        <td>-4</td>
+                        <td>Emergency situation</td>
+                    </tr>
+                    <tr>
+                        <td>One-tenth normal time</td>
+                        <td>-6</td>
+                        <td>Split-second decision</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="environmental-modifiers">
+                <h4>Environmental Conditions</h4>
+                <ul>
+                    <li><strong>Lighting:</strong> -1 to -9 for dim to total darkness</li>
+                    <li><strong>Noise:</strong> -1 to -4 for loud to deafening conditions</li>
+                    <li><strong>Distractions:</strong> -1 to -3 for minor to major interruptions</li>
+                    <li><strong>Equipment quality:</strong> +1 to +3 for superior tools, -1 to -3 for poor tools</li>
+                    <li><strong>Workspace:</strong> +1 to +2 for ideal conditions, -1 to -4 for cramped/awkward</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="advanced-resolution">
+            <h2>Advanced Resolution Techniques</h2>
+            
+            <h3>Size and Speed/Range Table</h3>
+            <p>GURPS uses a universal table for measuring distance, time, and size modifiers. It's like a cosmic zoom lens that works the same way whether you're shooting at a target or trying to spot a detail:</p>
+
+            <svg width="700" height="400" style="margin: 20px auto; display: block;">
+                <!-- Create logarithmic scale visualization -->
+                <defs>
+                    <marker id="arrowhead" markerWidth="10" markerHeight="7" 
+                     refX="0" refY="3.5" orient="auto">
+                        <polygon points="0 0, 10 3.5, 0 7" fill="black" />
+                    </marker>
+                </defs>
+                
+                <!-- Scale line -->
+                <line x1="50" y1="200" x2="650" y2="200" stroke="black" stroke-width="3" marker-end="url(#arrowhead)"/>
+                
+                <!-- Distance markers -->
+                <g font-size="10" text-anchor="middle">
+                    <!-- 1 yard -->
+                    <line x1="100" y1="190" x2="100" y2="210" stroke="black" stroke-width="2"/>
+                    <text x="100" y="230">1 yard</text>
+                    <text x="100" y="175" fill="blue">0</text>
+                    
+                    <!-- 2 yards -->
+                    <line x1="150" y1="190" x2="150" y2="210" stroke="black" stroke-width="2"/>
+                    <text x="150" y="230">2 yards</text>
+                    <text x="150" y="175" fill="blue">-1</text>
+                    
+                    <!-- 3 yards -->
+                    <line x1="200" y1="190" x2="200" y2="210" stroke="black" stroke-width="2"/>
+                    <text x="200" y="230">3 yards</text>
+                    <text x="200" y="175" fill="blue">-2</text>
+                    
+                    <!-- 5 yards -->
+                    <line x1="250" y1="190" x2="250" y2="210" stroke="black" stroke-width="2"/>
+                    <text x="250" y="230">5 yards</text>
+                    <text x="250" y="175" fill="blue">-3</text>
+                    
+                    <!-- 7 yards -->
+                    <line x1="300" y1="190" x2="300" y2="210" stroke="black" stroke-width="2"/>
+                    <text x="300" y="230">7 yards</text>
+                    <text x="300" y="175" fill="blue">-4</text>
+                    
+                    <!-- 10 yards -->
+                    <line x1="350" y1="190" x2="350" y2="210" stroke="black" stroke-width="2"/>
+                    <text x="350" y="230">10 yards</text>
+                    <text x="350" y="175" fill="blue">-5</text>
+                    
+                    <!-- 15 yards -->
+                    <line x1="400" y1="190" x2="400" y2="210" stroke="black" stroke-width="2"/>
+                    <text x="400" y="230">15 yards</text>
+                    <text x="400" y="175" fill="blue">-6</text>
+                    
+                    <!-- 20 yards -->
+                    <line x1="450" y1="190" x2="450" y2="210" stroke="black" stroke-width="2"/>
+                    <text x="450" y="230">20 yards</text>
+                    <text x="450" y="175" fill="blue">-7</text>
+                    
+                    <!-- 30 yards -->
+                    <line x1="500" y1="190" x2="500" y2="210" stroke="black" stroke-width="2"/>
+                    <text x="500" y="230">30 yards</text>
+                    <text x="500" y="175" fill="blue">-8</text>
+                    
+                    <!-- 50 yards -->
+                    <line x1="550" y1="190" x2="550" y2="210" stroke="black" stroke-width="2"/>
+                    <text x="550" y="230">50 yards</text>
+                    <text x="550" y="175" fill="blue">-9</text>
+                    
+                    <!-- 70 yards -->
+                    <line x1="600" y1="190" x2="600" y2="210" stroke="black" stroke-width="2"/>
+                    <text x="600" y="230">70 yards</text>
+                    <text x="600" y="175" fill="blue">-10</text>
+                </g>
+                
+                <!-- Labels -->
+                <text x="350" y="50" font-size="16" font-weight="bold" text-anchor="middle">GURPS Speed/Range Table</text>
+                <text x="350" y="80" font-size="12" text-anchor="middle">Distance increases, modifier gets more negative</text>
+                <text x="350" y="270" font-size="12" text-anchor="middle">Distance</text>
+                <text x="350" y="150" font-size="12" text-anchor="middle" fill="blue">Modifier</text>
+                
+                <!-- Usage examples -->
+                <text x="50" y="320" font-size="11" fill="green">Shooting: Apply range modifier to attack roll</text>
+                <text x="50" y="340" font-size="11" fill="green">Spotting: Apply distance modifier to Vision roll</text>
+                <text x="50" y="360" font-size="11" fill="green">Hearing: Apply distance modifier to Hearing roll</text>
+                <text x="50" y="380" font-size="11" fill="green">Size: Larger targets get positive modifiers</text>
+            </svg>
+
+            <h3>Rule of 16: When Skills Don't Apply</h3>
+            <p>Sometimes characters attempt things they've never learned. The Rule of 16 provides a baseline:</p>
+
+            <div class="rule-of-16">
+                <h4>Default Difficulty Levels</h4>
+                <ul>
+                    <li><strong>16 or less:</strong> Something an average person might occasionally manage</li>
+                    <li><strong>15 or less:</strong> Moderately difficult for untrained people</li>
+                    <li><strong>14 or less:</strong> Hard for untrained people</li>
+                    <li><strong>12 or less:</strong> Very hard for untrained people</li>
+                    <li><strong>10 or less:</strong> Nearly impossible without training</li>
+                </ul>
+                
+                <div class="rule-16-examples">
+                    <h5>Rule of 16 Examples</h5>
+                    <p><strong>Defusing a bomb (no Explosives skill):</strong> Roll vs. 12 or less—possible but terrifying</p>
+                    <p><strong>Performing surgery (no Surgery skill):</strong> Roll vs. 8 or less—don't try this at home</p>
+                    <p><strong>Jumping across a small gap:</strong> Roll vs. 15 or less—most people can manage</p>
+                </div>
+            </div>
+
+            <h3>Will and Perception: The Mental Attributes</h3>
+            <p>Not every roll uses the four primary attributes. Will and Perception handle specialized mental challenges:</p>
+
+            <div class="mental-attributes">
+                <div class="will-rolls">
+                    <h4>Will Rolls (Mental Resistance)</h4>
+                    <ul>
+                        <li><strong>Resisting fear, intimidation, or mental influence</strong></li>
+                        <li><strong>Overcoming phobias or compulsions</strong></li>
+                        <li><strong>Maintaining concentration under stress</strong></li>
+                        <li><strong>Resisting supernatural mental attacks</strong></li>
+                    </ul>
+                    
+                    <p><strong>Example:</strong> Elena encounters a supernatural horror. She must make a Will roll (Will 14) to avoid being paralyzed by fear. She rolls 13—barely maintains her composure but can act.</p>
+                </div>
+
+                <div class="perception-rolls">
+                    <h4>Perception Rolls (Noticing Things)</h4>
+                    <ul>
+                        <li><strong>Spotting hidden objects, people, or clues</strong></li>
+                        <li><strong>Hearing suspicious sounds</strong></li>
+                        <li><strong>Noticing when someone is lying</strong></li>
+                        <li><strong>Sensing danger or unusual situations</strong></li>
+                    </ul>
+                    
+                    <p><strong>Example:</strong> Sarah searches a crime scene for evidence. She makes a Perception roll (Per 13) with a +2 bonus for taking her time. She rolls 11—success by 4! She notices a nearly invisible fiber caught on the window latch.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="narrative-integration">
+            <h2>From Mechanics to Story: Making Rolls Matter</h2>
+            
+            <h3>The Three-Layer Approach</h3>
+            <p>Great GURPS gameplay happens when you integrate three layers seamlessly:</p>
+
+            <div class="mermaid">
+                graph TB
+                    A[Mechanical Layer] --> B[Tactical Layer] --> C[Narrative Layer]
+                    
+                    A1[Roll 3d6 vs target] --> A
+                    A2[Apply modifiers] --> A
+                    A3[Calculate degree] --> A
+                    
+                    B1[Interpret success/failure] --> B
+                    B2[Consider consequences] --> B
+                    B3[Set up next challenge] --> B
+                    
+                    C1[Describe dramatically] --> C
+                    C2[Advance the story] --> C
+                    C3[Develop characters] --> C
+                    
+                    style A fill:#ffebee
+                    style B fill:#e8f5e8
+                    style C fill:#e1f5fe
+            </div>
+
+            <h3>Turning Numbers into Narrative</h3>
+            <p>The same mechanical result can be described many different ways depending on context:</p>
+
+            <div class="narrative-examples">
+                <h4>Lockpicking Success by 4 (same mechanics, different stories)</h4>
+                
+                <div class="narrative-version">
+                    <h5>Noir Detective Story</h5>
+                    <p>"The old lock surrendered its secrets with surprising ease, clicking open like it had been waiting decades for someone with your particular touch. Inside, the office smells of dust and forgotten dreams."</p>
+                </div>
+                
+                <div class="narrative-version">
+                    <h5>Heist Thriller</h5>
+                    <p>"Your picks dance through the mechanism with surgical precision. Thirty seconds—well under your target time. The door swings open silently, revealing the server room beyond. Step one of the plan: complete."</p>
+                </div>
+                
+                <div class="narrative-version">
+                    <h5>Horror Investigation</h5>
+                    <p>"The lock resists momentarily, then yields with an almost organic shiver. As the door creaks open, you're hit by a wave of wrongness—something terrible happened in this room, and the very air remembers it."</p>
+                </div>
+            </div>
+
+            <h3>Failure as Fuel for Story</h3>
+            <p>In GURPS, failure isn't a story-stopper—it's a story-changer. Great GMs use failure to create new complications and opportunities:</p>
+
+            <div class="failure-examples">
+                <h4>The Failed Computer Hacking Roll</h4>
+                
+                <div class="failure-outcome">
+                    <h5>Boring Failure</h5>
+                    <p>"You can't hack the system. Try again or do something else."</p>
+                </div>
+                
+                <div class="failure-outcome">
+                    <h5>Interesting Failure</h5>
+                    <p>"You break through the first firewall but trigger a trace program. You have about 30 seconds before security traces your location. You can grab some data, but you'll have to choose: financial records, personnel files, or building schematics. What do you take?"</p>
+                </div>
+                
+                <div class="failure-outcome">
+                    <h5>Compelling Failure</h5>
+                    <p>"Your intrusion attempt fails, but you notice something interesting—someone else is already in the system, and they're trying to cover their tracks. You can't access the data you wanted, but you've stumbled onto evidence of an inside job. Do you try to follow the other hacker's trail?"</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="common-scenarios">
+            <h2>Common Resolution Scenarios</h2>
+            
+            <h3>The Information Gathering Scene</h3>
+            <p>One of the most common challenges in any campaign is characters seeking information:</p>
+
+            <div class="info-gathering">
+                <h4>Multi-Avenue Approach</h4>
+                <p>Smart players use multiple skills and approaches:</p>
+                
+                <table class="approach-table">
+                    <tr>
+                        <th>Approach</th>
+                        <th>Skill</th>
+                        <th>Information Type</th>
+                        <th>Risk Level</th>
+                    </tr>
+                    <tr>
+                        <td>Library Research</td>
+                        <td>Research</td>
+                        <td>Academic, historical facts</td>
+                        <td>Low</td>
+                    </tr>
+                    <tr>
+                        <td>Street Contacts</td>
+                        <td>Streetwise</td>
+                        <td>Current rumors, criminal activity</td>
+                        <td>Medium</td>
+                    </tr>
+                    <tr>
+                        <td>Official Records</td>
+                        <td>Administration</td>
+                        <td>Legal documents, permits</td>
+                        <td>Low-Medium</td>
+                    </tr>
+                    <tr>
+                        <td>Computer Hacking</td>
+                        <td>Computer Hacking</td>
+                        <td>Digital records, communications</td>
+                        <td>High</td>
+                    </tr>
+                    <tr>
+                        <td>Social Infiltration</td>
+                        <td>Acting, Fast-Talk</td>
+                        <td>Personal secrets, insider knowledge</td>
+                        <td>Medium-High</td>
+                    </tr>
+                </table>
+            </div>
+
+            <h3>The Skill Challenge Sequence</h3>
+            <p>For complex problems requiring multiple skills working together:</p>
+
+            <div class="skill-challenge-example">
+                <h4>Example: Infiltrating the Corporate Office</h4>
+                
+                <div class="challenge-step">
+                    <h5>Step 1: Reconnaissance (Observation vs. 13)</h5>
+                    <p><strong>Success:</strong> You identify the security guard rotation and find an unlocked side entrance</p>
+                    <p><strong>Failure:</strong> You miss the plainclothes security or don't notice the motion sensors</p>
+                </div>
+                
+                <div class="challenge-step">
+                    <h5>Step 2: Social Engineering (Fast-Talk vs. 12)</h5>
+                    <p><strong>Success:</strong> The night janitor gives you a temporary badge "for the new temp worker"</p>
+                    <p><strong>Failure:</strong> The janitor is suspicious and might report you, or you need a different approach</p>
+                </div>
+                
+                <div class="challenge-step">
+                    <h5>Step 3: Physical Infiltration (Stealth vs. 11)</h5>
+                    <p><strong>Success:</strong> You reach the target office undetected</p>
+                    <p><strong>Failure:</strong> Security spots you, triggering chase scene or need for distraction</p>
+                </div>
+                
+                <div class="challenge-step">
+                    <h5>Step 4: Data Acquisition (Computer Operation vs. 10)</h5>
+                    <p><strong>Success:</strong> You download the files and escape cleanly</p>
+                    <p><strong>Failure:</strong> Limited data, or you trigger digital security measures</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="practice-activities">
+            <h2>Practice Activities</h2>
+            
+            <div class="activity">
+                <h3>Activity 1: Modifier Calculation</h3>
+                <p>Calculate the final target numbers for these scenarios:</p>
+                <ul>
+                    <li><strong>Scenario A:</strong> Picking a lock (Lockpicking-12) in a dimly lit alley (-2) while guards patrol nearby (rushing, -2) but using professional tools (+1)</li>
+                    <li><strong>Scenario B:</strong> Researching ancient texts (Research-15) in a world-class library (+2) with unlimited time (+1) but the texts are in poor condition (-1)</li>
+                    <li><strong>Scenario C:</strong> Shooting at a human-sized target (Guns-14) at 20 yards (-7) in moderate wind (-1) using a scope (+1)</li>
+                </ul>
+            </div>
+
+            <div class="activity">
+                <h3>Activity 2: Degrees of Success Practice</h3>
+                <p>For each roll result, determine the margin and describe what happens:</p>
+                <ul>
+                    <li>Target 14, rolled 8: What's the margin? How would you describe this success?</li>
+                    <li>Target 12, rolled 16: What's the margin? How does this failure complicate things?</li>
+                    <li>Target 15, rolled 4: Critical success! What extraordinary thing happens?</li>
+                    <li>Target 13, rolled 18: Critical failure! What goes dramatically wrong?</li>
+                </ul>
+            </div>
+
+            <div class="activity">
+                <h3>Activity 3: Contest Resolution</h3>
+                <p>Resolve this quick contest:</p>
+                <p><strong>Situation:</strong> Detective Sarah (Psychology-13) questions a suspect (Acting-11) who's trying to hide their involvement in a crime.</p>
+                <ul>
+                    <li>Sarah rolls 9, Suspect rolls 13</li>
+                    <li>Who wins and by how much?</li>
+                    <li>Describe the outcome of this exchange</li>
+                    <li>How might this affect the next round of questioning?</li>
+                </ul>
+            </div>
+
+            <div class="activity">
+                <h3>Activity 4: Complementary Skills Design</h3>
+                <p>Design a complex challenge that uses one primary skill and three complementary skills:</p>
+                <ul>
+                    <li>Choose a scenario (archaeological dig, crime scene investigation, hacking operation, etc.)</li>
+                    <li>Identify the primary skill needed</li>
+                    <li>List three complementary skills that could help</li>
+                    <li>Explain how each complementary skill adds to the primary task</li>
+                    <li>Describe the outcome if the character succeeds at all complementary skills vs. none</li>
+                </ul>
+            </div>
+
+            <div class="activity">
+                <h3>Activity 5: Narrative Integration Challenge</h3>
+                <p>Take these mechanical results and write three different narrative descriptions for each, representing different genres:</p>
+                <ul>
+                    <li><strong>Mechanics:</strong> Stealth roll, success by 6</li>
+                    <li><strong>Genres:</strong> Spy thriller, supernatural horror, heist comedy</li>
+                    <li><strong>Goal:</strong> Show how the same mechanical success can feel completely different based on narrative context</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="troubleshooting">
+            <h2>Common Resolution Problems and Solutions</h2>
+            
+            <div class="problem-solution">
+                <h3>Problem: "I Keep Failing Everything!"</h3>
+                <p><strong>Causes:</strong> Target numbers too low, too many penalties, unrealistic expectations</p>
+                <p><strong>Solutions:</strong></p>
+                <ul>
+                    <li>Check if modifiers are too harsh for the difficulty</li>
+                    <li>Consider if the character's skill level matches their concept</li>
+                    <li>Use complementary skills to boost chances</li>
+                    <li>Remember that failure can be interesting too</li>
+                </ul>
+            </div>
+
+            <div class="problem-solution">
+                <h3>Problem: "Success Feels Boring"</h3>
+                <p><strong>Causes:</strong> Not using degrees of success, not describing results dramatically</p>
+                <p><strong>Solutions:</strong></p>
+                <ul>
+                    <li>High margins of success should provide extra benefits</li>
+                    <li>Describe successes in cinematic detail</li>
+                    <li>Let exceptional successes advance the plot significantly</li>
+                    <li>Use critical successes to surprise everyone</li>
+                </ul>
+            </div>
+
+            <div class="problem-solution">
+                <h3>Problem: "Too Many Modifiers to Track"</h3>
+                <p><strong>Causes:</strong> Overthinking situational details</p>
+                <p><strong>Solutions:</strong></p>
+                <ul>
+                    <li>Focus on the 2-3 most important factors</li>
+                    <li>Use round numbers (-2, +2 instead of -1, +3)</li>
+                    <li>Pre-calculate common situations</li>
+                    <li>Trust your instincts about what feels right</li>
+                </ul>
+            </div>
+
+            <div class="problem-solution">
+                <h3>Problem: "Contests Take Too Long"</h3>
+                <p><strong>Causes:</strong> Using regular contests when quick contests would work</p>
+                <p><strong>Solutions:</strong></p>
+                <ul>
+                    <li>Use quick contests for most situations</li>
+                    <li>Reserve regular contests for dramatic, drawn-out struggles</li>
+                    <li>Set reasonable target numbers for regular contests (3-5 successes max)</li>
+                    <li>Add time pressure to speed up decisions</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="further-exploration">
+            <h2>Advanced Mechanics Topics</h2>
+            
+            <ul>
+                <li><strong>Combat Resolution:</strong> Initiative, attack rolls, damage, and tactical options</li>
+                <li><strong>Magic Systems:</strong> How spell casting integrates with core mechanics</li>
+                <li><strong>Vehicle Rules:</strong> Chases, crashes, and mechanical systems</li>
+                <li><strong>Mass Combat:</strong> Handling large-scale battles and warfare</li>
+                <li><strong>Social Influence:</strong> Detailed rules for persuasion, intimidation, and manipulation</li>
+                <li><strong>Mental Influence:</strong> Psychology, brainwashing, and supernatural mental effects</li>
+                <li><strong>Technology Integration:</strong> How different tech levels affect resolution</li>
+                <li><strong>Environmental Hazards:</strong> Extreme weather, radiation, and unusual conditions</li>
+            </ul>
+        </section>
+
+        <section class="conclusion">
+            <h2>Conclusion: The Dance of Dice and Drama</h2>
+            
+            <p>You now understand the beating heart of GURPS—how the simple act of rolling 3d6 can generate infinite stories. The mechanics we've covered aren't just rules; they're a language for collaborative storytelling, a way to add uncertainty and excitement to your shared narrative while maintaining logical consistency.</p>
+
+            <p>Remember that the best GURPS games feel effortless despite their mechanical sophistication. Like a skilled musician who's mastered their instrument, you'll eventually internalize these systems until they become second nature, freeing you to focus on the music you're making together at the table.</p>
+
+            <div class="key-takeaways">
+                <h3>Key Takeaways</h3>
+                <ul>
+                    <li><strong>3d6 ≤ target number</strong> is the universal language of GURPS</li>
+                    <li><strong>Degrees of success/failure</strong> create nuanced, interesting outcomes</li>
+                    <li><strong>Modifiers reflect reality</strong>—difficulty changes based on circumstances</li>
+                    <li><strong>Contests create drama</strong> when characters clash</li>
+                    <li><strong>Failure drives story</strong> as much as success does</li>
+                    <li><strong>Narrative integration</strong> transforms mechanics into memorable moments</li>
+                </ul>
+            </div>
+
+            <div class="next-steps">
+                <h3>Ready for Combat?</h3>
+                <p>In our next lecture, we'll dive into GURPS combat—from basic attack and defense to advanced tactical options. You'll learn how the same resolution principles apply when life and death are on the line, and how GURPS creates realistic, strategic combat that feels both cinematic and believable.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Next: <a href="/gurps_combat.html"> Combat Systems and Tactical Play</a></p>
+        <p>Remember: The dice don't just determine outcomes—they help tell the story!</p>
+    </footer>
+</body>
+</html>

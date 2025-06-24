@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GURPS Fundamentals: Your Gateway to Universal Gaming</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+</head>
+<body>
+    <header>
+        <h1>GURPS Fundamentals: Your Gateway to Universal Gaming</h1>
+        <p class="subtitle">Understanding the Generic Universal RolePlaying System</p>
+    </header>
+
+    <main>
+        <section class="introduction">
+            <h2>Welcome to the World of GURPS</h2>
+            <p>Imagine you're a master chef who can cook any cuisine in the world using the same set of fundamental techniques. GURPS (Generic Universal RolePlaying System) is like that master chef's toolkit for tabletop roleplaying games. Whether you want to play a medieval knight, a space marine, a Victorian detective, or a modern-day superhero, GURPS provides the universal "recipe" that works for any setting or story.</p>
+            
+            <div class="analogy-box">
+                <h3>The Swiss Army Knife Analogy</h3>
+                <p>Think of GURPS as the Swiss Army knife of roleplaying systems. Just as a Swiss Army knife has different tools (knife, scissors, screwdriver) that can handle various tasks, GURPS has different mechanics that can handle any genre, time period, or power level. You don't need a different knife for every job—and you don't need a different game system for every story you want to tell.</p>
+            </div>
+        </section>
+
+        <section class="what-is-gurps">
+            <h2>What Makes GURPS Universal?</h2>
+            
+            <div class="mermaid">
+                graph TD
+                    A[GURPS Core System] --> B[Medieval Fantasy]
+                    A --> C[Modern Day]
+                    A --> D[Science Fiction]
+                    A --> E[Horror]
+                    A --> F[Superheroes]
+                    A --> G[Historical]
+                    A --> H[Post-Apocalyptic]
+                    
+                    B --> B1[Knights & Wizards]
+                    C --> C1[Spies & Detectives]
+                    D --> D1[Space Opera]
+                    E --> E1[Lovecraftian]
+                    F --> F1[Comic Book Heroes]
+                    G --> G1[Wild West]
+                    H --> H1[Zombie Survival]
+            </div>
+
+            <p>GURPS achieves its universality through several key principles:</p>
+
+            <h3>Point-Based Character Creation</h3>
+            <p>Instead of rolling dice for your character's abilities, you get a "budget" of character points to spend. It's like being given $1000 to customize your car—you can spend it all on a powerful engine, distribute it evenly across comfort features, or focus on safety equipment. Every choice has a cost, and every cost reflects the value of that choice.</p>
+
+            <h3>Skill-Based System</h3>
+            <p>GURPS doesn't lock you into rigid character classes. Instead of being "a fighter" or "a wizard," you're a unique individual with whatever combination of skills makes sense for your character concept. Think of it like real life—you might be good at cooking, driving, and playing guitar without being "The Cook" as your job title.</p>
+
+            <h3>Realistic Physics and Logic</h3>
+            <p>GURPS tries to model how things actually work. If you're stronger, you can lift more and hit harder. If you're wearing heavy armor, you move slower but take less damage. It's like a physics simulation that prioritizes logical consistency over dramatic convenience.</p>
+        </section>
+
+        <section class="core-concepts">
+            <h2>The Foundation: Attributes and Skills</h2>
+            
+            <h3>The Four Pillars: Primary Attributes</h3>
+            <p>Every GURPS character is built on four fundamental attributes, like the four legs of a table:</p>
+
+            <div class="attribute-grid">
+                <div class="attribute-card">
+                    <h4>Strength (ST)</h4>
+                    <p>Your raw physical power. Like the horsepower of a car engine—it determines how much you can lift, carry, and how hard you hit in melee combat.</p>
+                    <p><strong>Real-world example:</strong> A construction worker might have ST 13, while an office worker might have ST 10, and a powerlifter could have ST 16.</p>
+                </div>
+
+                <div class="attribute-card">
+                    <h4>Dexterity (DX)</h4>
+                    <p>Your coordination, agility, and fine motor control. Like the precision of a Swiss watch—it affects your accuracy with weapons, your ability to pick locks, and how gracefully you move.</p>
+                    <p><strong>Real-world example:</strong> A surgeon and a gymnast would both have high DX, but for different reasons—precision vs. acrobatic ability.</p>
+                </div>
+
+                <div class="attribute-card">
+                    <h4>Intelligence (IQ)</h4>
+                    <p>Your reasoning ability, memory, and mental processing power. Like the processor in a computer—it determines how quickly you learn, how well you solve problems, and your general knowledge.</p>
+                    <p><strong>Real-world example:</strong> A research scientist might have IQ 14, representing both raw intelligence and years of training in analytical thinking.</p>
+                </div>
+
+                <div class="attribute-card">
+                    <h4>Health (HT)</h4>
+                    <p>Your overall physical and mental resilience. Like the reliability rating of a car—it affects how much damage you can take, how quickly you recover, and your resistance to disease and poison.</p>
+                    <p><strong>Real-world example:</strong> A marathon runner would have high HT, representing both cardiovascular fitness and mental toughness.</p>
+                </div>
+            </div>
+
+            <h3>Secondary Characteristics: The Derived Stats</h3>
+            <p>Just as your blood pressure is calculated from other factors, GURPS has secondary characteristics derived from your primary attributes:</p>
+
+            <pre><code>Hit Points (HP) = Strength
+Basic Speed = (HT + DX) ÷ 4
+Basic Move = Basic Speed (without fractions)
+Perception = Intelligence
+Will = Intelligence</code></pre>
+
+            <div class="example-box">
+                <h4>Character Example: Sarah the Detective</h4>
+                <p>Let's create Sarah, a modern-day police detective:</p>
+                <ul>
+                    <li><strong>ST 11:</strong> Fit enough for police work, can handle herself in a scuffle</li>
+                    <li><strong>DX 12:</strong> Good hand-eye coordination for shooting, driving</li>
+                    <li><strong>IQ 13:</strong> Sharp mind for solving cases and reading people</li>
+                    <li><strong>HT 12:</strong> Healthy and resilient, handles stress well</li>
+                </ul>
+                <p>This gives her HP 11, Basic Speed 6.0, Basic Move 6, Perception 13, and Will 13.</p>
+            </div>
+        </section>
+
+        <section class="dice-mechanics">
+            <h2>The Heart of Action: 3d6 Resolution</h2>
+            
+            <p>GURPS uses three six-sided dice (3d6) for almost everything. This isn't arbitrary—it creates a "bell curve" of probability that mirrors real life better than a single die.</p>
+
+            <svg width="600" height="300" style="margin: 20px auto; display: block;">
+                <!-- Grid lines -->
+                <defs>
+                    <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse">
+                        <path d="M 30 0 L 0 0 0 30" fill="none" stroke="#e0e0e0" stroke-width="1"/>
+                    </pattern>
+                </defs>
+                <rect width="600" height="300" fill="url(#grid)" />
+                
+                <!-- Axes -->
+                <line x1="50" y1="250" x2="550" y2="250" stroke="black" stroke-width="2"/>
+                <line x1="50" y1="250" x2="50" y2="50" stroke="black" stroke-width="2"/>
+                
+                <!-- Bell curve data points -->
+                <path d="M 80,240 L 110,220 L 140,180 L 170,140 L 200,100 L 230,70 L 260,50 L 290,60 L 320,90 L 350,130 L 380,170 L 410,210 L 440,230 L 470,245 L 500,248" 
+                      fill="none" stroke="blue" stroke-width="3"/>
+                
+                <!-- Labels -->
+                <text x="25" y="30" font-size="12">Frequency</text>
+                <text x="270" y="280" font-size="12">Roll Result (3-18)</text>
+                
+                <!-- Numbers on x-axis -->
+                <text x="75" y="270" font-size="10">3</text>
+                <text x="170" y="270" font-size="10">6</text>
+                <text x="260" y="270" font-size="10">9</text>
+                <text x="350" y="270" font-size="10">12</text>
+                <text x="440" y="270" font-size="10">15</text>
+                <text x="490" y="270" font-size="10">18</text>
+                
+                <!-- Highlight the "sweet spot" -->
+                <rect x="220" y="60" width="80" height="190" fill="rgba(255,255,0,0.2)" stroke="orange" stroke-width="2"/>
+                <text x="230" y="40" font-size="12" fill="orange">Most Common Results</text>
+            </svg>
+
+            <h3>Why 3d6 Matters</h3>
+            <p>Rolling 3d6 gives you results from 3 to 18, but not all results are equally likely. Rolling a 10 or 11 is much more common than rolling a 3 or 18. This means:</p>
+            <ul>
+                <li><strong>Competent people succeed most of the time:</strong> If your skill is 12, you'll succeed on rolls of 12 or less about 74% of the time</li>
+                <li><strong>Extreme results are rare but possible:</strong> Critical successes (3-4) and failures (17-18) happen just often enough to be exciting</li>
+                <li><strong>Small differences matter:</strong> Going from skill 11 to 12 is a noticeable improvement</li>
+            </ul>
+
+            <div class="example-box">
+                <h4>Success Roll Example</h4>
+                <p>Sarah needs to spot a clue at a crime scene. Her Perception is 13. She rolls 3d6:</p>
+                <ul>
+                    <li><strong>Rolls 9:</strong> Success! She notices the clue</li>
+                    <li><strong>Rolls 15:</strong> Failure. She misses it this time</li>
+                    <li><strong>Rolls 4:</strong> Critical success! She not only spots the clue but notices additional details</li>
+                    <li><strong>Rolls 17:</strong> Critical failure! She not only misses the clue but might contaminate the scene</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="advantages-disadvantages">
+            <h2>Advantages and Disadvantages: Character Flavor with Mechanical Bite</h2>
+            
+            <p>Advantages and disadvantages are like the spices in your character recipe—they add flavor while affecting the mechanical "taste" of gameplay. They're not just cosmetic descriptions; they have real game effects.</p>
+
+            <div class="mermaid">
+                mindmap
+                  root)Character Traits(
+                    Advantages
+                      Mental
+                        Eidetic Memory
+                        Mathematical Ability
+                        Intuition
+                      Physical
+                        Enhanced Strength
+                        Perfect Balance
+                        Acute Vision
+                      Social
+                        Charisma
+                        Voice
+                        Reputation
+                    Disadvantages
+                      Mental
+                        Absent Minded
+                        Phobias
+                        Overconfidence
+                      Physical
+                        Bad Sight
+                        Chronic Pain
+                        One Arm
+                      Social
+                        Social Stigma
+                        Bad Reputation
+                        Shy
+            </div>
+
+            <h3>How Advantages and Disadvantages Work</h3>
+            <p>Think of your character point budget like a bank account. Advantages cost points (withdraw money), while disadvantages give you points back (make deposits). The total must balance to your campaign's starting point total.</p>
+
+            <div class="example-box">
+                <h4>Building Detective Sarah (Continued)</h4>
+                <p>Let's add some advantages and disadvantages to make Sarah more interesting:</p>
+                
+                <p><strong>Advantages:</strong></p>
+                <ul>
+                    <li><strong>Legal Enforcement Powers [10 points]:</strong> She can make arrests, carry weapons legally</li>
+                    <li><strong>Contact (Police Database) [2 points]:</strong> Access to criminal records and case files</li>
+                </ul>
+
+                <p><strong>Disadvantages:</strong></p>
+                <ul>
+                    <li><strong>Duty (Police Department) [-10 points]:</strong> Must respond to calls, follow orders</li>
+                    <li><strong>Workaholic [-5 points]:</strong> Has trouble relaxing, always thinking about cases</li>
+                </ul>
+
+                <p>Net cost: +12 -15 = -3 points, which gives her 3 extra points to spend elsewhere!</p>
+            </div>
+        </section>
+
+        <section class="skills-introduction">
+            <h2>Skills: What Your Character Can Do</h2>
+            
+            <p>If attributes are your character's raw potential, skills are their trained abilities. It's the difference between having good coordination (high DX) and being a trained surgeon (high Surgery skill based on DX).</p>
+
+            <h3>Skill Difficulties and Defaults</h3>
+            <p>Skills come in four difficulty levels, like video game difficulty settings:</p>
+            
+            <div class="skill-difficulty-chart">
+                <div class="difficulty-level">
+                    <h4>Easy (E)</h4>
+                    <p>Common knowledge or simple physical tasks</p>
+                    <p><strong>Examples:</strong> Driving, First Aid, Throwing</p>
+                    <p><strong>Default:</strong> Attribute-1 (if DX 12, default Throwing is 11)</p>
+                </div>
+
+                <div class="difficulty-level">
+                    <h4>Average (A)</h4>
+                    <p>Professional skills or moderately complex tasks</p>
+                    <p><strong>Examples:</strong> Guns, Lockpicking, Psychology</p>
+                    <p><strong>Default:</strong> Attribute-2</p>
+                </div>
+
+                <div class="difficulty-level">
+                    <h4>Hard (H)</h4>
+                    <p>Advanced professional or academic skills</p>
+                    <p><strong>Examples:</strong> Surgery, Law, Engineering</p>
+                    <p><strong>Default:</strong> Attribute-3</p>
+                </div>
+
+                <div class="difficulty-level">
+                    <h4>Very Hard (VH)</h4>
+                    <p>Extremely complex or specialized knowledge</p>
+                    <p><strong>Examples:</strong> Quantum Physics, Ancient Languages</p>
+                    <p><strong>Default:</strong> Attribute-4 (if default exists)</p>
+                </div>
+            </div>
+
+            <div class="real-world-example">
+                <h4>Real-World Skill Learning Example</h4>
+                <p>Consider learning to drive a car:</p>
+                <ul>
+                    <li><strong>No training:</strong> DX-2 default (Average skill) - you might manage basic forward movement</li>
+                    <li><strong>1 point invested:</strong> DX-1 - you can drive slowly in good conditions</li>
+                    <li><strong>4 points invested:</strong> DX+0 - competent everyday driver</li>
+                    <li><strong>12 points invested:</strong> DX+2 - professional truck driver or racing instructor level</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="practical-applications">
+            <h2>When and Why to Use GURPS</h2>
+            
+            <h3>GURPS Excels When:</h3>
+            <ul>
+                <li><strong>You want genre flexibility:</strong> Start in medieval times, advance to space age</li>
+                <li><strong>Realism matters:</strong> Physics and logic are important to your group</li>
+                <li><strong>Character customization is key:</strong> Players want unique, detailed characters</li>
+                <li><strong>Long-term campaigns:</strong> Characters can grow and change dramatically over time</li>
+                <li><strong>Mixed power levels:</strong> The scholarly wizard and the mighty warrior can both be effective</li>
+            </ul>
+
+            <h3>Real-World Campaign Examples</h3>
+            
+            <div class="campaign-example">
+                <h4>Time Travel Detective Agency</h4>
+                <p>Characters are agents who solve crimes across different time periods. One session might be investigating a murder in Victorian London (using social skills and primitive forensics), while the next could be stopping a terrorist in modern Tokyo (using high-tech gadgets and firearms). GURPS handles both seamlessly with the same character sheets.</p>
+            </div>
+
+            <div class="campaign-example">
+                <h4>Realistic Modern Military</h4>
+                <p>A special forces team dealing with international incidents. GURPS' detailed combat system and realistic injury mechanics create genuine tension—being shot is dangerous, tactics matter, and equipment choices have real consequences.</p>
+            </div>
+
+            <div class="campaign-example">
+                <h4>Superhero Academy</h4>
+                <p>Young heroes learning to use their powers. Some characters might have cosmic-level abilities while others are "just" peak human athletes. GURPS' point-based system lets both types of characters contribute meaningfully to the team.</p>
+            </div>
+        </section>
+
+        <section class="getting-started">
+            <h2>Your First Steps into GURPS</h2>
+            
+            <h3>Essential Books for Beginners</h3>
+            <ul>
+                <li><strong>GURPS Basic Set: Characters:</strong> Everything you need to create characters</li>
+                <li><strong>GURPS Basic Set: Campaigns:</strong> Rules for running games, combat, magic, etc.</li>
+                <li><strong>GURPS Lite (Free!):</strong> A simplified version perfect for trying the system</li>
+            </ul>
+
+            <h3>Common Beginner Concerns</h3>
+            
+            <div class="concern-answer">
+                <h4>"GURPS is too complicated!"</h4>
+                <p>GURPS has many options, but you don't need to use them all. Start with basic attributes, a few skills, and simple advantages/disadvantages. Add complexity as you get comfortable, like learning to cook—start with scrambled eggs before attempting beef wellington.</p>
+            </div>
+
+            <div class="concern-answer">
+                <h4>"Character creation takes forever!"</h4>
+                <p>Your first character will take time as you learn the system, just like your first time using any new software. Once familiar, character creation becomes faster and more intuitive. Use online character builders or pre-made templates to speed things up initially.</p>
+            </div>
+
+            <div class="concern-answer">
+                <h4>"There are too many books!"</h4>
+                <p>GURPS has many supplement books, but they're all optional. The Basic Set is all you need to play any genre. Other books are like specialized tools—helpful for specific jobs, but not essential for basic functionality.</p>
+            </div>
+        </section>
+
+        <section class="practice-activities">
+            <h2>Practice Activities</h2>
+            
+            <div class="activity">
+                <h3>Activity 1: Attribute Assessment</h3>
+                <p>Rate yourself (honestly!) in the four GURPS attributes on a scale of 8-12 (10 is average). Consider:</p>
+                <ul>
+                    <li><strong>Strength:</strong> Can you lift heavy objects? Physical power in sports?</li>
+                    <li><strong>Dexterity:</strong> Are you good at video games, sports requiring coordination, or fine motor tasks?</li>
+                    <li><strong>Intelligence:</strong> How quickly do you learn new concepts? Problem-solving ability?</li>
+                    <li><strong>Health:</strong> How often do you get sick? Physical and mental resilience?</li>
+                </ul>
+                <p>Now imagine how these numbers would be different for a professional athlete, a research scientist, or a wilderness survival expert.</p>
+            </div>
+
+            <div class="activity">
+                <h3>Activity 2: Skill Defaults in Action</h3>
+                <p>Pick three things you do regularly (driving, cooking, using computers, etc.). For each:</p>
+                <ol>
+                    <li>Identify the controlling attribute (DX for driving, IQ for computers, etc.)</li>
+                    <li>Estimate the difficulty level (Easy, Average, Hard, Very Hard)</li>
+                    <li>Calculate your default skill level</li>
+                    <li>Estimate how many points you've "invested" through practice to be better than default</li>
+                </ol>
+            </div>
+
+            <div class="activity">
+                <h3>Activity 3: Advantages and Disadvantages Brainstorming</h3>
+                <p>Think of a favorite fictional character (from books, movies, TV, etc.). List:</p>
+                <ul>
+                    <li>Three advantages that define them positively</li>
+                    <li>Three disadvantages that create interesting story complications</li>
+                    <li>How these traits would affect gameplay if they were a GURPS character</li>
+                </ul>
+                <p>Consider both mechanical effects (bonuses to rolls) and roleplaying opportunities.</p>
+            </div>
+
+            <div class="activity">
+                <h3>Activity 4: Genre Flexibility Challenge</h3>
+                <p>Take the same basic character concept (like "the scholarly type" or "the warrior") and adapt it to three different genres:</p>
+                <ul>
+                    <li>Medieval fantasy</li>
+                    <li>Modern day</li>
+                    <li>Science fiction</li>
+                </ul>
+                <p>What skills, advantages, and equipment would change? What would stay the same? This exercise shows GURPS' universal nature.</p>
+            </div>
+        </section>
+
+        <section class="further-exploration">
+            <h2>Topics for Further Exploration</h2>
+            
+            <ul>
+                <li><strong>Advanced Character Building:</strong> Templates, racial packages, and power level considerations</li>
+                <li><strong>Combat Mechanics:</strong> How GURPS handles everything from fistfights to space battles</li>
+                <li><strong>Magic Systems:</strong> Multiple approaches to supernatural power</li>
+                <li><strong>Psionics and Superpowers:</strong> Mental abilities and comic book style powers</li>
+                <li><strong>Technology and Gear:</strong> From stone knives to starships</li>
+                <li><strong>Campaign Management:</strong> Running long-term GURPS games effectively</li>
+                <li><strong>Genre-Specific Rules:</strong> Horror, mystery, action-adventure adaptations</li>
+            </ul>
+        </section>
+
+        <section class="conclusion">
+            <h2>Conclusion: Your Universal Gaming Journey Begins</h2>
+            
+            <p>GURPS is like learning a musical instrument—initially complex, but once mastered, it gives you the freedom to play any song you want. You now understand the fundamental concepts that make GURPS universal: point-based character creation, skill-based advancement, realistic mechanics, and infinite customization possibilities.</p>
+
+            <p>Remember: GURPS isn't about using every rule in every book. It's about having the tools available when you need them, and the confidence that whatever story you want to tell, GURPS can help you tell it.</p>
+
+            <div class="next-steps">
+                <h3>Ready for Your Next Adventure?</h3>
+                <p>In our next lecture, we'll dive deep into character creation, walking through the entire process step by step, and creating several example characters for different genres. You'll learn how to spend your character points wisely and create mechanically effective characters that are also interesting to roleplay.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Next: <a href="/gurps_char.html">Character Creation Deep Dive</a></p>
+        <p>Remember: The best way to learn GURPS is to play GURPS. Find a group or start one!</p>
+    </footer>
+</body>
+</html>

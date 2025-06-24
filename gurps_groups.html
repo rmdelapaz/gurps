@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GURPS Character Groups - Introduction to Point-Buy Dynamics</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+</head>
+<body>
+    <header>
+        <h1>GURPS Character Groups</h1>
+        <h2>Mastering Point-Buy Balance and Universal System Dynamics</h2>
+    </header>
+
+    <main>
+        <section class="introduction">
+            <h3>Welcome to the Generic Universal RolePlaying System</h3>
+            <p>Creating compelling character groups in GURPS is like designing a precision instrument where every component must be carefully calibrated to work in harmony with the others. Think of it as engineering a team where each member's capabilities are built from the ground up using a unified point-buy system that can model anything from medieval knights to space marines to supernatural investigators.</p>
+            
+            <p>Unlike systems with rigid classes and levels, GURPS provides infinite flexibility through its point-based character creation, allowing groups to be perfectly tailored to specific campaign needs while maintaining mathematical balance. Understanding how to leverage this flexibility while avoiding analysis paralysis is the key to creating memorable, effective groups.</p>
+        </section>
+
+        <section class="gurps-philosophy">
+            <h3>The GURPS Design Philosophy</h3>
+            <p>GURPS operates on the principle that any character concept can be modeled mathematically through point allocation, like an architect's blueprint where every structural element has a calculated cost and benefit. This universal approach allows unprecedented flexibility but requires careful understanding of the underlying mechanics.</p>
+
+            <div class="mermaid">
+                graph TD
+                    A[Point-Buy System] --> B[Attributes - Foundation]
+                    A --> C[Advantages - Special Abilities]
+                    A --> D[Disadvantages - Character Flaws]
+                    A --> E[Skills - Learned Abilities]
+                    B --> F[Strength ST]
+                    B --> G[Dexterity DX]
+                    B --> H[Intelligence IQ]
+                    B --> I[Health HT]
+                    C --> J[Physical Advantages]
+                    C --> K[Mental Advantages]
+                    C --> L[Social Advantages]
+                    D --> M[Physical Disadvantages]
+                    D --> N[Mental Disadvantages]
+                    D --> O[Social Disadvantages]
+                    E --> P[Physical Skills]
+                    E --> Q[Mental Skills]
+                    E --> R[Social Skills]
+            </div>
+        </section>
+
+        <section class="point-allocation">
+            <h3>The Art of Point Distribution</h3>
+            <p>GURPS character creation is like managing a complex budget where every expenditure must be justified and balanced against alternatives. Understanding how to allocate points effectively across attributes, advantages, disadvantages, and skills determines both individual character effectiveness and group synergy.</p>
+
+            <canvas id="pointDistributionChart" width="800" height="600"></canvas>
+            
+            <div class="allocation-principles">
+                <h4>Core Point Allocation Principles</h4>
+                <div class="principle-detail">
+                    <h5>Attribute Foundation</h5>
+                    <p>Attributes form the foundation for everything else - they're expensive but affect multiple aspects of character performance. A high DX improves all Dexterity-based skills, while high IQ affects learning speed and mental skills.</p>
+                </div>
+                <div class="principle-detail">
+                    <h5>Advantage Efficiency</h5>
+                    <p>Advantages provide unique capabilities that can't be replicated through skills alone. Combat Reflexes, Eidetic Memory, or Magery open up entirely new categories of abilities.</p>
+                </div>
+                <div class="principle-detail">
+                    <h5>Disadvantage Strategy</h5>
+                    <p>Disadvantages provide extra points but create roleplaying challenges and mechanical limitations. The key is choosing disadvantages that create interesting complications without crippling the character.</p>
+                </div>
+                <div class="principle-detail">
+                    <h5>Skill Specialization</h5>
+                    <p>Skills provide specific capabilities and should be chosen to support the character's role. Broad competence vs. focused expertise is a fundamental strategic choice.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="campaign-power-levels">
+            <h3>Power Level Frameworks</h3>
+            <p>GURPS campaigns operate at different power levels, like different weight classes in boxing. Understanding these frameworks helps create balanced groups where everyone can contribute meaningfully to the adventure.</p>
+
+            <div class="power-level-grid">
+                <div class="power-card basic">
+                    <h5>Basic Characters (25-50 points)</h5>
+                    <p>Everyday people with minimal training - farmers, clerks, students. Limited capabilities but high relatability. Best for survival horror or slice-of-life campaigns.</p>
+                    <div class="typical-build">
+                        <strong>Typical Build:</strong> ST 10, DX 10, IQ 10, HT 10, plus 25-50 points in skills and minor advantages
+                    </div>
+                </div>
+                <div class="power-card competent">
+                    <h5>Competent Characters (75-100 points)</h5>
+                    <p>Trained professionals - soldiers, doctors, skilled craftsmen. Capable of handling most mundane challenges. The GURPS "default" for many campaigns.</p>
+                    <div class="typical-build">
+                        <strong>Typical Build:</strong> Enhanced attributes, professional-level skills, minor supernatural abilities possible
+                    </div>
+                </div>
+                <div class="power-card heroic">
+                    <h5>Heroic Characters (150-200 points)</h5>
+                    <p>Elite specialists - special forces, master craftsmen, minor superheroes. Exceptional capabilities in their areas of expertise.</p>
+                    <div class="typical-build">
+                        <strong>Typical Build:</strong> High attributes, extensive skill packages, significant advantages
+                    </div>
+                </div>
+                <div class="power-card legendary">
+                    <h5>Legendary Characters (250-400+ points)</h5>
+                    <p>Mythic heroes, powerful mages, cybernetic supersoldiers. Capable of reshaping the world around them through their actions.</p>
+                    <div class="typical-build">
+                        <strong>Typical Build:</strong> Superhuman attributes, powerful advantages, broad skill sets
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="group-roles">
+            <h3>Universal Role Archetypes</h3>
+            <p>While GURPS has no fixed classes, certain archetypal roles emerge across all campaign types. These roles represent different approaches to problem-solving and provide frameworks for point allocation.</p>
+
+            <h4>The Six Universal Archetypes</h4>
+            <div class="archetype-grid">
+                <div class="archetype-card combatant">
+                    <h5>The Combatant - Warrior's Path</h5>
+                    <p>Masters of violence who excel in physical confrontation. Whether medieval knight or futuristic soldier, they focus on attributes and skills related to combat effectiveness.</p>
+                    <div class="build-focus">
+                        <strong>Key Attributes:</strong> ST, DX, HT
+                        <br><strong>Essential Advantages:</strong> Combat Reflexes, High Pain Threshold, Weapon Master
+                        <br><strong>Critical Skills:</strong> Weapon skills, Tactics, First Aid
+                    </div>
+                </div>
+                <div class="archetype-card intellectual">
+                    <h5>The Intellectual - Mind's Power</h5>
+                    <p>Scholars, scientists, and strategists who solve problems through knowledge and analysis. Their mental capabilities compensate for physical limitations.</p>
+                    <div class="build-focus">
+                        <strong>Key Attributes:</strong> IQ, Per
+                        <br><strong>Essential Advantages:</strong> Eidetic Memory, Lightning Calculator, Language Talent
+                        <br><strong>Critical Skills:</strong> Research, specific knowledge skills, Analysis
+                    </div>
+                </div>
+                <div class="archetype-card infiltrator">
+                    <h5>The Infiltrator - Shadow's Friend</h5>
+                    <p>Spies, thieves, and scouts who excel at stealth, infiltration, and information gathering. They succeed through subtlety rather than force.</p>
+                    <div class="build-focus">
+                        <strong>Key Attributes:</strong> DX, IQ, Per
+                        <br><strong>Essential Advantages:</strong> Silence, Night Vision, Flexibility
+                        <br><strong>Critical Skills:</strong> Stealth, Lockpicking, Observation, Shadowing
+                    </div>
+                </div>
+                <div class="archetype-card face">
+                    <h5>The Face - People's Champion</h5>
+                    <p>Diplomats, leaders, and social manipulators who excel at interpersonal interaction. They open doors through charisma and connections.</p>
+                    <div class="build-focus">
+                        <strong>Key Attributes:</strong> IQ, Will
+                        <br><strong>Essential Advantages:</strong> Charisma, Status, Contacts
+                        <br><strong>Critical Skills:</strong> Diplomacy, Fast-Talk, Leadership, Psychology
+                    </div>
+                </div>
+                <div class="archetype-card technician">
+                    <h5>The Technician - Creator's Art</h5>
+                    <p>Engineers, medics, and craftsmen who excel at building, repairing, and maintaining. They solve problems through technical expertise.</p>
+                    <div class="build-focus">
+                        <strong>Key Attributes:</strong> IQ, DX
+                        <br><strong>Essential Advantages:</strong> Gadgeteer, Talent (specific field)
+                        <br><strong>Critical Skills:</strong> Engineering, Electronics, Medicine, specific craft skills
+                    </div>
+                </div>
+                <div class="archetype-card mystic">
+                    <h5>The Mystic - Beyond Reality</h5>
+                    <p>Mages, psychics, and supernatural beings who wield powers beyond normal human capability. Campaign-dependent but always reality-bending.</p>
+                    <div class="build-focus">
+                        <strong>Key Attributes:</strong> IQ, Will, Per
+                        <br><strong>Essential Advantages:</strong> Magery, ESP, Unusual Background
+                        <br><strong>Critical Skills:</strong> Spell skills, Meditation, Occultism
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="example-groups">
+            <h3>Exemplary GURPS Groups</h3>
+            
+            <div class="group-example modern">
+                <h4>Elite Special Forces Team (150-point Heroic)</h4>
+                <p>A contemporary military special operations unit, like a Navy SEAL team adapted for GURPS tactical realism and equipment complexity.</p>
+                
+                <div class="character-list">
+                    <div class="character">
+                        <strong>Staff Sergeant Maria Santos</strong> (Team Leader)
+                        <div class="point-breakdown">
+                            <div class="attributes">Attributes [80]: ST 13 [30], DX 14 [80], IQ 13 [60], HT 13 [30]</div>
+                            <div class="advantages">Advantages [35]: Combat Reflexes [15], Leadership [5], Military Rank 2 [10], Reputation +2 [5]</div>
+                            <div class="disadvantages">Disadvantages [-15]: Duty (Military) [-10], Code of Honor (Soldier's) [-5]</div>
+                            <div class="skills">Skills [50]: Tactics-15 [8], Guns (Rifle)-16 [4], Leadership-15 [4], First Aid-14 [2], Electronics (Comms)-13 [2]</div>
+                        </div>
+                        <p>Experienced noncom who combines tactical expertise with leadership ability. Her high attributes provide competence across multiple areas while her advantages enhance command effectiveness.</p>
+                    </div>
+                    <div class="character">
+                        <strong>Corporal Jake "Demo" Williams</strong> (Explosives Expert)
+                        <div class="point-breakdown">
+                            <div class="attributes">Attributes [70]: ST 14 [40], DX 13 [60], IQ 12 [40], HT 12 [20]</div>
+                            <div class="advantages">Advantages [25]: Combat Reflexes [15], High Pain Threshold [10]</div>
+                            <div class="disadvantages">Disadvantages [-15]: Duty (Military) [-10], Overconfidence [-5]</div>
+                            <div class="skills">Skills [70]: Explosives (Demolition)-15 [8], Guns (Rifle)-15 [4], Engineer (Combat)-14 [4], Traps-14 [4]</div>
+                        </div>
+                        <p>Demolitions specialist whose technical expertise and steady nerves make him invaluable for breaching operations. His overconfidence creates interesting tactical complications.</p>
+                    </div>
+                    <div class="character">
+                        <strong>Petty Officer Lisa Chen</strong> (Medic/Intelligence)
+                        <div class="point-breakdown">
+                            <div class="attributes">Attributes [65]: ST 11 [10], DX 13 [60], IQ 14 [80], HT 12 [20]</div>
+                            <div class="advantages">Advantages [40]: Eidetic Memory [5], Combat Reflexes [15], Language Talent [10], Medical Training [10]</div>
+                            <div class="disadvantages">Disadvantages [-15]: Duty (Military) [-10], Pacifism (Cannot Harm Innocents) [-5]</div>
+                            <div class="skills">Skills [60]: Medicine-16 [8], Psychology-14 [4], Intelligence Analysis-15 [6], Guns (Pistol)-14 [2]</div>
+                        </div>
+                        <p>Cross-trained medic and intelligence analyst whose mental capabilities and language skills prove crucial for information gathering and casualty care.</p>
+                    </div>
+                    <div class="character">
+                        <strong>Private Tommy "Ghost" Rodriguez</strong> (Sniper/Scout)
+                        <div class="point-breakdown">
+                            <div class="attributes">Attributes [75]: ST 12 [20], DX 15 [100], IQ 12 [40], HT 13 [30]</div>
+                            <div class="advantages">Advantages [30]: Combat Reflexes [15], Acute Vision +2 [4], Gunslinger [25], Silence +2 [10]</div>
+                            <div class="disadvantages">Disadvantages [-20]: Duty (Military) [-10], Loner [-5], Social Stigma (Minority) [-5]</div>
+                            <div class="skills">Skills [65]: Guns (Rifle)-17 [8], Stealth-16 [4], Observation-14 [4], Camouflage-13 [2]</div>
+                        </div>
+                        <p>Precision marksman and reconnaissance specialist whose exceptional dexterity and perception make him the team's eyes and long-range threat neutralizer.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="group-example fantasy">
+                <h4>Dungeon Delving Adventurers (200-point Heroic Fantasy)</h4>
+                <p>A classic fantasy adventuring party adapted to GURPS's detailed magic and combat systems, like D&D heroes built with point-buy precision.</p>
+                
+                <div class="character-list">
+                    <div class="character">
+                        <strong>Sir Marcus Ironward</strong> (Knight)
+                        <div class="point-breakdown">
+                            <div class="attributes">Attributes [90]: ST 15 [50], DX 13 [60], IQ 11 [20], HT 14 [40]</div>
+                            <div class="advantages">Advantages [50]: Combat Reflexes [15], High Pain Threshold [10], Weapon Master (Sword) [20], Social Status 2 [10]</div>
+                            <div class="disadvantages">Disadvantages [-20]: Code of Honor (Chivalry) [-15], Duty (Liege Lord) [-5]</div>
+                            <div class="skills">Skills [80]: Sword-16 [8], Shield-15 [4], Tactics-13 [4], Riding-14 [2], Leadership-12 [2]</div>
+                        </div>
+                        <p>Noble warrior whose exceptional strength and combat training make him the party's primary melee combatant and tactical leader.</p>
+                    </div>
+                    <div class="character">
+                        <strong>Lyralei Starweaver</strong> (Elven Wizard)
+                        <div class="point-breakdown">
+                            <div class="attributes">Attributes [85]: ST 9 [-10], DX 12 [40], IQ 16 [120], HT 11 [10]</div>
+                            <div class="advantages">Advantages [85]: Magery 3 [35], Eidetic Memory [5], Extended Lifespan [2], Appearance (Attractive) [4]</div>
+                            <div class="disadvantages">Disadvantages [-25]: Low Pain Threshold [-10], Curious [-5], Obsession (Magical Knowledge) [-10]</div>
+                            <div class="skills">Skills [55]: Various spell skills, Thaumatology-16 [6], Research-16 [2], Occultism-16 [2]</div>
+                        </div>
+                        <p>Scholarly spellcaster whose vast magical knowledge provides versatile problem-solving capabilities at the cost of physical vulnerability.</p>
+                    </div>
+                    <div class="character">
+                        <strong>Brother Aldric</strong> (Cleric)
+                        <div class="point-breakdown">
+                            <div class="attributes">Attributes [70]: ST 12 [20], DX 11 [20], IQ 14 [80], HT 13 [30]</div>
+                            <div class="advantages">Advantages [60]: Clerical Investment [5], True Faith [15], Patron (Church) [15], Healing talent [25]</div>
+                            <div class="disadvantages">Disadvantages [-20]: Vow (Celibacy) [-5], Duty (Church) [-10], Pacifism (Cannot Harm Innocents) [-5]</div>
+                            <div class="skills">Skills [90]: Various clerical spells, Theology-16 [6], Medicine-15 [4], Psychology-14 [4]</div>
+                        </div>
+                        <p>Divine spellcaster whose healing abilities and moral guidance support the party while his vows create interesting ethical constraints.</p>
+                    </div>
+                    <div class="character">
+                        <strong>Whisper Nightshade</strong> (Halfling Thief)
+                        <div class="point-breakdown">
+                            <div class="attributes">Attributes [55]: ST 8 [-15], DX 15 [100], IQ 13 [60], HT 12 [20]</div>
+                            <div class="advantages">Advantages [45]: Combat Reflexes [15], Luck [15], Silence +3 [15], Small [0 - racial]</div>
+                            <div class="disadvantages">Disadvantages [-25]: Greed [-15], Curious [-5], Social Stigma (Criminal Record) [-5]</div>
+                            <div class="skills">Skills [125]: Stealth-18 [8], Lockpicking-17 [8], Traps-16 [8], Acrobatics-16 [8]</div>
+                        </div>
+                        <p>Agile scout and trap specialist whose exceptional dexterity and stealth skills provide the party with infiltration and security bypass capabilities.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="group-example scifi">
+                <h4>Starship Crew (250-point Space Opera)</h4>
+                <p>A science fiction exploration vessel crew, like Star Trek officers built with GURPS's detailed skill system and technological advantages.</p>
+                
+                <div class="character-list">
+                    <div class="character">
+                        <strong>Captain Elena Vasquez</strong> (Ship Commander)
+                        <div class="point-breakdown">
+                            <div class="attributes">Attributes [100]: ST 11 [10], DX 12 [40], IQ 15 [100], HT 13 [30]</div>
+                            <div class="advantages">Advantages [75]: Military Rank 5 [25], Charisma +2 [10], Combat Reflexes [15], Reputation +3 [15]</div>
+                            <div class="disadvantages">Disadvantages [-20]: Duty (Star Fleet) [-15], Sense of Duty (Crew) [-5]</div>
+                            <div class="skills">Skills [95]: Leadership-18 [8], Tactics-17 [8], Pilot (Starship)-15 [8], Administration-16 [4]</div>
+                        </div>
+                        <p>Experienced starship captain whose leadership abilities and tactical knowledge coordinate the crew's diverse talents during exploration and crisis.</p>
+                    </div>
+                    <div class="character">
+                        <strong>Dr. Zak-7 Neural Interface</strong> (AI Science Officer)
+                        <div class="point-breakdown">
+                            <div class="attributes">Attributes [140]: ST - [0], DX - [0], IQ 18 [160], HT - [0]</div>
+                            <div class="advantages">Advantages [150]: AI [32], Eidetic Memory [5], Lightning Calculator [2], Vast knowledge base</div>
+                            <div class="disadvantages">Disadvantages [-40]: Social Stigma (AI) [-20], Restricted Diet (Electricity) [-10], No Body [-10]</div>
+                            <div class="skills">Skills [0]: Integrated skill database covering all sciences and technical disciplines</div>
+                        </div>
+                        <p>Artificial intelligence whose vast computational abilities and knowledge base provide scientific analysis and technical solutions beyond organic capability.</p>
+                    </div>
+                    <div class="character">
+                        <strong>Chief Engineer Maya Chen</strong> (Technical Specialist)
+                        <div class="point-breakdown">
+                            <div class="attributes">Attributes [85]: ST 12 [20], DX 14 [80], IQ 16 [120], HT 12 [20]</div>
+                            <div class="advantages">Advantages [65]: Gadgeteer [25], Engineering Talent +3 [15], Reputation (Technical Genius) +2 [10]</div>
+                            <div class="disadvantages">Disadvantages [-25]: Workaholic [-5], Obsession (Perfect Engineering) [-10], Absent-Minded [-10]</div>
+                            <div class="skills">Skills [125]: Engineering (various)-19+, Electronics-18, Mechanics-18, Computer Programming-17</div>
+                        </div>
+                        <p>Brilliant engineer whose technical expertise keeps the ship operational and creates innovative solutions to unprecedented problems.</p>
+                    </div>
+                    <div class="character">
+                        <strong>Lieutenant Commander Rex Sterling</strong> (Security Chief)
+                        <div class="point-breakdown">
+                            <div class="attributes">Attributes [95]: ST 14 [40], DX 15 [100], IQ 13 [60], HT 14 [40]</div>
+                            <div class="advantages">Advantages [60]: Combat Reflexes [15], Military Rank 3 [15], Weapon Master (Beam Weapons) [20]</div>
+                            <div class="disadvantages">Disadvantages [-25]: Duty (Star Fleet) [-15], Code of Honor (Soldier's) [-10]</div>
+                            <div class="skills">Skills [120]: Beam Weapons-17 [8], Tactics-15 [4], Leadership-14 [4], Zero-G Operations-16 [4]</div>
+                        </div>
+                        <p>Combat specialist and security expert whose tactical training and weapon skills protect the crew during dangerous first contact situations.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="creation-framework">
+            <h3>The GURPS Group Assembly Protocol</h3>
+            <p>Building a GURPS group is like architecting a complex system where every component must be precisely engineered to work in harmony with the others while fitting within strict resource constraints.</p>
+
+            <div class="mermaid">
+                flowchart TD
+                    A[Determine Campaign Power Level] --> B[Establish Point Budget]
+                    B --> C[Define Required Competencies]
+                    C --> D[Allocate Point Pools]
+                    D --> E[Design Individual Characters]
+                    E --> F[Balance Group Capabilities]
+                    F --> G[Optimize Synergies]
+                    G --> H[Plan Character Advancement]
+                    H --> I[Test Through Play]
+            </div>
+
+            <div class="framework-details">
+                <h4>Detailed Assembly Steps</h4>
+                
+                <div class="step">
+                    <h5>Power Level and Point Budget</h5>
+                    <p>Establish the campaign's power level and corresponding point totals before any character creation begins. This fundamental decision shapes all subsequent choices and ensures party balance.</p>
+                </div>
+
+                <div class="step">
+                    <h5>Competency Mapping</h5>
+                    <p>Identify the skills and capabilities the campaign will require, then assign responsibility for each area to different characters. Ensure critical competencies have backup coverage.</p>
+                </div>
+
+                <div class="step">
+                    <h5>Point Pool Allocation</h5>
+                    <p>Decide how each character will distribute their points across attributes, advantages, disadvantages, and skills. Characters with different allocation strategies create natural specialization.</p>
+                </div>
+
+                <div class="step">
+                    <h5>Synergy Optimization</h5>
+                    <p>Look for ways characters can enhance each other's capabilities through complementary advantages, shared skills, or tactical combinations that multiply effectiveness.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="practical-exercises">
+            <h3>Master the System</h3>
+            <p>Understanding GURPS theoretically is like reading about engineering - informative but no substitute for hands-on design work. These exercises will develop your point-buy mastery.</p>
+
+            <div class="exercise">
+                <h4>Exercise One: Point Efficiency Analysis</h4>
+                <p>Create two versions of the same character concept - one built for maximum point efficiency, another built for interesting disadvantages and character depth. Compare their effectiveness and roleplay potential. Which version would be more fun to play long-term?</p>
+            </div>
+
+            <div class="exercise">
+                <h4>Exercise Two: Power Level Scaling</h4>
+                <p>Design the same four-person group concept at three different power levels:
+                <br>• 100-point competent professionals
+                <br>• 200-point heroic specialists  
+                <br>• 300-point legendary figures
+                <br>How do the characters' capabilities and group dynamics change across power levels?</p>
+            </div>
+
+            <div class="exercise">
+                <h4>Exercise Three: Genre Conversion Challenge</h4>
+                <p>Take a fantasy adventuring party and convert them to:
+                <br>• Modern special forces team
+                <br>• Space exploration crew
+                <br>• Cyberpunk hackers and street samurai
+                <br>How do the core competencies translate across genres? What advantages become obsolete or gain new importance?</p>
+            </div>
+        </section>
+
+        <section class="advanced-concepts">
+            <h3>Mastering Advanced Techniques</h3>
+            <p>Expert GURPS groups leverage the system's depth to create characters that are more than the sum of their point expenditures, using synergies and advanced techniques to maximize both effectiveness and entertainment value.</p>
+
+            <h4>Template-Based Design</h4>
+            <p>Use character templates as starting points, then customize them for specific group needs. Templates provide tested point allocations while allowing personalization through skill selection and advantage modification.</p>
+
+            <h4>Lens Application</h4>
+            <p>Apply character lenses to modify base templates for specific campaign needs. A "Military Training" lens might add Combat Reflexes and weapon skills to any character type, while a "Noble Background" lens adds Status and Wealth.</p>
+
+            <h4>Wildcard Skill Coordination</h4>
+            <p>Coordinate wildcard skills across the group to avoid overlap while ensuring broad competency coverage. One character might take "Detective!" while another takes "Soldier!" to cover different problem-solving approaches.</p>
+
+            <h4>Advantage Synergy Chains</h4>
+            <p>Build advantage combinations that create emergent capabilities. Danger Sense + Combat Reflexes + Enhanced Time Sense creates a character who's nearly impossible to surprise, while Gadgeteer + Wealth + Contacts creates endless equipment solutions.</p>
+        </section>
+
+        <section class="common-pitfalls">
+            <h3>Avoiding System Traps</h3>
+            <p>GURPS's flexibility creates opportunities for both excellence and disaster. Understanding common mistakes helps create more effective and enjoyable groups.</p>
+
+            <div class="pitfall">
+                <h4>The Analysis Paralysis Trap</h4>
+                <p><strong>Problem:</strong> Endless optimization prevents actual play as players constantly recalculate point allocations.</p>
+                <p><strong>Solution:</strong> Set firm deadlines for character creation and embrace "good enough" builds. Characters will develop through play regardless of initial optimization.</p>
+            </div>
+
+            <div class="pitfall">
+                <h4>The Min-Max Imbalance</h4>
+                <p><strong>Problem:</strong> One player optimizes ruthlessly while others create flavorful but ineffective characters.</p>
+                <p><strong>Solution:</strong> Establish group guidelines for optimization level and help less experienced players create competitive builds.</p>
+            </div>
+
+            <div class="pitfall">
+                <h4>The Disadvantage Avoidance</h4>
+                <p><strong>Problem:</strong> Players take only minor disadvantages that never actually impact play.</p>
+                <p><strong>Solution:</strong> Encourage meaningful disadvantages that create roleplay opportunities and ensure the GM actually incorporates them into adventures.</p>
+            </div>
+
+            <div class="pitfall">
+                <h4>The Attribute Neglect</h4>
+                <p><strong>Problem:</strong> Players focus on advantages and skills while keeping attributes at default levels.</p>
+                <p><strong>Solution:</strong> Educate players about how attributes affect multiple areas and encourage investment in relevant primary attributes.</p>
+            </div>
+        </section>
+
+        <section class="next-steps">
+            <h3>Your Universal Journey Begins</h3>
+            <p>You now possess the foundational knowledge to create effective, balanced character groups in GURPS's point-buy system. Unlike systems with rigid structures, GURPS rewards careful planning and systematic thinking, allowing you to craft precisely the characters your campaign needs.</p>
+
+           
+        </section>
+    </main>
+
+    <footer>
+        <p>Remember: In GURPS, every point spent is a choice made, and every choice shapes not just what your character can do, but who they are. Master the system, and you master infinite possibility.</p>
+    </footer>
+
+    <script>
+        // Point Distribution Chart Visualization
+        const canvas = document.getElementById('pointDistributionChart');
+        const ctx = canvas.getContext('2d');
+        
+        // Set up the chart background
+        ctx.fillStyle = '#f5f5f5';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        // Add subtle grid pattern
+        ctx.strokeStyle = 'rgba(200, 200, 200, 0.3)';
+        ctx.lineWidth = 1;
+        for(let i = 0; i < canvas.width; i += 20) {
+            ctx.beginPath();
+            ctx.moveTo(i, 0);
+            ctx.lineTo(i, canvas.height);
+            ctx.stroke();
+        }
+        for(let i = 0; i < canvas.height; i += 20) {
+            ctx.beginPath();
+            ctx.moveTo(0, i);
+            ctx.lineTo(canvas.width, i);
+            ctx.stroke();
+        }
+        
+        // Define different build types and their distributions
+        const buildTypes = [
+            {
+                name: 'Balanced Generalist',
+                x: 150,
+                attributes: 40,
+                advantages: 25,
+                skills: 35,
+                color: '#4CAF50'
+            },
+            {
+                name: 'Attribute Focused',
+                x: 300,
+                attributes: 60,
+                advantages: 15,
+                skills: 25,
+                color: '#2196F3'
+            },
+            {
+                name: 'Advantage Heavy',
+                x: 450,
+                attributes: 25,
+                advantages: 50,
+                skills: 25,
+                color: '#FF9800'
+            },
+            {
+                name: 'Skill Specialist',
+                x: 600,
+                attributes: 20,
+                advantages: 20,
+                skills: 60,
+                color: '#9C27B0'
+            }
+        ];
+        
+        // Chart dimensions
+        const chartBottom = 500;
+        const maxHeight = 300;
+        
+        buildTypes.forEach(build => {
+            const totalPercent = build.attributes + build.advantages + build.skills;
+            const barWidth = 80;
+            
+            // Attributes section
+            const attrHeight = (build.attributes / 100) * maxHeight;
+            ctx.fillStyle = '#FF5722';
+            ctx.fillRect(build.x - barWidth/2, chartBottom - attrHeight, barWidth, attrHeight);
+            
+            // Advantages section
+            const advHeight = (build.advantages / 100) * maxHeight;
+            ctx.fillStyle = '#4CAF50';
+            ctx.fillRect(build.x - barWidth/2, chartBottom - attrHeight - advHeight, barWidth, advHeight);
+            
+            // Skills section
+            const skillHeight = (build.skills / 100) * maxHeight;
+            ctx.fillStyle = '#2196F3';
+            ctx.fillRect(build.x - barWidth/2, chartBottom - attrHeight - advHeight - skillHeight, barWidth, skillHeight);
+            
+            // Add border
+            ctx.strokeStyle = '#333333';
+            ctx.lineWidth = 2;
+            ctx.strokeRect(build.x - barWidth/2, chartBottom - attrHeight - advHeight - skillHeight, barWidth, attrHeight + advHeight + skillHeight);
+            
+            // Add build name
+            ctx.fillStyle = '#333333';
+            ctx.font = 'bold 14px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText(build.name, build.x, chartBottom + 30);
+            
+            // Add percentages
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = 'bold 12px Arial';
+            
+            // Attributes percentage
+            if(attrHeight > 20) {
+                ctx.fillText(`${build.attributes}%`, build.x, chartBottom - attrHeight/2);
+            }
+            
+            // Advantages percentage
+            if(advHeight > 20) {
+                ctx.fillText(`${build.advantages}%`, build.x, chartBottom - attrHeight - advHeight/2);
+            }
+            
+            // Skills percentage
+            if(skillHeight > 20) {
+                ctx.fillText(`${build.skills}%`, build.x, chartBottom - attrHeight - advHeight - skillHeight/2);
+            }
+        });
+        
+        // Add legend
+        const legendY = 80;
+        
+        ctx.fillStyle = '#FF5722';
+        ctx.fillRect(50, legendY, 20, 20);
+        ctx.fillStyle = '#333333';
+        ctx.font = '14px Arial';
+        ctx.textAlign = 'left';
+        ctx.fillText('Attributes (Foundation)', 80, legendY + 15);
+        
+        ctx.fillStyle = '#4CAF50';
+        ctx.fillRect(50, legendY + 30, 20, 20);
+        ctx.fillText('Advantages (Special Abilities)', 80, legendY + 45);
+        
+        ctx.fillStyle = '#2196F3';
+        ctx.fillRect(50, legendY + 60, 20, 20);
+        ctx.fillText('Skills (Learned Capabilities)', 80, legendY + 75);
+        
+        // Add title
+        ctx.fillStyle = '#333333';
+        ctx.font = 'bold 24px Arial';
+        ctx.textAlign = 'center';
+        ctx.fillText('GURPS Point Distribution Strategies', canvas.width / 2, 40);
+        
+        // Add subtitle
+        ctx.font = '16px Arial';
+        ctx.fillText('(Assuming 150-point build with 15 points from disadvantages)', canvas.width / 2, 65);
+        
+        // Reset text alignment
+        ctx.textAlign = 'start';
+    </script>
+
+    <!-- <style>
+        .power-level-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 25px 0;
+        }
+        
+        .power-card {
+            padding: 25px;
+            border-radius: 15px;
+            border: 3px solid #2196F3;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .power-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        }
+        
+        .power-card.basic {
+            background: linear-gradient(135deg, #4CAF50, #388E3C);
+            color: white;
+            border-color: #4CAF50;
+        }
+        
+        .power-card.competent {
+            background: linear-gradient(135deg, #2196F3, #1976D2);
+            color: white;
+            border-color: #2196F3;
+        }
+        
+        .power-card.heroic {
+            background: linear-gradient(135deg, #FF9800, #F57C00);
+            color: white;
+            border-color: #FF9800;
+        }
+        
+        .power-card.legendary {
+            background: linear-gradient(135deg, #9C27B0, #7B1FA2);
+            color: white;
+            border-color: #9C27B0;
+        }
+        
+        .typical-build {
+            margin-top: 15px;
+            padding: 12px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 8px;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+        
+        .archetype-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 25px;
+            margin: 25px 0;
+        }
+        
+        .archetype-card {
+            padding: 25px;
+            border-radius: 15px;
+            border: 3px solid #607D8B;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .archetype-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        }
+        
+        .archetype-card.combatant {
+            background: linear-gradient(135deg, #F44336, #D32F2F);
+            color: white;
+            border-color: #F44336;
+        }
+        
+        .archetype-card.intellectual {
+            background: linear-gradient(135deg, #3F51B5, #303F9F);
+            color: white;
+            border-color: #3F51B5;
+        }
+        
+        .archetype-card.infiltrator {
+            background: linear-gradient(135deg, #424242, #212121);
+            color: white;
+            border-color: #424242;
+        }
+        
+        .archetype-card.face {
+            background: linear-gradient(135deg, #E91E63, #C2185B);
+            color: white;
+            border-color: #E91E63;
+        }
+        
+        .archetype-card.technician {
+            background: linear-gradient(135deg, #FF5722, #E64A19);
+            color: white;
+            border-color: #FF5722;
+        }
+        
+        .archetype-card.mystic {
+            background: linear-gradient(135deg, #673AB7, #512DA8);
+            color: white;
+            border-color: #673AB7;
+        }
+        
+        .build-focus {
+            margin-top: 15px;
+            padding: 15px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 8px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .group-example {
+            padding: 30px;
+            margin: 30px 0;
+            border-radius: 15px;
+            border: 3px solid #607D8B;
+            position: relative;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+        
+        .group-example.modern {
+            background: linear-gradient(135deg, #37474F, #263238);
+            color: white;
+            border-color: #607D8B;
+        }
+        
+        .group-example.fantasy {
+            background: linear-gradient(135deg, #5D4037, #3E2723);
+            color: white;
+            border-color: #8D6E63;
+        }
+        
+        .group-example.scifi {
+            background: linear-gradient(135deg, #1565C0, #0D47A1);
+            color: white;
+            border-color: #2196F3;
+        }
+        
+        .character-list {
+            display: grid;
+            gap: 25px;
+            margin-top: 25px;
+        }
+        
+        .character {
+            background: rgba(255, 255, 255, 0.95);
+            color: #333;
+            padding: 25px;
+            border-radius: 12px;
+            border-left: 5px solid #607D8B;
+            transition: transform 0.2s ease;
+        }
+        
+        .character:hover {
+            transform: translateX(8px);
+        }
+        
+        .point-breakdown {
+            margin: 15px 0;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+        
+        .attributes { color: #F44336; margin-bottom: 8px; }
+        .advantages { color: #4CAF50; margin-bottom: 8px; }
+        .disadvantages { color: #FF9800; margin-bottom: 8px; }
+        .skills { color: #2196F3; }
+        
+        .principle-detail {
+            margin: 25px 0;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            border-left: 5px solid #607D8B;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .step {
+            margin: 25px 0;
+            padding: 25px;
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            border-radius: 12px;
+            border-left: 5px solid #2196f3;
+        }
+        
+        .exercise {
+            background: linear-gradient(135deg, #FFF8DC, #F5DEB3);
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 15px;
+            border: 3px solid #DAA520;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+        }
+        
+        .pitfall {
+            background: linear-gradient(135deg, #ffebee, #ffcdd2);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 12px;
+            border-left: 5px solid #f44336;
+        }
+        
+        .preview {
+            background: linear-gradient(135deg, #E8F5E8, #C8E6C9);
+            padding: 25px;
+            border-radius: 15px;
+            border: 3px solid #4CAF50;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+        
+        canvas {
+            border: 4px solid #607D8B;
+            border-radius: 15px;
+            margin: 25px 0;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+        
+        .framework-details {
+            margin-top: 30px;
+        }
+        
+        .allocation-principles {
+            margin-top: 30px;
+        }
+        
+        /* Add GURPS-themed styling */
+        .power-card::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            background: linear-gradient(45deg, #2196F3, #FF9800, #2196F3, #FF9800);
+            border-radius: 15px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .power-card:hover::before {
+            opacity: 1;
+        }
+        
+        /* GURPS system-focused styling */
+        body {
+            background: linear-gradient(135deg, #eceff1, #cfd8dc);
+            color: #263238;
+        }
+        
+        main {
+            background: rgba(255, 255, 255, 0.95);
+            color: #333;
+            padding: 30px;
+            border-radius: 20px;
+            margin: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+        
+        h1, h2, h3, h4, h5 {
+            color: #37474f;
+        }
+    </style> -->
+</body>
+</html>
