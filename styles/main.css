@@ -367,12 +367,177 @@ svg {
 table {
   margin-left: auto;
   margin-right: auto;
-  border-collapse: collapse; /* Optional: removes double borders */
+  border-collapse: collapse;
 }
 
-/* For responsive tables that might need a container */
 .table-container {
   display: flex;
   justify-content: center;
   width: 100%;
+}
+
+/* ===== Site Navigation Bar ===== */
+.site-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: rgb(30, 58, 138);
+  color: white;
+  font-size: 0.9rem;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.site-nav a {
+  color: rgb(191, 219, 254);
+  text-decoration: none;
+  padding: 4px 10px;
+}
+
+.site-nav a:hover {
+  color: white;
+  text-decoration: underline;
+}
+
+.site-nav .nav-links {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.site-nav .nav-links span {
+  color: rgb(148, 163, 184);
+}
+
+/* ===== Dark Mode Toggle ===== */
+.theme-toggle {
+  background: none;
+  border: 2px solid rgb(191, 219, 254);
+  color: rgb(191, 219, 254);
+  padding: 4px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-family: inherit;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.theme-toggle:hover {
+  background-color: rgba(255,255,255,0.15);
+  color: white;
+}
+
+/* ===== Prev / Next Navigation ===== */
+.page-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  margin: 20px 30px 10px;
+  border-top: 2px solid rgb(59, 130, 246);
+}
+
+.page-nav a {
+  color: rgb(59, 130, 246);
+  text-decoration: none;
+  font-weight: bold;
+  padding: 6px 14px;
+  border: 1px solid rgb(59, 130, 246);
+  border-radius: 6px;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.page-nav a:hover {
+  background-color: rgb(59, 130, 246);
+  color: white;
+}
+
+.page-nav .spacer {
+  flex: 1;
+}
+
+/* ===== Dark Mode ===== */
+body.dark-mode {
+  background-color: rgb(15, 23, 42);
+  color: rgb(203, 213, 225);
+}
+
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4 {
+  background-color: rgb(30, 58, 138);
+  color: rgb(219, 234, 254);
+}
+
+body.dark-mode strong {
+  color: rgb(241, 245, 249);
+}
+
+body.dark-mode a {
+  color: rgb(96, 165, 250);
+}
+
+body.dark-mode h3 a {
+  color: rgb(219, 234, 254);
+}
+
+body.dark-mode code, body.dark-mode pre {
+  background-color: rgb(30, 41, 59);
+  color: rgb(74, 222, 128);
+}
+
+body.dark-mode table, body.dark-mode td, body.dark-mode tr, body.dark-mode th {
+  border-color: rgb(71, 85, 105);
+}
+
+body.dark-mode th {
+  background-color: rgb(30, 58, 138);
+  color: rgb(219, 234, 254);
+}
+
+body.dark-mode blockquote {
+  background-color: rgb(30, 41, 59);
+  color: rgb(203, 213, 225);
+}
+
+body.dark-mode .mermaid_container,
+body.dark-mode .mermaid-diagram,
+body.dark-mode .mermaid {
+  background-color: rgb(30, 41, 59);
+  border-color: rgb(71, 85, 105);
+}
+
+body.dark-mode .page-nav a {
+  color: rgb(96, 165, 250);
+  border-color: rgb(96, 165, 250);
+}
+
+body.dark-mode .page-nav a:hover {
+  background-color: rgb(96, 165, 250);
+  color: rgb(15, 23, 42);
+}
+
+body.dark-mode .page-nav {
+  border-top-color: rgb(71, 85, 105);
+}
+
+body.dark-mode .site-nav {
+  background-color: rgb(15, 23, 42);
+  border-bottom: 1px solid rgb(51, 65, 85);
+}
+
+body.dark-mode img {
+  background-color: rgb(30, 41, 59);
+}
+
+body.dark-mode svg text {
+  fill: rgb(203, 213, 225);
+}
+
+body.dark-mode svg line,
+body.dark-mode svg path {
+  stroke: rgb(148, 163, 184);
 }

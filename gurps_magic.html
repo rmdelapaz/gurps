@@ -12,6 +12,16 @@
     </script>
 </head>
 <body>
+<nav class="site-nav">
+    <div class="nav-links">
+        <a href="/gurps/index.html">GURPS Guide</a>
+        <span>|</span>
+        <a href="https://rays-home.netlify.app/">Ray's House of Fun</a>
+        <span>|</span>
+        <a href="https://rays-home.netlify.app/contact">Contact</a>
+    </div>
+    <button class="theme-toggle" onclick="toggleTheme()">🌙 Dark Mode</button>
+</nav>
     <header>
         <h1>Magic Systems and Supernatural Powers: Bending Reality with Rules</h1>
         <p class="subtitle">From Subtle Enchantments to Reality-Shaping Forces</p>
@@ -920,8 +930,29 @@
     </main>
 
     <footer>
-        <p><a href="/gurps_campaign.html">Campaign Management and Advanced Techniques</a></p>
         <p>Remember: Magic is just physics with better special effects!</p>
     </footer>
+
+<nav class="page-nav">
+    <a href="/gurps/gurps_core.html">&larr; Core Mechanics</a>
+    <span class="spacer"></span>
+    <a href="/gurps/gurps_campaign.html">Campaign Management &rarr;</a>
+</nav>
+<script>
+function toggleTheme(){
+    document.body.classList.toggle('dark-mode');
+    var b=document.querySelector('.theme-toggle');
+    var d=document.body.classList.contains('dark-mode');
+    b.textContent=d?'☀️ Light Mode':'🌙 Dark Mode';
+    localStorage.setItem('theme',d?'dark':'light');
+}
+(function(){
+    if(localStorage.getItem('theme')==='dark'){
+        document.body.classList.add('dark-mode');
+        var b=document.querySelector('.theme-toggle');
+        if(b) b.textContent='☀️ Light Mode';
+    }
+})();
+</script>
 </body>
 </html>

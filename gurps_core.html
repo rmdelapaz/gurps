@@ -12,6 +12,16 @@
     </script>
 </head>
 <body>
+<nav class="site-nav">
+    <div class="nav-links">
+        <a href="/gurps/index.html">GURPS Guide</a>
+        <span>|</span>
+        <a href="https://rays-home.netlify.app/">Ray's House of Fun</a>
+        <span>|</span>
+        <a href="https://rays-home.netlify.app/contact">Contact</a>
+    </div>
+    <button class="theme-toggle" onclick="toggleTheme()">🌙 Dark Mode</button>
+</nav>
     <header>
         <h1>Core Mechanics and Resolution Systems: Making the Dice Dance</h1>
         <p class="subtitle">From Character Sheet to Storytelling</p>
@@ -874,8 +884,29 @@
     </main>
 
     <footer>
-        <p>Next: <a href="/gurps_combat.html"> Combat Systems and Tactical Play</a></p>
         <p>Remember: The dice don't just determine outcomes—they help tell the story!</p>
     </footer>
+
+<nav class="page-nav">
+    <a href="/gurps/gurps_dice_roller.html">&larr; Dice Roller</a>
+    <span class="spacer"></span>
+    <a href="/gurps/gurps_magic.html">Magic Systems &rarr;</a>
+</nav>
+<script>
+function toggleTheme(){
+    document.body.classList.toggle('dark-mode');
+    var b=document.querySelector('.theme-toggle');
+    var d=document.body.classList.contains('dark-mode');
+    b.textContent=d?'☀️ Light Mode':'🌙 Dark Mode';
+    localStorage.setItem('theme',d?'dark':'light');
+}
+(function(){
+    if(localStorage.getItem('theme')==='dark'){
+        document.body.classList.add('dark-mode');
+        var b=document.querySelector('.theme-toggle');
+        if(b) b.textContent='☀️ Light Mode';
+    }
+})();
+</script>
 </body>
 </html>

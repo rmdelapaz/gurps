@@ -250,6 +250,16 @@
     </style>
 </head>
 <body>
+<nav class="site-nav">
+    <div class="nav-links">
+        <a href="/gurps/index.html">GURPS Guide</a>
+        <span>|</span>
+        <a href="https://rays-home.netlify.app/">Ray's House of Fun</a>
+        <span>|</span>
+        <a href="https://rays-home.netlify.app/contact">Contact</a>
+    </div>
+    <button class="theme-toggle" onclick="toggleTheme()">🌙 Dark Mode</button>
+</nav>
     <div class="container">
         <h1>🎯 150 GURPS Character Names 🎯</h1>
         
@@ -783,5 +793,26 @@
         canvas.addEventListener('click', spinGURPSWheel);
         drawGURPSWheel();
     </script>
+<nav class="page-nav">
+    <a href="/gurps/gurps_100.html">&larr; 100 Characters</a>
+    <span class="spacer"></span>
+    <a href="/gurps/gurps_groups.html">Group Dynamics &rarr;</a>
+</nav>
+<script>
+function toggleTheme(){
+    document.body.classList.toggle('dark-mode');
+    var b=document.querySelector('.theme-toggle');
+    var d=document.body.classList.contains('dark-mode');
+    b.textContent=d?'☀️ Light Mode':'🌙 Dark Mode';
+    localStorage.setItem('theme',d?'dark':'light');
+}
+(function(){
+    if(localStorage.getItem('theme')==='dark'){
+        document.body.classList.add('dark-mode');
+        var b=document.querySelector('.theme-toggle');
+        if(b) b.textContent='☀️ Light Mode';
+    }
+})();
+</script>
 </body>
 </html>

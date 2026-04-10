@@ -12,6 +12,16 @@
     </script>
 </head>
 <body>
+<nav class="site-nav">
+    <div class="nav-links">
+        <a href="/gurps/index.html">GURPS Guide</a>
+        <span>|</span>
+        <a href="https://rays-home.netlify.app/">Ray's House of Fun</a>
+        <span>|</span>
+        <a href="https://rays-home.netlify.app/contact">Contact</a>
+    </div>
+    <button class="theme-toggle" onclick="toggleTheme()">🌙 Dark Mode</button>
+</nav>
     <header>
         <h1>Campaign Management and Advanced Techniques: Orchestrating Epic Adventures</h1>
         <p class="subtitle">From Session Zero to Campaign Legacy</p>
@@ -1038,8 +1048,29 @@
     </main>
 
     <footer>
-     
         <p>Remember: The best GURPS campaign is the one your group creates together!</p>
     </footer>
+
+<nav class="page-nav">
+    <a href="/gurps/gurps_magic.html">&larr; Magic Systems</a>
+    <span class="spacer"></span>
+    <span></span>
+</nav>
+<script>
+function toggleTheme(){
+    document.body.classList.toggle('dark-mode');
+    var b=document.querySelector('.theme-toggle');
+    var d=document.body.classList.contains('dark-mode');
+    b.textContent=d?'☀️ Light Mode':'🌙 Dark Mode';
+    localStorage.setItem('theme',d?'dark':'light');
+}
+(function(){
+    if(localStorage.getItem('theme')==='dark'){
+        document.body.classList.add('dark-mode');
+        var b=document.querySelector('.theme-toggle');
+        if(b) b.textContent='☀️ Light Mode';
+    }
+})();
+</script>
 </body>
 </html>
