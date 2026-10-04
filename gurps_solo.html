@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playing GURPS Solo: Be Your Own GM</title>
+    <meta name="description" content="Play GURPS 4th Edition on your own: a 3d6 oracle with exact odds, scene checks, NPC reaction rolls, self-control rolls and a step-by-step first session.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="/js/site.js?v=1"></script>
+    <script type="module" src="/js/diagrams.js?v=2"></script>
+    <link rel="stylesheet" href="/styles/main.css?v=2">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <style>
+        /* Solo oracle tool: themed via the tokens in /styles/main.css */
+        .oracle-tool { border-top: 4px solid var(--accent); }
+        .oracle-tool h3 { margin-top: 0; }
+        .tool-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: end; margin: 10px 0; }
+        .tool-row label { display: flex; flex-direction: column; gap: 4px; font-weight: 600; color: var(--heading); font-size: 0.95rem; }
+        .tool-row .grow { flex: 1 1 260px; }
+        .tool-row .grow input { width: 100%; }
+        main .tool-row button { margin: 0; width: auto; }
+        main .tool-row input[type="number"] { width: 90px; }
+        main .tool-row select { width: auto; }
+        .oracle-out {
+            margin: 12px 0; padding: 14px 16px; border-radius: 12px; min-height: 92px;
+            background: var(--surface-2); border: 2px solid var(--border-strong);
+            display: grid; grid-template-columns: auto 1fr; gap: 6px 16px; align-items: center;
+        }
+        .oracle-out .faces { display: flex; gap: 6px; grid-row: span 2; }
+        .oracle-out .face {
+            width: 38px; height: 38px; border-radius: 8px; display: grid; place-items: center;
+            font: 700 1.3rem/1 "Source Sans 3", sans-serif; background: #fff; color: #141b24; border: 2px solid #b3bdca;
+        }
+        .oracle-out .answer { font-family: "Bitter", Georgia, serif; font-weight: 700; font-size: 1.35rem; color: var(--heading); }
+        .oracle-out .detail { color: var(--muted); font-size: 0.95rem; }
+        .oracle-out.yes { border-color: var(--success); }
+        .oracle-out.yes .answer { color: var(--success); }
+        .oracle-out.no { border-color: var(--danger); }
+        .oracle-out.no .answer { color: var(--danger); }
+        .oracle-out.mixed { border-color: var(--gold); }
+        .oracle-out .spark { grid-column: 1 / -1; color: var(--text); }
+        .oracle-out .spark:empty { display: none; }
+        @media (max-width: 520px) { .oracle-out { grid-template-columns: 1fr; } .oracle-out .faces { grid-row: auto; } }
+        .oracle-log { list-style: none; padding: 0; margin: 10px 0 0; max-height: 260px; overflow-y: auto; }
+        .oracle-log li { padding: 6px 10px; border-bottom: 1px solid var(--border); font-size: 0.95rem; margin: 0; }
+        .oracle-log li:last-child { border-bottom: 0; }
+        .odds td, .odds th { text-align: center; font-variant-numeric: tabular-nums; }
+        .odds td:first-child, .odds th:first-child { text-align: left; }
+        .tool-group { border-top: 1px solid var(--border); padding-top: 10px; margin-top: 12px; }
+        .tool-group h4 { margin: 0 0 4px; }
+    </style>
+</head>
+<body>
+<nav class="site-nav">
+    <a href="https://rays-home.netlify.app/">Ray's House of Fun</a>
+    <a href="/index.html">Home</a>
+    <a href="https://rays-home.netlify.app/contact">Contact</a>
+    <button id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+</nav>
+    <header>
+        <span class="lesson-kicker">Part 12</span>
+        <h1>Playing GURPS Solo: Be Your Own GM</h1>
+        <p class="subtitle">A 3d6 oracle, scene checks, reaction rolls and self-control rolls for one player</p>
+    </header>
+
+    <main>
+        <section class="introduction">
+            <h2>Why GURPS Works Alone</h2>
+            <p>The GURPS Basic Set is written for a Game Master and a group of players, and it has no chapter on solo play. Yet GURPS is a surprisingly good solo system. Its rules are a consistent "physics engine": once you know a character's skill and the situation's modifiers, the dice tell you what happens, with no GM judgment required. It also comes with two tools that solo players usually have to invent: the <strong>Reaction Table</strong>, which tells you how an NPC feels about you, and <strong>self-control rolls</strong>, which tell you when your own disadvantages take over. What's left is something to answer the questions a GM would normally answer. That's an <strong>oracle</strong>.</p>
+
+            <div class="analogy-box">
+                <h3>The Flight Simulator</h3>
+                <p>Earlier parts compared GURPS to a precision toolkit. Playing solo, it works like a flight simulator: you're the pilot, but you don't get to decide the weather. The rules handle the physics, the oracle handles the weather, and your job is to fly the plane as your character would.</p>
+            </div>
+
+            <div class="objectives">
+                <h3>What You'll Find in This Part</h3>
+                <ul>
+                    <li>A yes/no oracle built on GURPS's own 3d6 roll, with the exact odds</li>
+                    <li>Scene checks that stop you writing a story you already know</li>
+                    <li>How to run NPCs and combat fairly when you're also the GM</li>
+                    <li>How reaction rolls and self-control rolls do a GM's job for you</li>
+                    <li>A step-by-step routine and a worked example for your first solo session</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="solo-kit">
+            <h2>Your Solo Kit</h2>
+            <p>You don't need anything GURPS doesn't already use:</p>
+            <ul>
+                <li><strong>Three six-sided dice</strong> (or the <a href="/gurps_dice_roller.html">dice roller</a>). They run your success rolls, the oracle and the reaction rolls.</li>
+                <li><strong>The rules.</strong> GURPS Lite, the free summary from Steve Jackson Games, is plenty to start. The Basic Set adds the full options when you want them.</li>
+                <li><strong>One character</strong>, built with <a href="/gurps_char.html">character creation</a>. Advice on solo builds follows below.</li>
+                <li><strong>A notes file or index cards</strong> for NPCs, locations, open questions and threads.</li>
+                <li><strong>A journal.</strong> Writing the story down is half the fun of solo play, and it's how you remember threads between sessions.</li>
+            </ul>
+            <div class="tip">
+                <p>💡 <strong>Tip:</strong> General-purpose GM emulators such as <em>Mythic Game Master Emulator</em> (Word Mill Games) work with GURPS too. This part sticks to an oracle built from GURPS's own 3d6 roll, so you can start without buying anything. For solo play in general, see Ray's <a href="https://rays-solorpg.netlify.app/" target="_blank" rel="noopener noreferrer">Solo RPG Mastery guide</a>.</p>
+            </div>
+        </section>
+
+        <section class="gurps-oracle">
+            <h2>The 3d6 Oracle</h2>
+            <p>The oracle is just a success roll. Ask a yes/no question you genuinely don't know the answer to, decide how likely "yes" is, and treat that as an effective skill. Roll 3d6: at or under the target means yes, over it means no. Then read the margin the way you'd read any GURPS roll:</p>
+
+            <div class="oracle-outcomes">
+                <ul>
+                    <li><strong>Made it by 5 or more, or rolled 3–4</strong> → <strong>Yes, and…</strong> Yes, plus something extra in your favor.</li>
+                    <li><strong>Made it by 1–4</strong> → <strong>Yes.</strong></li>
+                    <li><strong>Rolled exactly the target</strong> → <strong>Yes, but…</strong> Yes, with a complication or cost.</li>
+                    <li><strong>Missed by exactly 1</strong> → <strong>No, but…</strong> No, with a consolation or an opening.</li>
+                    <li><strong>Missed by 2–5</strong> → <strong>No.</strong></li>
+                    <li><strong>Missed by 6 or more, or rolled 17–18</strong> → <strong>No, and…</strong> No, and things get worse.</li>
+                </ul>
+            </div>
+
+            <h3>Setting the Odds</h3>
+            <p>Pick the target from how likely the answer seems in the fiction. These are the exact odds with 3d6, worked out from all 216 possible rolls (rounded to one decimal place):</p>
+            <table class="odds">
+                <thead>
+                    <tr><th>Likelihood (target)</th><th>No, and…</th><th>No</th><th>No, but…</th><th>Yes, but…</th><th>Yes</th><th>Yes, and…</th><th>Any yes</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Very likely (14)</td><td>1.9%</td><td>2.8%</td><td>4.6%</td><td>6.9%</td><td>46.3%</td><td>37.5%</td><td>90.7%</td></tr>
+                    <tr><td>Likely (12)</td><td>1.9%</td><td>14.4%</td><td>9.7%</td><td>11.6%</td><td>46.3%</td><td>16.2%</td><td>74.1%</td></tr>
+                    <tr><td>Toss-up (10)</td><td>4.6%</td><td>32.9%</td><td>12.5%</td><td>12.5%</td><td>32.9%</td><td>4.6%</td><td>50.0%</td></tr>
+                    <tr><td>Unlikely (8)</td><td>16.2%</td><td>46.3%</td><td>11.6%</td><td>9.7%</td><td>14.4%</td><td>1.9%</td><td>25.9%</td></tr>
+                    <tr><td>Very unlikely (6)</td><td>37.5%</td><td>46.3%</td><td>6.9%</td><td>4.6%</td><td>2.8%</td><td>1.9%</td><td>9.3%</td></tr>
+                </tbody>
+            </table>
+            <p>A toss-up at 10 is a true coin flip, because exactly half of all 3d6 rolls are 10 or less, and its outcomes mirror each other perfectly. The "but" answers sit right on the edge of the target, so close calls produce complications rather than flat answers. That keeps a solo story moving.</p>
+
+            <div class="oracle-tool" id="oracle">
+                <h3>🎲 Try the Solo Tools</h3>
+                <div class="tool-row">
+                    <label class="grow">Your question
+                        <input type="text" id="oracle-question" placeholder="Is the warehouse guarded?" maxlength="160">
+                    </label>
+                    <label>Likelihood
+                        <select id="oracle-odds">
+                            <option value="14">Very likely (14)</option>
+                            <option value="12">Likely (12)</option>
+                            <option value="10" selected>Toss-up (10)</option>
+                            <option value="8">Unlikely (8)</option>
+                            <option value="6">Very unlikely (6)</option>
+                        </select>
+                    </label>
+                </div>
+                <div class="tool-row">
+                    <button type="button" id="oracle-ask">Ask the Oracle</button>
+                    <button type="button" id="scene-check">Scene Check</button>
+                    <button type="button" id="spark-btn">Random Spark</button>
+                </div>
+                <div class="oracle-out" id="oracle-out" aria-live="polite">
+                    <div class="faces" id="oracle-faces" aria-hidden="true"></div>
+                    <div class="answer" id="oracle-answer">Ask a question to begin</div>
+                    <div class="detail" id="oracle-detail">Pick a likelihood, then press Ask the Oracle.</div>
+                    <div class="spark" id="oracle-spark"></div>
+                </div>
+
+                <div class="tool-group">
+                    <h4>NPC Reaction</h4>
+                    <div class="tool-row">
+                        <label>Reaction modifier
+                            <input type="number" id="react-mod" value="0" min="-20" max="20">
+                        </label>
+                        <button type="button" id="react-btn">Roll Reaction</button>
+                    </div>
+                </div>
+
+                <div class="tool-group">
+                    <h4>Self-Control Roll</h4>
+                    <div class="tool-row">
+                        <label>Self-control number
+                            <select id="cr-num">
+                                <option value="6">6 (resist quite rarely)</option>
+                                <option value="9">9 (resist fairly often)</option>
+                                <option value="12" selected>12 (resist quite often)</option>
+                                <option value="15">15 (resist almost all the time)</option>
+                            </select>
+                        </label>
+                        <button type="button" id="cr-btn">Roll Self-Control</button>
+                    </div>
+                </div>
+
+                <h4>Session Log</h4>
+                <ul class="oracle-log" id="oracle-log"><li>Your rolls will appear here.</li></ul>
+                <div class="tool-row">
+                    <button type="button" id="log-copy">Copy Log</button>
+                    <button type="button" id="log-clear">Clear Log</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="solo-scenes">
+            <h2>Running Scenes Solo</h2>
+            <p>A solo session is a chain of scenes. Each one starts with what you expect to happen and ends when its question is answered.</p>
+
+            <div class="mermaid">
+graph TD
+    A[Frame the scene you expect] --> B{Scene check}
+    B -->|As expected| C[Play the scene]
+    B -->|Altered| D[Change one detail&lt;br/&gt;then play]
+    B -->|Interrupted| E[Something else happens&lt;br/&gt;use a random spark]
+    D --> C
+    E --> C
+    C --> F[Ask the oracle when unsure]
+    F --> G[Roll skills and contests]
+    G --> H[Note NPCs, clues and threads]
+    H --> A
+            </div>
+
+            <h3>The Scene Check</h3>
+            <p>Before each scene, decide what you expect to happen, then roll 3d6 once. This is a simple house rule inspired by GM emulators, not a GURPS rule:</p>
+            <ul>
+                <li><strong>3–6 (9.3%): Interrupted.</strong> Something different happens. Use a random spark or one of your disadvantages for inspiration.</li>
+                <li><strong>7–9 (28.2%): Altered.</strong> The scene happens, but one detail is different: someone extra is there, the location has changed, or the timing is off.</li>
+                <li><strong>10–18 (62.5%): As expected.</strong> Play it as you imagined.</li>
+            </ul>
+
+            <h3>Use Only the Rules You Need</h3>
+            <p>Solo, you're running both sides of every roll, so rules detail costs you twice. Start with the core rules from GURPS Lite: success rolls, Quick Contests, simple combat. Add optional rules (hit locations, detailed encumbrance, the tactical map) only when a scene really benefits from them. <a href="/gurps_campaign.html">Part 11</a>'s advice on taming complexity applies double here.</p>
+        </section>
+
+        <section class="solo-opposition">
+            <h2>Running the Opposition</h2>
+            <p>The hardest part of solo play is staying fair to the other side. GURPS makes this easier than most systems, because nearly everything is a number you can set before you roll.</p>
+
+            <h3>Set Modifiers Before You Roll</h3>
+            <p>Decide the modifier for a task from the situation, using the same scale a GM would: a bonus for easy or well-prepared tasks, nothing for routine ones under pressure, and growing penalties for hard ones. Write the number down <em>before</em> you roll, and don't change it after. If you can't decide between two modifiers, let the oracle choose: "Is the lock a cheap one?"</p>
+
+            <h3>Let NPCs Roll for Themselves</h3>
+            <p>When an NPC actively opposes you, roll for them exactly as a GM would: their defenses against your attacks, their Will against your Intimidation, a Quick Contest of Stealth against your Perception. A few rough skill levels make quick NPCs easy (a rule of thumb, not an official table):</p>
+            <ul>
+                <li><strong>Mooks</strong> (thugs, guards): key skills around 10–12, Dodge 8, nothing fancy.</li>
+                <li><strong>Professionals</strong> (veteran soldiers, skilled rivals): key skills around 13–15.</li>
+                <li><strong>Masters and bosses</strong>: key skills 16 or more, built like a full character.</li>
+            </ul>
+
+            <h3>The Reaction Table Is a Built-In Oracle</h3>
+            <p>Whenever you're unsure how an NPC feels about you, don't decide: make a <strong>reaction roll</strong>. Roll 3d6, add your Appearance, Charisma, Reputation and situation modifiers, and read the Reaction Table: 0 or less Disastrous, 1–3 Very Bad, 4–6 Bad, 7–9 Poor, 10–12 Neutral, 13–15 Good, 16–18 Very Good, 19+ Excellent. It's the same table a GM uses, so it's perfectly fair. Use the oracle for specific questions after that: "Does the Poor-reacting clerk at least point me to the records room?"</p>
+
+            <h3>Combat and Morale</h3>
+            <p>Run fights exactly as written: both sides choose maneuvers, roll attacks and active defenses, and take real damage. To decide what an enemy does, pick the move that fits their goals and skill, or ask the oracle ("Does the second thug run for help?"). GURPS has no core morale rule, so here's a useful house rule: when a group loses its leader or half its number, roll against their Will (10 for ordinary mooks). On a failure they flee or surrender.</p>
+        </section>
+
+        <section class="solo-self-control">
+            <h2>Disadvantages with One Player</h2>
+            <p>At a table, the GM and other players remind you to play your disadvantages. Solo, the rules do it for you.</p>
+            <ul>
+                <li><strong>Self-control rolls.</strong> Many mental disadvantages (Curious, Greed, Bad Temper, Overconfidence and others) have a self-control number. When the disadvantage is triggered, roll 3d6 against it. Succeed and you resist; fail and you act as the disadvantage demands. Odds: 6 = 9.3%, 9 = 37.5%, 12 = 74.1%, 15 = 95.4%.</li>
+                <li><strong>Ask the oracle about triggers.</strong> If you aren't sure a situation should trigger a disadvantage, ask: "Does this sealed crate count as a mystery worth investigating?"</li>
+                <li><strong>Play your quirks.</strong> They're only worth a point each, so they're easy to forget. Mention one every scene.</li>
+                <li><strong>Award character points honestly.</strong> A GM usually gives a few points per session. Solo, pick a modest, fixed award (for example 2 points) before you play, plus 1 extra when you played your disadvantages even though they hurt. This is a house rule; the point is to decide it before you know how the session goes.</li>
+            </ul>
+            <div class="tip">
+                <p>⚠️ <strong>Watch out:</strong> The most common solo mistake is skipping self-control rolls when they're inconvenient. If your disadvantages never cost you anything, they were free points.</p>
+            </div>
+        </section>
+
+        <section class="solo-characters">
+            <h2>Building a Character for Solo Play</h2>
+            <p>A lone hero has no one to drag them out of trouble, so build with that in mind.</p>
+            <ul>
+                <li><strong>Give yourself more points, or a friend.</strong> 150 points works for gritty stories; 200–250 gives a lone character more room to survive. Alternatively, buy an <strong>Ally</strong>, an NPC companion you control in play, so you have someone to talk to and someone to cover your back.</li>
+                <li><strong>Cover the basics.</strong> A solo character needs some way to fight or flee, some way to talk, and some way to find things out. Gaps hurt more without a party to fill them.</li>
+                <li><strong>Survival advantages earn their keep.</strong> Luck [15], Combat Reflexes [15], High Pain Threshold [10] and Danger Sense [15] all matter more when nobody else is watching your back.</li>
+                <li><strong>Contacts are your party.</strong> Contacts and Patrons give you NPCs to ask for information and help, and the reaction and oracle rolls decide how helpful they are today.</li>
+                <li><strong>Pick disadvantages that drive stories.</strong> Curious, Sense of Duty, Code of Honor, Enemies and Obsession all push your character into scenes. Disadvantages that only make you sit at home are dull solo.</li>
+            </ul>
+        </section>
+
+        <section class="solo-howto">
+            <h2>🛠️ How To: Your First Solo Session</h2>
+            <ol>
+                <li><strong>Build one character</strong> with GURPS Lite or the Basic Set, using the solo advice above.</li>
+                <li><strong>Write a one-line problem.</strong> "Someone is stealing artifacts using my research." That's the session's question.</li>
+                <li><strong>Frame the opening scene.</strong> Where are you, what do you want right now, and what's in the way?</li>
+                <li><strong>Make a scene check.</strong> Adjust the scene if it's altered or interrupted.</li>
+                <li><strong>Play.</strong> Roll skills for actions, Quick Contests against NPCs, reaction rolls for strangers, and the oracle for everything you don't know.</li>
+                <li><strong>Close the scene</strong> when its question is answered. Note new NPCs, clues and open questions.</li>
+                <li><strong>Repeat</strong> until the problem is resolved or you reach a good cliffhanger. Then award your character points and write a short journal entry.</li>
+            </ol>
+        </section>
+
+        <section class="solo-example">
+            <h2>Example of Play</h2>
+            <p>Dr. Rita Anderson (IQ 14, Will 14, Diplomacy 14, and both Curious (12) and Honesty (12) among her disadvantages) is chasing whoever is using her research to find artifacts.</p>
+            <div class="example-box">
+                <p><strong>Scene:</strong> Rita expects to search a rival's office after hours. <strong>Scene check:</strong> 8, <em>Altered</em>. She decides the office isn't empty: a security guard is making his rounds.</p>
+                <p><strong>Reaction:</strong> The guard doesn't know her. Rita has no Appearance or Reputation modifiers here, but she's in a building where she gave talks last year, so she takes +1. <strong>Roll:</strong> 9 + 1 = 10, a <strong>Neutral</strong> reaction. He's not hostile, just doing his job.</p>
+                <p><strong>Action:</strong> Rita's Honesty means she won't sneak or lie, so she tells the guard the truth: her stolen research may be in that office, and she'd like him to watch while she looks. Diplomacy is an Influence roll, a Quick Contest against the guard's Will 10. She rolls 9 (made it by 5); he rolls 12 (missed by 2). Rita wins, and the guard unlocks the door.</p>
+                <p><strong>Question:</strong> "Is there anything here about my stolen research?" It's her rival's office, so Rita sets it as <em>Likely</em> (12). <strong>Roll:</strong> 12, exactly the target: <strong>Yes, but…</strong> Her stolen notes are here, but they're in a crate that's been sealed for shipping.</p>
+                <p><strong>Self-control:</strong> The smart move is to leave and call the police. But a sealed crate full of her own research is exactly the kind of mystery her Curious (12) can't resist. She rolls against 12 and gets a 14: she fails. She won't break the seal (that would trigger her Honesty), but she stays to copy every shipping label and customs form she can find. She's still reading when the guard's radio crackles: her rival is on his way up.</p>
+            </div>
+        </section>
+
+        <section class="solo-faq">
+            <h2>Common Questions</h2>
+            <h4>Isn't it boring to know everything already?</h4>
+            <p>You won't. The oracle, scene checks, reaction rolls and NPC rolls answer the questions you'd normally leave to a GM, so you're discovering the story as you play. Only decide what you would decide as a player.</p>
+            <h4>What if the oracle gives an answer that makes no sense?</h4>
+            <p>Reinterpret it before you reroll. A "yes" that seems impossible often hides a twist. If it truly breaks the story, treat it as a "but" answer or ask a smaller question.</p>
+            <h4>Should I play one character or a group?</h4>
+            <p>Start with one, perhaps with an Ally. A whole party works, but GURPS characters carry a lot of detail, and every extra sheet adds bookkeeping.</p>
+            <h4>How do I avoid fudging for my character?</h4>
+            <p>Set modifiers and NPC skills before you roll, roll in the open (even if only you can see), and honor self-control rolls and injuries. When in doubt, ask the oracle rather than choosing.</p>
+            <h4>Is GURPS too detailed for solo play?</h4>
+            <p>Only if you use every rule. With the core rules from GURPS Lite and the tools on this page, a solo scene moves quickly, and the detail is there when a fight or a climb really matters.</p>
+        </section>
+
+        <section class="conclusion">
+            <h2>Key Takeaways</h2>
+            <ul>
+                <li>GURPS has no solo chapter, but its consistent rules make it easy to play alone with a simple oracle.</li>
+                <li>The 3d6 oracle is a success roll: set a target from how likely "yes" is, then read the margin, with "but" answers on close calls.</li>
+                <li>Scene checks and random sparks stop you from writing a story you already know.</li>
+                <li>The Reaction Table and self-control rolls already do a GM's job: use them instead of deciding.</li>
+                <li>Set modifiers and NPC skills before rolling, and keep the rules as light as the scene allows.</li>
+            </ul>
+
+            <div class="journal">
+                <h3>📓 Journal Prompts</h3>
+                <p>After your first solo session, jot down:</p>
+                <ul>
+                    <li>Which oracle answer surprised you most, and what did it change?</li>
+                    <li>Did a self-control roll go against you? How did it shape the story?</li>
+                    <li>Were any modifiers or NPC skills too easy or too hard?</li>
+                    <li>What open questions or threads do you want to pick up next time?</li>
+                </ul>
+            </div>
+
+            <div class="next-steps">
+                <h3>Where to Go Next</h3>
+                <p>This is the last part of the guide. Head back to the <a href="/index.html">guide home</a> to revisit any part, keep the <a href="/gurps_dice_roller.html">dice roller</a> open while you play, and start your first solo session with a single character and a single question.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+<div class="page-nav">
+    <a class="prev" href="/gurps_campaign.html">Campaign Management</a>
+    <a class="next" href="/index.html">Guide Home</a>
+</div>
+        <p>Remember: playing solo, you're the whole table. Let the dice surprise you.</p>
+    </footer>
+
+    <script>
+        (function () {
+            'use strict';
+            const $ = (id) => document.getElementById(id);
+            const d6 = () => Math.floor(Math.random() * 6) + 1;
+            const roll3 = () => [d6(), d6(), d6()];
+            const sum = (a) => a.reduce((s, v) => s + v, 0);
+            const ODDS = { 14: 'Very likely', 12: 'Likely', 10: 'Toss-up', 8: 'Unlikely', 6: 'Very unlikely' };
+            const ACTIONS = ['Betray', 'Reveal', 'Pursue', 'Protect', 'Steal', 'Delay', 'Bargain', 'Hide', 'Warn', 'Abandon', 'Recruit', 'Expose', 'Break', 'Follow', 'Threaten', 'Rescue'];
+            const SUBJECTS = ['a secret', 'an old ally', 'a rival', 'the authorities', 'a debt', 'a map', 'a stranger', 'a promise', 'the weather', 'a hidden door', 'a rumor', 'family', 'money', 'a weapon', 'a letter', 'the past'];
+            const pick = (a) => a[Math.floor(Math.random() * a.length)];
+            const spark = () => pick(ACTIONS) + ' ' + pick(SUBJECTS);
+
+            // 3d6 oracle: a success roll against the likelihood target, read by margin.
+            function oracle(roll, target) {
+                if (roll <= 4) return ['yes', 'Yes, and…'];
+                if (roll >= 17) return ['no', 'No, and…'];
+                const m = target - roll;
+                if (m >= 5) return ['yes', 'Yes, and…'];
+                if (m >= 1) return ['yes', 'Yes'];
+                if (m === 0) return ['mixed', 'Yes, but…'];
+                if (m === -1) return ['mixed', 'No, but…'];
+                if (m >= -5) return ['no', 'No'];
+                return ['no', 'No, and…'];
+            }
+            function reaction(total) {
+                if (total <= 0) return 'Disastrous';
+                if (total <= 3) return 'Very Bad';
+                if (total <= 6) return 'Bad';
+                if (total <= 9) return 'Poor';
+                if (total <= 12) return 'Neutral';
+                if (total <= 15) return 'Good';
+                if (total <= 18) return 'Very Good';
+                return 'Excellent';
+            }
+
+            function showFaces(dice) {
+                const box = $('oracle-faces');
+                box.textContent = '';
+                dice.forEach((d) => { const f = document.createElement('span'); f.className = 'face'; f.textContent = d; box.appendChild(f); });
+            }
+            function setResult(kind, answer, detail, sparkText) {
+                $('oracle-out').className = 'oracle-out ' + kind;
+                $('oracle-answer').textContent = answer;
+                $('oracle-detail').textContent = detail;
+                $('oracle-spark').textContent = sparkText || '';
+            }
+            function log(text) {
+                const list = $('oracle-log');
+                if (list.dataset.started !== '1') { list.textContent = ''; list.dataset.started = '1'; }
+                const li = document.createElement('li');
+                li.textContent = text;   // user text is never parsed as HTML
+                list.prepend(li);
+                while (list.children.length > 200) list.lastElementChild.remove();
+            }
+
+            $('oracle-ask').addEventListener('click', () => {
+                const q = $('oracle-question').value.trim();
+                const target = parseInt($('oracle-odds').value, 10);
+                const dice = roll3(), r = sum(dice);
+                const [kind, answer] = oracle(r, target);
+                const m = target - r;
+                const extra = answer.endsWith('…') ? 'Spark: ' + spark() : '';
+                showFaces(dice);
+                setResult(kind, answer, 'Rolled ' + r + ' vs ' + ODDS[target] + ' (' + target + '): ' + (m >= 0 ? 'made it by ' + m : 'missed by ' + -m) + '.', extra);
+                log((q ? '“' + q + '” ' : '') + ODDS[target] + ': ' + answer + ' (' + r + ')' + (extra ? ' — ' + extra : ''));
+            });
+
+            $('scene-check').addEventListener('click', () => {
+                const dice = roll3(), r = sum(dice);
+                let kind, answer, detail;
+                if (r <= 6) { kind = 'no'; answer = 'Interrupted'; detail = 'Something else happens instead.'; }
+                else if (r <= 9) { kind = 'mixed'; answer = 'Altered'; detail = 'The scene happens, but one detail is different.'; }
+                else { kind = 'yes'; answer = 'As expected'; detail = 'Play the scene as you imagined it.'; }
+                const extra = kind !== 'yes' ? 'Spark: ' + spark() : '';
+                showFaces(dice);
+                setResult(kind, answer, 'Scene check ' + r + '. ' + detail, extra);
+                log('Scene check: ' + answer + ' (' + r + ')' + (extra ? ' — ' + extra : ''));
+            });
+
+            $('spark-btn').addEventListener('click', () => {
+                const s = spark();
+                $('oracle-faces').textContent = '';
+                setResult('mixed', s, 'Use it as a prompt for a twist, an NPC goal or a new clue.', '');
+                log('Spark: ' + s);
+            });
+
+            $('react-btn').addEventListener('click', () => {
+                let mod = parseInt($('react-mod').value, 10);
+                if (Number.isNaN(mod)) mod = 0;
+                mod = Math.max(-20, Math.min(20, mod));
+                $('react-mod').value = mod;
+                const dice = roll3(), total = sum(dice) + mod, r = reaction(total);
+                const kind = total >= 13 ? 'yes' : total <= 6 ? 'no' : 'mixed';
+                showFaces(dice);
+                setResult(kind, r + ' reaction', '3d6 = ' + sum(dice) + (mod ? (mod > 0 ? ' + ' : ' − ') + Math.abs(mod) : '') + ' = ' + total + ' on the Reaction Table.', '');
+                log('Reaction: ' + r + ' (' + total + ')');
+            });
+
+            $('cr-btn').addEventListener('click', () => {
+                const cr = parseInt($('cr-num').value, 10);
+                const dice = roll3(), r = sum(dice);
+                const ok = r <= cr;
+                showFaces(dice);
+                setResult(ok ? 'yes' : 'no', ok ? 'You resist' : 'The disadvantage takes over',
+                    'Rolled ' + r + ' against self-control ' + cr + '. ' + (ok ? 'Your character keeps control this time.' : 'Act as the disadvantage demands.'), '');
+                log('Self-control (' + cr + '): ' + (ok ? 'resisted' : 'failed') + ' (' + r + ')');
+            });
+
+            $('oracle-question').addEventListener('keydown', (e) => { if (e.key === 'Enter') $('oracle-ask').click(); });
+
+            $('log-copy').addEventListener('click', async () => {
+                const list = $('oracle-log');
+                const text = list.dataset.started === '1' ? [...list.querySelectorAll('li')].reverse().map((li) => li.textContent).join('\n') : '';
+                const btn = $('log-copy');
+                try { await navigator.clipboard.writeText(text); btn.textContent = text ? 'Copied!' : 'Nothing to copy'; }
+                catch (e) { btn.textContent = 'Copy failed'; }
+                setTimeout(() => { btn.textContent = 'Copy Log'; }, 1500);
+            });
+            $('log-clear').addEventListener('click', () => {
+                const list = $('oracle-log');
+                list.textContent = '';
+                const li = document.createElement('li'); li.textContent = 'Your rolls will appear here.'; list.appendChild(li);
+                list.dataset.started = '0';
+            });
+
+            window.gurpsOracle = oracle; // exposed for testing
+        })();
+    </script>
+<div class="site-footer">&copy; 2026 Ray de la Paz. The GURPS Guide. All rights reserved. &middot; <a href="https://rays-home.netlify.app/">Ray's House of Fun</a><br>GURPS is a trademark of Steve Jackson Games. This guide is an unofficial fan resource.</div>
+</body>
+</html>
