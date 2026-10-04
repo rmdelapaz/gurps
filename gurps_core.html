@@ -4,25 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Core Mechanics and Resolution Systems: Making the Dice Dance</title>
-    <link rel="stylesheet" href="styles/main.css">
-    <link rel="icon" href="favicon.png" type="image/png">
-    <script type="module">
-      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-      mermaid.initialize({ startOnLoad: true });
-    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="/js/site.js?v=1"></script>
+    <script type="module" src="/js/diagrams.js?v=2"></script>
+    <link rel="stylesheet" href="/styles/main.css?v=2">
+    <link rel="icon" href="/favicon.png" type="image/png">
 </head>
 <body>
 <nav class="site-nav">
-    <div class="nav-links">
-        <a href="index.html">GURPS Guide</a>
-        <span>|</span>
-        <a href="https://rays-home.netlify.app/">Ray's House of Fun</a>
-        <span>|</span>
-        <a href="https://rays-home.netlify.app/contact">Contact</a>
-    </div>
-    <button class="theme-toggle" onclick="toggleTheme()">🌙 Dark Mode</button>
+    <a href="https://rays-home.netlify.app/">Ray's House of Fun</a>
+    <a href="/index.html">Home</a>
+    <a href="https://rays-home.netlify.app/contact">Contact</a>
+    <button id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
 </nav>
     <header>
+        <span class="lesson-kicker">Part 7</span>
         <h1>Core Mechanics and Resolution Systems: Making the Dice Dance</h1>
         <p class="subtitle">From Character Sheet to Storytelling</p>
     </header>
@@ -80,13 +78,13 @@
                 
                 <div class="component">
                     <h4>Final Target Number</h4>
-                    <p>Base + modifiers = what you need to roll under</p>
+                    <p>Base + modifiers = what you need to roll equal to or under</p>
                     <p><strong>Example:</strong> 14 - 2 + 1 = 13 or less to succeed</p>
                 </div>
             </div>
 
             <h3>The Modifier Scale: Quantifying Difficulty</h3>
-            <p>GURPS uses a consistent modifier scale that reflects real-world difficulty levels:</p>
+            <p>Most situational modifiers fall in a small range. This rule-of-thumb scale (this guide's illustration, not an official table; the GM always makes the final call) gives the feel:</p>
 
             <pre><code>Modifier | Difficulty Level        | Real-World Example
 +4       | Extremely Easy          | Threading a needle with good light
@@ -94,16 +92,16 @@
 +1       | Easy                   | Making coffee in familiar kitchen
  0       | Average                | Normal conditions
 -1       | Hard                   | Driving in light rain
--2       | Very Hard              | Surgery during earthquake
+-2       | Very Hard              | Surgery in a moving ambulance
 -4       | Extremely Hard         | Hitting bullseye while drunk
 -6       | Nearly Impossible      | Performing brain surgery blindfolded
 -8       | Legendary Difficulty   | Catching a bullet with bare hands</code></pre>
 
             <div class="example-box">
                 <h4>Success Roll Example: The Locked Door</h4>
-                <p>Detective Sarah approaches an old office door. She wants to pick the lock:</p>
+                <p>Detective Tre approaches an old office door. She wants to pick the lock:</p>
                 <ul>
-                    <li><strong>Base Skill:</strong> Lockpicking-12 (she put 2 points into this skill)</li>
+                    <li><strong>Base Skill:</strong> Lockpicking-12 (an IQ/Average skill; with IQ 12, 2 points buy it at IQ+0)</li>
                     <li><strong>Modifiers:</strong> 
                         <ul>
                             <li>Old lock: +1 (worn mechanisms easier to manipulate)</li>
@@ -185,23 +183,23 @@
 
             <div class="critical-results">
                 <div class="critical-success">
-                    <h4>Critical Success (Roll of 3-4, or 5-6 if skill 15+)</h4>
+                    <h4>Critical Success (Roll of 3-4; also 5 if effective skill 15+, and 6 if 16+)</h4>
                     <ul>
-                        <li>Automatic success regardless of target number</li>
+                        <li>A 3 or 4 always succeeds, whatever the target number</li>
                         <li>Exceptional results beyond normal success</li>
                         <li>Often provides extra benefits or information</li>
-                        <li>Probability: About 1.85% of all rolls</li>
+                        <li>Probability: about 1.9% of rolls at effective skill 14 or less (3-4), 4.6% at 15 (3-5), 9.3% at 16+ (3-6)</li>
                     </ul>
                     <p><strong>Example:</strong> Picking the lock not only opens the door but reveals the security code written inside the mechanism.</p>
                 </div>
 
                 <div class="critical-failure">
-                    <h4>Critical Failure (Roll of 17-18, or 10+ over target)</h4>
+                    <h4>Critical Failure (18 always; 17 if effective skill 15 or less; or any roll 10+ over effective skill)</h4>
                     <ul>
-                        <li>Automatic failure regardless of target number</li>
+                        <li>A 17 or 18 always fails, so even a huge skill has at best a 98.1% chance (3-16); at 16+ a 17 is an ordinary failure, not a critical one</li>
                         <li>Something goes dramatically wrong</li>
                         <li>Often creates new problems or complications</li>
-                        <li>Probability: About 1.85% of all rolls</li>
+                        <li>Probability: about 1.9% of rolls at effective skill 7-15 (17-18), only 0.5% at 16+ (18 alone), and more at very low skill (skill 6 critically fails on 16+, 4.6%)</li>
                     </ul>
                     <p><strong>Example:</strong> Not only does the lock picking fail, but the pick breaks off in the lock and sets off a silent alarm.</p>
                 </div>
@@ -209,7 +207,7 @@
 
             <div class="practical-example">
                 <h4>Degrees in Action: The Research Scene</h4>
-                <p>Dr. Elena researches ancient Mayan astronomical records (Research skill 16):</p>
+                <p>Dr. Rita researches ancient Mayan astronomical records (Research skill 16):</p>
                 
                 <div class="result-spectrum">
                     <div class="result">
@@ -218,12 +216,12 @@
                     </div>
                     
                     <div class="result">
-                        <h5>Failure by 4 (20, target 16)</h5>
+                        <h5>Failure by 4 (16, against an effective 12 after -4 for a badly catalogued archive)</h5>
                         <p>"After hours of searching, you find several promising leads but they all turn out to be dead ends or mistranslations."</p>
                     </div>
                     
                     <div class="result">
-                        <h5>Failure by 1 (17, target 16)</h5>
+                        <h5>Failure by 1 (17, target 16; at skill 16+ a 17 is an ordinary failure)</h5>
                         <p>"You find some relevant information but it's incomplete—you know there's more here but need another approach."</p>
                     </div>
                     
@@ -259,16 +257,16 @@
                     A --> D[Resistance Roll]
                     
                     B --> B1[Both roll simultaneously]
-                    B --> B2[Highest success wins]
-                    B --> B3[Ties go to higher skill]
+                    B --> B2[Bigger margin wins]
+                    B --> B3[Equal margins: nobody wins]
                     
-                    C --> C1[Repeated rolls over time]
-                    C --> C2[First to X successes wins]
+                    C --> C1[Both roll, round after round]
+                    C --> C2[Ends when one succeeds and the other fails]
                     C --> C3[Like arm wrestling match]
                     
-                    D --> D1[Active vs Passive resistance]
-                    D --> D2[Roll vs fixed number]
-                    D --> D3[Like poison vs Health]
+                    D --> D1[Usually an HT or Will roll]
+                    D --> D2[Modified by the effect's strength]
+                    D --> D3[Like resisting poison with HT]
             </div>
 
             <h3>Quick Contests: Instant Resolution</h3>
@@ -276,7 +274,7 @@
 
             <div class="contest-example">
                 <h4>Quick Contest Example: The Chase</h4>
-                <p>Sarah (Driving-14) pursues a suspect (Driving-12) through city streets:</p>
+                <p>Tre (Driving-14) pursues a suspect (Driving-12) through city streets:</p>
                 
                 <table class="contest-table">
                     <tr>
@@ -288,7 +286,7 @@
                         <th>Result</th>
                     </tr>
                     <tr>
-                        <td>Sarah</td>
+                        <td>Tre</td>
                         <td>14</td>
                         <td>+1 (better car)</td>
                         <td>15</td>
@@ -305,7 +303,7 @@
                     </tr>
                 </table>
                 
-                <p><strong>Result:</strong> Sarah wins decisively. She not only keeps up but gains ground, forcing the suspect into a dead-end alley.</p>
+                <p><strong>Result:</strong> Tre wins decisively. She not only keeps up but gains ground, forcing the suspect into a dead-end alley.</p>
             </div>
 
             <h3>Regular Contests: Extended Challenges</h3>
@@ -313,28 +311,28 @@
 
             <div class="regular-contest-example">
                 <h4>Regular Contest Example: The Negotiation</h4>
-                <p>Elena tries to convince a museum curator to let her examine restricted artifacts (first to 3 successes wins):</p>
+                <p>Rita tries to convince a museum curator to let her examine restricted artifacts. The GM runs this drawn-out negotiation as a Regular Contest of her Diplomacy against the curator's Will: both roll each round, and it ends only when one succeeds while the other fails.</p>
                 
                 <div class="contest-rounds">
                     <div class="round">
                         <h5>Round 1: Opening Positions</h5>
-                        <p><strong>Elena (Diplomacy-13):</strong> Rolls 10, success by 3</p>
-                        <p><strong>Curator (Psychology-12):</strong> Rolls 14, failure by 2</p>
-                        <p><strong>Result:</strong> Elena 1, Curator 0. "I can see you're passionate about this research, Dr. Vasquez, but our insurance policies..."</p>
+                        <p><strong>Rita (Diplomacy-13):</strong> Rolls 10, success by 3</p>
+                        <p><strong>Curator (Will-12):</strong> Rolls 9, success by 3</p>
+                        <p><strong>Result:</strong> Both succeed, so the contest continues. "I can see you're passionate about this research, Dr. Anderson, but our insurance policies..."</p>
                     </div>
                     
                     <div class="round">
                         <h5>Round 2: Building Trust</h5>
-                        <p><strong>Elena:</strong> Rolls 8, success by 5 (mentions mutual colleague)</p>
-                        <p><strong>Curator:</strong> Rolls 9, success by 3 (impressed by credentials)</p>
-                        <p><strong>Result:</strong> Elena 2, Curator 1. "Professor Martinez did mention your work... perhaps we could arrange something."</p>
+                        <p><strong>Rita:</strong> Rolls 14, failure by 1 (mentions a mutual colleague, a little too eagerly)</p>
+                        <p><strong>Curator:</strong> Rolls 13, failure by 1 (impressed by her credentials despite himself)</p>
+                        <p><strong>Result:</strong> Both fail, so the contest continues. "Professor Martinez did mention your work... perhaps we could arrange something."</p>
                     </div>
                     
                     <div class="round">
                         <h5>Round 3: The Close</h5>
-                        <p><strong>Elena:</strong> Rolls 7, success by 6 (offers to share findings)</p>
+                        <p><strong>Rita:</strong> Rolls 7, success by 6 (offers to share findings)</p>
                         <p><strong>Curator:</strong> Rolls 15, failure by 3 (swayed by academic cooperation)</p>
-                        <p><strong>Final Result:</strong> Elena 3, Curator 1. "Very well, I'll arrange supervised access for tomorrow morning."</p>
+                        <p><strong>Final Result:</strong> Rita succeeds while the curator fails, so she wins. "Very well, I'll arrange supervised access for tomorrow morning."</p>
                     </div>
                 </div>
             </div>
@@ -348,12 +346,12 @@
 
             <div class="multiple-attempts">
                 <h4>Progressive Difficulty</h4>
-                <p>Each retry after the first gets harder:</p>
+                <p>When a retry is allowed at all, the GM can make each one harder; a common approach is a cumulative -1 per retry:</p>
                 <ul>
                     <li><strong>First attempt:</strong> Normal difficulty</li>
                     <li><strong>Second attempt:</strong> -1 penalty</li>
                     <li><strong>Third attempt:</strong> -2 penalty</li>
-                    <li><strong>Fourth+ attempts:</strong> -3 penalty (maximum)</li>
+                    <li><strong>Further attempts:</strong> -1 more each time</li>
                 </ul>
                 
                 <div class="attempt-example">
@@ -362,7 +360,7 @@
                     <ul>
                         <li><strong>First try:</strong> Target 13, rolls 15. Failure—system detects intrusion attempt</li>
                         <li><strong>Second try:</strong> Target 12 (-1), rolls 11. Success—but security is now alert</li>
-                    </li>
+                    </ul>
                     <p>Each failure made success more difficult and raised the stakes.</p>
                 </div>
             </div>
@@ -372,22 +370,22 @@
 
             <div class="complementary-example">
                 <h4>Example: The Historical Detective Work</h4>
-                <p>Elena needs to solve an archaeological mystery:</p>
+                <p>Rita needs to solve an archaeological mystery. Each complementary roll gives +1 to the primary roll on a success (+2 on a critical success), or -1 on a failure (-2 on a critical failure):</p>
                 <ul>
                     <li><strong>Primary skill:</strong> Archaeology-16 to interpret the site</li>
                     <li><strong>Complementary skills:</strong>
                         <ul>
-                            <li>Geology-13 to understand the soil layers (+1 if successful)</li>
-                            <li>History-15 to place artifacts in context (+2 if successful)</li>
-                            <li>Ancient Languages-15 to read inscriptions (+2 if successful)</li>
+                            <li>Geology-13 to understand the soil layers</li>
+                            <li>History-15 to place artifacts in context</li>
+                            <li>Ancient Languages-15 to read inscriptions</li>
                         </ul>
                     </li>
                 </ul>
-                <p>If she succeeds at all three complementary rolls, her Archaeology roll gets a +5 bonus, turning her effective skill from 16 to 21!</p>
+                <p>If she succeeds at all three complementary rolls, her Archaeology roll gets +3, turning her effective skill from 16 to 19 (three critical successes would make it +6). Fail them all and she's down to 13.</p>
             </div>
 
             <h3>Time and Circumstance Modifiers</h3>
-            <p>Real life doesn't happen in perfect conditions. GURPS accounts for this:</p>
+            <p>Real life doesn't happen in perfect conditions. GURPS accounts for this (and the GM decides whether a given task can be rushed or stretched at all):</p>
 
             <div class="time-modifiers">
                 <h4>Time Pressure Effects</h4>
@@ -398,9 +396,14 @@
                         <th>Example</th>
                     </tr>
                     <tr>
+                        <td>Four times normal time</td>
+                        <td>+2</td>
+                        <td>Careful research with no deadline</td>
+                    </tr>
+                    <tr>
                         <td>Double normal time</td>
                         <td>+1</td>
-                        <td>Careful research with no deadline</td>
+                        <td>Working slowly and double-checking</td>
                     </tr>
                     <tr>
                         <td>Normal time</td>
@@ -408,19 +411,14 @@
                         <td>Standard working conditions</td>
                     </tr>
                     <tr>
-                        <td>Half normal time</td>
-                        <td>-2</td>
+                        <td>90% of normal time</td>
+                        <td>-1</td>
                         <td>Rush job with deadline pressure</td>
                     </tr>
                     <tr>
-                        <td>Quarter normal time</td>
-                        <td>-4</td>
-                        <td>Emergency situation</td>
-                    </tr>
-                    <tr>
-                        <td>One-tenth normal time</td>
-                        <td>-6</td>
-                        <td>Split-second decision</td>
+                        <td>Half normal time</td>
+                        <td>-5</td>
+                        <td>Emergency situation (-1 for every 10% of the time you cut)</td>
                     </tr>
                 </table>
             </div>
@@ -428,10 +426,10 @@
             <div class="environmental-modifiers">
                 <h4>Environmental Conditions</h4>
                 <ul>
-                    <li><strong>Lighting:</strong> -1 to -9 for dim to total darkness</li>
+                    <li><strong>Lighting:</strong> -1 to -10 for dim light to total darkness</li>
                     <li><strong>Noise:</strong> -1 to -4 for loud to deafening conditions</li>
                     <li><strong>Distractions:</strong> -1 to -3 for minor to major interruptions</li>
-                    <li><strong>Equipment quality:</strong> +1 to +3 for superior tools, -1 to -3 for poor tools</li>
+                    <li><strong>Equipment quality:</strong> +1 or +2 for good or fine tools, -2 or worse for improvised tools (or none at all)</li>
                     <li><strong>Workspace:</strong> +1 to +2 for ideal conditions, -1 to -4 for cramped/awkward</li>
                 </ul>
             </div>
@@ -443,7 +441,7 @@
             <h3>Size and Speed/Range Table</h3>
             <p>GURPS uses a universal table for measuring distance, time, and size modifiers. It's like a cosmic zoom lens that works the same way whether you're shooting at a target or trying to spot a detail:</p>
 
-            <svg width="700" height="400" style="margin: 20px auto; display: block;">
+            <svg width="700" height="400" viewBox="0 0 700 400">
                 <!-- Create logarithmic scale visualization -->
                 <defs>
                     <marker id="arrowhead" markerWidth="10" markerHeight="7" 
@@ -459,91 +457,91 @@
                 <g font-size="10" text-anchor="middle">
                     <!-- 1 yard -->
                     <line x1="100" y1="190" x2="100" y2="210" stroke="black" stroke-width="2"/>
-                    <text x="100" y="230">1 yard</text>
+                    <text x="100" y="230">2 yards</text>
                     <text x="100" y="175" fill="blue">0</text>
                     
                     <!-- 2 yards -->
                     <line x1="150" y1="190" x2="150" y2="210" stroke="black" stroke-width="2"/>
-                    <text x="150" y="230">2 yards</text>
+                    <text x="150" y="230">3 yards</text>
                     <text x="150" y="175" fill="blue">-1</text>
                     
                     <!-- 3 yards -->
                     <line x1="200" y1="190" x2="200" y2="210" stroke="black" stroke-width="2"/>
-                    <text x="200" y="230">3 yards</text>
+                    <text x="200" y="230">5 yards</text>
                     <text x="200" y="175" fill="blue">-2</text>
                     
                     <!-- 5 yards -->
                     <line x1="250" y1="190" x2="250" y2="210" stroke="black" stroke-width="2"/>
-                    <text x="250" y="230">5 yards</text>
+                    <text x="250" y="230">7 yards</text>
                     <text x="250" y="175" fill="blue">-3</text>
                     
                     <!-- 7 yards -->
                     <line x1="300" y1="190" x2="300" y2="210" stroke="black" stroke-width="2"/>
-                    <text x="300" y="230">7 yards</text>
+                    <text x="300" y="230">10 yards</text>
                     <text x="300" y="175" fill="blue">-4</text>
                     
                     <!-- 10 yards -->
                     <line x1="350" y1="190" x2="350" y2="210" stroke="black" stroke-width="2"/>
-                    <text x="350" y="230">10 yards</text>
+                    <text x="350" y="230">15 yards</text>
                     <text x="350" y="175" fill="blue">-5</text>
                     
                     <!-- 15 yards -->
                     <line x1="400" y1="190" x2="400" y2="210" stroke="black" stroke-width="2"/>
-                    <text x="400" y="230">15 yards</text>
+                    <text x="400" y="230">20 yards</text>
                     <text x="400" y="175" fill="blue">-6</text>
                     
                     <!-- 20 yards -->
                     <line x1="450" y1="190" x2="450" y2="210" stroke="black" stroke-width="2"/>
-                    <text x="450" y="230">20 yards</text>
+                    <text x="450" y="230">30 yards</text>
                     <text x="450" y="175" fill="blue">-7</text>
                     
                     <!-- 30 yards -->
                     <line x1="500" y1="190" x2="500" y2="210" stroke="black" stroke-width="2"/>
-                    <text x="500" y="230">30 yards</text>
+                    <text x="500" y="230">50 yards</text>
                     <text x="500" y="175" fill="blue">-8</text>
                     
                     <!-- 50 yards -->
                     <line x1="550" y1="190" x2="550" y2="210" stroke="black" stroke-width="2"/>
-                    <text x="550" y="230">50 yards</text>
+                    <text x="550" y="230">70 yards</text>
                     <text x="550" y="175" fill="blue">-9</text>
                     
                     <!-- 70 yards -->
                     <line x1="600" y1="190" x2="600" y2="210" stroke="black" stroke-width="2"/>
-                    <text x="600" y="230">70 yards</text>
+                    <text x="600" y="230">100 yards</text>
                     <text x="600" y="175" fill="blue">-10</text>
                 </g>
                 
                 <!-- Labels -->
                 <text x="350" y="50" font-size="16" font-weight="bold" text-anchor="middle">GURPS Speed/Range Table</text>
-                <text x="350" y="80" font-size="12" text-anchor="middle">Distance increases, modifier gets more negative</text>
+                <text x="350" y="80" font-size="12" text-anchor="middle">2 yards or less is 0; each step farther is another -1</text>
                 <text x="350" y="270" font-size="12" text-anchor="middle">Distance</text>
                 <text x="350" y="150" font-size="12" text-anchor="middle" fill="blue">Modifier</text>
                 
                 <!-- Usage examples -->
                 <text x="50" y="320" font-size="11" fill="green">Shooting: Apply range modifier to attack roll</text>
                 <text x="50" y="340" font-size="11" fill="green">Spotting: Apply distance modifier to Vision roll</text>
-                <text x="50" y="360" font-size="11" fill="green">Hearing: Apply distance modifier to Hearing roll</text>
+                <text x="50" y="360" font-size="11" fill="green">Speed: Fast targets add a penalty from the same table</text>
                 <text x="50" y="380" font-size="11" fill="green">Size: Larger targets get positive modifiers</text>
             </svg>
 
-            <h3>Rule of 16: When Skills Don't Apply</h3>
-            <p>Sometimes characters attempt things they've never learned. The Rule of 16 provides a baseline:</p>
+            <h3>Defaults: When You Haven't Learned the Skill</h3>
+            <p>Sometimes characters attempt things they've never learned. Most skills have a default, an untrained roll against an attribute at a penalty set by the skill's difficulty:</p>
 
             <div class="rule-of-16">
-                <h4>Default Difficulty Levels</h4>
+                <h4>Typical Defaults</h4>
                 <ul>
-                    <li><strong>16 or less:</strong> Something an average person might occasionally manage</li>
-                    <li><strong>15 or less:</strong> Moderately difficult for untrained people</li>
-                    <li><strong>14 or less:</strong> Hard for untrained people</li>
-                    <li><strong>12 or less:</strong> Very hard for untrained people</li>
-                    <li><strong>10 or less:</strong> Nearly impossible without training</li>
+                    <li><strong>Easy skills:</strong> attribute-4</li>
+                    <li><strong>Average skills:</strong> attribute-5</li>
+                    <li><strong>Hard skills:</strong> attribute-6</li>
+                    <li><strong>Very Hard skills:</strong> usually no default at all</li>
+                    <li><strong>No roll below 3:</strong> if penalties drop your effective skill under 3, you can't try (except for defense rolls). (Don't confuse defaults with GURPS's actual "Rule of 16," which caps the skill used against a resistance roll for supernatural abilities.)</li>
                 </ul>
                 
                 <div class="rule-16-examples">
-                    <h5>Rule of 16 Examples</h5>
-                    <p><strong>Defusing a bomb (no Explosives skill):</strong> Roll vs. 12 or less—possible but terrifying</p>
-                    <p><strong>Performing surgery (no Surgery skill):</strong> Roll vs. 8 or less—don't try this at home</p>
-                    <p><strong>Jumping across a small gap:</strong> Roll vs. 15 or less—most people can manage</p>
+                    <h5>Default Examples</h5>
+                    <p><strong>Defusing a bomb (no Explosives skill, IQ 12):</strong> Explosives is IQ/Average, so roll vs. 7 or less (16.2%)—possible but terrifying</p>
+                    <p><strong>Performing surgery (no Surgery skill):</strong> Surgery is Very Hard with no attribute default—without a related medical skill, you can't even roll. Don't try this at home</p>
+                    <p><strong>Climbing a fence (no Climbing skill, DX 11):</strong> Climbing is DX/Average, so roll vs. 6 or less (9.3%), plus any bonus the GM gives for an easy climb</p>
                 </div>
             </div>
 
@@ -560,7 +558,7 @@
                         <li><strong>Resisting supernatural mental attacks</strong></li>
                     </ul>
                     
-                    <p><strong>Example:</strong> Elena encounters a supernatural horror. She must make a Will roll (Will 14) to avoid being paralyzed by fear. She rolls 13—barely maintains her composure but can act.</p>
+                    <p><strong>Example:</strong> Rita encounters a supernatural horror. She must make a Fright Check, a Will roll (Will 14; a roll of 14 or more always fails a Fright Check), to avoid being paralyzed by fear. She rolls 13—barely maintains her composure but can act.</p>
                 </div>
 
                 <div class="perception-rolls">
@@ -572,7 +570,7 @@
                         <li><strong>Sensing danger or unusual situations</strong></li>
                     </ul>
                     
-                    <p><strong>Example:</strong> Sarah searches a crime scene for evidence. She makes a Perception roll (Per 13) with a +2 bonus for taking her time. She rolls 11—success by 4! She notices a nearly invisible fiber caught on the window latch.</p>
+                    <p><strong>Example:</strong> Tre searches a crime scene for evidence. She makes a Perception roll (Per 13) with a +2 bonus for taking her time. She rolls 11—success by 4! She notices a nearly invisible fiber caught on the window latch.</p>
                 </div>
             </div>
         </section>
@@ -740,7 +738,7 @@
                 <ul>
                     <li><strong>Scenario A:</strong> Picking a lock (Lockpicking-12) in a dimly lit alley (-2) while guards patrol nearby (rushing, -2) but using professional tools (+1)</li>
                     <li><strong>Scenario B:</strong> Researching ancient texts (Research-15) in a world-class library (+2) with unlimited time (+1) but the texts are in poor condition (-1)</li>
-                    <li><strong>Scenario C:</strong> Shooting at a human-sized target (Guns-14) at 20 yards (-7) in moderate wind (-1) using a scope (+1)</li>
+                    <li><strong>Scenario C:</strong> Shooting at a human-sized target (Guns-14) at 20 yards (-6) in moderate wind (-1) using a scope (+1, which needs an Aim maneuver first)</li>
                 </ul>
             </div>
 
@@ -758,9 +756,9 @@
             <div class="activity">
                 <h3>Activity 3: Contest Resolution</h3>
                 <p>Resolve this quick contest:</p>
-                <p><strong>Situation:</strong> Detective Sarah (Psychology-13) questions a suspect (Acting-11) who's trying to hide their involvement in a crime.</p>
+                <p><strong>Situation:</strong> Detective Tre (Psychology-13) questions a suspect (Acting-11) who's trying to hide their involvement in a crime.</p>
                 <ul>
-                    <li>Sarah rolls 9, Suspect rolls 13</li>
+                    <li>Tre rolls 9, Suspect rolls 13</li>
                     <li>Who wins and by how much?</li>
                     <li>Describe the outcome of this exchange</li>
                     <li>How might this affect the next round of questioning?</li>
@@ -836,7 +834,7 @@
                 <ul>
                     <li>Use quick contests for most situations</li>
                     <li>Reserve regular contests for dramatic, drawn-out struggles</li>
-                    <li>Set reasonable target numbers for regular contests (3-5 successes max)</li>
+                    <li>When both skills in a Regular Contest are very high, lower both by the same amount so someone fails sooner</li>
                     <li>Add time pressure to speed up decisions</li>
                 </ul>
             </div>
@@ -878,35 +876,19 @@
 
             <div class="next-steps">
                 <h3>Ready for Combat?</h3>
-                <p>In our next lecture, we'll dive into GURPS combat—from basic attack and defense to advanced tactical options. You'll learn how the same resolution principles apply when life and death are on the line, and how GURPS creates realistic, strategic combat that feels both cinematic and believable.</p>
+                <p>In the next part, we'll dive into GURPS combat—from basic attack and defense to advanced tactical options. You'll learn how the same resolution principles apply when life and death are on the line, and how GURPS creates realistic, strategic combat that feels both cinematic and believable.</p>
             </div>
         </section>
     </main>
 
     <footer>
+<div class="page-nav">
+    <a class="prev" href="/gurps_groups.html">Character Groups</a>
+    <a class="next" href="/gurps_combat.html">Combat</a>
+</div>
         <p>Remember: The dice don't just determine outcomes—they help tell the story!</p>
     </footer>
 
-<nav class="page-nav">
-    <a href="gurps_dice_roller.html">&larr; Dice Roller</a>
-    <span class="spacer"></span>
-    <a href="gurps_magic.html">Magic Systems &rarr;</a>
-</nav>
-<script>
-function toggleTheme(){
-    document.body.classList.toggle('dark-mode');
-    var b=document.querySelector('.theme-toggle');
-    var d=document.body.classList.contains('dark-mode');
-    b.textContent=d?'☀️ Light Mode':'🌙 Dark Mode';
-    localStorage.setItem('theme',d?'dark':'light');
-}
-(function(){
-    if(localStorage.getItem('theme')==='dark'){
-        document.body.classList.add('dark-mode');
-        var b=document.querySelector('.theme-toggle');
-        if(b) b.textContent='☀️ Light Mode';
-    }
-})();
-</script>
+<div class="site-footer">&copy; 2026 Ray de la Paz. The GURPS Guide. All rights reserved. &middot; <a href="https://rays-home.netlify.app/">Ray's House of Fun</a><br>GURPS is a trademark of Steve Jackson Games. This guide is an unofficial fan resource.</div>
 </body>
 </html>

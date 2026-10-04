@@ -4,25 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Campaign Management and Advanced Techniques: Orchestrating Epic Adventures</title>
-    <link rel="stylesheet" href="styles/main.css">
-    <link rel="icon" href="favicon.png" type="image/png">
-    <script type="module">
-      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-      mermaid.initialize({ startOnLoad: true });
-    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="/js/site.js?v=1"></script>
+    <script type="module" src="/js/diagrams.js?v=2"></script>
+    <link rel="stylesheet" href="/styles/main.css?v=2">
+    <link rel="icon" href="/favicon.png" type="image/png">
 </head>
 <body>
 <nav class="site-nav">
-    <div class="nav-links">
-        <a href="index.html">GURPS Guide</a>
-        <span>|</span>
-        <a href="https://rays-home.netlify.app/">Ray's House of Fun</a>
-        <span>|</span>
-        <a href="https://rays-home.netlify.app/contact">Contact</a>
-    </div>
-    <button class="theme-toggle" onclick="toggleTheme()">🌙 Dark Mode</button>
+    <a href="https://rays-home.netlify.app/">Ray's House of Fun</a>
+    <a href="/index.html">Home</a>
+    <a href="https://rays-home.netlify.app/contact">Contact</a>
+    <button id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
 </nav>
     <header>
+        <span class="lesson-kicker">Part 11</span>
         <h1>Campaign Management and Advanced Techniques: Orchestrating Epic Adventures</h1>
         <p class="subtitle">From Session Zero to Campaign Legacy</p>
     </header>
@@ -55,10 +53,10 @@
                     H --> I[Campaign Evolution/Transformation]
                     I --> J[Campaign Conclusion or Renewal]
                     
-                    B --> B1[Establish genre and tone<br/>Set expectations<br/>Create social contract]
-                    C --> C1[Build integrated party<br/>Establish relationships<br/>Align character goals]
-                    D --> D2[Introduce world and conflicts<br/>Establish game flow<br/>Set precedents]
-                    E --> E1[Refine what works<br/>Address problems early<br/>Build momentum]
+                    B --> B1[Establish genre and tone&lt;br/&gt;Set expectations&lt;br/&gt;Create social contract]
+                    C --> C1[Build integrated party&lt;br/&gt;Establish relationships&lt;br/&gt;Align character goals]
+                    D --> D2[Introduce world and conflicts&lt;br/&gt;Establish game flow&lt;br/&gt;Set precedents]
+                    E --> E1[Refine what works&lt;br/&gt;Address problems early&lt;br/&gt;Build momentum]
                     
                     style A fill:#e1f5fe
                     style B fill:#fff3e0
@@ -143,12 +141,12 @@
 
             <div class="integration-example">
                 <h4>Example: The Blackwood Institute Team</h4>
-                <p>Our example characters from previous lectures become an integrated team:</p>
+                <p>Our example characters from earlier parts of this guide become an integrated team:</p>
                 
                 <ul>
                     <li><strong>Professor Blackwood:</strong> Founder of a private institute investigating supernatural phenomena</li>
-                    <li><strong>Dr. Elena Vasquez:</strong> Lead archaeologist, hired after discovering cursed artifacts</li>
-                    <li><strong>Detective Sarah Chen:</strong> Police liaison, assigned after supernatural crimes spike</li>
+                    <li><strong>Dr. Rita Anderson:</strong> Lead archaeologist, hired after discovering cursed artifacts</li>
+                    <li><strong>Detective Tre Argent:</strong> Police liaison, assigned after supernatural crimes spike</li>
                     <li><strong>Jack "Ace" Morrison:</strong> Institute security chief, retired military contractor</li>
                 </ul>
                 
@@ -237,7 +235,7 @@
 
                 <h4>Technology Assistance</h4>
                 <ul>
-                    <li><strong>Character Builders:</strong> GCS, GURPS Calculator, online tools</li>
+                    <li><strong>Character Builders:</strong> GCS (GURPS Character Sheet), GURPS Character Assistant, other online tools</li>
                     <li><strong>Digital Dice:</strong> Apps that handle complex calculations</li>
                     <li><strong>Reference Apps:</strong> Quick access to spell lists, advantages, etc.</li>
                     <li><strong>Campaign Wikis:</strong> Shared knowledge base for complex campaigns</li>
@@ -256,7 +254,9 @@
             <div class="adventure-vectors">
                 <canvas id="adventureChart" width="700" height="400"></canvas>
                 <script>
+                    (function () {
                     const canvas = document.getElementById('adventureChart');
+                    if (!canvas || !canvas.getContext) return;
                     const ctx = canvas.getContext('2d');
                     
                     // Draw central problem
@@ -320,6 +320,7 @@
                     ctx.font = '16px Arial';
                     ctx.textAlign = 'center';
                     ctx.fillText('GURPS Adventure Design: Multiple Solution Vectors', 350, 30);
+                    })();
                 </script>
             </div>
 
@@ -345,7 +346,7 @@
                 <div class="template">
                     <h4>Heist Template</h4>
                     <p><strong>Structure:</strong> Target Selection → Planning → Execution → Escape → Consequences</p>
-                    <p><strong>GURPS Strengths:</strong> Detailed planning rules, specialized skills, equipment focus</p>
+                    <p><strong>GURPS Strengths:</strong> Specialized skills (Lockpicking, Electronics Operation (Security), Stealth), detailed equipment, planning with skills like Tactics</p>
                     
                     <div class="template-example">
                         <h5>Example: The Museum Artifact</h5>
@@ -361,7 +362,7 @@
                 <div class="template">
                     <h4>Survival Template</h4>
                     <p><strong>Structure:</strong> Crisis → Resource Assessment → Adaptation → Escalation → Resolution</p>
-                    <p><strong>GURPS Strengths:</strong> Realistic survival mechanics, equipment degradation</p>
+                    <p><strong>GURPS Strengths:</strong> Survival skill, Fatigue Points, and the Basic Set's rules for hunger, thirst, and environmental hazards</p>
                     
                     <div class="template-example">
                         <h5>Example: The Dimensional Shift</h5>
@@ -443,10 +444,10 @@
                     A --> D[Social Growth]
                     A --> E[Psychological Growth]
                     
-                    B --> B1[New skills and abilities<br/>Increased attribute levels<br/>Additional advantages]
-                    C --> C1[Personal story arcs<br/>Background reveals<br/>Goal evolution]
-                    D --> D2[Relationship changes<br/>Reputation shifts<br/>Social status evolution]
-                    E --> E1[Overcome disadvantages<br/>Develop new motivations<br/>Personality maturation]
+                    B --> B1[New skills and abilities&lt;br/&gt;Increased attribute levels&lt;br/&gt;Additional advantages]
+                    C --> C1[Personal story arcs&lt;br/&gt;Background reveals&lt;br/&gt;Goal evolution]
+                    D --> D2[Relationship changes&lt;br/&gt;Reputation shifts&lt;br/&gt;Social status evolution]
+                    E --> E1[Overcome disadvantages&lt;br/&gt;Develop new motivations&lt;br/&gt;Personality maturation]
                     
                     style A fill:#e1f5fe
                     style B fill:#fff3e0
@@ -462,7 +463,7 @@
                 <div class="advancement-method">
                     <h4>Point-Based Advancement</h4>
                     <p><strong>Method:</strong> Award character points based on achievements</p>
-                    <p><strong>Typical Awards:</strong> 3-5 points per session, bonus for major accomplishments</p>
+                    <p><strong>Typical Awards:</strong> A few points per session (often 1-5), bonus for major accomplishments</p>
                     <p><strong>Advantages:</strong> Flexible, allows precise character customization</p>
                     <p><strong>Best For:</strong> Long campaigns, player-driven development</p>
                 </div>
@@ -470,8 +471,8 @@
                 <div class="advancement-method">
                     <h4>Skill-Based Learning</h4>
                     <p><strong>Method:</strong> Improve skills through use and study</p>
-                    <p><strong>Mechanics:</strong> Roll against skill after use, improve on failure</p>
-                    <p><strong>Advantages:</strong> Realistic, reflects actual usage patterns</p>
+                    <p><strong>Mechanics:</strong> The Basic Set's improvement-through-study rules: time spent studying, training, or working with a teacher earns points toward specific skills</p>
+                    <p><strong>Advantages:</strong> Realistic, reflects what characters actually spend their time doing</p>
                     <p><strong>Best For:</strong> Realistic campaigns, skill-focused games</p>
                 </div>
 
@@ -496,7 +497,7 @@
             <p>Track and develop individual character stories within the larger campaign:</p>
 
             <div class="character-arc-example">
-                <h4>Example: Detective Sarah's Arc Development</h4>
+                <h4>Example: Detective Tre's Arc Development</h4>
                 
                 <div class="arc-stage">
                     <h5>Stage 1: Denial (Sessions 1-4)</h5>
@@ -545,7 +546,7 @@
                 </ul>
 
                 <div class="evolution-example">
-                    <h5>Example: Elena's Disadvantage Evolution</h5>
+                    <h5>Example: Rita's Disadvantage Evolution</h5>
                     <p><strong>Initial:</strong> Workaholic [-5], focuses obsessively on research</p>
                     <p><strong>Story Challenge:</strong> Her obsession nearly gets the team killed</p>
                     <p><strong>Growth Experience:</strong> Learns to balance work with team needs</p>
@@ -689,8 +690,8 @@
 
                 <div class="technique">
                     <h4>Dynamic Difficulty Adjustment</h4>
-                    <p><strong>Principle:</strong> Modify target numbers based on story needs and player engagement</p>
-                    <p><strong>Example:</strong> Lower difficulties when players have clever plans, raise them for dramatic tension</p>
+                    <p><strong>Principle:</strong> Adjust skill modifiers based on story needs and player engagement</p>
+                    <p><strong>Example:</strong> Give bonuses when players have clever plans, apply penalties for dramatic tension</p>
                     <p><strong>Benefit:</strong> Rewards creativity while maintaining appropriate challenge levels</p>
                 </div>
 
@@ -808,7 +809,7 @@
                 <div class="moment-type">
                     <h5>The Impossible Success</h5>
                     <p>When players succeed against overwhelming odds through clever tactics and lucky rolls</p>
-                    <p><strong>Example:</strong> Elena's critical success on an ancient language roll reveals the demon's true name, allowing instant banishment</p>
+                    <p><strong>Example:</strong> Rita's critical success on an ancient language roll reveals the demon's true name, allowing instant banishment</p>
                 </div>
 
                 <div class="moment-type">
@@ -820,7 +821,7 @@
                 <div class="moment-type">
                     <h5>The Character Growth Moment</h5>
                     <p>When character overcomes personal limitations in dramatic fashion</p>
-                    <p><strong>Example:</strong> Sarah, despite her pacifist disadvantage, takes lethal action to save innocent children</p>
+                    <p><strong>Example:</strong> Tre, despite her Pacifism (Reluctant Killer) disadvantage, takes lethal action to save innocent children</p>
                 </div>
 
                 <div class="moment-type">
@@ -1034,7 +1035,7 @@
             </div>
 
             <h3>Your GURPS Journey Continues</h3>
-            <p>These lectures have given you the foundation, but GURPS mastery comes through practice. Start simple—run a short campaign using basic rules for a genre you love. As you gain confidence, add complexity gradually. Most importantly, remember that the goal isn't to use every rule in every book; it's to create memorable stories and shared experiences that you'll talk about for years to come.</p>
+            <p>The parts of this guide have given you the foundation, but GURPS mastery comes through practice. Start simple—run a short campaign using basic rules for a genre you love. As you gain confidence, add complexity gradually. Most importantly, remember that the goal isn't to use every rule in every book; it's to create memorable stories and shared experiences that you'll talk about for years to come.</p>
 
             <p>GURPS is a lifetime hobby. The system will grow with you as your interests change, your group evolves, and your storytelling skills develop. Whether you're running gritty detective stories or cosmic superhero epics, GURPS provides the tools to make those stories feel both fantastic and believable.</p>
 
@@ -1048,29 +1049,13 @@
     </main>
 
     <footer>
+<div class="page-nav">
+    <a class="prev" href="/gurps_magic.html">Magic &amp; the Supernatural</a>
+    <a class="next" href="/index.html">Guide Home</a>
+</div>
         <p>Remember: The best GURPS campaign is the one your group creates together!</p>
     </footer>
 
-<nav class="page-nav">
-    <a href="gurps_magic.html">&larr; Magic Systems</a>
-    <span class="spacer"></span>
-    <span></span>
-</nav>
-<script>
-function toggleTheme(){
-    document.body.classList.toggle('dark-mode');
-    var b=document.querySelector('.theme-toggle');
-    var d=document.body.classList.contains('dark-mode');
-    b.textContent=d?'☀️ Light Mode':'🌙 Dark Mode';
-    localStorage.setItem('theme',d?'dark':'light');
-}
-(function(){
-    if(localStorage.getItem('theme')==='dark'){
-        document.body.classList.add('dark-mode');
-        var b=document.querySelector('.theme-toggle');
-        if(b) b.textContent='☀️ Light Mode';
-    }
-})();
-</script>
+<div class="site-footer">&copy; 2026 Ray de la Paz. The GURPS Guide. All rights reserved. &middot; <a href="https://rays-home.netlify.app/">Ray's House of Fun</a><br>GURPS is a trademark of Steve Jackson Games. This guide is an unofficial fan resource.</div>
 </body>
 </html>

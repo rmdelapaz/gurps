@@ -3,67 +3,141 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GURPS Fundamentals: Your Gateway to Universal Gaming</title>
-    <link rel="stylesheet" href="styles/main.css">
-    <link rel="icon" href="favicon.png" type="image/png">
-    <script type="module">
-      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-      mermaid.initialize({ startOnLoad: true });
-    </script>
+    <title>The GURPS Guide: The Generic Universal RolePlaying System</title>
+    <meta name="description" content="An 11-part guide to GURPS 4th Edition: 3d6 success rolls, point-buy character creation, sample characters, combat, magic, campaign management and a dice roller.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="/js/site.js?v=1"></script>
+    <link rel="stylesheet" href="/styles/main.css?v=2">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <style>
+        .home { width: min(1120px, calc(100% - 32px)); margin: 0 auto; padding-bottom: 24px; }
+        .hero {
+            margin-top: 28px;
+            padding: clamp(36px, 7vw, 72px) clamp(20px, 5vw, 56px);
+            border-radius: 20px;
+            background:
+                radial-gradient(circle at 85% 20%, rgba(143, 184, 224, 0.25), transparent 45%),
+                linear-gradient(135deg, var(--hero-1), var(--hero-2));
+            color: #fff;
+            box-shadow: var(--shadow);
+        }
+        .hero h1 { color: #fff; font-size: clamp(2.1rem, 6vw, 3.4rem); margin: 0 0 14px; }
+        .hero p { color: rgba(255, 255, 255, 0.93); font-size: clamp(1.05rem, 2.2vw, 1.22rem); max-width: 64ch; margin: 0 0 24px; }
+        .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 28px; }
+        .btn-hero { display: inline-block; padding: 12px 22px; border-radius: 999px; font-weight: 700; text-decoration: none; background: #fff; color: #1c2b3d; border: 2px solid #fff; }
+        .btn-hero:hover { background: #f3e4e5; color: #1c2b3d; }
+        .btn-hero.ghost { background: transparent; color: #fff; border-color: rgba(255, 255, 255, 0.7); }
+        .btn-hero.ghost:hover { background: rgba(255, 255, 255, 0.12); color: #fff; }
+        .dice { display: flex; gap: 8px; align-items: center; }
+        .die {
+            width: 46px; height: 46px; border-radius: 10px; display: grid; place-items: center;
+            background: rgba(255, 255, 255, 0.95); color: #1c2b3d; font: 700 1.6rem/1 "Source Sans 3", sans-serif;
+            box-shadow: 0 3px 0 rgba(0, 0, 0, 0.25);
+        }
+        .dice .vs { color: #fff; font-weight: 700; margin-left: 6px; }
+
+        .section-head { margin: 52px 0 16px; }
+        .section-head h2 { margin: 0 0 8px; }
+        .section-head p { color: var(--muted); max-width: 70ch; margin: 0; }
+        .group-label { font-family: "Bitter", Georgia, serif; font-weight: 700; color: var(--gold); letter-spacing: 0.04em; margin: 26px 0 10px; font-size: 1rem; }
+
+        .part-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr)); gap: 14px; }
+        .part-card {
+            display: flex; flex-direction: column; gap: 6px;
+            background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+            padding: 18px 20px; box-shadow: var(--shadow); text-decoration: none; color: var(--text);
+            border-left: 4px solid var(--accent); transition: transform 0.15s, border-color 0.15s;
+        }
+        .part-card:hover { transform: translateY(-2px); border-color: var(--accent); color: var(--text); }
+        .part-card .num { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+        .part-card h3 { margin: 0; font-size: 1.12rem; color: var(--heading); }
+        .part-card p { margin: 0; color: var(--muted); font-size: 0.97rem; line-height: 1.55; }
+        .part-card.tool { border-left-color: var(--gold); }
+
+        .quick { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(240px, 100%), 1fr)); gap: 12px; }
+        .quick div { background: var(--surface-2); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; }
+        .quick h3 { margin: 0 0 4px; font-size: 1rem; color: var(--heading); }
+        .quick p { margin: 0; color: var(--text); font-size: 0.95rem; line-height: 1.55; }
+
+        .home-footer { text-align: center; color: var(--muted); margin-top: 36px; }
+    </style>
 </head>
 <body>
 <nav class="site-nav">
-    <div class="nav-links">
-        <a href="index.html">GURPS Guide</a>
-        <span>|</span>
-        <a href="https://rays-home.netlify.app/">Ray's House of Fun</a>
-        <span>|</span>
-        <a href="https://rays-home.netlify.app/contact">Contact</a>
-    </div>
-    <button class="theme-toggle" onclick="toggleTheme()">🌙 Dark Mode</button>
+    <a href="https://rays-home.netlify.app/">Ray's House of Fun</a>
+    <a href="/index.html">Home</a>
+    <a href="https://rays-home.netlify.app/contact">Contact</a>
+    <button id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
 </nav>
-    <header>
-        <h1>GURPS Fundamentals: Your Gateway to Universal Gaming</h1>
-        <p class="subtitle">Understanding the Generic Universal RolePlaying System</p>
+
+<div class="home">
+    <header class="hero">
+        <h1>The GURPS Guide</h1>
+        <p>GURPS, the Generic Universal RolePlaying System, uses one set of rules for any genre: a medieval knight, a space marine, a Victorian detective or a modern spy. This 11-part guide to the 4th Edition takes you from your first 3d6 roll to building characters point by point and running whole campaigns.</p>
+        <div class="hero-actions">
+            <a class="btn-hero" href="/gurps_intro.html">Start with Part 1 →</a>
+            <a class="btn-hero ghost" href="/gurps_dice_roller.html">Roll 3d6</a>
+        </div>
+        <div class="dice" aria-label="Three dice showing 4, 2 and 5: a total of 11 against skill 12 succeeds by 1">
+            <span class="die" aria-hidden="true">4</span><span class="die" aria-hidden="true">2</span><span class="die" aria-hidden="true">5</span><span class="vs" aria-hidden="true">= 11 vs skill 12</span>
+        </div>
     </header>
 
     <main>
-       
-                 <h3><a href="index.html">Generic Universal Role Playings System</a></h3>
-            <p>Better known as GURPS. Whether you want to play a medieval knight, a space marine, a Victorian detective, or a modern-day superhero, GURPS provides the universal tools that works for any setting or story.</p>
+        <section>
+            <div class="section-head">
+                <h2>GURPS at a Glance</h2>
+                <p>Four ideas carry most of the game. Each part of the guide builds on them.</p>
+            </div>
+            <div class="quick">
+                <div><h3>Roll 3d6, Low Is Good</h3><p>Roll three six-sided dice. If the total is at or under your effective skill, you succeed. 3–4 is always a critical success; 18 is always a critical failure.</p></div>
+                <div><h3>Four Attributes</h3><p>ST, DX, IQ and HT start at 10. ST and HT cost 10 points per level; DX and IQ cost 20, because so much depends on them.</p></div>
+                <div><h3>Points, Not Classes</h3><p>Buy exactly the character you want: attributes, advantages and skills cost points; disadvantages (usually up to about −50) and up to five quirks give some back.</p></div>
+                <div><h3>Universal Toolkit</h3><p>The same core rules cover every genre and Tech Level, from TL0 stone tools to TL12 super-science. Add only the optional rules your game needs.</p></div>
+            </div>
         </section>
-        <ul>
-           <li><a href="gurps_intro.html">GURPS Intro</a></li>
-              <li><a href="gurps_char.html">GURPS Character Creation</a></li>
-                <li><a href="gurps_character_examples.html">GURPS Character Examples</a></li>
-                <li><a href="gurps_100.html">100 Characters</a></li>
-                <li><a href="gurps_names.html">Character Names</a></li>
-                <li><a href="gurps_groups.html">GURPS Character Group Dynamics</a></li>
-                <li><a href="gurps_combat.html">GURPS Combat Mechanics</a></li>
-                <li><a href="gurps_dice_roller.html">Dice Roller</a></li>
-                <li><a href="gurps_core.html">GURPs Core</a></li>
-                <li><a href="gurps_magic.html">GURPS Magic</a></li>
-                <li><a href="gurps_campaign.html">GURPS Campaign</a></li>
-                <li><a href="https://rays-home.netlify.app/">Home Page</a></li>
-        </ul>
+
+        <section>
+            <div class="section-head">
+                <h2>The 11 Parts</h2>
+                <p>Read in order for the full picture, or jump to what you need.</p>
+            </div>
+
+            <p class="group-label">Learn the Game</p>
+            <div class="part-grid">
+                <a class="part-card" href="/gurps_intro.html"><span class="num">Part 1</span><h3>GURPS Fundamentals</h3><p>What makes GURPS universal: attributes, skills, the 3d6 roll, advantages and disadvantages.</p></a>
+                <a class="part-card" href="/gurps_char.html"><span class="num">Part 2</span><h3>Character Creation</h3><p>Spend your points step by step, from concept and attributes to advantages, disadvantages and skills.</p></a>
+            </div>
+
+            <p class="group-label">Characters &amp; Inspiration</p>
+            <div class="part-grid">
+                <a class="part-card" href="/gurps_character_examples.html"><span class="num">Part 3</span><h3>Character Examples</h3><p>Worked characters and balanced adventure groups with full point breakdowns.</p></a>
+                <a class="part-card" href="/gurps_100.html"><span class="num">Part 4</span><h3>97 Sample Characters</h3><p>Ready-to-play heroes, pairs and teams from 175 to 400 points, across many genres.</p></a>
+                <a class="part-card" href="/gurps_names.html"><span class="num">Part 5</span><h3>150 Character Names</h3><p>Names for any genre and Tech Level, plus naming strategies and a genre wheel.</p></a>
+                <a class="part-card" href="/gurps_groups.html"><span class="num">Part 6</span><h3>Character Groups</h3><p>Balance a party with point-buy: power levels, archetypes and how roles fit together.</p></a>
+            </div>
+
+            <p class="group-label">Rules in Play</p>
+            <div class="part-grid">
+                <a class="part-card" href="/gurps_core.html"><span class="num">Part 7</span><h3>Core Mechanics</h3><p>Success rolls, margins, critical successes and failures, contests and reaction rolls.</p></a>
+                <a class="part-card" href="/gurps_combat.html"><span class="num">Part 8</span><h3>Combat</h3><p>Maneuvers, attack rolls, active defenses, hit locations, damage and injury.</p></a>
+                <a class="part-card tool" href="/gurps_dice_roller.html"><span class="num">Part 9 · Tool</span><h3>GURPS Dice Roller</h3><p>Success rolls with exact critical rules, Quick Contests, reactions and damage dice.</p></a>
+                <a class="part-card" href="/gurps_magic.html"><span class="num">Part 10</span><h3>Magic &amp; the Supernatural</h3><p>Magery, spells as skills, fatigue costs, prerequisite chains and other supernatural powers.</p></a>
+            </div>
+
+            <p class="group-label">Run the Game</p>
+            <div class="part-grid">
+                <a class="part-card" href="/gurps_campaign.html"><span class="num">Part 11</span><h3>Campaign Management</h3><p>Session zero, taming complexity, adventure design, character growth and long campaigns.</p></a>
+            </div>
+        </section>
     </main>
 
-
-<script>
-function toggleTheme(){
-    document.body.classList.toggle('dark-mode');
-    var b=document.querySelector('.theme-toggle');
-    var d=document.body.classList.contains('dark-mode');
-    b.textContent=d?'☀️ Light Mode':'🌙 Dark Mode';
-    localStorage.setItem('theme',d?'dark':'light');
-}
-(function(){
-    if(localStorage.getItem('theme')==='dark'){
-        document.body.classList.add('dark-mode');
-        var b=document.querySelector('.theme-toggle');
-        if(b) b.textContent='☀️ Light Mode';
-    }
-})();
-</script>
+    <footer class="home-footer">
+        <p>New to GURPS? GURPS Lite, a free summary of the core rules from Steve Jackson Games, is all you need to start.</p>
+    </footer>
+</div>
+<div class="site-footer">&copy; 2026 Ray de la Paz. The GURPS Guide. All rights reserved. &middot; <a href="https://rays-home.netlify.app/">Ray's House of Fun</a><br>GURPS is a trademark of Steve Jackson Games. This guide is an unofficial fan resource.</div>
 </body>
 </html>

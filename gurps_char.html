@@ -4,25 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Character Creation Deep Dive: Building Your Perfect GURPS Character</title>
-    <link rel="stylesheet" href="styles/main.css">
-    <link rel="icon" href="favicon.png" type="image/png">
-    <script type="module">
-      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-      mermaid.initialize({ startOnLoad: true });
-    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="/js/site.js?v=1"></script>
+    <script type="module" src="/js/diagrams.js?v=2"></script>
+    <link rel="stylesheet" href="/styles/main.css?v=2">
+    <link rel="icon" href="/favicon.png" type="image/png">
 </head>
 <body>
 <nav class="site-nav">
-    <div class="nav-links">
-        <a href="index.html">GURPS Guide</a>
-        <span>|</span>
-        <a href="https://rays-home.netlify.app/">Ray's House of Fun</a>
-        <span>|</span>
-        <a href="https://rays-home.netlify.app/contact">Contact</a>
-    </div>
-    <button class="theme-toggle" onclick="toggleTheme()">🌙 Dark Mode</button>
+    <a href="https://rays-home.netlify.app/">Ray's House of Fun</a>
+    <a href="/index.html">Home</a>
+    <a href="https://rays-home.netlify.app/contact">Contact</a>
+    <button id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
 </nav>
     <header>
+        <span class="lesson-kicker">Part 2</span>
         <h1>Character Creation Deep Dive: Building Your Perfect GURPS Character</h1>
         <p class="subtitle">From Concept to Character Sheet</p>
     </header>
@@ -79,7 +77,7 @@
             </div>
 
             <div class="example-box">
-                <h4>Concept Example: Dr. Elena Vasquez</h4>
+                <h4>Concept Example: Dr. Rita Anderson</h4>
                 <p><strong>Core Concept:</strong> A brilliant archaeologist who gets pulled into supernatural mysteries</p>
                 <p><strong>Background:</strong> Former university professor, now freelance researcher specializing in pre-Columbian artifacts</p>
                 <p><strong>Drive:</strong> Uncovering historical truth, protecting cultural heritage</p>
@@ -133,12 +131,14 @@
                 <h4>150-Point Character Budget Breakdown</h4>
                 <canvas id="budgetChart" width="400" height="300"></canvas>
                 <script>
+                (function () {
                     const canvas = document.getElementById('budgetChart');
+                    if (!canvas || !canvas.getContext) return;
                     const ctx = canvas.getContext('2d');
                     
-                    // Draw pie chart
+                    // Draw pie chart (sits below the legend so the labels never overlap it)
                     const centerX = 200;
-                    const centerY = 150;
+                    const centerY = 180;
                     const radius = 100;
                     
                     // Attributes (40% = 60 points) - Orange
@@ -168,9 +168,10 @@
                     // Labels
                     ctx.fillStyle = 'black';
                     ctx.font = '14px Arial';
-                    ctx.fillText('Attributes: 60pts', 50, 50);
-                    ctx.fillText('Skills: 45pts', 50, 70);
-                    ctx.fillText('Traits: 45pts', 50, 90);
+                    ctx.fillText('Attributes (orange): 60 pts', 10, 20);
+                    ctx.fillText('Skills (blue): 45 pts', 10, 40);
+                    ctx.fillText('Traits (green): 45 pts', 10, 60);
+                })();
                 </script>
             </div>
         </section>
@@ -179,15 +180,16 @@
             <h2>Optimizing Your Attributes</h2>
             
             <h3>Attribute Cost Scaling</h3>
-            <p>Attributes get more expensive as they increase, like luxury car features. The difference between "good" and "great" costs more than the difference between "poor" and "good":</p>
+            <p>In GURPS 4th Edition, attribute costs are flat: every level costs the same as the one before it. What differs is the attribute. ST and HT cost 10 points per level, while DX and IQ cost 20 points per level, because so many skills are based on them. Every level below 10 refunds the same amount:</p>
 
-            <pre><code>Attribute Level | Cost per Level | Total Cost | Real-World Equivalent
-10 (Average)    | Base (0)       | 0 points   | Typical adult
-11              | 10 points      | 10 points  | Fit/Smart person
-12              | 20 points      | 30 points  | Athlete/Professional
-13              | 30 points      | 60 points  | Elite performer
-14              | 40 points      | 100 points| World-class talent
-15              | 50 points      | 150 points| Olympic/Genius level</code></pre>
+            <pre><code>Attribute Level | ST or HT (total) | DX or IQ (total) | Real-World Equivalent
+9               | -10 points       | -20 points       | Below average
+10 (Average)    | 0 points         | 0 points         | Typical adult
+11              | 10 points        | 20 points        | Fit/Smart person
+12              | 20 points        | 40 points        | Athlete/Professional
+13              | 30 points        | 60 points        | Elite performer
+14              | 40 points        | 80 points        | World-class talent
+15              | 50 points        | 100 points       | Olympic/Genius level</code></pre>
 
             <h3>Smart Attribute Buying</h3>
             <p>Consider these strategies when allocating attribute points:</p>
@@ -211,7 +213,7 @@
             </div>
 
             <div class="real-world-example">
-                <h4>Building Dr. Elena Vasquez's Attributes</h4>
+                <h4>Building Dr. Rita Anderson's Attributes</h4>
                 <p>For our 150-point archaeologist, focusing on mental abilities:</p>
                 <ul>
                     <li><strong>ST 9 [-10 points]:</strong> Slightly below average, reflects academic lifestyle</li>
@@ -220,7 +222,7 @@
                     <li><strong>HT 10 [0 points]:</strong> Average health</li>
                 </ul>
                 <p><strong>Total: 90 points spent on attributes (60% of budget)</strong></p>
-                <p>This leaves 60 points for skills and traits—reasonable for a knowledge-focused character.</p>
+                <p>This leaves 60 points for advantages and skills (plus whatever her disadvantages give back)—reasonable for a knowledge-focused character.</p>
             </div>
         </section>
 
@@ -285,7 +287,7 @@
                     <ul>
                         <li><strong>Enhanced ST/DX [expensive]:</strong> Hit harder, move better</li>
                         <li><strong>Combat Reflexes [15 pts]:</strong> Better initiative, harder to surprise</li>
-                        <li><strong>High Pain Threshold [10 pts]:</strong> Ignore injury penalties</li>
+                        <li><strong>High Pain Threshold [10 pts]:</strong> No shock penalties when injured</li>
                         <li><strong>Danger Sense [15 pts]:</strong> Supernatural awareness of threats</li>
                     </ul>
                 </div>
@@ -312,7 +314,7 @@
             </div>
 
             <div class="elena-advantages">
-                <h4>Dr. Elena's Advantages</h4>
+                <h4>Dr. Anderson's Advantages</h4>
                 <p>For our archaeologist, let's select advantages that support her role:</p>
                 <ul>
                     <li><strong>Eidetic Memory [5 pts]:</strong> Remember every detail of research</li>
@@ -342,14 +344,14 @@
                 <div class="disadvantage-type">
                     <h4>Physical Disadvantages</h4>
                     <p>Limit physical capabilities or create vulnerabilities</p>
-                    <p><strong>Examples:</strong> Bad Sight, One Arm, Chronic Pain, Allergies</p>
+                    <p><strong>Examples:</strong> Bad Sight, One Arm, Chronic Pain, Hard of Hearing</p>
                     <p><strong>Story Impact:</strong> Create tactical challenges and roleplaying opportunities</p>
                 </div>
 
                 <div class="disadvantage-type">
                     <h4>Social Disadvantages</h4>
                     <p>Affect relationships and social interactions</p>
-                    <p><strong>Examples:</strong> Social Stigma, Bad Reputation, Shyness, Honesty</p>
+                    <p><strong>Examples:</strong> Social Stigma, Bad Reputation, Duty, Enemies</p>
                     <p><strong>Story Impact:</strong> Complicate social situations and relationships</p>
                 </div>
 
@@ -372,12 +374,13 @@
                     <li><strong>Balance severity:</strong> Mix minor irritations with major complications</li>
                     <li><strong>Think story:</strong> What makes your character's life more interesting?</li>
                     <li><strong>Avoid "free points":</strong> Don't pick disadvantages you'll never encounter</li>
+                    <li><strong>Mind the limit:</strong> Most GMs cap disadvantages at about -50 points (the Basic Set suggests no more than half your starting points). On top of that you may take up to five quirks at -1 point each; quirks don't count against the limit</li>
                 </ul>
             </div>
 
             <div class="elena-disadvantages">
-                <h4>Dr. Elena's Disadvantages</h4>
-                <p>Let's give Elena some interesting flaws that fit her character:</p>
+                <h4>Dr. Anderson's Disadvantages</h4>
+                <p>Let's give Rita some interesting flaws that fit her character:</p>
                 <ul>
                     <li><strong>Curious [-5 pts]:</strong> Must investigate mysteries, even when dangerous</li>
                     <li><strong>Honesty [-10 pts]:</strong> Won't lie or cheat, believes in truth</li>
@@ -385,12 +388,13 @@
                     <li><strong>Pacifism (Cannot Harm Innocents) [-10 pts]:</strong> Strong moral code</li>
                     <li><strong>Workaholic [-5 pts]:</strong> Has trouble relaxing or maintaining relationships</li>
                 </ul>
-                <p><strong>Total: -40 points, giving Elena 40 extra points to spend elsewhere!</strong></p>
+                <p><strong>Total: -40 points, giving Rita 40 extra points to spend elsewhere,</strong> comfortably inside a -50 limit.</p>
+                <p><strong>Quirks [-5 pts]:</strong> Always carries a battered field notebook; Distrusts private collectors; Drinks far too much coffee; Talks to artifacts while she cleans them; Hums when she concentrates. Five quirks at -1 each give her 5 more points, and they don't count against the disadvantage limit.</p>
             </div>
 
             <div class="disadvantage-interactions">
                 <h4>How Disadvantages Create Story</h4>
-                <p>Elena's disadvantages work together to create interesting scenarios:</p>
+                <p>Rita's disadvantages work together to create interesting scenarios:</p>
                 <ul>
                     <li>Her <strong>Curiosity</strong> gets the team into supernatural trouble</li>
                     <li>Her <strong>Honesty</strong> prevents her from lying to authorities</li>
@@ -407,7 +411,7 @@
             <p>Skills are your character's learned abilities—their professional toolkit. Unlike a video game where you might be "a mage" or "a fighter," GURPS lets you build a unique combination of abilities that reflects your character's background and interests.</p>
 
             <h3>Skill Point Economics</h3>
-            <p>Skills follow the law of diminishing returns—early points give big improvements, later points cost more for smaller gains:</p>
+            <p>Skills follow the law of diminishing returns—early points give big improvements, later points cost more for smaller gains. Here is the ladder for an Average skill:</p>
 
             <pre><code>Points Spent | Skill Level | Improvement | Best Use
 1 point      | Attribute-1 | +1         | Dabbling/basics
@@ -417,19 +421,29 @@
 12 points    | Attribute+3 | +1         | Master level
 16 points    | Attribute+4 | +1         | World-class expert</code></pre>
 
+            <p>Every difficulty follows the same ladder, just shifted. Easy skills start one level higher, Hard skills one lower and Very Hard skills two lower. Past 4 points, each further +1 costs 4 more points:</p>
+
+            <pre><code>Points | Easy        | Average     | Hard        | Very Hard
+1      | Attribute+0 | Attribute-1 | Attribute-2 | Attribute-3
+2      | Attribute+1 | Attribute+0 | Attribute-1 | Attribute-2
+4      | Attribute+2 | Attribute+1 | Attribute+0 | Attribute-1
+8      | Attribute+3 | Attribute+2 | Attribute+1 | Attribute+0
+12     | Attribute+4 | Attribute+3 | Attribute+2 | Attribute+1</code></pre>
+
             <h3>The Pyramid Strategy</h3>
             <p>Build your skills like a pyramid—one primary skill at high level, several secondary skills at moderate level, many tertiary skills at basic level:</p>
 
-            <svg width="500" height="300" style="margin: 20px auto; display: block;">
+            <svg width="500" height="300" viewBox="0 0 500 300">
                 <!-- Pyramid structure -->
                 <rect x="200" y="50" width="100" height="40" fill="#FF6B6B" stroke="black" stroke-width="2"/>
                 <text x="250" y="75" text-anchor="middle" font-size="12" fill="white">Primary (8+ pts)</text>
                 
                 <rect x="150" y="100" width="80" height="35" fill="#4ECDC4" stroke="black" stroke-width="2"/>
                 <rect x="270" y="100" width="80" height="35" fill="#4ECDC4" stroke="black" stroke-width="2"/>
-                <text x="190" y="120" text-anchor="middle" font-size="10">Secondary</text>
-                <text x="310" y="120" text-anchor="middle" font-size="10">Secondary</text>
-                <text x="250" y="130" text-anchor="middle" font-size="10">(4 pts each)</text>
+                <text x="190" y="115" text-anchor="middle" font-size="10">Secondary</text>
+                <text x="310" y="115" text-anchor="middle" font-size="10">Secondary</text>
+                <text x="190" y="128" text-anchor="middle" font-size="10">(4 pts each)</text>
+                <text x="310" y="128" text-anchor="middle" font-size="10">(4 pts each)</text>
                 
                 <rect x="100" y="145" width="60" height="30" fill="#45B7D1" stroke="black" stroke-width="2"/>
                 <rect x="170" y="145" width="60" height="30" fill="#45B7D1" stroke="black" stroke-width="2"/>
@@ -449,9 +463,9 @@
                     <h4>Physical Skills (DX-based)</h4>
                     <ul>
                         <li><strong>Combat:</strong> Guns, Melee weapons, Brawling</li>
-                        <li><strong>Athletic:</strong> Climbing, Swimming, Acrobatics</li>
-                        <li><strong>Technical:</strong> Driving, Piloting, Lockpicking</li>
-                        <li><strong>Crafting:</strong> Mechanic, Electronics Repair</li>
+                        <li><strong>Athletic:</strong> Climbing, Jumping, Acrobatics</li>
+                        <li><strong>Vehicles:</strong> Driving, Piloting, Boating</li>
+                        <li><strong>Handiwork:</strong> Knot-Tying, Sleight of Hand, Pickpocket</li>
                     </ul>
                 </div>
 
@@ -460,13 +474,13 @@
                     <ul>
                         <li><strong>Academic:</strong> History, Science, Law, Medicine</li>
                         <li><strong>Languages:</strong> Foreign languages and ancient scripts</li>
-                        <li><strong>Professional:</strong> Computer Operation, Research, Teaching</li>
+                        <li><strong>Professional:</strong> Computer Operation, Research, Teaching, Lockpicking, Mechanic</li>
                         <li><strong>Occult:</strong> Hidden Lore, Religious studies</li>
                     </ul>
                 </div>
 
                 <div class="skill-category">
-                    <h4>Social Skills (IQ-based)</h4>
+                    <h4>Social Skills (mostly IQ-based)</h4>
                     <ul>
                         <li><strong>Communication:</strong> Diplomacy, Fast-Talk, Public Speaking</li>
                         <li><strong>Information:</strong> Streetwise, Intelligence Analysis</li>
@@ -476,42 +490,57 @@
                 </div>
 
                 <div class="skill-category">
-                    <h4>Perception Skills (IQ-based)</h4>
+                    <h4>Perception Skills (Per- and IQ-based)</h4>
                     <ul>
                         <li><strong>Awareness:</strong> Observation, Search, Tracking</li>
                         <li><strong>Investigation:</strong> Forensics, Criminology</li>
-                        <li><strong>Survival:</strong> Navigation, Weather sense</li>
+                        <li><strong>Wilderness:</strong> Survival, Navigation, Weather Sense</li>
                     </ul>
                 </div>
             </div>
 
             <div class="elena-skills">
-                <h4>Dr. Elena's Skill Package</h4>
-                <p>With her remaining 29 points (60 total budget - 31 advantages), Elena needs skills that support her archaeological expertise:</p>
+                <h4>Dr. Anderson's Skill Package</h4>
+                <p>So far Rita has spent 90 (attributes) + 31 (advantages) - 40 (disadvantages) - 5 (quirks) = 76 points. That leaves 74 of her 150 points for skills that support her archaeological expertise:</p>
 
-                <h5>Primary Skills (8 points each)</h5>
+                <h5>Primary Skills (8-12 points each)</h5>
                 <ul>
-                    <li><strong>Archaeology [8 pts] → IQ+2 (16):</strong> Her main professional expertise</li>
-                    <li><strong>Research [8 pts] → IQ+2 (16):</strong> Finding information in libraries and databases</li>
+                    <li><strong>Archaeology (IQ/Hard) [12 pts] → IQ+2 (16):</strong> Her main professional expertise</li>
+                    <li><strong>Research (IQ/Average) [12 pts] → IQ+3 (17):</strong> Finding information in libraries and databases</li>
+                    <li><strong>History (Pre-Columbian) (IQ/Hard) [8 pts] → IQ+1 (15):</strong> Specialized historical knowledge</li>
                 </ul>
 
-                <h5>Secondary Skills (4 points each)</h5>
+                <h5>Secondary Skills (4-8 points each)</h5>
                 <ul>
-                    <li><strong>History (Pre-Columbian) [4 pts] → IQ+1 (15):</strong> Specialized historical knowledge</li>
-                    <li><strong>Language (Ancient Mayan) [4 pts] → IQ+1 (15):</strong> Read primary sources</li>
+                    <li><strong>Occultism (IQ/Average) [8 pts] → IQ+2 (16):</strong> Her role on an occult investigation team</li>
+                    <li><strong>Anthropology (IQ/Hard) [4 pts] → IQ+0 (14):</strong> Understanding ancient cultures</li>
+                    <li><strong>Hidden Lore (Lost Civilizations) (IQ/Average) [4 pts] → IQ+1 (15):</strong> What the textbooks leave out</li>
+                    <li><strong>Diplomacy (IQ/Hard) [4 pts] → IQ+0 (14):</strong> Negotiating dig permits with officials</li>
+                    <li><strong>Teaching (IQ/Average) [4 pts] → IQ+1 (15):</strong> Years as a university professor</li>
+                </ul>
+
+                <h5>Languages</h5>
+                <p>Languages aren't bought like skills; you buy a comprehension level (Broken, Accented or Native) separately for speaking and for writing. Language Talent gives Rita one level better than she pays for.</p>
+                <ul>
+                    <li><strong>Spanish (spoken and written) [4 pts] → Native:</strong> Accented bought, raised to Native by Language Talent</li>
+                    <li><strong>Classic Maya (written only) [2 pts] → Native:</strong> Reads primary sources fluently</li>
                 </ul>
 
                 <h5>Tertiary Skills (1-2 points each)</h5>
                 <ul>
-                    <li><strong>Anthropology [2 pts] → IQ+0 (14):</strong> Understanding ancient cultures</li>
-                    <li><strong>Photography [1 pt] → IQ-1 (13):</strong> Documenting finds</li>
-                    <li><strong>Geology [1 pt] → IQ-1 (13):</strong> Understanding sites and materials</li>
-                    <li><strong>Computer Operation [1 pt] → IQ-1 (13):</strong> Modern research tools</li>
-                    <li><strong>Driving (Automobile) [1 pt] → DX-1 (10):</strong> Getting to remote sites</li>
+                    <li><strong>Public Speaking (IQ/Average) [2 pts] → IQ+0 (14):</strong> Lectures and conference talks</li>
+                    <li><strong>Survival (Jungle) (Per/Average) [2 pts] → Per+0 (14):</strong> Living rough at remote digs</li>
+                    <li><strong>Climbing (DX/Average) [2 pts] → DX+0 (11):</strong> Ruins, cliffs and temple steps</li>
+                    <li><strong>First Aid (IQ/Easy) [2 pts] → IQ+1 (15):</strong> Patching up the team in the field</li>
+                    <li><strong>Computer Operation (IQ/Easy) [1 pt] → IQ+0 (14):</strong> Modern research tools</li>
+                    <li><strong>Photography (IQ/Average) [1 pt] → IQ-1 (13):</strong> Documenting finds</li>
+                    <li><strong>Geology (IQ/Hard) [1 pt] → IQ-2 (12):</strong> Understanding sites and materials</li>
+                    <li><strong>Driving (Automobile) (DX/Average) [1 pt] → DX-1 (10):</strong> Getting to remote sites</li>
                 </ul>
 
-                <p><strong>Total: 30 points spent on skills</strong></p>
-                <p>Elena now has world-class expertise in archaeology and research, solid knowledge in related fields, and basic competence in supporting skills.</p>
+                <p><strong>Total: 74 points spent on skills</strong></p>
+                <p><strong>Final tally:</strong> 90 (attributes) + 31 (advantages) - 40 (disadvantages) - 5 (quirks) + 74 (skills) = 150 points.</p>
+                <p>Rita now has world-class expertise in archaeology and research, solid knowledge in related fields, and basic competence in supporting skills.</p>
             </div>
         </section>
 
@@ -520,10 +549,10 @@
             
             <h3>Character Template: The Action Hero</h3>
             <div class="character-sheet">
-                <h4>Jack "Ace" Morrison - 150-Point Action Hero</h4>
+                <h4>Jack "Ace" Morrison - 200-Point Action Hero</h4>
                 
                 <div class="character-stats">
-                    <h5>Attributes [90 points]</h5>
+                    <h5>Attributes [120 points]</h5>
                     <ul>
                         <li>ST 12 [20] - Strong enough for action scenes</li>
                         <li>DX 13 [60] - Excellent coordination for combat/stunts</li>
@@ -537,11 +566,11 @@
                         <li>Basic Speed: 6.25, Basic Move: 6</li>
                     </ul>
 
-                    <h5>Advantages [25 points]</h5>
+                    <h5>Advantages [45 points]</h5>
                     <ul>
                         <li>Combat Reflexes [15] - Hard to surprise, bonus to initiative</li>
-                        <li>Luck [15] - Can reroll one bad roll per game session</li>
-                        <li>High Pain Threshold [10] - Ignore injury penalties</li>
+                        <li>Luck [15] - Once per hour of play, roll three times and take the best result</li>
+                        <li>High Pain Threshold [10] - No shock penalties when injured</li>
                         <li>Contacts (Intelligence Agency) [5] - Information and backup</li>
                     </ul>
 
@@ -553,12 +582,12 @@
 
                     <h5>Skills [55 points]</h5>
                     <ul>
-                        <li>Guns (Pistol) [8] → DX+2 (15) - Expert marksman</li>
-                        <li>Brawling [4] → DX+1 (14) - Good hand-to-hand fighter</li>
+                        <li>Guns (Pistol) [8] → DX+3 (16) - Expert marksman (Guns is an Easy skill)</li>
+                        <li>Brawling [4] → DX+2 (15) - Good hand-to-hand fighter (Easy skill)</li>
                         <li>Driving (Automobile) [4] → DX+1 (14) - Stunt driving</li>
                         <li>Stealth [4] → DX+1 (14) - Move quietly</li>
-                        <li>Tactics [4] → IQ+1 (12) - Military planning</li>
-                        <li>And various other skills at 1-2 points each</li>
+                        <li>Tactics [4] → IQ+0 (11) - Military planning (Hard skill)</li>
+                        <li>And various other skills at 1-2 points each (31 points)</li>
                     </ul>
                 </div>
             </div>
@@ -576,7 +605,7 @@
                         <li>HT 10 [0] - Average health</li>
                     </ul>
 
-                    <h5>Advantages [65 points]</h5>
+                    <h5>Advantages [70 points]</h5>
                     <ul>
                         <li>Magery 3 [35] - Powerful magical ability</li>
                         <li>Eidetic Memory [5] - Perfect recall</li>
@@ -594,13 +623,13 @@
                         <li>Enemy (Dark Cult) [-10] - They want his knowledge</li>
                     </ul>
 
-                    <h5>Skills [85 points]</h5>
+                    <h5>Skills [80 points]</h5>
                     <ul>
-                        <li>Thaumatology [12] → IQ+3 (18) - Magical theory master</li>
+                        <li>Thaumatology [12] → IQ+1 (16) - Magical theory master (Very Hard skill)</li>
                         <li>Occultism [8] → IQ+2 (17) - Hidden knowledge expert</li>
                         <li>Research [8] → IQ+2 (17) - Finding information</li>
-                        <li>Various magical spells [40+ points]</li>
-                        <li>Languages and other academic skills</li>
+                        <li>Various magical spells [40 points]</li>
+                        <li>Languages and other academic skills (about 12 points)</li>
                     </ul>
                 </div>
             </div>
@@ -670,7 +699,7 @@
 
             <div class="activity">
                 <h3>Activity 4: Character Optimization Challenge</h3>
-                <p>Take the Dr. Elena character we built and rebuild her as:</p>
+                <p>Take the Dr. Rita Anderson character we built and rebuild her as:</p>
                 <ul>
                     <li>A 100-point "realistic" version</li>
                     <li>A 250-point "cinematic" version</li>
@@ -714,35 +743,19 @@
 
             <div class="next-steps">
                 <h3>Ready for Action?</h3>
-                <p>In our next lecture, we'll explore the core mechanics that bring your character to life—how to make skill rolls, when to use different types of tests, and how success and failure drive the story forward. You'll learn the fundamental resolution systems that govern everything from picking locks to solving mysteries to surviving deadly encounters.</p>
+                <p>In the next part, we'll explore the core mechanics that bring your character to life—how to make skill rolls, when to use different types of tests, and how success and failure drive the story forward. You'll learn the fundamental resolution systems that govern everything from picking locks to solving mysteries to surviving deadly encounters.</p>
             </div>
         </section>
     </main>
 
     <footer>
+<div class="page-nav">
+    <a class="prev" href="/gurps_intro.html">GURPS Fundamentals</a>
+    <a class="next" href="/gurps_character_examples.html">Character Examples</a>
+</div>
         <p>Remember: A great character is more than the sum of their points!</p>
     </footer>
 
-<nav class="page-nav">
-    <a href="gurps_intro.html">&larr; GURPS Intro</a>
-    <span class="spacer"></span>
-    <a href="gurps_character_examples.html">Character Examples &rarr;</a>
-</nav>
-<script>
-function toggleTheme(){
-    document.body.classList.toggle('dark-mode');
-    var b=document.querySelector('.theme-toggle');
-    var d=document.body.classList.contains('dark-mode');
-    b.textContent=d?'☀️ Light Mode':'🌙 Dark Mode';
-    localStorage.setItem('theme',d?'dark':'light');
-}
-(function(){
-    if(localStorage.getItem('theme')==='dark'){
-        document.body.classList.add('dark-mode');
-        var b=document.querySelector('.theme-toggle');
-        if(b) b.textContent='☀️ Light Mode';
-    }
-})();
-</script>
+<div class="site-footer">&copy; 2026 Ray de la Paz. The GURPS Guide. All rights reserved. &middot; <a href="https://rays-home.netlify.app/">Ray's House of Fun</a><br>GURPS is a trademark of Steve Jackson Games. This guide is an unofficial fan resource.</div>
 </body>
 </html>

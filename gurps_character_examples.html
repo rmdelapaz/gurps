@@ -4,26 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GURPS Character Examples and Adventure Groups</title>
-    <link rel="stylesheet" href="styles/main.css">
-    <link rel="icon" href="favicon.png" type="image/png">
-    <script type="module">
-      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-      mermaid.initialize({ startOnLoad: true });
-    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="/js/site.js?v=1"></script>
+    <script type="module" src="/js/diagrams.js?v=2"></script>
+    <link rel="stylesheet" href="/styles/main.css?v=2">
+    <link rel="icon" href="/favicon.png" type="image/png">
 </head>
 <body>
 <nav class="site-nav">
-    <div class="nav-links">
-        <a href="index.html">GURPS Guide</a>
-        <span>|</span>
-        <a href="https://rays-home.netlify.app/">Ray's House of Fun</a>
-        <span>|</span>
-        <a href="https://rays-home.netlify.app/contact">Contact</a>
-    </div>
-    <button class="theme-toggle" onclick="toggleTheme()">🌙 Dark Mode</button>
+    <a href="https://rays-home.netlify.app/">Ray's House of Fun</a>
+    <a href="/index.html">Home</a>
+    <a href="https://rays-home.netlify.app/contact">Contact</a>
+    <button id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
 </nav>
-    <div class="container">
         <header>
+            <span class="lesson-kicker">Part 3</span>
             <h1>GURPS Character Examples and Adventure Groups</h1>
             <p>A comprehensive guide to creating versatile characters and balanced teams using the Generic Universal RolePlaying System</p>
         </header>
@@ -90,12 +87,13 @@
 
             <section class="individual-characters">
                 <h2>Individual Character Examples</h2>
+                <p>Each sheet shows the full attribute costs plus the character's signature advantages, disadvantages and skills. Any points left over after those are spent on background skills and minor traits not listed here.</p>
                 
                 <div class="character-example">
                     <h3>Sarah "Tank" Morrison - Modern Soldier (200 points)</h3>
                     <div class="character-stats">
-                        <p><strong>Attributes:</strong> ST 14 [40], DX 13 [60], IQ 11 [20], HT 13 [60]</p>
-                        <p><strong>Secondary:</strong> HP 14, Will 11, Per 12, FP 13, Basic Speed 6.5, Move 6</p>
+                        <p><strong>Attributes:</strong> ST 14 [40], DX 13 [60], IQ 11 [20], HT 13 [30]</p>
+                        <p><strong>Secondary:</strong> HP 14, Will 11, Per 11, FP 13, Basic Speed 6.5, Move 6</p>
                         <p><strong>Advantages:</strong> Combat Reflexes [15], Fit [5], Military Rank 2 [10]</p>
                         <p><strong>Disadvantages:</strong> Code of Honor (Soldier's) [-10], Duty (Military) [-10], Sense of Duty (Squad) [-5]</p>
                         <p><strong>Skills:</strong> Guns (Rifle)-16 [8], Tactics-12 [8], Leadership-12 [4], First Aid-12 [2]</p>
@@ -122,24 +120,24 @@
                 <div class="character-example">
                     <h3>Dr. Marcus Vex - Scientist/Investigator (175 points)</h3>
                     <div class="character-stats">
-                        <p><strong>Attributes:</strong> ST 9 [-10], DX 11 [20], IQ 15 [100], HT 11 [20]</p>
-                        <p><strong>Secondary:</strong> HP 9, Will 15, Per 16, FP 11, Basic Speed 5.5, Move 5</p>
-                        <p><strong>Advantages:</strong> Eidetic Memory [5], Intuition [15], Strong Will +2 [8]</p>
+                        <p><strong>Attributes:</strong> ST 9 [-10], DX 11 [20], IQ 15 [100], HT 11 [10]</p>
+                        <p><strong>Secondary:</strong> HP 9, Will 17, Per 15, FP 11, Basic Speed 5.5, Move 5</p>
+                        <p><strong>Advantages:</strong> Eidetic Memory [5], Intuition [15], Will +2 [10]</p>
                         <p><strong>Disadvantages:</strong> Curious [-5], Obsession (Uncover Truth) [-10], Workaholic [-5]</p>
-                        <p><strong>Skills:</strong> Research-18 [8], Science (Physics)-17 [12], Observation-17 [4], Electronics-14 [4]</p>
+                        <p><strong>Skills:</strong> Research-18 [12], Physics-17 [16], Observation-17 [8], Electronics Operation-14 [1]</p>
                         <p><strong>Equipment:</strong> Laptop, Scientific Instruments, Recording Devices</p>
                     </div>
                     <p><strong>Role in Group:</strong> The analytical mind—processing information like a supercomputer while his intuition guides him toward breakthrough discoveries. His scientific training and observational skills reveal patterns others miss.</p>
                 </div>
 
                 <div class="character-example">
-                    <h3>Whisper - Street Thief/Infiltrator (150 points)</h3>
+                    <h3>Whisper - Street Thief/Infiltrator (225 points)</h3>
                     <div class="character-stats">
                         <p><strong>Attributes:</strong> ST 10 [0], DX 15 [100], IQ 12 [40], HT 12 [20]</p>
-                        <p><strong>Secondary:</strong> HP 10, Will 12, Per 14, FP 12, Basic Speed 6.75, Move 6</p>
+                        <p><strong>Secondary:</strong> HP 10, Will 12, Per 12, FP 12, Basic Speed 6.75, Move 6</p>
                         <p><strong>Advantages:</strong> Catfall [10], Night Vision 5 [5], Silence 2 [10]</p>
                         <p><strong>Disadvantages:</strong> Code of Honor (Thief's) [-5], Secret (Criminal Past) [-5], Loner [-5]</p>
-                        <p><strong>Skills:</strong> Stealth-18 [12], Lockpicking-16 [8], Pickpocket-16 [8], Climbing-16 [8]</p>
+                        <p><strong>Skills:</strong> Stealth-18 [12], Lockpicking-16 [16], Pickpocket-16 [8], Climbing-16 [4]</p>
                         <p><strong>Equipment:</strong> Lockpicks, Dark Clothing, Climbing Gear, Small Weapons</p>
                     </div>
                     <p><strong>Role in Group:</strong> The shadow walker—moving through secured areas like smoke through cracks, opening doors both literal and metaphorical. Their criminal skills provide access to information and locations others cannot reach.</p>
@@ -149,23 +147,23 @@
                     <h3>Elena Brightblade - Fantasy Paladin (250 points)</h3>
                     <div class="character-stats">
                         <p><strong>Attributes:</strong> ST 15 [50], DX 12 [40], IQ 12 [40], HT 14 [40]</p>
-                        <p><strong>Secondary:</strong> HP 15, Will 14, Per 12, FP 14, Basic Speed 6.5, Move 6</p>
-                        <p><strong>Advantages:</strong> Blessed [10], Charisma 2 [10], Divine Favor 4 [20], Magic Resistance 5 [15]</p>
+                        <p><strong>Secondary:</strong> HP 15, Will 12, Per 12, FP 14, Basic Speed 6.5, Move 6</p>
+                        <p><strong>Advantages:</strong> Blessed [10], Charisma 2 [10], Divine Favor 4 [20], Magic Resistance 5 [10]</p>
                         <p><strong>Disadvantages:</strong> Code of Honor (Chivalric) [-15], Sense of Duty (Innocents) [-15], Vow (Celibacy) [-5]</p>
-                        <p><strong>Skills:</strong> Sword-16 [16], Shield-14 [4], Riding-13 [4], Theology-14 [8], Leadership-14 [4]</p>
+                        <p><strong>Skills:</strong> Sword-16 [16], Shield-14 [4], Riding-13 [4], Theology-14 [12], Leadership-14 [2]</p>
                         <p><strong>Equipment:</strong> Blessed Sword, Shield, Plate Armor, Warhorse</p>
                     </div>
                     <p><strong>Role in Group:</strong> The divine champion—channeling holy power through martial prowess like a living prayer made steel. Her divine connection and moral authority inspire allies while her blessed weapons pierce supernatural defenses.</p>
                 </div>
 
                 <div class="character-example">
-                    <h3>Zara Mindbridge - Psychic Investigator (225 points)</h3>
+                    <h3>Zara Mindbridge - Psychic Investigator (250 points)</h3>
                     <div class="character-stats">
-                        <p><strong>Attributes:</strong> ST 10 [0], DX 11 [20], IQ 14 [80], HT 11 [20]</p>
-                        <p><strong>Secondary:</strong> HP 10, Will 16, Per 15, FP 11, Basic Speed 5.5, Move 5</p>
+                        <p><strong>Attributes:</strong> ST 10 [0], DX 11 [20], IQ 14 [80], HT 11 [10]</p>
+                        <p><strong>Secondary:</strong> HP 10, Will 14, Per 14, FP 11, Basic Speed 5.5, Move 5</p>
                         <p><strong>Advantages:</strong> Empathy [15], Mind Reading [30], Precognition [25], Telepathy [50]</p>
-                        <p><strong>Disadvantages:</strong> Mental Disadvantage (Pacifism) [-15], Sensitive [-5], Social Stigma (Psychic) [-5]</p>
-                        <p><strong>Skills:</strong> Psychology-16 [8], Meditation-16 [8], Body Language-16 [4], Detect Lies-16 [4]</p>
+                        <p><strong>Disadvantages:</strong> Pacifism (Self-Defense Only) [-15], Sensitive [-5], Social Stigma (Psychic) [-5]</p>
+                        <p><strong>Skills:</strong> Psychology-16 [12], Meditation-16 [12], Body Language-16 [8], Detect Lies-16 [12]</p>
                         <p><strong>Equipment:</strong> Casual Clothes, Recording Equipment, Meditation Supplies</p>
                     </div>
                     <p><strong>Role in Group:</strong> The mental gateway—reading thoughts and emotions like others read books, her psychic abilities cutting through deception to reveal hidden truths. Her empathic nature helps heal psychological trauma while gathering crucial intelligence.</p>
@@ -175,23 +173,23 @@
                     <h3>Captain Rex Starfighter - Space Pilot (275 points)</h3>
                     <div class="character-stats">
                         <p><strong>Attributes:</strong> ST 11 [10], DX 14 [80], IQ 13 [60], HT 12 [20]</p>
-                        <p><strong>Secondary:</strong> HP 11, Will 13, Per 14, FP 12, Basic Speed 6.5, Move 6</p>
+                        <p><strong>Secondary:</strong> HP 11, Will 13, Per 13, FP 12, Basic Speed 6.5, Move 6</p>
                         <p><strong>Advantages:</strong> Ace [15], Combat Reflexes [15], G-Experience [10], 3D Spatial Sense [10]</p>
                         <p><strong>Disadvantages:</strong> Overconfidence [-5], Reputation (Hotshot Pilot) [-5], Duty (Space Fleet) [-10]</p>
-                        <p><strong>Skills:</strong> Pilot (Spacecraft)-18 [16], Gunnery-16 [8], Navigation-15 [8], Electronics-14 [4]</p>
+                        <p><strong>Skills:</strong> Pilot (Spacecraft)-18 [16], Gunnery-16 [4], Navigation-15 [8], Electronics-14 [4]</p>
                         <p><strong>Equipment:</strong> Personal Spacecraft, Vacc Suit, Sidearm, Navigation Computer</p>
                     </div>
                     <p><strong>Role in Group:</strong> The stellar ace—bonding with spacecraft like extensions of his nervous system, dancing through asteroid fields and dogfights with supernatural grace. His piloting skills provide rapid transportation and tactical superiority in space combat.</p>
                 </div>
 
                 <div class="character-example">
-                    <h3>Brotherhood - Cybernetic Hacker (200 points)</h3>
+                    <h3>Brotherhood - Cybernetic Hacker (225 points)</h3>
                     <div class="character-stats">
                         <p><strong>Attributes:</strong> ST 8 [-20], DX 12 [40], IQ 16 [120], HT 10 [0]</p>
-                        <p><strong>Secondary:</strong> HP 8, Will 16, Per 17, FP 10, Basic Speed 5.5, Move 5</p>
+                        <p><strong>Secondary:</strong> HP 8, Will 16, Per 16, FP 10, Basic Speed 5.5, Move 5</p>
                         <p><strong>Advantages:</strong> Computer Brain [25], Cybernetic Interface [40], Lightning Calculator [2]</p>
                         <p><strong>Disadvantages:</strong> Social Stigma (Cyber-augmented) [-5], Addiction (VR) [-15], Paranoia [-10]</p>
-                        <p><strong>Skills:</strong> Computer Hacking-20 [16], Electronics-18 [8], Programming-18 [8], Computer Operation-18 [4]</p>
+                        <p><strong>Skills:</strong> Computer Hacking-20 [24], Electronics-18 [8], Programming-18 [12], Computer Operation-18 [4]</p>
                         <p><strong>Equipment:</strong> Cyberdeck, Neural Interface, Portable Computer, Security Software</p>
                     </div>
                     <p><strong>Role in Group:</strong> The digital ghost—haunting cyberspace and electronic networks with inhuman precision, their augmented mind processing data streams at superhuman speed. They serve as the group's key to any electronic lock and early warning system against digital threats.</p>
@@ -208,7 +206,7 @@
 
                 <div class="adventure-group">
                     <h3>The Modern Paranormal Investigators</h3>
-                    <p><em>200-point contemporary heroes facing supernatural mysteries</em></p>
+                    <p><em>175- to 250-point contemporary heroes facing supernatural mysteries</em></p>
                     <ul>
                         <li><strong>Detective Sarah Cross</strong> - Police Detective (Investigation and authority)</li>
                         <li><strong>Dr. Marcus Vex</strong> - Research Scientist (Analysis and equipment)</li>
@@ -221,7 +219,7 @@
 
                 <div class="adventure-group">
                     <h3>The Cyberpunk Data Runners</h3>
-                    <p><em>175-point operatives in a high-tech dystopian future</em></p>
+                    <p><em>225-point operatives in a high-tech dystopian future</em></p>
                     <ul>
                         <li><strong>Brotherhood</strong> - Cybernetic Hacker (Digital infiltration and data theft)</li>
                         <li><strong>Nova "Quicksilver"</strong> - Street Samurai (Combat and protection)</li>
@@ -249,7 +247,7 @@
 
                 <div class="adventure-group">
                     <h3>The Space Exploration Crew</h3>
-                    <p><em>300-point specialists exploring the galactic frontier</em></p>
+                    <p><em>275- to 300-point specialists exploring the galactic frontier</em></p>
                     <ul>
                         <li><strong>Captain Rex Starfighter</strong> - Human Pilot (Ship operations and space combat)</li>
                         <li><strong>Dr. Vera Cosmos</strong> - Alien Scientist (Xenobiology and research)</li>
@@ -323,7 +321,7 @@
                         <p><strong>Combat Reflexes [15]:</strong> Superior reaction time in dangerous situations</p>
                         <p><strong>Enhanced Strength [10/level]:</strong> Superhuman physical power</p>
                         <p><strong>Night Vision [1/level]:</strong> Ability to see in darkness</p>
-                        <p><strong>Regeneration [10-40]:</strong> Accelerated healing abilities</p>
+                        <p><strong>Regeneration [10-100]:</strong> Accelerated healing abilities</p>
                     </div>
                     
                     <div class="trait-category">
@@ -354,25 +352,25 @@
                     <h3>Skill Difficulty Levels</h3>
                     <div class="difficulty-level">
                         <h4>Easy (DX/E, IQ/E, etc.)</h4>
-                        <p>Basic skills that most people can learn quickly. Examples: First Aid, Driving, Basic Languages</p>
+                        <p>Basic skills that most people can learn quickly. Examples: First Aid, Guns, Carousing</p>
                         <p><strong>Cost:</strong> 1 point for skill level = attribute, 2 points for attribute+1, 4 points for attribute+2</p>
                     </div>
                     
                     <div class="difficulty-level">
                         <h4>Average (DX/A, IQ/A, etc.)</h4>
-                        <p>Professional skills requiring practice and study. Examples: Guns, Electronics, Most Sciences</p>
+                        <p>Professional skills requiring practice and study. Examples: Driving, Stealth, Electronics Operation</p>
                         <p><strong>Cost:</strong> 2 points for skill level = attribute, 4 points for attribute+1, 8 points for attribute+2</p>
                     </div>
                     
                     <div class="difficulty-level">
                         <h4>Hard (DX/H, IQ/H, etc.)</h4>
-                        <p>Complex skills demanding extensive training. Examples: Computer Hacking, Surgery, Law</p>
+                        <p>Complex skills demanding extensive training. Examples: Law, Chemistry, Mathematics</p>
                         <p><strong>Cost:</strong> 4 points for skill level = attribute, 8 points for attribute+1, 12 points for attribute+2</p>
                     </div>
                     
                     <div class="difficulty-level">
                         <h4>Very Hard (DX/VH, IQ/VH, etc.)</h4>
-                        <p>Extremely complex skills requiring years of study. Examples: Theoretical Physics, Magical Theory</p>
+                        <p>Extremely complex skills requiring years of study. Examples: Computer Hacking, Surgery, Physics, Thaumatology</p>
                         <p><strong>Cost:</strong> 8 points for skill level = attribute, 12 points for attribute+1, 16 points for attribute+2</p>
                     </div>
                 </div>
@@ -388,7 +386,7 @@
                     <div class="genre-adaptation">
                         <h4>Horror/Investigation</h4>
                         <p><strong>Focus:</strong> Mental stability, investigation skills, limited resources</p>
-                        <p><strong>Key Advantages:</strong> Strong Will, Intuition, Empathy</p>
+                        <p><strong>Key Advantages:</strong> Will (bought up), Intuition, Empathy</p>
                         <p><strong>Common Disadvantages:</strong> Phobias, Curious, Sense of Duty</p>
                         <p><strong>Essential Skills:</strong> Research, Observation, Psychology, Occultism</p>
                     </div>
@@ -432,12 +430,12 @@
                     
                     <div class="combat-option">
                         <h4>All-Out Defense</h4>
-                        <p>Focus entirely on protection, gaining +2 to all defenses or doubled retreat bonuses. Survival over aggression.</p>
+                        <p>Focus entirely on protection, gaining +2 to one active defense (Dodge, Parry or Block) or the chance to try two different defenses against the same attack. Survival over aggression.</p>
                     </div>
                     
                     <div class="combat-option">
                         <h4>Evaluate</h4>
-                        <p>Study opponent for tactical advantage, gaining +1 per turn of observation. Knowledge becomes power.</p>
+                        <p>Study opponent for tactical advantage, gaining +1 to hit per turn of observation (up to +3). Knowledge becomes power.</p>
                     </div>
                     
                     <div class="combat-option">
@@ -480,12 +478,16 @@
                     <p>Consider where you want the character to develop over time. GURPS rewards gradual improvement through experience and training.</p>
                 </div>
             </section>
-
-            <footer>
-                <p>Remember: GURPS provides the mathematical precision to build any character you can imagine, but the most important element remains the story you want to tell and the role you want to play in the group's shared adventure.</p>
-            </footer>
         </main>
-    </div>
+
+
+    <footer>
+<div class="page-nav">
+    <a class="prev" href="/gurps_char.html">Character Creation</a>
+    <a class="next" href="/gurps_100.html">Sample Characters</a>
+</div>
+        <p>Remember: GURPS provides the mathematical precision to build any character you can imagine, but the most important element remains the story you want to tell and the role you want to play in the group's shared adventure.</p>
+    </footer>
 
     <script>
         // Point Distribution Chart
@@ -497,6 +499,8 @@
         const attributes = [30, 60, 100, 150, 250];
         const advantages = [10, 30, 75, 150, 300];
         const skills = [35, 60, 75, 100, 200];
+        // Each stack sums to its labelled total; scale the tallest (750) to 190px so it fits the canvas
+        const barScale = 190 / Math.max(...attributes.map((a, i) => a + advantages[i] + skills[i]));
         
         // Draw axes
         pointCtx.strokeStyle = '#4A90E2';
@@ -514,17 +518,17 @@
             const barWidth = 40;
             
             // Attributes (bottom)
-            const attrHeight = (attributes[index] / 300) * 150;
+            const attrHeight = attributes[index] * barScale;
             pointCtx.fillStyle = '#4A90E2';
             pointCtx.fillRect(x, 250 - attrHeight, barWidth, attrHeight);
             
             // Advantages (middle)
-            const advHeight = (advantages[index] / 300) * 150;
+            const advHeight = advantages[index] * barScale;
             pointCtx.fillStyle = '#7ED321';
             pointCtx.fillRect(x, 250 - attrHeight - advHeight, barWidth, advHeight);
             
             // Skills (top)
-            const skillHeight = (skills[index] / 300) * 150;
+            const skillHeight = skills[index] * barScale;
             pointCtx.fillStyle = '#F5A623';
             pointCtx.fillRect(x, 250 - attrHeight - advHeight - skillHeight, barWidth, skillHeight);
         });
@@ -550,10 +554,10 @@
         legendItems.forEach((item, index) => {
             const y = 70 + (index * 20);
             pointCtx.fillStyle = item.color;
-            pointCtx.fillRect(350, y, 15, 10);
+            pointCtx.fillRect(60, y - 20, 15, 10);
             pointCtx.fillStyle = '#4A90E2';
             pointCtx.textAlign = 'left';
-            pointCtx.fillText(item.name, 370, y + 8);
+            pointCtx.fillText(item.name, 80, y - 12);
         });
         
         // Group Roles Distribution Chart
@@ -604,7 +608,7 @@
         
         // Skill levels and point costs for different difficulties
         const skillLevels = ['Attr-1', 'Attr', 'Attr+1', 'Attr+2', 'Attr+3', 'Attr+4'];
-        const easyCosts = [0.5, 1, 2, 4, 8, 12];
+        const easyCosts = [null, 1, 2, 4, 8, 12]; // Easy skills can't be bought below attribute level
         const averageCosts = [1, 2, 4, 8, 12, 16];
         const hardCosts = [2, 4, 8, 12, 16, 20];
         const veryHardCosts = [4, 8, 12, 16, 20, 24];
@@ -636,7 +640,8 @@
                 const x = 50 + (index * 70);
                 const y = 220 - (cost * 7);
                 
-                if (index === 0) {
+                if (cost === null) return;
+                if (index === 0 || difficulty.data[index - 1] === null) {
                     skillCtx.moveTo(x, y);
                 } else {
                     skillCtx.lineTo(x, y);
@@ -658,10 +663,10 @@
         costData.forEach((difficulty, index) => {
             const y = 70 + (index * 20);
             skillCtx.fillStyle = difficulty.color;
-            skillCtx.fillRect(350, y, 15, 10);
+            skillCtx.fillRect(70, y, 15, 10);
             skillCtx.fillStyle = '#4A90E2';
             skillCtx.textAlign = 'left';
-            skillCtx.fillText(difficulty.name, 370, y + 8);
+            skillCtx.fillText(difficulty.name, 90, y + 8);
         });
         
         // Add axis labels
@@ -675,26 +680,6 @@
         skillCtx.fillText('Character Points Required', 0, 0);
         skillCtx.restore();
     </script>
-<nav class="page-nav">
-    <a href="gurps_char.html">&larr; Character Creation</a>
-    <span class="spacer"></span>
-    <a href="gurps_100.html">100 Characters &rarr;</a>
-</nav>
-<script>
-function toggleTheme(){
-    document.body.classList.toggle('dark-mode');
-    var b=document.querySelector('.theme-toggle');
-    var d=document.body.classList.contains('dark-mode');
-    b.textContent=d?'☀️ Light Mode':'🌙 Dark Mode';
-    localStorage.setItem('theme',d?'dark':'light');
-}
-(function(){
-    if(localStorage.getItem('theme')==='dark'){
-        document.body.classList.add('dark-mode');
-        var b=document.querySelector('.theme-toggle');
-        if(b) b.textContent='☀️ Light Mode';
-    }
-})();
-</script>
+<div class="site-footer">&copy; 2026 Ray de la Paz. The GURPS Guide. All rights reserved. &middot; <a href="https://rays-home.netlify.app/">Ray's House of Fun</a><br>GURPS is a trademark of Steve Jackson Games. This guide is an unofficial fan resource.</div>
 </body>
 </html>

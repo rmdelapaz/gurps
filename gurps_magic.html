@@ -4,25 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Magic Systems and Supernatural Powers: Bending Reality with Rules</title>
-    <link rel="stylesheet" href="styles/main.css">
-    <link rel="icon" href="favicon.png" type="image/png">
-    <script type="module">
-      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-      mermaid.initialize({ startOnLoad: true });
-    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="/js/site.js?v=1"></script>
+    <script type="module" src="/js/diagrams.js?v=2"></script>
+    <link rel="stylesheet" href="/styles/main.css?v=2">
+    <link rel="icon" href="/favicon.png" type="image/png">
 </head>
 <body>
 <nav class="site-nav">
-    <div class="nav-links">
-        <a href="index.html">GURPS Guide</a>
-        <span>|</span>
-        <a href="https://rays-home.netlify.app/">Ray's House of Fun</a>
-        <span>|</span>
-        <a href="https://rays-home.netlify.app/contact">Contact</a>
-    </div>
-    <button class="theme-toggle" onclick="toggleTheme()">🌙 Dark Mode</button>
+    <a href="https://rays-home.netlify.app/">Ray's House of Fun</a>
+    <a href="/index.html">Home</a>
+    <a href="https://rays-home.netlify.app/contact">Contact</a>
+    <button id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
 </nav>
     <header>
+        <span class="lesson-kicker">Part 10</span>
         <h1>Magic Systems and Supernatural Powers: Bending Reality with Rules</h1>
         <p class="subtitle">From Subtle Enchantments to Reality-Shaping Forces</p>
     </header>
@@ -51,20 +49,20 @@
                     A --> E[Superheroic]
                     A --> F[Cosmic Level]
                     
-                    B --> B1[Real-world occultism<br/>Psychic phenomena<br/>Horror investigations]
-                    B --> B2[Low energy costs<br/>Subtle effects<br/>Failure consequences]
+                    B --> B1[Real-world occultism&lt;br/&gt;Psychic phenomena&lt;br/&gt;Horror investigations]
+                    B --> B2[Low energy costs&lt;br/&gt;Subtle effects&lt;br/&gt;Failure consequences]
                     
-                    C --> C1[Medieval fantasy<br/>Urban fantasy<br/>Pulp adventures]
-                    C --> C2[Moderate energy costs<br/>Visible effects<br/>Some combat magic]
+                    C --> C1[Medieval fantasy&lt;br/&gt;Urban fantasy&lt;br/&gt;Pulp adventures]
+                    C --> C2[Moderate energy costs&lt;br/&gt;Visible effects&lt;br/&gt;Some combat magic]
                     
-                    D --> D1[Epic fantasy<br/>Magical academies<br/>Wizard-heavy campaigns]
-                    D --> D2[Lower energy costs<br/>Dramatic effects<br/>Magic as primary tool]
+                    D --> D1[Epic fantasy&lt;br/&gt;Magical academies&lt;br/&gt;Wizard-heavy campaigns]
+                    D --> D2[Lower energy costs&lt;br/&gt;Dramatic effects&lt;br/&gt;Magic as primary tool]
                     
-                    E --> E1[Comic book heroes<br/>Anime campaigns<br/>Cinematic action]
-                    E --> E2[Minimal energy costs<br/>Spectacular effects<br/>Physics optional]
+                    E --> E1[Comic book heroes&lt;br/&gt;Anime campaigns&lt;br/&gt;Cinematic action]
+                    E --> E2[Minimal energy costs&lt;br/&gt;Spectacular effects&lt;br/&gt;Physics optional]
                     
-                    F --> F1[God-like beings<br/>Reality manipulation<br/>Multiversal campaigns]
-                    F --> F2[Energy irrelevant<br/>Any effect possible<br/>Narrative focused]
+                    F --> F1[God-like beings&lt;br/&gt;Reality manipulation&lt;br/&gt;Multiversal campaigns]
+                    F --> F2[Energy irrelevant&lt;br/&gt;Any effect possible&lt;br/&gt;Narrative focused]
                     
                     style B fill:#e8f5e8
                     style C fill:#fff3e0
@@ -91,33 +89,37 @@
             <p>GURPS' traditional magic system treats spells like skills—you learn individual magical techniques and improve them through practice. It's like being a craftsperson who specializes in impossible tasks.</p>
 
             <h3>Magery: The Magical Talent</h3>
-            <p>Magery is the advantage that allows characters to cast spells, like having magical DNA:</p>
+            <p>Magery is the advantage that marks someone as a natural spellcaster, like having magical DNA. Each level adds to your IQ when you learn spells, so it effectively raises every spell skill you know:</p>
 
             <div class="magery-levels">
                 <div class="magery-level">
                     <h4>Magery 0 [5 points]</h4>
-                    <p>Can sense magic and use magical items</p>
+                    <p>Basic magical aptitude: you can cast spells in normal-mana areas (with no bonus) and get a roll to notice magic items on sight</p>
                     <p><strong>Real-world equivalent:</strong> Someone who can sense electromagnetic fields but can't generate electricity</p>
                 </div>
 
                 <div class="magery-level">
                     <h4>Magery 1 [15 points]</h4>
-                    <p>Can cast spells, +1 to all magic skills</p>
+                    <p>+1 to spell skills; meets the Magery 1 prerequisite that many spells require</p>
                     <p><strong>Magical capacity:</strong> Hedge wizard, amateur practitioner</p>
                 </div>
 
                 <div class="magery-level">
                     <h4>Magery 2 [25 points]</h4>
-                    <p>+2 to magic skills, access to more powerful spells</p>
+                    <p>+2 to spell skills; opens spells that require Magery 2</p>
                     <p><strong>Magical capacity:</strong> Professional wizard, magical specialist</p>
                 </div>
 
                 <div class="magery-level">
                     <h4>Magery 3 [35 points]</h4>
-                    <p>+3 to magic skills, can cast very powerful spells</p>
+                    <p>+3 to spell skills; opens spells that require Magery 3 (the usual ceiling for starting characters)</p>
                     <p><strong>Magical capacity:</strong> Archmage level, reality-shaping power</p>
                 </div>
             </div>
+
+            <h3>Spells Are Skills</h3>
+            <p>Every spell is a separate skill, usually IQ/Hard (a few of the mightiest are IQ/Very Hard), bought with points like any other skill. Spells also have prerequisites, so you climb a chain within a college. For example, Fireball requires Magery 1 plus Create Fire and Shape Fire, and both of those require Ignite Fire.</p>
+            <p>Where you cast matters too. The local <strong>mana level</strong> can be no mana (spells simply fail), low (spells at -5), normal (only those with Magery can cast), high (anyone who knows a spell can cast it), or very high (magic comes even easier, and its failures get wilder).</p>
 
             <h3>Spell Schools: Organizing Magical Knowledge</h3>
             <p>Spells are organized into colleges (schools) that represent different approaches to magical manipulation:</p>
@@ -139,7 +141,7 @@
                     <tr>
                         <td>Earth</td>
                         <td>Stone, metal, earthquakes</td>
-                        <td>Shape Earth, Earthquake, Ironarm</td>
+                        <td>Shape Earth, Earth to Stone, Earthquake</td>
                         <td>Dwarven wizards, architects</td>
                     </tr>
                     <tr>
@@ -157,19 +159,19 @@
                     <tr>
                         <td>Body Control</td>
                         <td>Physical enhancement</td>
-                        <td>Might, Grace, Haste</td>
+                        <td>Might, Grace, Vigor</td>
                         <td>Warrior-mages, athletes</td>
                     </tr>
                     <tr>
                         <td>Healing</td>
                         <td>Medicine, life force</td>
-                        <td>Lend Energy, Heal, Resurrection</td>
+                        <td>Lend Energy, Minor Healing, Resurrection</td>
                         <td>Clerics, medics, life mages</td>
                     </tr>
                     <tr>
                         <td>Illusion</td>
                         <td>Deception, false images</td>
-                        <td>Simple Illusion, Invisibility, Perfect Illusion</td>
+                        <td>Simple Illusion, Complex Illusion, Perfect Illusion</td>
                         <td>Spies, entertainers, tricksters</td>
                     </tr>
                     <tr>
@@ -180,8 +182,8 @@
                     </tr>
                     <tr>
                         <td>Movement</td>
-                        <td>Teleportation, barriers</td>
-                        <td>Apportation, Teleport, Portal</td>
+                        <td>Moving objects and yourself</td>
+                        <td>Apportation, Haste, Teleport</td>
                         <td>Scouts, merchants, travelers</td>
                     </tr>
                     <tr>
@@ -201,16 +203,15 @@
                 
                 <div class="mermaid">
                     flowchart TD
-                        A[Choose Spell] --> B[Check Prerequisites]
+                        A[Choose Spell] --> B[Concentrate for&lt;br/&gt;the casting time]
                         B --> C[Determine Energy Cost]
-                        C --> D[Pay Energy from FP]
-                        D --> E[Roll vs Spell Skill]
+                        C --> E[Roll vs Spell Skill]
                         E --> F{Success?}
-                        F -->|Yes| G[Spell Takes Effect]
+                        F -->|Yes| G[Pay full energy&lt;br/&gt;Spell takes effect&lt;br/&gt;Critical success: no cost]
                         F -->|No| H[Spell Fails]
                         H --> I{Critical Failure?}
-                        I -->|Yes| J[Magical Mishap!]
-                        I -->|No| K[Energy Still Spent]
+                        I -->|Yes| J[Full energy lost&lt;br/&gt;Magical Mishap!]
+                        I -->|No| K[Lose only 1 FP]
                         G --> L[Apply Spell Effects]
                         J --> M[Resolve Disaster]
                         K --> N[Try Again Next Turn]
@@ -225,26 +226,26 @@
             </div>
 
             <h3>Energy: The Fuel of Magic</h3>
-            <p>Spells cost Fatigue Points (FP), representing the mental and physical effort of bending reality:</p>
+            <p>Spells cost Fatigue Points (FP), representing the mental and physical effort of bending reality. If your FP run low you can pay with Hit Points instead, and every HP spent hurts like a real wound. High skill makes magic cheaper: at spell skill 15+ every casting (and maintenance) costs 1 less energy, at 20+ it costs 2 less, and so on for each further 5 levels. Skilled casters also need fewer gestures and words.</p>
 
             <div class="energy-costs">
                 <h4>Typical Energy Costs</h4>
                 <ul>
-                    <li><strong>1-2 FP:</strong> Simple utility spells (Light, Ignite Fire)</li>
-                    <li><strong>3-4 FP:</strong> Moderate effects (Healing, small illusions)</li>
-                    <li><strong>5-8 FP:</strong> Significant spells (Fireball, Teleport)</li>
-                    <li><strong>10+ FP:</strong> Major magic (Resurrection, reality alteration)</li>
+                    <li><strong>1-2 FP:</strong> Simple utility spells (Light, a small Ignite Fire)</li>
+                    <li><strong>3-4 FP:</strong> Moderate effects (Minor Healing, small illusions)</li>
+                    <li><strong>5-8 FP:</strong> Significant spells (a big charged-up Fireball, long-range travel magic)</li>
+                    <li><strong>10+ FP:</strong> Major magic (large areas, reality alteration; Resurrection costs so much it is usually done with help)</li>
                     <li><strong>Variable:</strong> Area effects and duration extensions</li>
                 </ul>
 
                 <div class="energy-example">
                     <h4>Energy Management Example</h4>
-                    <p>Professor Blackwood (FP 12, Magery 3) faces multiple threats:</p>
+                    <p>Professor Blackwood (FP 12, Magery 3, his combat spells at skill 14, so no cost reduction yet) faces multiple threats:</p>
                     <ul>
-                        <li><strong>Turn 1:</strong> Casts Shield (3 FP) for protection - now at 9 FP</li>
-                        <li><strong>Turn 2:</strong> Casts Fireball (4 FP) at enemies - now at 5 FP</li>
-                        <li><strong>Turn 3:</strong> Wants to cast Teleport (8 FP) but only has 5 FP remaining</li>
-                        <li><strong>Solution:</strong> Must either rest to recover FP or use a less demanding spell</li>
+                        <li><strong>Turn 1:</strong> Casts Shield (2 FP) for protection - now at 10 FP</li>
+                        <li><strong>Turn 2:</strong> Casts a 3d Fireball (3 FP) at an enemy - now at 7 FP</li>
+                        <li><strong>Turn 3:</strong> Wants to cast an 8 FP spell but only has 7 FP remaining</li>
+                        <li><strong>Solution:</strong> Rest to recover FP, use a less demanding spell, or burn 1 HP for the missing point. Raising those spells to 15 would have saved him 1 FP on every casting</li>
                     </ul>
                 </div>
             </div>
@@ -253,7 +254,7 @@
 
             <div class="spell-showcase">
                 <div class="spell-example">
-                    <h4>Light (Information • Air/Fire College)</h4>
+                    <h4>Light (Regular • Light and Darkness College)</h4>
                     <p><strong>Energy Cost:</strong> 1 to create, 1 per minute to maintain</p>
                     <p><strong>Casting Time:</strong> 1 second</p>
                     <p><strong>Effect:</strong> Creates magical illumination</p>
@@ -261,46 +262,46 @@
                     
                     <div class="spell-usage">
                         <h5>In Play:</h5>
-                        <p>Elena explores a dark tomb. She casts Light (1 FP) on her flashlight, creating bright illumination without batteries. The spell lasts an hour before needing renewal—perfect for extended exploration without revealing her position with electronic light.</p>
+                        <p>Rita explores a dark tomb. She casts Light (1 FP) on her flashlight, creating bright illumination without batteries. The spell lasts a minute, and each extra minute costs another 1 FP to maintain, so for long explorations she wants Light at skill 15+, where the cost reduction makes it effectively free.</p>
                     </div>
                 </div>
 
                 <div class="spell-example">
                     <h4>Fireball (Missile • Fire College)</h4>
-                    <p><strong>Energy Cost:</strong> 1-3 per die of damage</p>
-                    <p><strong>Casting Time:</strong> 1-3 seconds</p>
-                    <p><strong>Effect:</strong> Hurls explosive fire at target</p>
-                    <p><strong>Range:</strong> 100 yards</p>
+                    <p><strong>Energy Cost:</strong> 1 FP per die of burning damage, up to your Magery level in FP each second</p>
+                    <p><strong>Casting Time:</strong> 1-3 seconds (charge it up for a bigger ball)</p>
+                    <p><strong>Effect:</strong> Hurls a ball of fire at one target; after casting, you throw it with Innate Attack skill</p>
+                    <p><strong>Range:</strong> Thrown like a missile (1/2D 25 yards, Max 50 yards)</p>
                     
                     <div class="spell-usage">
                         <h5>In Play:</h5>
-                        <p>Blackwood faces three cultists. He spends 3 FP for a 3d6 Fireball, rolls vs his Fire College skill of 16, succeeds by 4! The fireball streaks across the chamber, exploding among the enemies for 18 points of burning damage. The narrow corridor amplifies the effect—one cultist drops immediately.</p>
+                        <p>Blackwood faces three cultists. He charges the spell for one second with 3 FP, the most his Magery 3 allows per second, for a 3d Fireball. He rolls 11 against Fireball-14 and succeeds by 3, then hurls it with an Innate Attack roll. The fireball streaks across the chamber and hits the lead cultist for 14 points of burning damage; he drops immediately. (Fireball strikes one target; Explosive Fireball is the spell that bursts over an area.)</p>
                     </div>
                 </div>
 
                 <div class="spell-example">
                     <h4>Teleport (Movement • Movement College)</h4>
-                    <p><strong>Energy Cost:</strong> 3, +1 per 10 pounds carried</p>
-                    <p><strong>Casting Time:</strong> 3 seconds</p>
-                    <p><strong>Effect:</strong> Instantly transport to visible location</p>
-                    <p><strong>Range:</strong> 20 yards per point of Magery</p>
+                    <p><strong>Energy Cost:</strong> Depends on the distance (full rules in GURPS Magic)</p>
+                    <p><strong>Casting Time:</strong> Short enough to be a combat escape, but you must concentrate uninterrupted</p>
+                    <p><strong>Effect:</strong> Instantly transport yourself to another place</p>
+                    <p><strong>Range:</strong> Longer jumps cost more and are harder</p>
                     
                     <div class="spell-usage">
                         <h5>In Play:</h5>
-                        <p>Surrounded by enemies, Blackwood needs an escape. He spots a balcony 40 yards away (within his 60-yard range with Magery 3). The spell costs 5 FP (3 base + 2 for his equipment weight). He takes 3 seconds to cast, his allies covering him, then vanishes in a flash of silver light, appearing safely on the balcony.</p>
+                        <p>Surrounded by enemies, Blackwood needs an escape. He spots a balcony 40 yards away, pays the energy, and concentrates while his allies cover him. His roll succeeds and he vanishes in a flash of silver light, appearing safely on the balcony.</p>
                     </div>
                 </div>
 
                 <div class="spell-example">
-                    <h4>Heal (Healing • Healing College)</h4>
-                    <p><strong>Energy Cost:</strong> 1-4, depending on injury severity</p>
-                    <p><strong>Casting Time:</strong> 1-10 seconds</p>
+                    <h4>Minor Healing (Regular • Healing College)</h4>
+                    <p><strong>Energy Cost:</strong> 1 to 3; restores that many HP</p>
+                    <p><strong>Casting Time:</strong> 1 second</p>
                     <p><strong>Effect:</strong> Restores lost Hit Points</p>
-                    <p><strong>Limitations:</strong> Cannot heal same injury twice</p>
+                    <p><strong>Limitations:</strong> Casting it again on the same patient the same day is at a cumulative -3 per repeat</p>
                     
                     <div class="spell-usage">
                         <h5>In Play:</h5>
-                        <p>Jack takes a serious sword wound (8 damage, now at 4 HP). Elena, despite being primarily an archaeologist, learned basic Healing magic. She spends 3 FP and 3 seconds casting, rolls vs her Healing-12 skill, and succeeds! Jack regains 3 HP, bringing him to 7 HP—still hurt but no longer in immediate danger.</p>
+                        <p>Jack takes a serious sword wound (8 damage, now at 4 HP). Rita, despite being primarily an archaeologist, learned basic Healing magic. She spends 3 FP and 1 second casting, rolls vs her Minor Healing-12 skill, and succeeds! Jack regains 3 HP, bringing him to 7 HP—still hurt but no longer in immediate danger.</p>
                     </div>
                 </div>
             </div>
@@ -310,7 +311,7 @@
             <h2>Beyond Traditional Magic: Alternative Supernatural Systems</h2>
             
             <h3>Psionics: The Power of Mind</h3>
-            <p>Psionics represents mental powers that don't rely on external magical forces—they come from within the mind itself:</p>
+            <p>Psionics represents mental powers that don't rely on external magical forces—they come from within the mind itself. In the Basic Set, psi abilities are ordinary advantages (Mind Reading, Telekinesis, Psychometry and so on) carrying the Psionic power modifier (-10%). A power Talent costs 5 points per level and adds to every ability in that power:</p>
 
             <div class="psionic-powers">
                 <h4>Psionic Talents</h4>
@@ -319,47 +320,47 @@
                     <h5>Telepathy</h5>
                     <p><strong>Powers:</strong> Mind reading, mental communication, emotion sensing</p>
                     <p><strong>Cost:</strong> 5 points per level</p>
-                    <p><strong>Example:</strong> Detective Sarah develops Telepathy 2 after a supernatural encounter, giving her +2 to all telepathic abilities and allowing her to sense strong emotions and surface thoughts.</p>
+                    <p><strong>Example:</strong> Detective Tre develops Telepathy Talent 2 after a supernatural encounter, giving her +2 to all telepathic abilities and allowing her to sense strong emotions and surface thoughts.</p>
                 </div>
 
                 <div class="psi-talent">
                     <h5>Telekinesis</h5>
                     <p><strong>Powers:</strong> Moving objects by thought, force manipulation</p>
                     <p><strong>Cost:</strong> 5 points per level</p>
-                    <p><strong>Example:</strong> With Telekinesis 3, Jack can lift 20 pounds mentally, manipulate door handles from across rooms, or deflect incoming projectiles with concentrated thought.</p>
+                    <p><strong>Example:</strong> Telekinesis works like ST for moving things. With Telekinesis 10 (Basic Lift 20 lbs), Jack can lift 20 pounds mentally, manipulate door handles from across rooms, or deflect incoming projectiles with concentrated thought.</p>
                 </div>
 
                 <div class="psi-talent">
                     <h5>ESP (Extrasensory Perception)</h5>
                     <p><strong>Powers:</strong> Clairvoyance, precognition, psychometry</p>
                     <p><strong>Cost:</strong> 5 points per level</p>
-                    <p><strong>Example:</strong> Elena's ESP 2 allows her to sense the emotional history of archaeological artifacts, reading psychic imprints left by their previous owners.</p>
+                    <p><strong>Example:</strong> Rita's ESP Talent 2 boosts her Psychometry, allowing her to sense the emotional history of archaeological artifacts, reading psychic imprints left by their previous owners.</p>
                 </div>
             </div>
 
             <h3>Powers: Superheroic Abilities</h3>
-            <p>The Powers system handles comic book style superpowers and anime-level abilities:</p>
+            <p>Superpowers and anime-level abilities are built from advantages plus enhancements and limitations. A power's source can be marked with a power modifier such as Magical, Divine, Chi, or Psionic (each -10% in the Basic Set), which ties it to that source's weaknesses; GURPS Powers expands this toolkit:</p>
 
             <div class="power-examples">
                 <div class="power-build">
                     <h4>Super Strength</h4>
-                    <p><strong>Base Ability:</strong> Enhanced ST +10 [100 points]</p>
-                    <p><strong>Enhancements:</strong> No Fatigue Cost +20% = 120 points total</p>
-                    <p><strong>Effect:</strong> ST 20+ character who can lift cars and punch through walls</p>
+                    <p><strong>Base Ability:</strong> ST +10 [100 points]</p>
+                    <p><strong>Add-on:</strong> Lifting ST +10 [30 points] = 130 points total</p>
+                    <p><strong>Effect:</strong> ST 20 for punching and swinging (Basic Lift 80 lbs) and ST 30 for lifting (Basic Lift 180 lbs)</p>
                 </div>
 
                 <div class="power-build">
                     <h4>Energy Blast</h4>
-                    <p><strong>Base Ability:</strong> Innate Attack (Burning) 6d6 [30 points]</p>
+                    <p><strong>Base Ability:</strong> Burning Attack 6d [30 points]</p>
                     <p><strong>Enhancements:</strong> Accurate +5%, Rapid Fire +40% = 44 points</p>
                     <p><strong>Effect:</strong> Fiery energy beams that can melt steel</p>
                 </div>
 
                 <div class="power-build">
                     <h4>Flight</h4>
-                    <p><strong>Base Ability:</strong> Flight (Winged) [30 points]</p>
-                    <p><strong>Limitations:</strong> Requires physical wings -25% = 23 points</p>
-                    <p><strong>Effect:</strong> Fly at 40 mph with visible wings</p>
+                    <p><strong>Base Ability:</strong> Flight [40 points]</p>
+                    <p><strong>Limitations:</strong> Winged -25% = 30 points</p>
+                    <p><strong>Effect:</strong> Air Move twice ground Move (about 20 mph at Basic Move 5) with visible wings</p>
                 </div>
             </div>
 
@@ -371,26 +372,26 @@
                 <ul>
                     <li><strong>Power Source:</strong> Granted by deity or cosmic principle</li>
                     <li><strong>Limitations:</strong> Must follow divine codes of conduct</li>
-                    <li><strong>Advantages:</strong> Unlimited energy if deity approves</li>
+                    <li><strong>Advantages:</strong> Power that can be generous while you keep your deity's favor (often built with the Divine power modifier)</li>
                     <li><strong>Spell Focus:</strong> Healing, protection, blessing, divine wrath</li>
                 </ul>
 
                 <div class="divine-example">
                     <h5>Example: Paladin's Healing</h5>
-                    <p>Sister Margaret, a combat medic and ordained minister, calls upon divine power to heal the wounded. Her spells cost no FP when used to help innocents, but she cannot use them for personal gain or vengeance. Her deity grants unlimited healing power as long as she serves others selflessly.</p>
+                    <p>Sister Margaret, a combat medic and ordained minister, calls upon divine power to heal the wounded. Her gifts are built with the Divine modifier, so if she uses them for personal gain or vengeance her god may simply withhold them. In this campaign the GM also rules that her healing costs no FP when used to help innocents, a house choice, not a default rule.</p>
                 </div>
             </div>
 
-            <h3>Ritual Magic: Slow but Powerful</h3>
-            <p>An alternative to instant spellcasting that emphasizes preparation and ceremony:</p>
+            <h3>Ceremonial Magic: Slow but Powerful</h3>
+            <p>An alternative to instant spellcasting that emphasizes preparation and ceremony. In the Basic Set, any spell can be cast ceremonially: it takes ten times as long, but several casters can work together and helpers can contribute energy. (GURPS Thaumatology explores fully ritual-based magic systems.)</p>
 
             <div class="ritual-magic">
                 <h4>Ritual Advantages</h4>
                 <ul>
                     <li><strong>More powerful effects:</strong> Can achieve results impossible with quick magic</li>
-                    <li><strong>Lower skill requirements:</strong> Time compensates for limited ability</li>
+                    <li><strong>Shared energy:</strong> Helpers, even non-mages, can contribute energy</li>
                     <li><strong>Group casting:</strong> Multiple wizards can combine efforts</li>
-                    <li><strong>Material components:</strong> Special ingredients reduce energy costs</li>
+                    <li><strong>Material components:</strong> Some settings let special ingredients or places help (a GM option)</li>
                 </ul>
 
                 <h4>Ritual Disadvantages</h4>
@@ -403,7 +404,7 @@
 
                 <div class="ritual-example">
                     <h5>Example: The Scrying Ritual</h5>
-                    <p>Elena needs to locate a missing artifact across the globe. She spends three hours preparing a crystal ball ritual, gathering maps, personal items connected to the artifact, and rare incense. The ritual takes 30 minutes to complete and costs 8 FP, but if successful, it will show her the artifact's exact location anywhere in the world—something impossible with quick magic.</p>
+                    <p>Rita needs to locate a missing artifact across the globe. She spends three hours preparing a crystal ball ceremony, gathering maps, personal items connected to the artifact, and rare incense. She and Blackwood then cast a locating spell ceremonially: it takes ten times as long as a normal casting, but Blackwood shares the energy cost. If it succeeds, it will point her toward the artifact even across the world—a range no quick casting by her alone could manage.</p>
                 </div>
             </div>
         </section>
@@ -419,26 +420,26 @@
             <div class="casting-time-chart">
                 <canvas id="castingChart" width="700" height="300"></canvas>
                 <script>
+                    (function () {
                     const canvas = document.getElementById('castingChart');
+                    if (!canvas || !canvas.getContext) return;
                     const ctx = canvas.getContext('2d');
                     
                     // Timeline visualization
                     const timeline = [
-                        {time: 1, spells: ['Light', 'Ignite Fire', 'Daze'], color: '#4CAF50'},
-                        {time: 2, spells: ['Fireball', 'Heal', 'Shield'], color: '#FF9800'},
-                        {time: 3, spells: ['Teleport', 'Lightning'], color: '#FF5722'},
-                        {time: 4, spells: ['Major Healing'], color: '#9C27B0'},
-                        {time: 5, spells: ['Explosive Fireball'], color: '#F44336'}
+                        {label: '1 sec', spells: ['Most spells:', 'Light, Ignite Fire,', 'Minor Healing, Shield'], color: '#4CAF50'},
+                        {label: '1-3 sec', spells: ['Missile spells', 'charge up:', 'Fireball, Lightning'], color: '#FF9800'},
+                        {label: '10x normal', spells: ['Ceremonial casting:', 'slow, but helpers', 'can share energy'], color: '#9C27B0'}
                     ];
                     
                     // Draw timeline
-                    const startX = 50;
+                    const startX = 110;
                     const y = 150;
-                    const segmentWidth = 120;
+                    const segmentWidth = 240;
                     
                     ctx.beginPath();
                     ctx.moveTo(startX, y);
-                    ctx.lineTo(startX + 5 * segmentWidth, y);
+                    ctx.lineTo(startX + (timeline.length - 1) * segmentWidth, y);
                     ctx.strokeStyle = 'black';
                     ctx.lineWidth = 3;
                     ctx.stroke();
@@ -459,13 +460,13 @@
                         ctx.fillStyle = 'black';
                         ctx.font = '14px Arial';
                         ctx.textAlign = 'center';
-                        ctx.fillText(`${segment.time} sec`, x, y - 30);
+                        ctx.fillText(segment.label, x, y - 30);
                         
                         // Spells at this timing
                         ctx.fillStyle = segment.color;
-                        ctx.font = '11px Arial';
+                        ctx.font = '12px Arial';
                         segment.spells.forEach((spell, spellIndex) => {
-                            ctx.fillText(spell, x, y + 40 + spellIndex * 15);
+                            ctx.fillText(spell, x, y + 40 + spellIndex * 16);
                         });
                     });
                     
@@ -476,6 +477,7 @@
                     ctx.fillText('Spell Casting Times in Combat', 350, 30);
                     ctx.font = '12px Arial';
                     ctx.fillText('Faster spells = tactical advantage in combat', 350, 280);
+                    })();
                 </script>
             </div>
 
@@ -486,17 +488,17 @@
                 <h4>Spell Attack Rolls</h4>
                 <ul>
                     <li><strong>Target Number:</strong> Spell skill level (usually IQ-based)</li>
-                    <li><strong>Range Modifiers:</strong> Apply distance penalties like missile weapons</li>
-                    <li><strong>Size Modifiers:</strong> Larger targets easier to hit with spells</li>
+                    <li><strong>Range Modifiers:</strong> Regular spells take -1 per yard to the subject; missile spells instead need an Innate Attack roll with normal range penalties</li>
+                    <li><strong>Size Modifiers:</strong> Larger targets are easier to hit with missile spells</li>
                     <li><strong>Spell-Specific Modifiers:</strong> Some spells have unique targeting rules</li>
                 </ul>
 
                 <h4>Defending Against Magic</h4>
                 <ul>
                     <li><strong>Dodge:</strong> Works against most magical attacks</li>
-                    <li><strong>Block:</strong> Shields can stop some magical missiles</li>
-                    <li><strong>Spell Resistance:</strong> Some characters have natural magic resistance</li>
-                    <li><strong>Counter-spells:</strong> Cast opposing magic to cancel attacks</li>
+                    <li><strong>Block:</strong> Shields can stop magical missiles</li>
+                    <li><strong>Resistance:</strong> Many spells (Daze, Charm) are resisted by the target's HT or Will in a Quick Contest; the Magic Resistance advantage makes this harder still</li>
+                    <li><strong>Counter-spells:</strong> Some spells cancel other spells already in effect</li>
                 </ul>
             </div>
 
@@ -507,20 +509,20 @@
                 <div class="spell-category">
                     <h4>Battlefield Control</h4>
                     <ul>
-                        <li><strong>Create Wall:</strong> Block enemy movement or provide cover</li>
+                        <li><strong>Earth and Air walls:</strong> Block enemy movement or provide cover</li>
                         <li><strong>Grease:</strong> Make areas treacherous for enemies</li>
                         <li><strong>Darkness:</strong> Blind opponents while you use magical sight</li>
-                        <li><strong>Web:</strong> Entangle multiple enemies at once</li>
+                        <li><strong>Tangle Growth:</strong> Entangle multiple enemies at once</li>
                     </ul>
                 </div>
 
                 <div class="spell-category">
                     <h4>Force Multiplication</h4>
                     <ul>
-                        <li><strong>Haste:</strong> Give allies extra actions per turn</li>
+                        <li><strong>Haste:</strong> Boost an ally's Move and Dodge</li>
                         <li><strong>Might:</strong> Enhance ally strength for combat</li>
-                        <li><strong>Shield:</strong> Protect allies from incoming attacks</li>
-                        <li><strong>Bless:</strong> Improve ally dice rolls</li>
+                        <li><strong>Shield:</strong> Add a bonus to an ally's active defenses</li>
+                        <li><strong>Armor:</strong> Give an ally magical Damage Resistance</li>
                     </ul>
                 </div>
 
@@ -530,49 +532,49 @@
                         <li><strong>See Invisible:</strong> Counter enemy stealth magic</li>
                         <li><strong>Mind Reading:</strong> Predict enemy tactics</li>
                         <li><strong>Analyze Magic:</strong> Understand enemy magical defenses</li>
-                        <li><strong>Detect Enemies:</strong> Locate hidden foes</li>
+                        <li><strong>Sense Foes:</strong> Locate hidden foes</li>
                     </ul>
                 </div>
             </div>
 
             <div class="magical-combat-example">
                 <h4>Complete Magical Combat Example</h4>
-                <p>Professor Blackwood and Elena face three armed cultists in an ancient temple:</p>
+                <p>Professor Blackwood (FP 12) and Rita face three armed cultists in an ancient temple:</p>
 
                 <div class="combat-turn">
                     <h5>Turn 1: Opening Gambits</h5>
-                    <p><strong>Blackwood (Initiative 1):</strong> Casts Shield (2 seconds, 3 FP) - magical force field around both researchers</p>
-                    <p><strong>Cultist Leader:</strong> Fires crossbow at Elena - hits Shield spell instead, bolt deflected</p>
-                    <p><strong>Elena:</strong> Takes cover behind stone altar, draws pistol</p>
+                    <p><strong>Blackwood (highest Basic Speed, acts first):</strong> Casts Shield on Rita (1 second, 2 FP) - a shimmering force field that adds to her defenses</p>
+                    <p><strong>Cultist Leader:</strong> Fires crossbow at Rita - the Shield bonus helps her Dodge, and the bolt misses</p>
+                    <p><strong>Rita:</strong> Takes cover behind stone altar, draws pistol</p>
                     <p><strong>Cultists 2&3:</strong> Advance with knives, chanting in ancient language</p>
                 </div>
 
                 <div class="combat-turn">
                     <h5>Turn 2: Escalation</h5>
-                    <p><strong>Blackwood:</strong> Casts Fireball (1 second, 4 FP) at advancing cultists</p>
-                    <p><strong>Attack Roll:</strong> Fire College-16, rolls 11 - success by 5!</p>
-                    <p><strong>Damage:</strong> 3d6 burning = 14 points, both cultists take full damage</p>
-                    <p><strong>Result:</strong> One cultist drops, the other badly burned but still fighting</p>
-                    <p><strong>Elena:</strong> Shoots at the leader while he reloads - hits for 8 damage</p>
-                    <p><strong>Cultist Leader:</strong> Wounded but starts chanting a dark ritual</p>
+                    <p><strong>Blackwood:</strong> Casts Fireball (1 second, 3 FP) at the nearest advancing cultist</p>
+                    <p><strong>Rolls:</strong> Fireball-14, rolls 11 - success by 3! Then an Innate Attack roll to hit</p>
+                    <p><strong>Damage:</strong> 3d burning = 14 points</p>
+                    <p><strong>Result:</strong> That cultist drops; the other keeps coming</p>
+                    <p><strong>Rita:</strong> Shoots at the leader while he reloads - hits for 8 damage</p>
+                    <p><strong>Cultist Leader:</strong> Wounded but starts chanting a summoning spell</p>
                 </div>
 
                 <div class="combat-turn">
                     <h5>Turn 3: Supernatural Escalation</h5>
-                    <p><strong>Blackwood:</strong> Recognizes the dark ritual, casts Counterspell (3 seconds, 5 FP)</p>
-                    <p><strong>Contest:</strong> Blackwood's Counterspell-15 vs Cultist's Dark Magic-12</p>
-                    <p><strong>Result:</strong> Blackwood wins, the summoning ritual fails catastrophically</p>
-                    <p><strong>Elena:</strong> Finishes off the wounded cultist with precise shots</p>
-                    <p><strong>Cultist Leader:</strong> The failed ritual backlash stuns him - combat ends</p>
+                    <p><strong>Blackwood:</strong> Recognizes the summoning and shouts for Rita to stop the caster</p>
+                    <p><strong>Rita:</strong> Shoots the chanting leader again - another solid hit</p>
+                    <p><strong>Result:</strong> The shock penalty from his wounds spoils his casting roll, and the summoning fails</p>
+                    <p><strong>Last Cultist:</strong> Charges Rita, but Shield's bonus helps her sidestep the knife</p>
+                    <p><strong>Cultist Leader:</strong> Bleeding and with his spell broken, he surrenders - combat ends</p>
                 </div>
 
                 <div class="tactical-analysis">
-                    <h5>Tactical Lessons</h5>
+                    <h5>Tactical Takeaways</h5>
                     <ul>
-                        <li><strong>Defensive magic first:</strong> Shield protected both characters early</li>
-                        <li><strong>Area effects:</strong> Fireball handled multiple enemies efficiently</li>
-                        <li><strong>Magical knowledge:</strong> Recognizing the ritual allowed proper counter-action</li>
-                        <li><strong>Resource management:</strong> Blackwood used 12 of his 15 FP - nearly exhausted</li>
+                        <li><strong>Defensive magic first:</strong> Shield protected Rita, the most exposed character, early</li>
+                        <li><strong>Focused fire:</strong> One Fireball removed one attacker cleanly (an area attack needs a spell like Explosive Fireball)</li>
+                        <li><strong>Magical knowledge:</strong> Recognizing the spell told Rita to interrupt the caster</li>
+                        <li><strong>Resource management:</strong> Blackwood used only 5 of his 12 FP, keeping a reserve</li>
                     </ul>
                 </div>
             </div>
@@ -590,7 +592,7 @@
                     <li><strong>Base Item:</strong> Start with a high-quality mundane object</li>
                     <li><strong>Spell Selection:</strong> Choose what magical effect to embed</li>
                     <li><strong>Energy Investment:</strong> Spend large amounts of magical energy over time</li>
-                    <li><strong>Skill Requirements:</strong> Must know the spell and Enchantment skill</li>
+                    <li><strong>Skill Requirements:</strong> Must know the spell being embedded and the Enchant spell</li>
                     <li><strong>Time Investment:</strong> Days, weeks, or months of work</li>
                 </ol>
 
@@ -598,25 +600,25 @@
                     <h5>Example: Sword of Flame</h5>
                     <p>Blackwood wants to create a flaming sword for Jack:</p>
                     <ul>
-                        <li><strong>Base Item:</strong> Fine quality broadsword (+1, 1000 gp)</li>
-                        <li><strong>Enchantment:</strong> Continual Flame effect</li>
-                        <li><strong>Energy Cost:</strong> 500 energy points over two weeks</li>
-                        <li><strong>Skills Needed:</strong> Enchantment-15, Continual Light-15</li>
-                        <li><strong>Final Result:</strong> Sword burns with magical flame, +2 to hit, extra fire damage</li>
+                        <li><strong>Base Item:</strong> Fine quality broadsword</li>
+                        <li><strong>Enchantment:</strong> Flaming Weapon effect</li>
+                        <li><strong>Energy Cost:</strong> Hundreds of energy points, gathered over days or weeks (exact costs in GURPS Magic)</li>
+                        <li><strong>Skills Needed:</strong> Enchant and Flaming Weapon at good skill</li>
+                        <li><strong>Final Result:</strong> Sword burns with magical flame and adds fire damage to its blows</li>
                     </ul>
                 </div>
             </div>
 
             <h3>Alchemy: Magical Chemistry</h3>
-            <p>Alchemy creates consumable magical items—potions, powders, and elixirs:</p>
+            <p>Alchemy creates consumable magical items—potions, powders, and elixirs. It is a skill (IQ/Very Hard), not a spell, so it costs time and materials rather than FP. The examples below are illustrative; GURPS Magic lists real elixirs with their own costs and times:</p>
 
             <div class="alchemy-examples">
                 <div class="potion">
                     <h4>Healing Potion</h4>
-                    <p><strong>Effect:</strong> Restores 1d6+2 HP when consumed</p>
+                    <p><strong>Effect:</strong> Restores lost HP when consumed</p>
                     <p><strong>Ingredients:</strong> Healing herbs, blessed water, silver dust</p>
-                    <p><strong>Time to Brew:</strong> 4 hours</p>
-                    <p><strong>Cost:</strong> 50 gp in materials, 8 FP in magical energy</p>
+                    <p><strong>Time to Brew:</strong> Days of lab work</p>
+                    <p><strong>Cost:</strong> Costly materials, no FP</p>
                 </div>
 
                 <div class="potion">
@@ -632,7 +634,7 @@
                     <p><strong>Effect:</strong> Neutralizes most poisons and toxins</p>
                     <p><strong>Ingredients:</strong> Rare herbs, unicorn hair, distilled moonlight</p>
                     <p><strong>Time to Brew:</strong> 8 hours under full moon</p>
-                    <p><strong>Cost:</strong> 200 gp - expensive but potentially life-saving</p>
+                    <p><strong>Cost:</strong> Expensive but potentially life-saving</p>
                 </div>
             </div>
 
@@ -650,8 +652,8 @@
                 </ul>
 
                 <div class="research-example">
-                    <h5>Example: Elena's Archaeological Spell</h5>
-                    <p>Elena works with Blackwood to develop "Read Object History"—a spell that reveals an artifact's past through magical resonance:</p>
+                    <h5>Example: Rita's Archaeological Spell</h5>
+                    <p>Rita works with Blackwood to develop "Read Object History"—a spell that reveals an artifact's past through magical resonance:</p>
                     <ul>
                         <li><strong>Base Research:</strong> Combines Psychometry (ESP) with Historical knowledge</li>
                         <li><strong>Time Investment:</strong> 3 months of theoretical work</li>
@@ -924,35 +926,19 @@
 
             <div class="next-steps">
                 <h3>The Complete Picture</h3>
-                <p>In our final lecture, we'll explore campaign management and advanced GURPS techniques—how to weave all these systems together into coherent, long-running campaigns that showcase GURPS' unique strengths. You'll learn how to handle the complexity, manage the options, and create memorable gaming experiences that take full advantage of GURPS' universal nature.</p>
+                <p>In the final part, we'll explore campaign management and advanced GURPS techniques—how to weave all these systems together into coherent, long-running campaigns that showcase GURPS' unique strengths. You'll learn how to handle the complexity, manage the options, and create memorable gaming experiences that take full advantage of GURPS' universal nature.</p>
             </div>
         </section>
     </main>
 
     <footer>
+<div class="page-nav">
+    <a class="prev" href="/gurps_dice_roller.html">Dice Roller</a>
+    <a class="next" href="/gurps_campaign.html">Campaign Management</a>
+</div>
         <p>Remember: Magic is just physics with better special effects!</p>
     </footer>
 
-<nav class="page-nav">
-    <a href="gurps_core.html">&larr; Core Mechanics</a>
-    <span class="spacer"></span>
-    <a href="gurps_campaign.html">Campaign Management &rarr;</a>
-</nav>
-<script>
-function toggleTheme(){
-    document.body.classList.toggle('dark-mode');
-    var b=document.querySelector('.theme-toggle');
-    var d=document.body.classList.contains('dark-mode');
-    b.textContent=d?'☀️ Light Mode':'🌙 Dark Mode';
-    localStorage.setItem('theme',d?'dark':'light');
-}
-(function(){
-    if(localStorage.getItem('theme')==='dark'){
-        document.body.classList.add('dark-mode');
-        var b=document.querySelector('.theme-toggle');
-        if(b) b.textContent='☀️ Light Mode';
-    }
-})();
-</script>
+<div class="site-footer">&copy; 2026 Ray de la Paz. The GURPS Guide. All rights reserved. &middot; <a href="https://rays-home.netlify.app/">Ray's House of Fun</a><br>GURPS is a trademark of Steve Jackson Games. This guide is an unofficial fan resource.</div>
 </body>
 </html>

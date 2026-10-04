@@ -3,111 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GURPS: 100+ Characters and Adventure Groups</title>
-    <link rel="stylesheet" href="styles/main.css">
-    <link rel="icon" href="favicon.png" type="image/png">
-    <script type="module">
-      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-      mermaid.initialize({ startOnLoad: true });
-    </script>
+    <title>GURPS: 97 Sample Characters and Adventure Groups</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="/js/site.js?v=1"></script>
+    <script type="module" src="/js/diagrams.js?v=2"></script>
+    <link rel="stylesheet" href="/styles/main.css?v=2">
+    <link rel="icon" href="/favicon.png" type="image/png">
     <style>
-  
-        .character-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-        .character-card {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            border-radius: 10px;
-            padding: 20px;
-            border-left: 5px solid #4A90E2;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
-
+        /* Sample characters page: themed via the tokens in /styles/main.css */
+        .character-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr)); gap: 14px; margin-top: 16px; }
         .character-pair, .character-trio, .character-quartet, .character-quintet, .character-sextet {
-            display: grid;
-            gap: 15px;
-            margin: 20px 0;
+            display: grid; gap: 12px; margin: 14px 0; grid-template-columns: repeat(auto-fill, minmax(min(240px, 100%), 1fr));
         }
-        .character-pair {
-            grid-template-columns: 1fr 1fr;
+        main .character-card {
+            background: var(--surface-2); border: 1px solid var(--border); border-left: 5px solid var(--accent);
+            border-radius: var(--radius-sm); padding: 14px 16px; margin: 0; box-shadow: none; min-width: 0;
         }
-        .character-trio {
-            grid-template-columns: repeat(3, 1fr);
+        main .character-card h4 { margin-top: 0; }
+        main .character-card p { margin-bottom: 0.4rem; }
+        main .adventure-group {
+            background: var(--surface); border: 1px solid var(--border); border-top: 4px solid var(--gold);
+            border-radius: var(--radius); padding: clamp(14px, 3vw, 22px); margin: 1.2rem 0; box-shadow: var(--shadow);
         }
-        .character-quartet {
-            grid-template-columns: repeat(2, 1fr);
+        main .adventure-group > :first-child { margin-top: 0; }
+        .generator-tables, .statistics-breakdown { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(240px, 100%), 1fr)); gap: 14px; margin-top: 16px; }
+        main .generator-table, main .stat-item {
+            background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--radius-sm);
+            padding: 14px 16px; margin: 0; box-shadow: none; color: var(--text);
         }
-        .character-quintet {
-            grid-template-columns: repeat(3, 1fr);
-        }
-        .character-sextet {
-            grid-template-columns: repeat(3, 1fr);
-        }
-        .adventure-group {
-            background: rgba(123, 104, 238, 0.05);
-            border-radius: 15px;
-            padding: 25px;
-            margin: 20px 0;
-            border: 2px solid rgba(123, 104, 238, 0.2);
-        }
-        .generator-tables {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-        .generator-table {
-            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .statistics-breakdown {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 30px;
-        }
-        .stat-item {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-        }
-        footer {
-            background: #2C3E50;
-            color: white;
-            padding: 30px;
-            text-align: center;
-            font-style: italic;
-        }
-        #characterStatsChart {
-            display: block;
-            margin: 20px auto;
-            border: 2px solid #4A90E2;
-            border-radius: 10px;
-        }
+        main .stat-item { text-align: center; border-top: 4px solid var(--accent); }
+        main .generator-table > :first-child, main .stat-item > :first-child { margin-top: 0; }
+        #characterStatsChart { display: block; margin: 20px auto; }
     </style>
 </head>
 <body>
 <nav class="site-nav">
-    <div class="nav-links">
-        <a href="index.html">GURPS Guide</a>
-        <span>|</span>
-        <a href="https://rays-home.netlify.app/">Ray's House of Fun</a>
-        <span>|</span>
-        <a href="https://rays-home.netlify.app/contact">Contact</a>
-    </div>
-    <button class="theme-toggle" onclick="toggleTheme()">🌙 Dark Mode</button>
+    <a href="https://rays-home.netlify.app/">Ray's House of Fun</a>
+    <a href="/index.html">Home</a>
+    <a href="https://rays-home.netlify.app/contact">Contact</a>
+    <button id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
 </nav>
-    <div class="container">
         <header>
-            <h1>GURPS: 100+ Characters and Adventure Groups</h1>
+            <span class="lesson-kicker">Part 4</span>
+            <h1>GURPS: 97 Characters and Adventure Groups</h1>
             <p>A comprehensive collection of precisely crafted heroes and teams using the Generic Universal RolePlaying System</p>
         </header>
 
@@ -135,12 +75,12 @@
 
             <section class="solo-characters">
                 <h2>Solo Operators - Individual Excellence</h2>
-                <p>Each solo character represents a self-contained story of expertise and ambition. These individuals showcase GURPS' ability to create precise, unique heroes through mathematical character construction.</p>
+                <p>Each solo character represents a self-contained story of expertise and ambition. These individuals showcase GURPS' ability to create precise, unique heroes through mathematical character construction. Each card is a highlight reel rather than a full sheet: the stated point total covers the attributes, the traits shown and the signature skills, with the remainder going to background skills not listed.</p>
 
                 <div class="character-grid">
                     <div class="character-card">
                         <h4>Colonel Victoria "Iceheart" Sterling</h4>
-                        <p><strong>200 points</strong> | <strong>Modern Military</strong></p>
+                        <p><strong>250 points</strong> | <strong>Modern Military</strong></p>
                         <p><strong>ST 12, DX 14, IQ 13, HT 12</strong></p>
                         <p><strong>Advantages:</strong> Combat Reflexes [15], Military Rank 4 [20], Fearlessness 3 [6]</p>
                         <p><strong>Disadvantages:</strong> Duty (Military) [-15], Code of Honor (Soldier's) [-10], Callous [-5]</p>
@@ -162,7 +102,7 @@
 
                     <div class="character-card">
                         <h4>Akira "Shadowblade" Tanaka</h4>
-                        <p><strong>225 points</strong> | <strong>Modern Ninja</strong></p>
+                        <p><strong>250 points</strong> | <strong>Modern Ninja</strong></p>
                         <p><strong>ST 11, DX 16, IQ 13, HT 12</strong></p>
                         <p><strong>Advantages:</strong> Silence 3 [15], Night Vision 5 [5], Danger Sense [15]</p>
                         <p><strong>Disadvantages:</strong> Code of Honor (Bushido) [-15], Enemy (Rival Clan) [-10], Vow (Never kill innocents) [-10]</p>
@@ -175,7 +115,7 @@
                         <h4>Isabella "Mindweaver" Cortez</h4>
                         <p><strong>250 points</strong> | <strong>Psychic Investigator</strong></p>
                         <p><strong>ST 10, DX 12, IQ 15, HT 11</strong></p>
-                        <p><strong>Advantages:</strong> Telepathy [50], Empathy [15], Strong Will +3 [12]</p>
+                        <p><strong>Advantages:</strong> Telepathy [50], Empathy [15], Will +3 [15]</p>
                         <p><strong>Disadvantages:</strong> Social Stigma (Psychic) [-10], Chronic Pain (Migraines) [-10], Honesty [-10]</p>
                         <p><strong>Skills:</strong> Psychology-18, Detect Lies-17, Body Language-16, Meditation-15</p>
                         <p><strong>Goal:</strong> Use psychic abilities to solve impossible crimes</p>
@@ -206,7 +146,7 @@
 
                     <div class="character-card">
                         <h4>Detective Romano "Bloodhound" Garcia</h4>
-                        <p><strong>150 points</strong> | <strong>Police Detective</strong></p>
+                        <p><strong>200 points</strong> | <strong>Police Detective</strong></p>
                         <p><strong>ST 12, DX 13, IQ 14, HT 12</strong></p>
                         <p><strong>Advantages:</strong> Intuition [15], Empathy [15], Legal Immunity [5]</p>
                         <p><strong>Disadvantages:</strong> Duty (Police) [-10], Code of Honor (Police) [-10], Alcoholism [-15]</p>
@@ -239,7 +179,7 @@
 
                     <div class="character-card">
                         <h4>Zhen "Harmony" Liu</h4>
-                        <p><strong>180 points</strong> | <strong>Martial Arts Master</strong></p>
+                        <p><strong>275 points</strong> | <strong>Martial Arts Master</strong></p>
                         <p><strong>ST 12, DX 16, IQ 13, HT 13</strong></p>
                         <p><strong>Advantages:</strong> Enhanced Block 2 [10], Chi Talent 2 [30], Flexibility [5]</p>
                         <p><strong>Disadvantages:</strong> Pacifism (Self-defense only) [-15], Vow (No killing) [-10], Code of Honor (Martial artist) [-10]</p>
@@ -270,7 +210,7 @@
                             </div>
                             <div class="character-card">
                                 <h4>Marcus "Bulldozer" Chen</h4>
-                                <p><strong>175 points</strong> | <strong>Corporate Security</strong></p>
+                                <p><strong>225 points</strong> | <strong>Corporate Security</strong></p>
                                 <p><strong>ST 16, DX 13, IQ 11, HT 15</strong></p>
                                 <p><strong>Advantages:</strong> High Pain Threshold [10], Fearlessness 2 [4], Fit [5]</p>
                                 <p><strong>Disadvantages:</strong> Sense of Duty (Innocents) [-10], Code of Honor (Bodyguard) [-10], Bad Temper [-10]</p>
@@ -297,7 +237,7 @@
                             </div>
                             <div class="character-card">
                                 <h4>Thomas "Gadget" Wright</h4>
-                                <p><strong>200 points</strong> | <strong>Engineering Prodigy</strong></p>
+                                <p><strong>300 points</strong> | <strong>Engineering Prodigy</strong></p>
                                 <p><strong>ST 11, DX 15, IQ 16, HT 11</strong></p>
                                 <p><strong>Advantages:</strong> Gadgeteer [25], Intuitive Engineer [10], Inventor [5]</p>
                                 <p><strong>Disadvantages:</strong> Curious [-5], Compulsive Inventing [-5], Social Stigma (Eccentric) [-5]</p>
@@ -314,9 +254,9 @@
                         <div class="character-pair">
                             <div class="character-card">
                                 <h4>Father Antonio "Exorcist" Valdez</h4>
-                                <p><strong>175 points</strong> | <strong>Supernatural Specialist</strong></p>
+                                <p><strong>200 points</strong> | <strong>Supernatural Specialist</strong></p>
                                 <p><strong>ST 11, DX 12, IQ 14, HT 13</strong></p>
-                                <p><strong>Advantages:</strong> True Faith [15], Strong Will +2 [8], Empathy [15]</p>
+                                <p><strong>Advantages:</strong> True Faith [15], Will +2 [10], Empathy [15]</p>
                                 <p><strong>Disadvantages:</strong> Vow (Celibacy) [-5], Sense of Duty (Congregation) [-10], Struggling Faith [-10]</p>
                                 <p><strong>Skills:</strong> Theology-16, Exorcism-15, Psychology-14, Hidden Lore-13</p>
                                 <p><strong>Goal:</strong> Protect innocent souls from demonic corruption</p>
@@ -351,7 +291,7 @@
                             </div>
                             <div class="character-card">
                                 <h4>Cadet Future-7 "Probability" Beta</h4>
-                                <p><strong>225 points</strong> | <strong>Temporal Rookie</strong></p>
+                                <p><strong>275 points</strong> | <strong>Temporal Rookie</strong></p>
                                 <p><strong>ST 11, DX 15, IQ 15, HT 12</strong></p>
                                 <p><strong>Advantages:</strong> Luck [15], Precognition [25], Enhanced Time Sense [2]</p>
                                 <p><strong>Disadvantages:</strong> Duty (Time Patrol) [-10], Overconfidence [-5], Curious [-5]</p>
@@ -368,7 +308,7 @@
                         <div class="character-pair">
                             <div class="character-card">
                                 <h4>Navigator Stella "Voidwalker" Reyes</h4>
-                                <p><strong>275 points</strong> | <strong>Hyperspace Pilot</strong></p>
+                                <p><strong>300 points</strong> | <strong>Hyperspace Pilot</strong></p>
                                 <p><strong>ST 11, DX 16, IQ 14, HT 12</strong></p>
                                 <p><strong>Advantages:</strong> 3D Spatial Sense [10], Absolute Direction [5], G-Experience [10]</p>
                                 <p><strong>Disadvantages:</strong> Duty (Space Fleet) [-15], Overconfidence [-5], Loner [-5]</p>
@@ -402,7 +342,7 @@
                         <div class="character-trio">
                             <div class="character-card">
                                 <h4>Dr. Pyrrhos "Salamander" Flame</h4>
-                                <p><strong>200 points</strong> | <strong>Fire Mage</strong></p>
+                                <p><strong>225 points</strong> | <strong>Fire Mage</strong></p>
                                 <p><strong>ST 11, DX 13, IQ 15, HT 12</strong></p>
                                 <p><strong>Advantages:</strong> Magery 3 [35], Temperature Tolerance 3 [3], Fearlessness 2 [4]</p>
                                 <p><strong>Disadvantages:</strong> Bad Temper [-10], Overconfidence [-5], Obsession (Clean energy) [-10]</p>
@@ -412,7 +352,7 @@
                             </div>
                             <div class="character-card">
                                 <h4>Marina "Undine" Tidewell</h4>
-                                <p><strong>200 points</strong> | <strong>Water Mage</strong></p>
+                                <p><strong>250 points</strong> | <strong>Water Mage</strong></p>
                                 <p><strong>ST 10, DX 14, IQ 15, HT 12</strong></p>
                                 <p><strong>Advantages:</strong> Magery 3 [35], Amphibious [10], Pressure Support 2 [10]</p>
                                 <p><strong>Disadvantages:</strong> Sense of Duty (Environment) [-15], Pacifism (Reluctant killer) [-5], Vow (Protect water) [-5]</p>
@@ -422,7 +362,7 @@
                             </div>
                             <div class="character-card">
                                 <h4>Professor Gaia "Earthmother" Stone</h4>
-                                <p><strong>200 points</strong> | <strong>Earth Mage</strong></p>
+                                <p><strong>225 points</strong> | <strong>Earth Mage</strong></p>
                                 <p><strong>ST 13, DX 11, IQ 15, HT 13</strong></p>
                                 <p><strong>Advantages:</strong> Magery 3 [35], Damage Resistance 2 [10], Plant Empathy [5]</p>
                                 <p><strong>Disadvantages:</strong> Code of Honor (Druidic) [-10], Vow (Vegetarianism) [-5], Stubbornness [-5]</p>
@@ -449,7 +389,7 @@
                             </div>
                             <div class="character-card">
                                 <h4>Technician Zero "Ghost" Protocol</h4>
-                                <p><strong>200 points</strong> | <strong>Digital Specialist</strong></p>
+                                <p><strong>225 points</strong> | <strong>Digital Specialist</strong></p>
                                 <p><strong>ST 9, DX 14, IQ 16, HT 10</strong></p>
                                 <p><strong>Advantages:</strong> Computer Brain [25], Eidetic Memory [5], Hacker [10]</p>
                                 <p><strong>Disadvantages:</strong> Enemy (Corporations) [-20], Paranoia [-10], Social Stigma (Criminal) [-5]</p>
@@ -459,7 +399,7 @@
                             </div>
                             <div class="character-card">
                                 <h4>Agent Storm "Blackout" Reaper</h4>
-                                <p><strong>250 points</strong> | <strong>Extraction Specialist</strong></p>
+                                <p><strong>300 points</strong> | <strong>Extraction Specialist</strong></p>
                                 <p><strong>ST 13, DX 16, IQ 13, HT 14</strong></p>
                                 <p><strong>Advantages:</strong> Combat Reflexes [15], Danger Sense [15], Silence 2 [10]</p>
                                 <p><strong>Disadvantages:</strong> Duty (Agency) [-15], Code of Honor (Professional) [-5], Loner [-5]</p>
@@ -486,7 +426,7 @@
                             </div>
                             <div class="character-card">
                                 <h4>Commander Atlas "Ironhide" Vega</h4>
-                                <p><strong>200 points</strong> | <strong>Military Xenologist</strong></p>
+                                <p><strong>250 points</strong> | <strong>Military Xenologist</strong></p>
                                 <p><strong>ST 14, DX 13, IQ 13, HT 14</strong></p>
                                 <p><strong>Advantages:</strong> Combat Reflexes [15], Fearlessness 3 [6], Military Rank 3 [15]</p>
                                 <p><strong>Disadvantages:</strong> Duty (Military) [-15], Code of Honor (Soldier's) [-10], Intolerance (Aliens) [-5]</p>
@@ -499,7 +439,7 @@
                                 <p><strong>250 points</strong> | <strong>Diplomatic Empath</strong></p>
                                 <p><strong>ST 10, DX 11, IQ 15, HT 12</strong></p>
                                 <p><strong>Advantages:</strong> Empathy [15], Telepathy [50], Cultural Adaptability [10]</p>
-                                <p><strong>Disadvantages:</strong> Pacifism (Total) [-30], Honesty [-10], Sense of Duty (Peace) [-15]</p>
+                                <p><strong>Disadvantages:</strong> Pacifism (Total) [-30], Honesty [-10], Sense of Duty (Peace) [-10]</p>
                                 <p><strong>Skills:</strong> Diplomacy-17, Psychology-16, Linguistics-15, Xenology-14</p>
                                 <p><strong>Goal:</strong> Establish peaceful relations with all alien species</p>
                                 <p>Psychic diplomat bridging species differences</p>
@@ -523,7 +463,7 @@
                             </div>
                             <div class="character-card">
                                 <h4>Agent Flux "Warpwalker" Dimension</h4>
-                                <p><strong>300 points</strong> | <strong>Dimensional Scout</strong></p>
+                                <p><strong>350 points</strong> | <strong>Dimensional Scout</strong></p>
                                 <p><strong>ST 12, DX 15, IQ 14, HT 13</strong></p>
                                 <p><strong>Advantages:</strong> Jumper (World) [100], Danger Sense [15], Fit [5]</p>
                                 <p><strong>Disadvantages:</strong> Duty (Dimensional patrol) [-20], Loner [-5], Bad Temper [-10]</p>
@@ -533,7 +473,7 @@
                             </div>
                             <div class="character-card">
                                 <h4>Engineer Tesla "Gatekeeper" Coil</h4>
-                                <p><strong>225 points</strong> | <strong>Dimensional Engineer</strong></p>
+                                <p><strong>250 points</strong> | <strong>Dimensional Engineer</strong></p>
                                 <p><strong>ST 11, DX 14, IQ 16, HT 11</strong></p>
                                 <p><strong>Advantages:</strong> Gadgeteer [25], Intuitive Engineer [10], Inventor [5]</p>
                                 <p><strong>Disadvantages:</strong> Curious [-5], Workaholic [-5], Obsession (Perfect portal) [-15]</p>
@@ -552,7 +492,7 @@
                                 <h4>Dr. Mentis "Telepathic" Crown</h4>
                                 <p><strong>250 points</strong> | <strong>Psychic Researcher</strong></p>
                                 <p><strong>ST 10, DX 11, IQ 16, HT 12</strong></p>
-                                <p><strong>Advantages:</strong> Telepathy [50], Strong Will +3 [12], Empathy [15]</p>
+                                <p><strong>Advantages:</strong> Telepathy [50], Will +3 [15], Empathy [15]</p>
                                 <p><strong>Disadvantages:</strong> Chronic Pain (Migraines) [-15], Obsession (Map psychic brain) [-10], Social Stigma (Psychic) [-10]</p>
                                 <p><strong>Skills:</strong> Psychology-18, Research-17, Meditation-16, Biology-15</p>
                                 <p><strong>Goal:</strong> Map the scientific basis of psychic phenomena</p>
@@ -562,7 +502,7 @@
                                 <h4>Subject Kinetic "Teleforce" Vector</h4>
                                 <p><strong>275 points</strong> | <strong>Psychokinetic Test Subject</strong></p>
                                 <p><strong>ST 11, DX 13, IQ 14, HT 12</strong></p>
-                                <p><strong>Advantages:</strong> Telekinesis [50], Enhanced Will +2 [8], Fit [5]</p>
+                                <p><strong>Advantages:</strong> Telekinesis [50], Will +2 [10], Fit [5]</p>
                                 <p><strong>Disadvantages:</strong> Secret (Test subject) [-10], Uncontrollable appetite (Power use) [-15], Duty (Institute) [-10]</p>
                                 <p><strong>Skills:</strong> Meditation-16, Electronics-14, Physics-13, Mathematics-14</p>
                                 <p><strong>Goal:</strong> Control psychokinetic abilities without losing humanity</p>
@@ -570,9 +510,9 @@
                             </div>
                             <div class="character-card">
                                 <h4>Guardian Psyche "Mindwall" Shield</h4>
-                                <p><strong>200 points</strong> | <strong>Psionic Security</strong></p>
+                                <p><strong>225 points</strong> | <strong>Psionic Security</strong></p>
                                 <p><strong>ST 13, DX 12, IQ 14, HT 13</strong></p>
-                                <p><strong>Advantages:</strong> Mind Shield [4], Strong Will +4 [16], Combat Reflexes [15]</p>
+                                <p><strong>Advantages:</strong> Mind Shield [4], Will +4 [20], Combat Reflexes [15]</p>
                                 <p><strong>Disadvantages:</strong> Sense of Duty (Researchers) [-10], Code of Honor (Guardian) [-10], Loner [-5]</p>
                                 <p><strong>Skills:</strong> Guns-15, Psychology-15, Meditation-14, Tactics-13</p>
                                 <p><strong>Goal:</strong> Protect psychic researchers from hostile entities</p>
@@ -604,9 +544,9 @@
                             </div>
                             <div class="character-card">
                                 <h4>Agent Raven "Nullfield" Void</h4>
-                                <p><strong>225 points</strong> | <strong>Anti-Magic Specialist</strong></p>
+                                <p><strong>250 points</strong> | <strong>Anti-Magic Specialist</strong></p>
                                 <p><strong>ST 13, DX 14, IQ 13, HT 13</strong></p>
-                                <p><strong>Advantages:</strong> Magic Resistance 10 [4], Combat Reflexes [15], Fearlessness 3 [6]</p>
+                                <p><strong>Advantages:</strong> Magic Resistance 10 [20], Combat Reflexes [15], Fearlessness 3 [6]</p>
                                 <p><strong>Disadvantages:</strong> Intolerance (Mages) [-10], Code of Honor (Agent) [-10], Overconfidence [-5]</p>
                                 <p><strong>Skills:</strong> Guns-16, Occultism-15, Tactics-14, Fast-Talk-13</p>
                                 <p><strong>Goal:</strong> Apprehend dangerous rogue mages</p>
@@ -614,7 +554,7 @@
                             </div>
                             <div class="character-card">
                                 <h4>Forensics Expert Luna "Truthseeker" Crystal</h4>
-                                <p><strong>200 points</strong> | <strong>Magical Investigator</strong></p>
+                                <p><strong>225 points</strong> | <strong>Magical Investigator</strong></p>
                                 <p><strong>ST 10, DX 13, IQ 16, HT 11</strong></p>
                                 <p><strong>Advantages:</strong> Magery 2 [25], Empathy [15], Eidetic Memory [5]</p>
                                 <p><strong>Disadvantages:</strong> Honesty [-10], Sense of Duty (Truth) [-10], Curious [-5]</p>
@@ -661,7 +601,7 @@
                             </div>
                             <div class="character-card">
                                 <h4>Major Titan "Ironcore" Steel</h4>
-                                <p><strong>225 points</strong> | <strong>Space Marine</strong></p>
+                                <p><strong>275 points</strong> | <strong>Space Marine</strong></p>
                                 <p><strong>ST 15, DX 14, IQ 12, HT 15</strong></p>
                                 <p><strong>Advantages:</strong> Enhanced Strength +2 [20], High Pain Threshold [10], Fit [5]</p>
                                 <p><strong>Disadvantages:</strong> Duty (Marines) [-15], Code of Honor (Marine) [-10], Bad Temper [-10]</p>
@@ -671,7 +611,7 @@
                             </div>
                             <div class="character-card">
                                 <h4>Navigator Echo "Pathfinder" Horizon</h4>
-                                <p><strong>200 points</strong> | <strong>Hyperspace Pilot</strong></p>
+                                <p><strong>275 points</strong> | <strong>Hyperspace Pilot</strong></p>
                                 <p><strong>ST 11, DX 16, IQ 14, HT 12</strong></p>
                                 <p><strong>Advantages:</strong> Absolute Direction [5], 3D Spatial Sense [10], G-Experience [10]</p>
                                 <p><strong>Disadvantages:</strong> Loner [-5], Overconfidence [-5], Duty (Fleet) [-15]</p>
@@ -698,7 +638,7 @@
                             </div>
                             <div class="character-card">
                                 <h4>Agent Paradox "Loopwalker" Beta</h4>
-                                <p><strong>275 points</strong> | <strong>Field Operative</strong></p>
+                                <p><strong>300 points</strong> | <strong>Field Operative</strong></p>
                                 <p><strong>ST 12, DX 15, IQ 15, HT 13</strong></p>
                                 <p><strong>Advantages:</strong> Temporal Inertia [15], Danger Sense [15], Combat Reflexes [15]</p>
                                 <p><strong>Disadvantages:</strong> Duty (Time Agency) [-15], Loner [-5], Code of Honor (Agent) [-10]</p>
@@ -708,7 +648,7 @@
                             </div>
                             <div class="character-card">
                                 <h4>Analyst Vector "Probability" Gamma</h4>
-                                <p><strong>225 points</strong> | <strong>Temporal Mathematician</strong></p>
+                                <p><strong>250 points</strong> | <strong>Temporal Mathematician</strong></p>
                                 <p><strong>ST 10, DX 12, IQ 18, HT 11</strong></p>
                                 <p><strong>Advantages:</strong> Mathematical Ability [10], Precognition [25], Lightning Calculator [2]</p>
                                 <p><strong>Disadvantages:</strong> Obsession (Calculate everything) [-15], Absent-Minded [-15], Social Stigma (Eccentric) [-5]</p>
@@ -718,7 +658,7 @@
                             </div>
                             <div class="character-card">
                                 <h4>Engineer Flux "Gatebuilder" Delta</h4>
-                                <p><strong>250 points</strong> | <strong>Temporal Engineer</strong></p>
+                                <p><strong>275 points</strong> | <strong>Temporal Engineer</strong></p>
                                 <p><strong>ST 11, DX 14, IQ 16, HT 12</strong></p>
                                 <p><strong>Advantages:</strong> Gadgeteer [25], Intuitive Engineer [10], Temporal Inertia [15]</p>
                                 <p><strong>Disadvantages:</strong> Curious [-5], Workaholic [-5], Obsession (Perfect time machine) [-15]</p>
@@ -765,7 +705,7 @@
                             </div>
                             <div class="character-card">
                                 <h4>Agent Steel "Guardian" Wall</h4>
-                                <p><strong>175 points</strong> | <strong>Physical Security</strong></p>
+                                <p><strong>225 points</strong> | <strong>Physical Security</strong></p>
                                 <p><strong>ST 14, DX 13, IQ 12, HT 14</strong></p>
                                 <p><strong>Advantages:</strong> Combat Reflexes [15], Fearlessness 2 [4], Security Clearance [5]</p>
                                 <p><strong>Disadvantages:</strong> Duty (Security) [-10], Code of Honor (Guardian) [-10], Stubbornness [-5]</p>
@@ -809,7 +749,7 @@
                             </div>
                             <div class="character-card">
                                 <h4>Security Chief Titan "Protector" Guardian</h4>
-                                <p><strong>225 points</strong> | <strong>Military Escort</strong></p>
+                                <p><strong>275 points</strong> | <strong>Military Escort</strong></p>
                                 <p><strong>ST 15, DX 14, IQ 12, HT 15</strong></p>
                                 <p><strong>Advantages:</strong> Combat Reflexes [15], Military Rank 3 [15], High Pain Threshold [10]</p>
                                 <p><strong>Disadvantages:</strong> Duty (Institute) [-10], Sense of Duty (Team) [-10], Code of Honor (Soldier's) [-10]</p>
@@ -819,7 +759,7 @@
                             </div>
                             <div class="character-card">
                                 <h4>Navigator Void "Pathmaker" Compass</h4>
-                                <p><strong>225 points</strong> | <strong>Hyperspace Specialist</strong></p>
+                                <p><strong>275 points</strong> | <strong>Hyperspace Specialist</strong></p>
                                 <p><strong>ST 11, DX 16, IQ 14, HT 12</strong></p>
                                 <p><strong>Advantages:</strong> Absolute Direction [5], 3D Spatial Sense [10], Mathematical Ability [10]</p>
                                 <p><strong>Disadvantages:</strong> Loner [-5], Workaholic [-5], Obsession (Perfect navigation) [-15]</p>
@@ -829,7 +769,7 @@
                             </div>
                             <div class="character-card">
                                 <h4>Engineer Quantum "Miracle" Builder</h4>
-                                <p><strong>200 points</strong> | <strong>Technology Specialist</strong></p>
+                                <p><strong>275 points</strong> | <strong>Technology Specialist</strong></p>
                                 <p><strong>ST 12, DX 14, IQ 15, HT 12</strong></p>
                                 <p><strong>Advantages:</strong> Gadgeteer [25], Intuitive Engineer [10], Fit [5]</p>
                                 <p><strong>Disadvantages:</strong> Curious [-5], Compulsive Inventing [-5], Workaholic [-5]</p>
@@ -848,7 +788,7 @@
                                 <h4>Director Magnus "Truthseeker" Occultus</h4>
                                 <p><strong>275 points</strong> | <strong>Supernatural Coordinator</strong></p>
                                 <p><strong>ST 11, DX 12, IQ 16, HT 12</strong></p>
-                                <p><strong>Advantages:</strong> Administrative Rank 3 [15], Strong Will +3 [12], Empathy [15]</p>
+                                <p><strong>Advantages:</strong> Administrative Rank 3 [15], Will +3 [15], Empathy [15]</p>
                                 <p><strong>Disadvantages:</strong> Duty (Government) [-15], Secret (Supernatural division) [-10], Workaholic [-5]</p>
                                 <p><strong>Skills:</strong> Administration-17, Occultism-16, Psychology-15, Research-15</p>
                                 <p><strong>Goal:</strong> Scientifically classify all supernatural phenomena</p>
@@ -858,7 +798,7 @@
                                 <h4>Dr. Mystic "Channeler" Ethereal</h4>
                                 <p><strong>300 points</strong> | <strong>Psychic Researcher</strong></p>
                                 <p><strong>ST 10, DX 11, IQ 16, HT 12</strong></p>
-                                <p><strong>Advantages:</strong> Telepathy [50], Precognition [25], Strong Will +2 [8]</p>
+                                <p><strong>Advantages:</strong> Telepathy [50], Precognition [25], Will +2 [10]</p>
                                 <p><strong>Disadvantages:</strong> Chronic Pain (Psychic backlash) [-15], Social Stigma (Psychic) [-10], Obsession (Understand psychic phenomena) [-10]</p>
                                 <p><strong>Skills:</strong> Psychology-18, Meditation-17, Research-16, Occultism-15</p>
                                 <p><strong>Goal:</strong> Map the scientific basis of psychic abilities</p>
@@ -866,9 +806,9 @@
                             </div>
                             <div class="character-card">
                                 <h4>Agent Null "Skeptic" Rational</h4>
-                                <p><strong>200 points</strong> | <strong>Scientific Investigator</strong></p>
+                                <p><strong>250 points</strong> | <strong>Scientific Investigator</strong></p>
                                 <p><strong>ST 12, DX 13, IQ 15, HT 12</strong></p>
-                                <p><strong>Advantages:</strong> Strong Will +3 [12], Empathy [15], Intuition [15]</p>
+                                <p><strong>Advantages:</strong> Will +3 [15], Empathy [15], Intuition [15]</p>
                                 <p><strong>Disadvantages:</strong> Skeptical [-5], Honesty [-10], Sense of Duty (Truth) [-10]</p>
                                 <p><strong>Skills:</strong> Research-17, Psychology-16, Observation-15, Photography-14</p>
                                 <p><strong>Goal:</strong> Debunk false supernatural claims</p>
@@ -876,9 +816,9 @@
                             </div>
                             <div class="character-card">
                                 <h4>Guardian Steel "Protector" Shield</h4>
-                                <p><strong>175 points</strong> | <strong>Security Specialist</strong></p>
+                                <p><strong>225 points</strong> | <strong>Security Specialist</strong></p>
                                 <p><strong>ST 14, DX 13, IQ 12, HT 14</strong></p>
-                                <p><strong>Advantages:</strong> Combat Reflexes [15], Fearlessness 3 [6], Strong Will +2 [8]</p>
+                                <p><strong>Advantages:</strong> Combat Reflexes [15], Fearlessness 3 [6], Will +2 [10]</p>
                                 <p><strong>Disadvantages:</strong> Duty (Division) [-10], Sense of Duty (Team) [-10], Code of Honor (Guardian) [-5]</p>
                                 <p><strong>Skills:</strong> Guns-16, Observation-14, Electronics-13, Tactics-13</p>
                                 <p><strong>Goal:</strong> Protect researchers from supernatural threats</p>
@@ -886,7 +826,7 @@
                             </div>
                             <div class="character-card">
                                 <h4>Technician Probe "Detector" Scanner</h4>
-                                <p><strong>200 points</strong> | <strong>Equipment Specialist</strong></p>
+                                <p><strong>250 points</strong> | <strong>Equipment Specialist</strong></p>
                                 <p><strong>ST 11, DX 14, IQ 15, HT 11</strong></p>
                                 <p><strong>Advantages:</strong> Gadgeteer [25], Eidetic Memory [5], Mathematical Ability [10]</p>
                                 <p><strong>Disadvantages:</strong> Curious [-5], Obsession (Perfect detector) [-10], Workaholic [-5]</p>
@@ -933,7 +873,7 @@
                             </div>
                             <div class="character-card">
                                 <h4>Operative Storm "Extraction" Rescue</h4>
-                                <p><strong>225 points</strong> | <strong>Field Agent</strong></p>
+                                <p><strong>275 points</strong> | <strong>Field Agent</strong></p>
                                 <p><strong>ST 13, DX 15, IQ 13, HT 13</strong></p>
                                 <p><strong>Advantages:</strong> Combat Reflexes [15], Danger Sense [15], Silence 2 [10]</p>
                                 <p><strong>Disadvantages:</strong> Code of Honor (Professional) [-5], Sense of Duty (Innocents) [-10], Loner [-5]</p>
@@ -997,7 +937,7 @@
                             </div>
                             <div class="character-card">
                                 <h4>Engineer Forge "Constructor" Build</h4>
-                                <p><strong>275 points</strong> | <strong>Reality Engineer</strong></p>
+                                <p><strong>325 points</strong> | <strong>Reality Engineer</strong></p>
                                 <p><strong>ST 12, DX 15, IQ 17, HT 12</strong></p>
                                 <p><strong>Advantages:</strong> Gadgeteer [25], Inventor [5], Intuitive Engineer [10]</p>
                                 <p><strong>Disadvantages:</strong> Curious [-5], Workaholic [-5], Obsession (Build impossible things) [-15]</p>
@@ -1007,7 +947,7 @@
                             </div>
                             <div class="character-card">
                                 <h4>Guardian Absolute "Defender" Shield</h4>
-                                <p><strong>300 points</strong> | <strong>Ultimate Protector</strong></p>
+                                <p><strong>350 points</strong> | <strong>Ultimate Protector</strong></p>
                                 <p><strong>ST 16, DX 14, IQ 13, HT 16</strong></p>
                                 <p><strong>Advantages:</strong> Damage Resistance 10 [50], Combat Reflexes [15], Fearlessness 5 [10]</p>
                                 <p><strong>Disadvantages:</strong> Sense of Duty (Team) [-10], Code of Honor (Guardian) [-10], Stubbornness [-5]</p>
@@ -1019,7 +959,7 @@
                                 <h4>Oracle Foresight "Prophet" Vision</h4>
                                 <p><strong>325 points</strong> | <strong>Cosmic Precognitive</strong></p>
                                 <p><strong>ST 10, DX 12, IQ 16, HT 12</strong></p>
-                                <p><strong>Advantages:</strong> Precognition [25], Danger Sense [15], Strong Will +4 [16]</p>
+                                <p><strong>Advantages:</strong> Precognition [25], Danger Sense [15], Will +4 [20]</p>
                                 <p><strong>Disadvantages:</strong> Chronic Pain (Visions) [-15], Obsession (Prevent disasters) [-10], Social Stigma (Prophet) [-10]</p>
                                 <p><strong>Skills:</strong> Meditation-18, Psychology-17, Research-16, Mathematics-15</p>
                                 <p><strong>Goal:</strong> Prevent universal catastrophes through foresight</p>
@@ -1054,7 +994,7 @@
                             </div>
                             <div class="character-card">
                                 <h4>CSO Stealth "Spymaster" Intelligence</h4>
-                                <p><strong>275 points</strong> | <strong>Corporate Security Chief</strong></p>
+                                <p><strong>300 points</strong> | <strong>Corporate Security Chief</strong></p>
                                 <p><strong>ST 12, DX 15, IQ 16, HT 13</strong></p>
                                 <p><strong>Advantages:</strong> Security Clearance [10], Contacts (Government) [15], Empathy [15]</p>
                                 <p><strong>Disadvantages:</strong> Secret (Corporate spy network) [-20], Paranoia [-10], Callous [-5]</p>
@@ -1103,7 +1043,7 @@
                                 <h4>Director Arcanum "Gatekeeper" Mystical</h4>
                                 <p><strong>325 points</strong> | <strong>Supernatural Administrator</strong></p>
                                 <p><strong>ST 11, DX 12, IQ 17, HT 12</strong></p>
-                                <p><strong>Advantages:</strong> Magery 4 [45], Administrative Rank 4 [20], Strong Will +3 [12]</p>
+                                <p><strong>Advantages:</strong> Magery 4 [45], Administrative Rank 4 [20], Will +3 [15]</p>
                                 <p><strong>Disadvantages:</strong> Duty (Institute) [-15], Secret (Government mage) [-10], Workaholic [-5]</p>
                                 <p><strong>Skills:</strong> Thaumatology-20, Administration-18, Occultism-17, Leadership-16</p>
                                 <p><strong>Goal:</strong> Regulate supernatural phenomena for global safety</p>
@@ -1113,7 +1053,7 @@
                                 <h4>Dr. Psyche "Mindreader" Telepathic</h4>
                                 <p><strong>300 points</strong> | <strong>Psychic Researcher</strong></p>
                                 <p><strong>ST 10, DX 11, IQ 16, HT 12</strong></p>
-                                <p><strong>Advantages:</strong> Telepathy [50], Strong Will +3 [12], Empathy [15]</p>
+                                <p><strong>Advantages:</strong> Telepathy [50], Will +3 [15], Empathy [15]</p>
                                 <p><strong>Disadvantages:</strong> Chronic Pain (Psychic overload) [-15], Social Stigma (Psychic) [-10], Obsession (Understand minds) [-10]</p>
                                 <p><strong>Skills:</strong> Psychology-19, Research-18, Meditation-17, Biology-16</p>
                                 <p><strong>Goal:</strong> Map the scientific basis of psychic phenomena</p>
@@ -1121,9 +1061,9 @@
                             </div>
                             <div class="character-card">
                                 <h4>Agent Null "Immunity" Resistant</h4>
-                                <p><strong>225 points</strong> | <strong>Anti-Supernatural Specialist</strong></p>
+                                <p><strong>275 points</strong> | <strong>Anti-Supernatural Specialist</strong></p>
                                 <p><strong>ST 14, DX 13, IQ 13, HT 14</strong></p>
-                                <p><strong>Advantages:</strong> Magic Resistance 15 [3], Mental Stability [20], Combat Reflexes [15]</p>
+                                <p><strong>Advantages:</strong> Magic Resistance 15 [30], Mental Stability [20], Combat Reflexes [15]</p>
                                 <p><strong>Disadvantages:</strong> Intolerance (Supernatural) [-10], Code of Honor (Agent) [-10], Stubbornness [-5]</p>
                                 <p><strong>Skills:</strong> Guns-16, Occultism-15, Observation-14, Tactics-13</p>
                                 <p><strong>Goal:</strong> Neutralize dangerous supernatural entities</p>
@@ -1131,7 +1071,7 @@
                             </div>
                             <div class="character-card">
                                 <h4>Technician Probe "Scanner" Detection</h4>
-                                <p><strong>225 points</strong> | <strong>Paranormal Equipment Expert</strong></p>
+                                <p><strong>275 points</strong> | <strong>Paranormal Equipment Expert</strong></p>
                                 <p><strong>ST 11, DX 14, IQ 16, HT 11</strong></p>
                                 <p><strong>Advantages:</strong> Gadgeteer [25], Eidetic Memory [5], Mathematical Ability [10]</p>
                                 <p><strong>Disadvantages:</strong> Curious [-5], Obsession (Perfect detector) [-10], Workaholic [-5]</p>
@@ -1154,7 +1094,7 @@
                                 <p><strong>200 points</strong> | <strong>Supernatural Negotiator</strong></p>
                                 <p><strong>ST 10, DX 11, IQ 15, HT 12</strong></p>
                                 <p><strong>Advantages:</strong> Charisma 3 [15], Empathy [15], Cultural Adaptability [10]</p>
-                                <p><strong>Disadvantages:</strong> Pacifism (Total) [-30], Honesty [-10], Sense of Duty (Peace) [-15]</p>
+                                <p><strong>Disadvantages:</strong> Pacifism (Total) [-30], Honesty [-10], Sense of Duty (Peace) [-10]</p>
                                 <p><strong>Skills:</strong> Diplomacy-18, Fast-Talk-17, Psychology-16, Occultism-15</p>
                                 <p><strong>Goal:</strong> Negotiate peaceful coexistence with supernatural entities</p>
                                 <p>Diplomatic specialist handling supernatural politics</p>
@@ -1172,7 +1112,7 @@
                 <div class="character-grid">
                     <div class="character-card">
                         <h4>Agent Artemis "Huntress" Tracker</h4>
-                        <p><strong>225 points</strong> | <strong>Wilderness Scout</strong></p>
+                        <p><strong>275 points</strong> | <strong>Wilderness Scout</strong></p>
                         <p><strong>ST 13, DX 15, IQ 13, HT 14</strong></p>
                         <p><strong>Advantages:</strong> Absolute Direction [5], Animal Empathy [5], Fit [5]</p>
                         <p><strong>Disadvantages:</strong> Sense of Duty (Environment) [-15], Loner [-5], Stubbornness [-5]</p>
@@ -1216,7 +1156,7 @@
 
                     <div class="character-card">
                         <h4>Master Zen "Equilibrium" Balance</h4>
-                        <p><strong>250 points</strong> | <strong>Martial Arts Philosopher</strong></p>
+                        <p><strong>350 points</strong> | <strong>Martial Arts Philosopher</strong></p>
                         <p><strong>ST 13, DX 16, IQ 14, HT 14</strong></p>
                         <p><strong>Advantages:</strong> Enhanced Block 3 [15], Chi Talent 3 [45], Flexibility [5]</p>
                         <p><strong>Disadvantages:</strong> Pacifism (Self-defense only) [-15], Vow (Non-violence) [-10], Code of Honor (Buddhist) [-10]</p>
@@ -1241,7 +1181,7 @@
                         <p><strong>200 points</strong> | <strong>Interspecies Diplomat</strong></p>
                         <p><strong>ST 10, DX 11, IQ 15, HT 12</strong></p>
                         <p><strong>Advantages:</strong> Cultural Adaptability [10], Language Talent [10], Empathy [15]</p>
-                        <p><strong>Disadvantages:</strong> Pacifism (Total) [-30], Sense of Duty (Peace) [-15], Honesty [-10]</p>
+                        <p><strong>Disadvantages:</strong> Pacifism (Total) [-30], Sense of Duty (Peace) [-10], Honesty [-10]</p>
                         <p><strong>Skills:</strong> Diplomacy-18, Linguistics-17, Psychology-16, Fast-Talk-15</p>
                         <p><strong>Goal:</strong> Establish peaceful contact with all alien species</p>
                         <p>Universal translator building bridges between worlds</p>
@@ -1249,7 +1189,7 @@
 
                     <div class="character-card">
                         <h4>Guardian Angel "Lifesaver" Rescue</h4>
-                        <p><strong>175 points</strong> | <strong>Emergency Responder</strong></p>
+                        <p><strong>250 points</strong> | <strong>Emergency Responder</strong></p>
                         <p><strong>ST 14, DX 13, IQ 12, HT 15</strong></p>
                         <p><strong>Advantages:</strong> Combat Reflexes [15], Empathy [15], Fit [5]</p>
                         <p><strong>Disadvantages:</strong> Sense of Duty (Everyone) [-20], Compulsive Generosity [-5], Workaholic [-5]</p>
@@ -1271,7 +1211,7 @@
 
                     <div class="character-card">
                         <h4>Architect Dream "Builder" Construct</h4>
-                        <p><strong>225 points</strong> | <strong>Reality Designer</strong></p>
+                        <p><strong>275 points</strong> | <strong>Reality Designer</strong></p>
                         <p><strong>ST 12, DX 14, IQ 16, HT 12</strong></p>
                         <p><strong>Advantages:</strong> 3D Spatial Sense [10], Mathematical Ability [10], Intuitive Engineer [10]</p>
                         <p><strong>Disadvantages:</strong> Perfectionist [-5], Workaholic [-5], Obsession (Perfect design) [-15]</p>
@@ -1284,7 +1224,7 @@
                         <h4>Mystic Void "Emptiness" Null</h4>
                         <p><strong>300 points</strong> | <strong>Nihilist Philosopher</strong></p>
                         <p><strong>ST 10, DX 12, IQ 17, HT 11</strong></p>
-                        <p><strong>Advantages:</strong> Strong Will +4 [16], Unfazeable [15], Intuition [15]</p>
+                        <p><strong>Advantages:</strong> Will +4 [20], Unfazeable [15], Intuition [15]</p>
                         <p><strong>Disadvantages:</strong> Detachment [-15], Callous [-5], Obsession (Understand nothingness) [-15]</p>
                         <p><strong>Skills:</strong> Philosophy-20, Meditation-19, Psychology-17, Theology-16</p>
                         <p><strong>Goal:</strong> Achieve perfect understanding of emptiness</p>
@@ -1293,7 +1233,7 @@
 
                     <div class="character-card">
                         <h4>Pilot Nova "Lightspeed" Dash</h4>
-                        <p><strong>250 points</strong> | <strong>Speed Demon</strong></p>
+                        <p><strong>350 points</strong> | <strong>Speed Demon</strong></p>
                         <p><strong>ST 12, DX 17, IQ 13, HT 14</strong></p>
                         <p><strong>Advantages:</strong> Enhanced Speed +2 [40], Combat Reflexes [15], G-Experience [10]</p>
                         <p><strong>Disadvantages:</strong> Overconfidence [-5], Compulsive Gambling [-5], Loner [-5]</p>
@@ -1304,10 +1244,10 @@
 
                     <div class="character-card">
                         <h4>Healer Mercy "Lifeforce" Restore</h4>
-                        <p><strong>225 points</strong> | <strong>Medical Savant</strong></p>
+                        <p><strong>275 points</strong> | <strong>Medical Savant</strong></p>
                         <p><strong>ST 11, DX 14, IQ 16, HT 13</strong></p>
                         <p><strong>Advantages:</strong> Empathy [15], Intuition [15], Healing [30]</p>
-                        <p><strong>Disadvantages:</strong> Pacifism (Total) [-30], Sense of Duty (All life) [-20], Vow (Do no harm) [-10]</p>
+                        <p><strong>Disadvantages:</strong> Pacifism (Total) [-30], Sense of Duty (All life) [-20], Quirk (Swore to do no harm) [-1]</p>
                         <p><strong>Skills:</strong> Physician-19, Psychology-17, Biology-16, First Aid-18</p>
                         <p><strong>Goal:</strong> Heal all suffering in the universe</p>
                         <p>Miraculous healer devoted to preserving life</p>
@@ -1317,13 +1257,13 @@
 
             <section class="complete-disadvantage-coverage">
                 <h2>Complete Disadvantage Integration Across All Characters</h2>
-                <p>Every single character in this 120-character collection now includes carefully balanced disadvantages that serve multiple purposes: providing character points for optimization, creating ongoing story hooks, generating roleplay opportunities, and establishing meaningful limitations that drive character development.</p>
+                <p>Every single character in this 97-character collection includes carefully balanced disadvantages that serve multiple purposes: providing character points for optimization, creating ongoing story hooks, generating roleplay opportunities, and establishing meaningful limitations that drive character development.</p>
 
                 <div class="coverage-verification">
                     <h3>Systematic Disadvantage Application</h3>
                     
                     <div class="coverage-section">
-                        <h4>Solo Characters (23 total) - All Include Disadvantages</h4>
+                        <h4>Solo Characters (23 total: 10 Solo Operators + 13 in the Extended Gallery) - All Include Disadvantages</h4>
                         <p><strong>Example patterns:</strong> Military characters have Duty and Codes of Honor, Scientists have Obsessions and Social Stigma, Psychics have Social Stigma and Chronic Pain, Hackers have Enemies and Paranoia</p>
                     </div>
                     
@@ -1356,9 +1296,10 @@
                 <div class="disadvantage-point-economy">
                     <h3>Point Economy Analysis</h3>
                     <div class="economy-breakdown">
-                        <p><strong>150-200 point characters:</strong> Typically include 15-25 points of disadvantages, focusing on personality traits and social limitations</p>
-                        <p><strong>200-300 point characters:</strong> Usually feature 20-35 points of disadvantages, balancing personal limitations with professional obligations</p>
-                        <p><strong>300+ point characters:</strong> Often carry 25-50 points of disadvantages, including major enemies, significant duties, or complex psychological conditions</p>
+                        <p><strong>Under 200 points (2 characters):</strong> Carry 25-30 points of disadvantages, focusing on personality traits and professional obligations</p>
+                        <p><strong>200-299 points (69 characters):</strong> Usually feature 20-35 points of disadvantages (full range 15-50), balancing personal limitations with professional obligations; four of the five at -50 are total pacifists, the fifth a greedy double agent</p>
+                        <p><strong>300+ points (26 characters):</strong> Carry 15-45 points of disadvantages, including major enemies, significant duties, or complex psychological conditions</p>
+                        <p><strong>The limit:</strong> No character goes past the usual -50 point disadvantage limit; one also has a single quirk [-1], which doesn't count against it</p>
                     </div>
                 </div>
 
@@ -1378,20 +1319,20 @@
                 <div class="statistics-breakdown">
                     <h3>Collection Overview</h3>
                     <div class="stat-item">
-                        <h4>Total Characters: 120</h4>
-                        <p>23 Solo Operators, 10 Duo Partners, 15 Trio Members, 16 Quartet Members, 15 Quintet Members, 18 Sextet Members, plus 23 additional specialized characters</p>
+                        <h4>Total Characters: 97</h4>
+                        <p>23 solo characters (10 Solo Operators + 13 in the Extended Gallery), 10 Duo Partners (5 pairs), 15 Trio Members (5 trios), 16 Quartet Members (4 quartets), 15 Quintet Members (3 quintets), 18 Sextet Members (3 sextets)</p>
                     </div>
                     <div class="stat-item">
                         <h4>Point Distribution</h4>
-                        <p>150-200 points: 35%, 200-250 points: 30%, 250-300 points: 20%, 300+ points: 15%</p>
+                        <p>175-199 points: 2 (2%), 200-249 points: 26 (27%), 250-299 points: 43 (44%), 300+ points: 26 (27%)</p>
                     </div>
                     <div class="stat-item">
                         <h4>Disadvantage Integration</h4>
-                        <p>Every character includes 15-35 points of disadvantages: Mental 40%, Social 25%, Physical 20%, Moral/Behavioral 15%</p>
+                        <p>Every character includes 15-50 points of disadvantages, mostly mental and behavioral (Obsession, Curious, Workaholic, Code of Honor), backed by social ones (Duty, Secret, Enemy, Social Stigma)</p>
                     </div>
                     <div class="stat-item">
                         <h4>Genre Coverage</h4>
-                        <p>Modern/Near-Future: 32%, Sci-Fi: 28%, Fantasy/Supernatural: 22%, Corporate/Cyberpunk: 18%</p>
+                        <p>Modern and near-future, science fiction, fantasy and the supernatural, and corporate/cyberpunk settings</p>
                     </div>
                 </div>
 
@@ -1448,7 +1389,7 @@
                             <li>Gadgeteer [25]</li>
                             <li>Telepathy [50]</li>
                             <li>Administrative Rank 3 [15]</li>
-                            <li>Strong Will +2 [8]</li>
+                            <li>Will +2 [10]</li>
                             <li>Empathy [15]</li>
                             <li>Danger Sense [15]</li>
                             <li>Wealth (Wealthy) [20]</li>
@@ -1580,26 +1521,38 @@
                     </div>
                 </div>
             </section>
-
-            <footer>
-                <p>Remember: GURPS provides mathematical precision to create any character you can imagine, but the most important elements remain the story you want to tell and the role you want to play in the group's shared adventure. Use the point-buy system as a tool for precise character creation, not as an end in itself. Every disadvantage should enhance your character's story, every advantage should serve a purpose, and every skill should reflect your character's background and goals.</p>
-            </footer>
         </main>
-    </div>
+
+
+    <footer>
+<div class="page-nav">
+    <a class="prev" href="/gurps_character_examples.html">Character Examples</a>
+    <a class="next" href="/gurps_names.html">Character Names</a>
+</div>
+        <p>Remember: GURPS provides mathematical precision to create any character you can imagine, but the most important elements remain the story you want to tell and the role you want to play in the group's shared adventure. Use the point-buy system as a tool for precise character creation, not as an end in itself. Every disadvantage should enhance your character's story, every advantage should serve a purpose, and every skill should reflect your character's background and goals.</p>
+    </footer>
 
     <script>
         // Character Statistics Distribution Chart
         const statsCanvas = document.getElementById('characterStatsChart');
         const statsCtx = statsCanvas.getContext('2d');
         
-        // Character distribution by point levels
+        // Character distribution by point levels, counted from the cards on this page
         const pointLevels = ['150-199', '200-249', '250-299', '300-349', '350+'];
-        const characterCounts = [28, 38, 32, 18, 4];
+        const characterCounts = [0, 0, 0, 0, 0];
+        document.querySelectorAll('.character-card').forEach(card => {
+            const match = card.textContent.match(/(\d+) points/);
+            if (!match) return;
+            const pts = parseInt(match[1], 10);
+            const bin = pts < 200 ? 0 : pts < 250 ? 1 : pts < 300 ? 2 : pts < 350 ? 3 : 4;
+            characterCounts[bin]++;
+        });
+        const maxCount = Math.max(...characterCounts, 1);
         const colors = ['#4A90E2', '#7ED321', '#F5A623', '#D0021B', '#9013FE'];
         
         // Draw bars
         pointLevels.forEach((level, index) => {
-            const barHeight = (characterCounts[index] / 40) * 200;
+            const barHeight = (characterCounts[index] / maxCount) * 180;
             const x = 60 + (index * 80);
             const y = 250 - barHeight;
             
@@ -1650,26 +1603,6 @@
         statsCtx.textAlign = 'center';
         statsCtx.fillText(`Total Characters: ${totalCharacters}`, 275, 300);
     </script>
-<nav class="page-nav">
-    <a href="gurps_character_examples.html">&larr; Character Examples</a>
-    <span class="spacer"></span>
-    <a href="gurps_names.html">Character Names &rarr;</a>
-</nav>
-<script>
-function toggleTheme(){
-    document.body.classList.toggle('dark-mode');
-    var b=document.querySelector('.theme-toggle');
-    var d=document.body.classList.contains('dark-mode');
-    b.textContent=d?'☀️ Light Mode':'🌙 Dark Mode';
-    localStorage.setItem('theme',d?'dark':'light');
-}
-(function(){
-    if(localStorage.getItem('theme')==='dark'){
-        document.body.classList.add('dark-mode');
-        var b=document.querySelector('.theme-toggle');
-        if(b) b.textContent='☀️ Light Mode';
-    }
-})();
-</script>
+<div class="site-footer">&copy; 2026 Ray de la Paz. The GURPS Guide. All rights reserved. &middot; <a href="https://rays-home.netlify.app/">Ray's House of Fun</a><br>GURPS is a trademark of Steve Jackson Games. This guide is an unofficial fan resource.</div>
 </body>
 </html>

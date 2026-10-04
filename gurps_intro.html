@@ -4,25 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GURPS Fundamentals: Your Gateway to Universal Gaming</title>
-    <link rel="stylesheet" href="styles/main.css">
-    <link rel="icon" href="favicon.png" type="image/png">
-    <script type="module">
-      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-      mermaid.initialize({ startOnLoad: true });
-    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="/js/site.js?v=1"></script>
+    <script type="module" src="/js/diagrams.js?v=2"></script>
+    <link rel="stylesheet" href="/styles/main.css?v=2">
+    <link rel="icon" href="/favicon.png" type="image/png">
 </head>
 <body>
 <nav class="site-nav">
-    <div class="nav-links">
-        <a href="index.html">GURPS Guide</a>
-        <span>|</span>
-        <a href="https://rays-home.netlify.app/">Ray's House of Fun</a>
-        <span>|</span>
-        <a href="https://rays-home.netlify.app/contact">Contact</a>
-    </div>
-    <button class="theme-toggle" onclick="toggleTheme()">🌙 Dark Mode</button>
+    <a href="https://rays-home.netlify.app/">Ray's House of Fun</a>
+    <a href="/index.html">Home</a>
+    <a href="https://rays-home.netlify.app/contact">Contact</a>
+    <button id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
 </nav>
     <header>
+        <span class="lesson-kicker">Part 1</span>
         <h1>GURPS Fundamentals: Your Gateway to Universal Gaming</h1>
         <p class="subtitle">Understanding the Generic Universal RolePlaying System</p>
     </header>
@@ -87,7 +85,7 @@
 
                 <div class="attribute-card">
                     <h4>Dexterity (DX)</h4>
-                    <p>Your coordination, agility, and fine motor control. Like the precision of a Swiss watch—it affects your accuracy with weapons, your ability to pick locks, and how gracefully you move.</p>
+                    <p>Your coordination, agility, and fine motor control. Like the precision of a Swiss watch—it affects your accuracy with weapons, your ability to drive or climb, and how gracefully you move.</p>
                     <p><strong>Real-world example:</strong> A surgeon and a gymnast would both have high DX, but for different reasons—precision vs. acrobatic ability.</p>
                 </div>
 
@@ -99,8 +97,8 @@
 
                 <div class="attribute-card">
                     <h4>Health (HT)</h4>
-                    <p>Your overall physical and mental resilience. Like the reliability rating of a car—it affects how much damage you can take, how quickly you recover, and your resistance to disease and poison.</p>
-                    <p><strong>Real-world example:</strong> A marathon runner would have high HT, representing both cardiovascular fitness and mental toughness.</p>
+                    <p>Your overall physical resilience and stamina. Like the reliability rating of a car—it sets your Fatigue Points and affects whether you stay conscious and alive when badly hurt, how quickly you recover, and your resistance to disease and poison.</p>
+                    <p><strong>Real-world example:</strong> A marathon runner would have high HT, representing cardiovascular fitness and stamina.</p>
                 </div>
             </div>
 
@@ -108,21 +106,23 @@
             <p>Just as your blood pressure is calculated from other factors, GURPS has secondary characteristics derived from your primary attributes:</p>
 
             <pre><code>Hit Points (HP) = Strength
+Fatigue Points (FP) = Health
 Basic Speed = (HT + DX) ÷ 4
 Basic Move = Basic Speed (without fractions)
 Perception = Intelligence
-Will = Intelligence</code></pre>
+Will = Intelligence
+Dodge = Basic Speed + 3 (without fractions)</code></pre>
 
             <div class="example-box">
-                <h4>Character Example: Sarah the Detective</h4>
-                <p>Let's create Sarah, a modern-day police detective:</p>
+                <h4>Character Example: Tre the Detective</h4>
+                <p>Let's create Tre, a modern-day police detective:</p>
                 <ul>
                     <li><strong>ST 11:</strong> Fit enough for police work, can handle herself in a scuffle</li>
                     <li><strong>DX 12:</strong> Good hand-eye coordination for shooting, driving</li>
                     <li><strong>IQ 13:</strong> Sharp mind for solving cases and reading people</li>
                     <li><strong>HT 12:</strong> Healthy and resilient, handles stress well</li>
                 </ul>
-                <p>This gives her HP 11, Basic Speed 6.0, Basic Move 6, Perception 13, and Will 13.</p>
+                <p>This gives her HP 11, FP 12, Basic Speed 6.0, Basic Move 6, Dodge 9, Perception 13, and Will 13.</p>
             </div>
         </section>
 
@@ -131,7 +131,7 @@ Will = Intelligence</code></pre>
             
             <p>GURPS uses three six-sided dice (3d6) for almost everything. This isn't arbitrary—it creates a "bell curve" of probability that mirrors real life better than a single die.</p>
 
-            <svg width="600" height="300" style="margin: 20px auto; display: block;">
+            <svg width="600" height="300" viewBox="0 0 600 300">
                 <!-- Grid lines -->
                 <defs>
                     <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse">
@@ -145,7 +145,7 @@ Will = Intelligence</code></pre>
                 <line x1="50" y1="250" x2="50" y2="50" stroke="black" stroke-width="2"/>
                 
                 <!-- Bell curve data points -->
-                <path d="M 80,240 L 110,220 L 140,180 L 170,140 L 200,100 L 230,70 L 260,50 L 290,60 L 320,90 L 350,130 L 380,170 L 410,210 L 440,230 L 470,245 L 500,248" 
+                <path d="M 80,243 L 110,229 L 140,208 L 170,180 L 200,144 L 230,102 L 260,74 L 290,60 L 320,60 L 350,74 L 380,102 L 410,144 L 440,180 L 470,208 L 500,229 L 530,243" 
                       fill="none" stroke="blue" stroke-width="3"/>
                 
                 <!-- Labels -->
@@ -154,28 +154,28 @@ Will = Intelligence</code></pre>
                 
                 <!-- Numbers on x-axis -->
                 <text x="75" y="270" font-size="10">3</text>
-                <text x="170" y="270" font-size="10">6</text>
-                <text x="260" y="270" font-size="10">9</text>
-                <text x="350" y="270" font-size="10">12</text>
-                <text x="440" y="270" font-size="10">15</text>
-                <text x="490" y="270" font-size="10">18</text>
+                <text x="167" y="270" font-size="10">6</text>
+                <text x="257" y="270" font-size="10">9</text>
+                <text x="344" y="270" font-size="10">12</text>
+                <text x="434" y="270" font-size="10">15</text>
+                <text x="524" y="270" font-size="10">18</text>
                 
                 <!-- Highlight the "sweet spot" -->
-                <rect x="220" y="60" width="80" height="190" fill="rgba(255,255,0,0.2)" stroke="orange" stroke-width="2"/>
-                <text x="230" y="40" font-size="12" fill="orange">Most Common Results</text>
+                <rect x="245" y="55" width="120" height="195" fill="rgba(255,255,0,0.2)" stroke="orange" stroke-width="2"/>
+                <text x="225" y="40" font-size="12" fill="orange">Most common: 9-12 (about 48%)</text>
             </svg>
 
             <h3>Why 3d6 Matters</h3>
-            <p>Rolling 3d6 gives you results from 3 to 18, but not all results are equally likely. Rolling a 10 or 11 is much more common than rolling a 3 or 18. This means:</p>
+            <p>Rolling 3d6 gives you results from 3 to 18, but not all results are equally likely. Rolling a 10 or 11 (12.5% each) is much more common than rolling a 3 or 18 (under 0.5% each), and the average roll is 10.5. This means:</p>
             <ul>
                 <li><strong>Competent people succeed most of the time:</strong> If your skill is 12, you'll succeed on rolls of 12 or less about 74% of the time</li>
-                <li><strong>Extreme results are rare but possible:</strong> Critical successes (3-4) and failures (17-18) happen just often enough to be exciting</li>
-                <li><strong>Small differences matter:</strong> Going from skill 11 to 12 is a noticeable improvement</li>
+                <li><strong>Extreme results are rare but possible:</strong> Critical successes (a roll of 3 or 4, plus 5 and 6 at very high skill) and critical failures (an 18, or a 17 if your skill is 15 or less) happen just often enough to be exciting</li>
+                <li><strong>Small differences matter:</strong> Going from skill 11 to 12 raises your chance of success from about 62% to 74%</li>
             </ul>
 
             <div class="example-box">
                 <h4>Success Roll Example</h4>
-                <p>Sarah needs to spot a clue at a crime scene. Her Perception is 13. She rolls 3d6:</p>
+                <p>Tre needs to spot a clue at a crime scene. Her Perception is 13. She rolls 3d6:</p>
                 <ul>
                     <li><strong>Rolls 9:</strong> Success! She notices the clue</li>
                     <li><strong>Rolls 15:</strong> Failure. She misses it this time</li>
@@ -199,7 +199,7 @@ Will = Intelligence</code></pre>
                         Mathematical Ability
                         Intuition
                       Physical
-                        Enhanced Strength
+                        Lifting ST
                         Perfect Balance
                         Acute Vision
                       Social
@@ -218,19 +218,19 @@ Will = Intelligence</code></pre>
                       Social
                         Social Stigma
                         Bad Reputation
-                        Shy
+                        Shyness
             </div>
 
             <h3>How Advantages and Disadvantages Work</h3>
             <p>Think of your character point budget like a bank account. Advantages cost points (withdraw money), while disadvantages give you points back (make deposits). The total must balance to your campaign's starting point total.</p>
 
             <div class="example-box">
-                <h4>Building Detective Sarah (Continued)</h4>
-                <p>Let's add some advantages and disadvantages to make Sarah more interesting:</p>
+                <h4>Building Detective Tre (Continued)</h4>
+                <p>Let's add some advantages and disadvantages to make Tre more interesting:</p>
                 
                 <p><strong>Advantages:</strong></p>
                 <ul>
-                    <li><strong>Legal Enforcement Powers [10 points]:</strong> She can make arrests, carry weapons legally</li>
+                    <li><strong>Legal Enforcement Powers [5 points]:</strong> She can make arrests, carry weapons legally</li>
                     <li><strong>Contact (Police Database) [2 points]:</strong> Access to criminal records and case files</li>
                 </ul>
 
@@ -240,14 +240,14 @@ Will = Intelligence</code></pre>
                     <li><strong>Workaholic [-5 points]:</strong> Has trouble relaxing, always thinking about cases</li>
                 </ul>
 
-                <p>Net cost: +12 -15 = -3 points, which gives her 3 extra points to spend elsewhere!</p>
+                <p>Net cost: +7 -15 = -8 points, which gives her 8 extra points to spend elsewhere!</p>
             </div>
         </section>
 
         <section class="skills-introduction">
             <h2>Skills: What Your Character Can Do</h2>
             
-            <p>If attributes are your character's raw potential, skills are their trained abilities. It's the difference between having good coordination (high DX) and being a trained surgeon (high Surgery skill based on DX).</p>
+            <p>If attributes are your character's raw potential, skills are their trained abilities. It's the difference between having good coordination (high DX) and being a trained surgeon (high Surgery skill, which is based on IQ).</p>
 
             <h3>Skill Difficulties and Defaults</h3>
             <p>Skills come in four difficulty levels, like video game difficulty settings:</p>
@@ -256,29 +256,29 @@ Will = Intelligence</code></pre>
                 <div class="difficulty-level">
                     <h4>Easy (E)</h4>
                     <p>Common knowledge or simple physical tasks</p>
-                    <p><strong>Examples:</strong> Driving, First Aid, Throwing</p>
-                    <p><strong>Default:</strong> Attribute-1 (if DX 12, default Throwing is 11)</p>
+                    <p><strong>Examples:</strong> First Aid, Swimming, Guns</p>
+                    <p><strong>Default:</strong> Attribute-4 (if DX 12, default Guns is 8)</p>
                 </div>
 
                 <div class="difficulty-level">
                     <h4>Average (A)</h4>
                     <p>Professional skills or moderately complex tasks</p>
-                    <p><strong>Examples:</strong> Guns, Lockpicking, Psychology</p>
-                    <p><strong>Default:</strong> Attribute-2</p>
+                    <p><strong>Examples:</strong> Driving, Climbing, Lockpicking</p>
+                    <p><strong>Default:</strong> Attribute-5</p>
                 </div>
 
                 <div class="difficulty-level">
                     <h4>Hard (H)</h4>
                     <p>Advanced professional or academic skills</p>
-                    <p><strong>Examples:</strong> Surgery, Law, Engineering</p>
-                    <p><strong>Default:</strong> Attribute-3</p>
+                    <p><strong>Examples:</strong> Law, Engineering, Psychology</p>
+                    <p><strong>Default:</strong> Attribute-6 (where a default exists)</p>
                 </div>
 
                 <div class="difficulty-level">
                     <h4>Very Hard (VH)</h4>
                     <p>Extremely complex or specialized knowledge</p>
-                    <p><strong>Examples:</strong> Quantum Physics, Ancient Languages</p>
-                    <p><strong>Default:</strong> Attribute-4 (if default exists)</p>
+                    <p><strong>Examples:</strong> Physics, Surgery, Thaumatology</p>
+                    <p><strong>Default:</strong> Usually none; you must spend at least 1 point to attempt it</p>
                 </div>
             </div>
 
@@ -286,10 +286,10 @@ Will = Intelligence</code></pre>
                 <h4>Real-World Skill Learning Example</h4>
                 <p>Consider learning to drive a car:</p>
                 <ul>
-                    <li><strong>No training:</strong> DX-2 default (Average skill) - you might manage basic forward movement</li>
+                    <li><strong>No training:</strong> DX-5 default (Average skill) - you might manage basic forward movement</li>
                     <li><strong>1 point invested:</strong> DX-1 - you can drive slowly in good conditions</li>
-                    <li><strong>4 points invested:</strong> DX+0 - competent everyday driver</li>
-                    <li><strong>12 points invested:</strong> DX+2 - professional truck driver or racing instructor level</li>
+                    <li><strong>2 points invested:</strong> DX+0 - competent everyday driver</li>
+                    <li><strong>8 points invested:</strong> DX+2 - professional truck driver or racing instructor level</li>
                 </ul>
             </div>
         </section>
@@ -424,35 +424,19 @@ Will = Intelligence</code></pre>
 
             <div class="next-steps">
                 <h3>Ready for Your Next Adventure?</h3>
-                <p>In our next lecture, we'll dive deep into character creation, walking through the entire process step by step, and creating several example characters for different genres. You'll learn how to spend your character points wisely and create mechanically effective characters that are also interesting to roleplay.</p>
+                <p>In the next part, we'll dive deep into character creation, walking through the entire process step by step, and creating several example characters for different genres. You'll learn how to spend your character points wisely and create mechanically effective characters that are also interesting to roleplay.</p>
             </div>
         </section>
     </main>
 
     <footer>
+<div class="page-nav">
+    <a class="prev" href="/index.html">Guide Home</a>
+    <a class="next" href="/gurps_char.html">Character Creation</a>
+</div>
         <p>Remember: The best way to learn GURPS is to play GURPS. Find a group or start one!</p>
     </footer>
 
-<nav class="page-nav">
-    <a href="index.html">&larr; GURPS Index</a>
-    <span class="spacer"></span>
-    <a href="gurps_char.html">Character Creation &rarr;</a>
-</nav>
-<script>
-function toggleTheme(){
-    document.body.classList.toggle('dark-mode');
-    var b=document.querySelector('.theme-toggle');
-    var d=document.body.classList.contains('dark-mode');
-    b.textContent=d?'☀️ Light Mode':'🌙 Dark Mode';
-    localStorage.setItem('theme',d?'dark':'light');
-}
-(function(){
-    if(localStorage.getItem('theme')==='dark'){
-        document.body.classList.add('dark-mode');
-        var b=document.querySelector('.theme-toggle');
-        if(b) b.textContent='☀️ Light Mode';
-    }
-})();
-</script>
+<div class="site-footer">&copy; 2026 Ray de la Paz. The GURPS Guide. All rights reserved. &middot; <a href="https://rays-home.netlify.app/">Ray's House of Fun</a><br>GURPS is a trademark of Steve Jackson Games. This guide is an unofficial fan resource.</div>
 </body>
 </html>
