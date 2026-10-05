@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Character Sheets - The GURPS Guide</title>
+    <meta name="description" content="Fillable GURPS 4th Edition character sheets: attributes and secondary characteristics with point costs, Basic Lift, thrust and swing, Dodge and encumbrance, skills and spells with automatic levels, traits, languages, weapons and gear, with save, print and file import/export.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="/js/site.js?v=1"></script>
+    <link rel="stylesheet" href="/styles/main.css?v=2">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <style>
+        /* ===== Controls (themed) ===== */
+        main .sheet-controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: center; margin: 20px auto 6px; max-width: 860px; }
+        main .sheet-controls select {
+            min-height: 40px; padding: 6px 10px; border-radius: 8px; min-width: 200px; width: auto;
+            background: var(--surface); color: var(--text); border: 1px solid var(--border-strong); font: inherit; font-size: 0.95rem;
+        }
+        main .sheet-controls button, main .tabs button {
+            min-height: 40px; padding: 7px 14px; margin: 0; border-radius: 8px; font: inherit; font-size: 0.92rem; font-weight: 600; cursor: pointer;
+            background: var(--surface); color: var(--heading); border: 1px solid var(--border-strong); width: auto;
+        }
+        main .sheet-controls button:hover, main .tabs button:hover { border-color: var(--accent); color: var(--accent); background: var(--surface); }
+        main .sheet-controls button.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+        main .sheet-controls button.primary:hover { color: var(--accent-ink); background: var(--accent); filter: brightness(1.08); }
+        main .sheet-controls button.armed { background: #a3161a; border-color: #a3161a; color: #fff; }
+        main .tabs { display: flex; gap: 6px; justify-content: center; flex-wrap: wrap; margin: 12px auto 0; background: none; border: 0; box-shadow: none; padding: 0; }
+        html body > main > div.tabs[role="tablist"][aria-label] { background: none; border: 0; box-shadow: none; padding: 0; border-radius: 0; margin: 12px auto 0; }
+        main .tabs button[aria-selected="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+        #importFile { display: none; }
+        .sheet-status { text-align: center; min-height: 1.6em; margin: 4px 0 0; color: var(--muted); font-weight: 600; }
+        .sheet-help { max-width: 860px; margin: 10px auto 0; color: var(--muted); font-size: 0.95rem; }
+
+        /* ===== The sheet: a light page in both themes ===== */
+        .gu-sheet {
+            --ink: #181c24; --soft: #4a5160; --line: #b4bbc7; --red: #8a1c25; --navy: #1c2b3d; --paper: #fbfaf7;
+            width: min(8.5in, 100%); margin: 14px auto; padding: 14px 16px;
+            background: var(--paper); color: var(--ink); border: 2px solid #1c2b3d; border-radius: 4px;
+            font-family: "Source Sans 3", "Segoe UI", sans-serif; font-size: 14px; line-height: 1.3; box-shadow: var(--shadow);
+            color-scheme: light;
+        }
+        .gu-sheet b, .gu-sheet strong { color: var(--ink); }
+        .gu-sheet .page { display: none; }
+        .gu-sheet[data-page="char"] .page.p-char, .gu-sheet[data-page="skills"] .page.p-skills, .gu-sheet[data-page="traits"] .page.p-traits { display: block; }
+        .gu-sheet .lbl { display: block; font: 700 12.5px/1.15 "Bitter", Georgia, serif; letter-spacing: 0.05em; text-transform: uppercase; color: var(--red); margin: 0 0 3px; }
+        .gu-sheet .box { border: 1.5px solid var(--line); border-radius: 6px; padding: 6px 8px; min-width: 0; }
+        .gu-sheet input[type="text"], .gu-sheet select, .gu-sheet textarea, .gu-sheet .val {
+            width: 100%; max-width: none; min-height: 0; margin: 0; background: transparent; color: var(--ink);
+            border: 0; border-bottom: 1px dotted var(--line); border-radius: 0; padding: 2px; font: inherit; box-shadow: none;
+        }
+        .gu-sheet select { padding: 1px 0; cursor: pointer; }
+        .gu-sheet textarea { border-bottom: 0; resize: vertical; min-height: 54px; line-height: 1.35; }
+        .gu-sheet .val { display: block; min-height: 1.35em; white-space: pre-wrap; }
+        .gu-sheet .tx.val { min-height: 3.4em; border-bottom: 0; }
+        .gu-sheet input::placeholder, .gu-sheet textarea::placeholder { color: #59606d; opacity: 1; font-style: italic; font-weight: 400; }
+        .gu-sheet input:focus, .gu-sheet select:focus, .gu-sheet textarea:focus { outline: 2px solid var(--red); outline-offset: 1px; background: rgba(138, 28, 37, 0.06); }
+        .gu-sheet select option { background: #fbfaf7; color: #181c24; }
+        .gu-sheet .out { display: inline-block; min-width: 1.6em; text-align: center; font-weight: 700; color: var(--ink); }
+        .gu-sheet small.k { display: block; font-size: 10px; color: var(--soft); text-transform: uppercase; letter-spacing: 0.05em; }
+        .gu-sheet .stack > * + * { margin-top: 8px; }
+        .gu-sheet .note { font-size: 11px; color: var(--soft); margin: 3px 0 0; }
+        .gu-sheet .warn { color: #8f1414; font-weight: 700; }
+
+        .gu-sheet .head { display: grid; grid-template-columns: 1.6fr repeat(4, 1fr); gap: 4px 12px; border-bottom: 2px solid var(--navy); padding-bottom: 6px; margin-bottom: 10px; }
+        .gu-sheet .head .name { grid-row: span 3; align-self: end; }
+        .gu-sheet .head .name input, .gu-sheet .head .name .val { font: 700 1.45rem "Bitter", Georgia, serif; }
+        .gu-sheet .head .out { text-align: left; display: block; min-height: 1.35em; border-bottom: 1px dotted var(--line); padding: 2px; }
+        .gu-sheet .top { display: grid; grid-template-columns: 1.15fr 1fr; gap: 10px; }
+        .gu-sheet .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .gu-sheet table.t { width: 100%; border-collapse: collapse; display: table; margin: 0; font-size: 12.5px; }
+        .gu-sheet table.t th { font: 700 10px "Source Sans 3", sans-serif; letter-spacing: 0.05em; text-transform: uppercase; color: var(--navy); text-align: left; border: 0; border-bottom: 1.5px solid var(--ink); background: none; padding: 2px 3px; white-space: nowrap; }
+        .gu-sheet table.t td { border: 0; border-bottom: 1px solid #e3e5ea; padding: 2px 3px; background: none; color: var(--ink); vertical-align: middle; }
+        .gu-sheet table.t td.c, .gu-sheet table.t th.c { text-align: center; width: 3.4em; }
+        .gu-sheet table.t td.c input, .gu-sheet table.t td.c select, .gu-sheet table.t td.c .val { text-align: center; padding-left: 0; padding-right: 0; }
+        .gu-sheet table.t td.c .out { min-width: 0; }
+        .gu-sheet table.t td.w { width: 4.6em; text-align: center; }
+        .gu-sheet .attrs td:first-child { font-weight: 700; white-space: nowrap; }
+        .gu-sheet .attrs td.rate { font-size: 11px; color: var(--soft); white-space: nowrap; text-align: center; }
+        .gu-sheet .attrs td.c input { font-weight: 700; }
+        .gu-sheet .attrs.main td.c input { font-size: 1.1em; }
+        .gu-sheet .kv { display: grid; grid-template-columns: auto 1fr; gap: 2px 8px; font-size: 12.5px; align-items: baseline; }
+        .gu-sheet .kv > span:nth-child(odd) { color: var(--soft); font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; }
+        .gu-sheet .kv .out { text-align: left; }
+        .gu-sheet .trk { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+        .gu-sheet .trk > div { border: 2px solid var(--ink); border-radius: 8px; padding: 3px 6px; text-align: center; }
+        .gu-sheet .trk .lbl { color: var(--ink); margin: 0; }
+        .gu-sheet .trk input, .gu-sheet .trk .val { text-align: center; font: 700 1.25rem "Source Sans 3", sans-serif; border-bottom: 1px dotted var(--line); }
+        .gu-sheet .trk small { display: block; font-size: 10px; color: var(--soft); }
+        .gu-sheet .trk .state { display: block; min-height: 1.2em; font-size: 11px; font-weight: 700; color: #8f1414; }
+        .gu-sheet .dg { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px 8px; }
+        .gu-sheet .dg input, .gu-sheet .dg .val { text-align: center; }
+        .gu-sheet .big { display: block; text-align: center; font: 700 1.15rem "Source Sans 3", sans-serif; color: var(--ink); min-height: 1.3em; }
+        .gu-sheet .enc tr.on td { background: rgba(28, 43, 61, 0.12); font-weight: 700; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        .gu-sheet .tally { width: 100%; border-collapse: collapse; font-size: 12.5px; display: table; margin: 0; }
+        .gu-sheet .tally td { border: 0; border-bottom: 1px solid #e3e5ea; padding: 2px 3px; background: none; color: var(--ink); }
+        .gu-sheet .tally td:last-child { text-align: right; font-weight: 700; width: 4em; }
+        .gu-sheet .tally tr.sum td { border-top: 1.5px solid var(--ink); font-weight: 700; }
+        .gu-sheet .inl { display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; font-size: 12.5px; }
+        .gu-sheet .inl label { display: flex; gap: 6px; align-items: baseline; }
+        .gu-sheet .inl input { width: 4em; text-align: center; }
+        .gu-sheet .inl .val { display: inline-block; width: 4em; text-align: center; }
+
+        @media (max-width: 760px) {
+            .gu-sheet { padding: 12px; }
+            .gu-sheet .head { grid-template-columns: 1fr 1fr; }
+            .gu-sheet .head .name { grid-column: 1 / -1; grid-row: auto; }
+            .gu-sheet .top, .gu-sheet .cols { grid-template-columns: 1fr; }
+            .gu-sheet .scroll { overflow-x: auto; }
+            .gu-sheet table.t.wide { min-width: 560px; }
+        }
+
+        /* ===== Print: three US Letter pages per character ===== */
+        .print-container { display: none; }
+        @media print {
+            @page { size: letter portrait; margin: 0.35in; }
+            .site-nav, .skip-link, body > header, .sheet-controls, .tabs, .sheet-status, .sheet-help, #sheet, footer, .site-footer { display: none !important; }
+            html, body { background: #fff !important; margin: 0 !important; padding: 0 !important; }
+            main { margin: 0 !important; padding: 0 !important; width: auto !important; max-width: none !important; }
+            .print-container { display: block !important; border: 0 !important; padding: 0 !important; margin: 0 !important; box-shadow: none !important; background: none !important; border-radius: 0 !important; }
+            .print-container .gu-sheet { width: 7.8in !important; margin: 0 auto !important; padding: 0 !important; border: 0 !important; box-shadow: none !important; font-size: 10.5px; line-height: 1.15; }
+            .print-container .gu-sheet .page { display: flex !important; flex-direction: column; height: 10.25in; box-sizing: border-box; overflow: hidden;
+                border: 1.5pt solid #1c2b3d; border-radius: 4px; padding: 0.12in 0.14in; page-break-after: always; break-after: page; }
+            .print-container .gu-sheet:last-child .page:last-child { page-break-after: auto; break-after: auto; }
+            .print-container .gu-sheet .val { min-height: 1.15em; padding: 0 2px; }
+            .print-container .gu-sheet .tx.val { min-height: 2.2em; }
+            .print-container .gu-sheet .box { padding: 3px 6px; }
+            .print-container .gu-sheet .stack > * + * { margin-top: 5px; }
+            .print-container .gu-sheet .head { margin-bottom: 6px; }
+            .print-container .gu-sheet .head .name .val { font-size: 1.3rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+            .print-container .gu-sheet table.t { font-size: 10.5px; min-width: 0; }
+            .print-container .gu-sheet table.t td { padding: 0 3px; }
+            .print-container .gu-sheet table.t td .val { min-height: 1.3em; line-height: 1.3; }
+            .print-container .gu-sheet table.t td .out { line-height: 1.3; }
+            .print-container .gu-sheet .attrs td { padding: 2px 3px; }
+            .print-container .gu-sheet .tally td { padding: 1px 3px; font-size: 10.5px; }
+            .print-container .gu-sheet .note { font-size: 9.5px; margin-top: 2px; }
+            .print-container .gu-sheet .dg { gap: 2px 8px; }
+            .print-container .gu-sheet .trk .val { font-size: 1.1rem; }
+            .print-container .gu-sheet .grow { flex: 1; display: flex; flex-direction: column; min-height: 0; }
+            .print-container .gu-sheet .grow .tx.val { flex: 1; }
+            .print-container .gu-sheet .cols.grow { display: grid; }
+            .print-container .gu-sheet .cols > .stack { display: flex; flex-direction: column; }
+            .print-container .gu-sheet .top > .stack { display: flex; flex-direction: column; }
+            .print-container .gu-sheet .top > .stack > .box:last-child { flex: 1; }
+        }
+    </style>
+</head>
+<body>
+<nav class="site-nav">
+    <a href="https://rays-home.netlify.app/">Ray's House of Fun</a>
+    <a href="/index.html">Home</a>
+    <a href="https://rays-home.netlify.app/contact">Contact</a>
+    <button id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+</nav>
+    <header>
+        <h1>Character Sheets</h1>
+        <p>Fill in, save and print 4th Edition characters, with point costs, secondary characteristics, damage, encumbrance and skill levels worked out for you.</p>
+    </header>
+
+    <main id="main">
+        <div class="sheet-controls">
+            <select id="sheetSelect" aria-label="Saved sheets"><option value="">— Select Sheet —</option></select>
+            <button type="button" class="primary" id="newBtn">✨ New</button>
+            <button type="button" id="saveBtn">💾 Save</button>
+            <button type="button" id="copyBtn">📋 Copy</button>
+            <button type="button" id="deleteBtn">🗑️ Delete</button>
+            <button type="button" id="printBtn">🖨️ Print</button>
+            <button type="button" id="printAllBtn">🖨️ Print All</button>
+            <button type="button" id="blankBtn">📄 Print Blank</button>
+            <button type="button" id="exportBtn">📤 Export</button>
+            <button type="button" id="importBtn">📥 Import</button>
+            <input type="file" id="importFile" accept=".json,application/json">
+        </div>
+        <p class="sheet-status" id="status" role="status" aria-live="polite"></p>
+        <div class="tabs" role="tablist" aria-label="Sheet pages">
+            <button type="button" role="tab" id="tab-char" aria-controls="sheet" aria-selected="true" data-page="char">🧍 Character</button>
+            <button type="button" role="tab" id="tab-skills" aria-controls="sheet" aria-selected="false" data-page="skills">🎯 Skills &amp; Spells</button>
+            <button type="button" role="tab" id="tab-traits" aria-controls="sheet" aria-selected="false" data-page="traits">🎒 Traits &amp; Gear</button>
+        </div>
+
+        <form class="gu-sheet" id="sheet" data-page="char" autocomplete="off" onsubmit="return false">
+            <!-- ===================== PAGE 1: CHARACTER ===================== -->
+            <div class="page p-char">
+                <div class="head">
+                    <label class="name"><span class="lbl">Name</span><input type="text" name="name" maxlength="60" placeholder="Dr. Rita Anderson"></label>
+                    <label><small class="k">Player</small><input type="text" name="player"></label>
+                    <label><small class="k">Concept</small><input type="text" name="concept" placeholder="Archaeologist"></label>
+                    <label><small class="k">Campaign</small><input type="text" name="campaign"></label>
+                    <label><small class="k">Starting points</small><input type="text" name="startPts" maxlength="5" inputmode="numeric" placeholder="150"></label>
+                    <label><small class="k">Tech Level</small><input type="text" name="tl" maxlength="6" placeholder="TL8"></label>
+                    <label><small class="k">Size Modifier</small><input type="text" name="sm" maxlength="4" placeholder="0"></label>
+                    <label><small class="k">Age</small><input type="text" name="age" maxlength="12"></label>
+                    <div><small class="k">Unspent points</small><span class="out" data-out="unspent"></span></div>
+                    <label><small class="k">Height</small><input type="text" name="height" maxlength="12"></label>
+                    <label><small class="k">Weight</small><input type="text" name="weight" maxlength="12"></label>
+                    <label style="grid-column: span 2"><small class="k">Appearance</small><input type="text" name="appearance"></label>
+                </div>
+
+                <div class="top">
+                    <div class="stack">
+                    <div class="box">
+                        <span class="lbl">Attributes</span>
+                        <table class="t attrs main"><thead><tr><th>Attribute</th><th class="c">Base</th><th class="c">Level</th><th class="c">Cost</th><th class="c">Points</th></tr></thead><tbody id="attrs"></tbody></table>
+                        <span class="lbl" style="margin-top:8px">Secondary Characteristics</span>
+                        <table class="t attrs"><thead><tr><th>Trait</th><th class="c">Base</th><th class="c">Bought</th><th class="c">Value</th><th class="c">Cost</th><th class="c">Points</th></tr></thead><tbody id="secs"></tbody></table>
+                        <p class="note">Base 10 for ST, DX, IQ and HT. Buy secondary characteristics up or down in the Bought column (Basic Speed in steps of 0.25). Basic Move is Basic Speed without fractions.</p>
+                    </div>
+                    <div class="box">
+                            <span class="lbl">Protection &amp; Reactions</span>
+                            <label><small class="k">Damage Resistance (DR)</small><input type="text" name="dr" placeholder="Leather jacket: DR 1 torso, arms, legs"></label>
+                            <label><small class="k">Reaction modifiers</small><input type="text" name="reactions" placeholder="Appearance, Charisma, Status, Reputation"></label>
+                        </div>
+                    </div>
+                    <div class="stack">
+                        <div class="box">
+                            <span class="lbl">Strength &amp; Defense</span>
+                            <div class="kv">
+                                <span>Basic Lift</span><span class="out" data-out="bl"></span>
+                                <span>Thrust</span><span class="out" data-out="thr"></span>
+                                <span>Swing</span><span class="out" data-out="sw"></span>
+                            </div>
+                            <div class="dg" style="margin-top:6px">
+                                <div><small class="k">Dodge</small><span class="big" data-out="dodge"></span></div>
+                                <div><small class="k">Parry (best)</small><span class="big" data-out="parryBest"></span></div>
+                                <div><small class="k">Block</small><span class="big" data-out="block"></span></div>
+                                <label><small class="k">Dodge bonus</small><input type="text" name="dodgeBonus" maxlength="3" placeholder="+0" aria-label="Dodge bonus, such as Combat Reflexes"></label>
+                                <label><small class="k">Shield skill</small><input type="text" name="shieldSkill" maxlength="3" inputmode="numeric"></label>
+                                <label><small class="k">Shield DB</small><input type="text" name="shieldDb" maxlength="3" placeholder="+0"></label>
+                            </div>
+                            <p class="note">Dodge = Basic Speed + 3, drop fractions. Parry = 3 + half weapon skill, Block = 3 + half Shield skill (drop fractions), plus any bonuses.</p>
+                        </div>
+                        <div class="trk">
+                            <div><span class="lbl">Hit Points</span><input type="text" name="hpNow" maxlength="4" aria-label="Current HP"><small>of <span class="out" data-out="hpMax"></span></small><span class="state" data-out="hpState"></span></div>
+                            <div><span class="lbl">Fatigue Points</span><input type="text" name="fpNow" maxlength="4" aria-label="Current FP"><small>of <span class="out" data-out="fpMax"></span></small><span class="state" data-out="fpState"></span></div>
+                        </div>
+                        <div class="box">
+                            <span class="lbl">Injury</span>
+                            <p class="note" style="margin:0" data-out="hpMarks"></p>
+                            <p class="note">Less than 1/3 HP left: halve Move and Dodge. 0 HP or less: HT roll every turn or fall unconscious. −1×HP: HT roll or die, again at −2, −3 and −4×HP; −5×HP: dead. A hit for more than half your HP is a major wound: HT roll or be knocked down and stunned.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cols" style="margin-top:8px">
+                    <div class="box">
+                        <span class="lbl">Encumbrance</span>
+                        <table class="t enc"><thead><tr><th>Level</th><th class="w">Up to</th><th class="c">Move</th><th class="c">Dodge</th></tr></thead><tbody id="enc"></tbody></table>
+                        <p class="note">Carrying <b class="out" data-out="carry"></b> (from the gear list). Move drops fractions, minimum 1.</p>
+                    </div>
+                    <div class="box">
+                        <span class="lbl">Point Summary</span>
+                        <table class="tally"><tbody>
+                            <tr><td>Attributes</td><td data-out="tAttr"></td></tr>
+                            <tr><td>Secondary characteristics</td><td data-out="tSec"></td></tr>
+                            <tr><td>Advantages, perks &amp; cultures</td><td data-out="tAdv"></td></tr>
+                            <tr><td>Languages</td><td data-out="tLang"></td></tr>
+                            <tr><td>Disadvantages</td><td data-out="tDis"></td></tr>
+                            <tr><td>Quirks</td><td data-out="tQuirk"></td></tr>
+                            <tr><td>Skills</td><td data-out="tSkill"></td></tr>
+                            <tr><td>Spells</td><td data-out="tSpell"></td></tr>
+                            <tr class="sum"><td>Points spent</td><td data-out="tSpent"></td></tr>
+                        </tbody></table>
+                        <div class="inl" style="margin-top:4px"><label>Disadvantage limit −<input type="text" name="disLimit" maxlength="4" inputmode="numeric" aria-label="Disadvantage limit" placeholder="75"></label></div>
+                        <p class="note"><span class="warn" data-out="budgetWarn"></span> <span class="warn" data-out="disWarn"></span></p>
+                    </div>
+                </div>
+
+                <div class="box" style="margin-top:8px">
+                    <span class="lbl">Melee Weapons</span>
+                    <div class="scroll"><table class="t wide"><thead><tr><th>Weapon</th><th style="width:16%">Damage</th><th style="width:12%">Rolls</th><th class="c">Reach</th><th class="c">Skill</th><th class="c">Parry mod</th><th class="c">Parry</th><th class="c">ST</th></tr></thead><tbody id="melee"></tbody></table></div>
+                </div>
+                <div class="box" style="margin-top:8px">
+                    <span class="lbl">Ranged Weapons</span>
+                    <div class="scroll"><table class="t wide"><thead><tr><th>Weapon</th><th style="width:14%">Damage</th><th style="width:10%">Rolls</th><th class="c">Acc</th><th class="c" style="width:5.5em">Range</th><th class="c">RoF</th><th class="c">Shots</th><th class="c">ST</th><th class="c">Bulk</th><th class="c">Rcl</th><th class="c">Skill</th></tr></thead><tbody id="ranged"></tbody></table></div>
+                    <p class="note">Write damage as thr or sw plus or minus (sw+1 cut) and the Rolls column works it out from your ST. Parry mod: 0, −1, F (fencing) or No.</p>
+                </div>
+                <div class="box grow" style="margin-top:8px"><span class="lbl">Combat Notes</span><textarea name="combatNotes" rows="2" placeholder="Retreat: +3 Dodge, +1 Parry or Block. All-Out Defense: +2 to one defense."></textarea></div>
+            </div>
+
+            <!-- ===================== PAGE 2: SKILLS & SPELLS ===================== -->
+            <div class="page p-skills">
+                <div class="head" style="grid-template-columns: 1.6fr 1fr 1fr 1fr">
+                    <div class="name" style="grid-row:auto"><span class="lbl">Name</span><span class="val" data-mirror="name"></span></div>
+                    <div><small class="k">Skill points</small><span class="out" data-out="tSkill2"></span></div>
+                    <div><small class="k">Spell points</small><span class="out" data-out="tSpell2"></span></div>
+                    <div><small class="k">Unspent points</small><span class="out" data-out="unspent2"></span></div>
+                </div>
+                <div class="box">
+                    <span class="lbl">Skills</span>
+                    <div class="scroll"><table class="t wide"><thead><tr><th>Skill</th><th class="c">Attr.</th><th class="c">Diff.</th><th class="c">Points</th><th class="c" style="width:4.6em">Relative</th><th class="c">Level</th><th style="width:22%">Defaults &amp; notes</th></tr></thead><tbody id="skills"></tbody></table></div>
+                    <p class="note">Points 1, 2, 4, 8, then +1 level per 4 more. Easy skills start at attribute+0 for 1 point, Average at −1, Hard at −2, Very Hard at −3. Odd amounts count as the step below.</p>
+                </div>
+                <div class="box" style="margin-top:8px">
+                    <span class="lbl">Spells</span>
+                    <div class="inl" style="margin-bottom:3px"><label>Magery level <input type="text" name="magery" maxlength="2" inputmode="numeric" placeholder="0"></label><span class="note" style="margin:0">Spells are IQ/Hard (a few IQ/Very Hard); each Magery level adds to every spell. Bought Magery goes with your advantages.</span></div>
+                    <div class="scroll"><table class="t wide"><thead><tr><th>Spell</th><th style="width:12%">College</th><th style="width:10%">Class</th><th class="c">Time</th><th class="c" style="width:5em">Duration</th><th class="c" style="width:5em">Cost</th><th class="c">Diff.</th><th class="c">Points</th><th class="c">Level</th></tr></thead><tbody id="spells"></tbody></table></div>
+                    <p class="note">Spell skill 15+: every casting and maintenance costs 1 FP less, 20+: 2 less, and so on per 5 levels. Out of FP, you can pay with HP.</p>
+                </div>
+                <div class="box grow" style="margin-top:8px"><span class="lbl">Techniques &amp; Skill Notes</span><textarea name="skillNotes" rows="2"></textarea></div>
+            </div>
+
+            <!-- ===================== PAGE 3: TRAITS & GEAR ===================== -->
+            <div class="page p-traits">
+                <div class="head" style="grid-template-columns: 1.6fr 1fr 1fr 1fr">
+                    <div class="name" style="grid-row:auto"><span class="lbl">Name</span><span class="val" data-mirror="name"></span></div>
+                    <div><small class="k">Advantages</small><span class="out" data-out="tAdv2"></span></div>
+                    <div><small class="k">Disadvantages</small><span class="out" data-out="tDis2"></span></div>
+                    <div><small class="k">Quirks</small><span class="out" data-out="tQuirk2"></span></div>
+                </div>
+                <div class="cols">
+                    <div class="stack">
+                        <div class="box">
+                            <span class="lbl">Advantages &amp; Perks</span>
+                            <table class="t"><thead><tr><th>Trait</th><th class="c">Points</th></tr></thead><tbody id="advs"></tbody></table>
+                        </div>
+                        <div class="box">
+                            <span class="lbl">Languages</span>
+                            <table class="t"><thead><tr><th>Language</th><th class="c" style="width:5.4em">Spoken</th><th class="c" style="width:5.4em">Written</th><th class="c">Points</th></tr></thead><tbody id="langs"></tbody></table>
+                            <p class="note">Broken 1, Accented 2, Native 3 points each for spoken and written. Your native language is free.</p>
+                        </div>
+                        <div class="box">
+                            <span class="lbl">Cultural Familiarities</span>
+                            <table class="t"><thead><tr><th>Culture</th><th class="c">Points</th></tr></thead><tbody id="cults"></tbody></table>
+                        </div>
+                    </div>
+                    <div class="stack">
+                        <div class="box">
+                            <span class="lbl">Disadvantages</span>
+                            <table class="t"><thead><tr><th>Disadvantage</th><th class="c">Points</th></tr></thead><tbody id="disads"></tbody></table>
+                            <p class="note">Enter points as −10 or 10: both count as −10.</p>
+                        </div>
+                        <div class="box">
+                            <span class="lbl">Quirks (−1 each, up to five)</span>
+                            <table class="t"><tbody id="quirks"></tbody></table>
+                            <p class="note">Quirks don't count against the disadvantage limit.</p>
+                        </div>
+                        <div class="box grow"><span class="lbl">Background</span><textarea name="background" rows="3"></textarea></div>
+                    </div>
+                </div>
+                <div class="cols grow" style="margin-top:8px">
+                    <div class="box">
+                        <span class="lbl">Equipment</span>
+                        <table class="t"><thead><tr><th>Item</th><th class="c">Weight</th><th class="c" style="width:4.6em">Cost</th></tr></thead><tbody id="gear"></tbody></table>
+                        <div class="inl" style="margin-top:4px; justify-content: space-between"><span>Total: <b class="out" data-out="gearW"></b> · <b class="out" data-out="gearC"></b></span><span>Encumbrance: <b class="out" data-out="encName"></b></span></div>
+                    </div>
+                    <div class="stack">
+                        <div class="box"><span class="lbl">Money</span><input type="text" name="money" placeholder="$"></div>
+                        <div class="box grow"><span class="lbl">Notes</span><textarea name="notes" rows="5"></textarea></div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <div class="sheet-help">
+            <p><strong>How it works.</strong> A sheet auto-saves in this browser once it has a name. Renaming a sheet renames its save. Use the tabs to move between the three pages. <strong>Print</strong> prints all three pages of the current character, one per US Letter sheet, and <strong>Print Blank</strong> prints an empty set. <strong>Export</strong> downloads every sheet as a JSON file and <strong>Import</strong> merges a file like that back in (a sheet with the same name is replaced). Nothing leaves your browser.</p>
+            <p><strong>Worked out for you.</strong> ST and HT cost 10 points per level above or below 10, DX and IQ 20. Secondary characteristics start from your attributes: HP from ST (2 points each), Will and Per from IQ (5 each), FP from HT (3 each), Basic Speed is (HT + DX) ÷ 4 (5 points per 0.25) and Basic Move is Basic Speed without fractions (5 points per yard). Basic Lift is ST × ST ÷ 5 pounds, rounded to a whole number once it reaches 10, and thrust and swing come from the ST table. Encumbrance compares your gear's weight with Basic Lift ×1, 2, 3, 6 and 10. Skill and spell levels follow the cost ladder on <a href="/gurps_char.html">Character Creation</a>; see also <a href="/gurps_combat.html">Combat</a>, <a href="/gurps_magic.html">Magic &amp; the Supernatural</a> and the <a href="/gurps_dice_roller.html">Dice Roller</a>.</p>
+        </div>
+
+        <div class="print-container" id="printContainer"></div>
+    </main>
+
+<footer>
+<div class="page-nav">
+    <a class="prev" href="/gurps_dice_roller.html">Dice Roller</a>
+    <a class="next" href="/gurps_magic.html">Magic &amp; the Supernatural</a>
+</div>
+    <p>Spend the points, then let play show you who the character really is.</p>
+</footer>
+<div class="site-footer">&copy; 2026 Ray de la Paz. The GURPS Guide. All rights reserved. &middot; <a href="https://rays-home.netlify.app/">Ray's House of Fun</a><br>GURPS is a trademark of Steve Jackson Games. This guide is an unofficial fan resource.</div>
+
+    <script>
+    (function () {
+        'use strict';
+        var KEY = 'gurps4-character-sheets';
+        var sheet = document.getElementById('sheet');
+        var select = document.getElementById('sheetSelect');
+        var $ = function (id) { return document.getElementById(id); };
+
+        // [key, label, cost per level]
+        var ATTRS = [['st', 'ST (Strength)', 10], ['dx', 'DX (Dexterity)', 20], ['iq', 'IQ (Intelligence)', 20], ['ht', 'HT (Health)', 10]];
+        // [key, label, cost per unit, cost label, base from]
+        var SECS = [['hp', 'Hit Points (HP)', 2, '2 / HP', 'st'], ['will', 'Will', 5, '5 / level', 'iq'], ['per', 'Perception (Per)', 5, '5 / level', 'iq'],
+            ['fp', 'Fatigue Points (FP)', 3, '3 / FP', 'ht'], ['spd', 'Basic Speed', 20, '5 / 0.25', ''], ['move', 'Basic Move', 5, '5 / yard', '']];
+        var ENC = [['None (0)', 1, 1, 0], ['Light (1)', 2, 0.8, 1], ['Medium (2)', 3, 0.6, 2], ['Heavy (3)', 6, 0.4, 3], ['X-Heavy (4)', 10, 0.2, 4]];
+        var NMEL = 4, NRAN = 3, NSK = 30, NSP = 14, NADV = 12, NLANG = 4, NCULT = 3, NDIS = 9, NQ = 5, NGEAR = 23;
+        var FIELDS = ['name', 'player', 'concept', 'campaign', 'startPts', 'tl', 'sm', 'age', 'height', 'weight', 'appearance',
+            'dodgeBonus', 'shieldSkill', 'shieldDb', 'hpNow', 'fpNow', 'dr', 'reactions', 'disLimit', 'combatNotes',
+            'magery', 'skillNotes', 'background', 'money', 'notes'];
+        var BOOLS = {};
+
+        var h = '';
+        ATTRS.forEach(function (a) {
+            FIELDS.push(a[0]);
+            h += '<tr><td>' + a[1] + '</td><td class="c">10</td><td class="c"><input type="text" name="' + a[0] + '" maxlength="3" inputmode="numeric" aria-label="' + a[1] + ' level"></td>' +
+                '<td class="rate">' + a[2] + ' / level</td><td class="c"><span class="out" data-out="p_' + a[0] + '"></span></td></tr>';
+        });
+        $('attrs').innerHTML = h; h = '';
+        SECS.forEach(function (s) {
+            var nm = s[0] + 'Adj'; FIELDS.push(nm);
+            h += '<tr><td>' + s[1] + '</td><td class="c"><span class="out" data-out="b_' + s[0] + '"></span></td>' +
+                '<td class="c"><input type="text" name="' + nm + '" maxlength="5" aria-label="' + s[1] + ' bought up or down"></td>' +
+                '<td class="c"><span class="out" data-out="v_' + s[0] + '"></span></td><td class="rate">' + s[3] + '</td>' +
+                '<td class="c"><span class="out" data-out="p_' + s[0] + '"></span></td></tr>';
+        });
+        $('secs').innerHTML = h; h = '';
+        ENC.forEach(function (e, i) {
+            h += '<tr data-enc="' + i + '"><td>' + e[0] + '</td><td class="w"><span class="out" data-out="encW' + i + '"></span></td><td class="c"><span class="out" data-out="encM' + i + '"></span></td><td class="c"><span class="out" data-out="encD' + i + '"></span></td></tr>';
+        });
+        $('enc').innerHTML = h;
+
+        // cols: [prefix, aria label, kind ('' text | 'c' centered text | ['opts']), maxlength, placeholder, out?]
+        var SEL_ATTR = ['', 'ST', 'DX', 'IQ', 'HT', 'Will', 'Per'], SEL_DIFF = ['', 'E', 'A', 'H', 'VH'], SEL_SPDIFF = ['', 'H', 'VH'],
+            SEL_LANG = ['', 'None', 'Broken', 'Accented', 'Native'];
+        function rows(host, count, cols) {
+            var out = '';
+            for (var i = 1; i <= count; i++) {
+                out += '<tr>' + cols.map(function (c) {
+                    var nm = c[0] + i, ph = (i === 1 && c[4]) ? ' placeholder="' + c[4] + '"' : '';
+                    if (c[2] === 'out') return '<td class="c"><span class="out" data-out="' + nm + '"></span></td>';
+                    if (c[2] === 'outl') return '<td><span class="out" style="text-align:left" data-out="' + nm + '"></span></td>';
+                    FIELDS.push(nm);
+                    if (Array.isArray(c[2])) return '<td class="c"><select name="' + nm + '" aria-label="' + c[1] + ' ' + i + '">' + c[2].map(function (o) { return '<option value="' + o + '">' + (o || '—') + '</option>'; }).join('') + '</select></td>';
+                    return '<td' + (c[2] === 'c' ? ' class="c"' : '') + '><input type="text" name="' + nm + '"' + (c[3] ? ' maxlength="' + c[3] + '"' : '') + ' aria-label="' + c[1] + ' ' + i + '"' + ph + '></td>';
+                }).join('') + '</tr>';
+            }
+            $(host).innerHTML = out;
+        }
+        rows('melee', NMEL, [['mwN', 'Melee weapon', '', 0, 'Large knife'], ['mwD', 'Melee damage', '', 0, 'sw−2 cut'], ['mwX', '', 'outl'], ['mwR', 'Reach', 'c', 6, 'C,1'],
+            ['mwS', 'Weapon skill', 'c', 3], ['mwP', 'Parry modifier', 'c', 4, '−1'], ['mwQ', '', 'out'], ['mwT', 'Minimum ST', 'c', 4]]);
+        rows('ranged', NRAN, [['rwN', 'Ranged weapon', '', 0, '9mm pistol'], ['rwD', 'Ranged damage', '', 0, '2d+2 pi'], ['rwX', '', 'outl'], ['rwA', 'Accuracy', 'c', 4], ['rwG', 'Range', 'c', 12, '150/1,900'],
+            ['rwF', 'Rate of fire', 'c', 4], ['rwH', 'Shots', 'c', 8], ['rwT', 'Minimum ST', 'c', 4], ['rwB', 'Bulk', 'c', 4], ['rwL', 'Recoil', 'c', 4], ['rwS', 'Weapon skill', 'c', 3]]);
+        rows('skills', NSK, [['skN', 'Skill', '', 0, 'Archaeology'], ['skA', 'Skill attribute', SEL_ATTR], ['skD', 'Skill difficulty', SEL_DIFF], ['skP', 'Skill points', 'c', 3, '12'],
+            ['skR', '', 'out'], ['skL', '', 'out'], ['skF', 'Defaults and notes', '', 0, 'IQ−6']]);
+        rows('spells', NSP, [['spN', 'Spell', '', 0, 'Light'], ['spC', 'College', '', 0, 'Light & Darkness'], ['spK', 'Spell class', '', 0, 'Regular'], ['spT', 'Casting time', 'c', 8, '1 sec'],
+            ['spU', 'Duration', 'c', 10, '1 min'], ['spE', 'Energy cost', 'c', 12, '1/1'], ['spD', 'Spell difficulty', SEL_SPDIFF], ['spP', 'Spell points', 'c', 3], ['spL', '', 'out']]);
+        rows('advs', NADV, [['adN', 'Advantage or perk', '', 0, 'Language Talent'], ['adP', 'Advantage points', 'c', 4, '10']]);
+        rows('langs', NLANG, [['laN', 'Language', '', 0, 'Spanish'], ['laS', 'Spoken level', SEL_LANG], ['laW', 'Written level', SEL_LANG], ['laP', 'Language points', 'c', 3]]);
+        rows('cults', NCULT, [['cfN', 'Cultural Familiarity', '', 0, 'Latin American'], ['cfP', 'Cultural Familiarity points', 'c', 3]]);
+        rows('disads', NDIS, [['diN', 'Disadvantage', '', 0, 'Curious (12)'], ['diP', 'Disadvantage points', 'c', 4, '−5']]);
+        rows('quirks', NQ, [['quN', 'Quirk', '', 0, 'Always carries a battered field notebook']]);
+        rows('gear', NGEAR, [['eqN', 'Item', '', 0, 'Backpack'], ['eqW', 'Weight in pounds', 'c', 7, '3'], ['eqC', 'Cost', 'c', 8, '$60']]);
+
+        // ----- rules -----
+        var num = function (v) { var x = parseFloat(String(v == null ? '' : v).replace(/[−–]/g, '-').replace(/[^0-9.\-]/g, '')); return isNaN(x) ? 0 : x; };
+        var has = function (get, k) { return String(get(k) == null ? '' : get(k)).trim() !== ''; };
+        var isNum = function (get, k) { return has(get, k) && /\d/.test(String(get(k))); };
+        function fmt(x) { x = Math.round(x * 100) / 100; return (x < 0 ? '−' : '') + String(Math.abs(x)); }
+        function sgn(x) { return (x < 0 ? '−' : '+') + Math.abs(x); }
+        // Thrust and swing by ST (Basic Set, p. 16): every ST from 1 to 40, then every 5 to 100.
+        var DMG = { 1: [1, -6, 1, -5], 2: [1, -6, 1, -5], 3: [1, -5, 1, -4], 4: [1, -5, 1, -4], 5: [1, -4, 1, -3], 6: [1, -4, 1, -3], 7: [1, -3, 1, -2], 8: [1, -3, 1, -2],
+            9: [1, -2, 1, -1], 10: [1, -2, 1, 0], 11: [1, -1, 1, 1], 12: [1, -1, 1, 2], 13: [1, 0, 2, -1], 14: [1, 0, 2, 0], 15: [1, 1, 2, 1], 16: [1, 1, 2, 2],
+            17: [1, 2, 3, -1], 18: [1, 2, 3, 0], 19: [2, -1, 3, 1], 20: [2, -1, 3, 2], 21: [2, 0, 4, -1], 22: [2, 0, 4, 0], 23: [2, 1, 4, 1], 24: [2, 1, 4, 2],
+            25: [2, 2, 5, -1], 26: [2, 2, 5, 0], 27: [3, -1, 5, 1], 28: [3, -1, 5, 1], 29: [3, 0, 5, 2], 30: [3, 0, 5, 2], 31: [3, 1, 6, -1], 32: [3, 1, 6, -1],
+            33: [3, 2, 6, 0], 34: [3, 2, 6, 0], 35: [4, -1, 6, 1], 36: [4, -1, 6, 1], 37: [4, 0, 6, 2], 38: [4, 0, 6, 2], 39: [4, 1, 7, -1], 40: [4, 1, 7, -1],
+            45: [5, 0, 7, 1], 50: [5, 2, 8, -1], 55: [6, 0, 8, 1], 60: [7, -1, 9, 0], 65: [7, 1, 9, 2], 70: [8, 0, 10, 0], 75: [8, 2, 10, 2], 80: [9, 0, 11, 0],
+            85: [9, 2, 11, 2], 90: [10, 0, 12, 0], 95: [10, 2, 12, 2], 100: [11, 0, 13, 0] };
+        function dmgRow(st) {
+            st = Math.floor(st);
+            if (st < 1) return null;
+            if (st > 100) { var x = Math.floor((st - 100) / 10); return [11 + x, 0, 13 + x, 0]; }
+            if (st > 40) st -= st % 5;
+            return DMG[st];
+        }
+        function dice(d, a) { return d + 'd' + (a ? sgn(a) : ''); }
+        function basicLift(st) { var bl = st * st / 5; return bl >= 10 ? Math.round(bl) : Math.round(bl * 10) / 10; }
+        function weaponRoll(txt, row) {
+            var m = String(txt || '').replace(/[−–]/g, '-').match(/^\s*(sw|thr)\s*(?:([+-])\s*(\d+))?\s*(.*)$/i);
+            if (!m || !row) return '';
+            var sw = m[1].toLowerCase() === 'sw', d = sw ? row[2] : row[0], a = (sw ? row[3] : row[1]) + (m[2] ? (m[2] === '-' ? -1 : 1) * +m[3] : 0);
+            return dice(d, a) + (m[4] ? ' ' + m[4] : '');
+        }
+        var DIFF = { E: 0, A: -1, H: -2, VH: -3 };
+        function relLevel(diff, pts) {
+            if (!(diff in DIFF) || pts < 1) return null;
+            var step = pts >= 4 ? 2 + Math.floor((pts - 4) / 4) : pts >= 2 ? 1 : 0;
+            return DIFF[diff] + step;
+        }
+        function sumRows(get, prefix, count, neg) { var t = 0, any = false; for (var i = 1; i <= count; i++) if (isNum(get, prefix + i)) { any = true; t += neg ? -Math.abs(num(get(prefix + i))) : num(get(prefix + i)); } return { t: t, any: any }; }
+
+        function derive(get) {
+            var o = {}, v = {}, attrT = 0, attrAny = false, secT = 0, secAny = false;
+            ATTRS.forEach(function (a) {
+                o['p_' + a[0]] = '';
+                v[a[0]] = isNum(get, a[0]) ? num(get(a[0])) : null;
+                if (v[a[0]] == null) return;
+                attrAny = true; var p = (v[a[0]] - 10) * a[2]; attrT += p; o['p_' + a[0]] = fmt(p);
+            });
+            var adj = {};
+            SECS.forEach(function (s) { adj[s[0]] = isNum(get, s[0] + 'Adj') ? num(get(s[0] + 'Adj')) : 0; if (isNum(get, s[0] + 'Adj')) secAny = true; });
+            var base = { hp: v.st, will: v.iq, per: v.iq, fp: v.ht, spd: (v.ht != null && v.dx != null) ? (v.ht + v.dx) / 4 : null };
+            base.move = base.spd == null ? null : Math.floor(base.spd + adj.spd);
+            SECS.forEach(function (s) {
+                var k = s[0], b = base[k];
+                o['b_' + k] = b == null ? '' : fmt(b);
+                v[k] = b == null ? null : b + adj[k];
+                o['v_' + k] = v[k] == null ? '' : fmt(v[k]);
+                var p = adj[k] * s[2]; secT += p;
+                o['p_' + k] = isNum(get, k + 'Adj') ? fmt(p) : (b == null ? '' : '0');
+            });
+            // Strength
+            var row = v.st == null ? null : dmgRow(v.st), bl = v.st == null ? null : basicLift(v.st);
+            o.bl = bl == null ? '' : fmt(bl) + ' lbs';
+            o.thr = row ? dice(row[0], row[1]) : ''; o.sw = row ? dice(row[2], row[3]) : '';
+            // HP / FP
+            o.hpMax = v.hp == null ? '' : fmt(v.hp); o.fpMax = v.fp == null ? '' : fmt(v.fp);
+            var reeling = false;
+            o.hpState = ''; o.hpMarks = '';
+            if (v.hp != null && v.hp > 0) {
+                var H = v.hp;
+                o.hpMarks = 'Thresholds for ' + fmt(H) + ' HP: halve Move and Dodge below ' + fmt(Math.round(H / 3 * 100) / 100) + ' · HT rolls to stay conscious at 0 · death checks at ' +
+                    [1, 2, 3, 4].map(function (k) { return fmt(-k * H); }).join(', ') + ' · dead at ' + fmt(-5 * H) + '.';
+                if (isNum(get, 'hpNow')) {
+                    var c = num(get('hpNow'));
+                    reeling = c < H / 3;
+                    if (c <= -5 * H) o.hpState = 'Dead';
+                    else if (c <= -H) o.hpState = 'Death checks: HT at each −1×HP step';
+                    else if (c <= 0) o.hpState = 'HT each turn or unconscious';
+                    else if (reeling) o.hpState = 'Below 1/3: Move, Dodge halved';
+                }
+            }
+            o.fpState = '';
+            if (v.fp != null && isNum(get, 'fpNow') && num(get('fpNow')) <= 0) o.fpState = 'Out of FP: spells cost HP';
+            // Dodge, encumbrance, gear
+            var dodgeBase = v.spd == null ? null : Math.floor(v.spd) + 3 + num(get('dodgeBonus'));
+            var gw = 0, gc = 0, gAny = false, gcAny = false;
+            for (var i = 1; i <= NGEAR; i++) {
+                if (isNum(get, 'eqW' + i)) { gAny = true; gw += num(get('eqW' + i)); }
+                if (isNum(get, 'eqC' + i)) { gcAny = true; gc += num(get('eqC' + i)); }
+            }
+            gw = Math.round(gw * 100) / 100;
+            o.gearW = gAny ? fmt(gw) + ' lbs' : ''; o.gearC = gcAny ? '$' + gc.toLocaleString('en-US') : '';
+            o.carry = gAny ? fmt(gw) + ' lbs' : '';
+            var level = -1;
+            if (bl != null && gAny) { level = 5; for (var e = 0; e < ENC.length; e++) if (gw <= bl * ENC[e][1]) { level = e; break; } }
+            o.encLevel = level;
+            o.encName = level < 0 ? '' : level === 5 ? 'Over X-Heavy: can\'t move' : ENC[level][0];
+            ENC.forEach(function (en, j) {
+                o['encW' + j] = bl == null ? '' : fmt(Math.round(bl * en[1] * 100) / 100) + ' lbs';
+                var mv = v.move == null ? null : Math.max(1, Math.floor(v.move * en[2]));
+                if (v.move != null && reeling) mv = Math.max(1, Math.ceil(mv / 2));
+                o['encM' + j] = mv == null ? '' : fmt(mv);
+                var dg = dodgeBase == null ? null : dodgeBase - en[3];
+                if (dg != null && reeling) dg = Math.ceil(dg / 2);
+                o['encD' + j] = dg == null ? '' : fmt(dg);
+            });
+            o.dodge = dodgeBase == null ? '' : fmt(reeling ? Math.ceil(dodgeBase / 2) : dodgeBase) + (reeling ? '*' : '');
+            o.block = isNum(get, 'shieldSkill') ? fmt(3 + Math.floor(num(get('shieldSkill')) / 2) + num(get('shieldDb'))) : '';
+            // weapons
+            var best = null;
+            for (var m = 1; m <= NMEL; m++) {
+                o['mwX' + m] = weaponRoll(get('mwD' + m), row);
+                o['mwQ' + m] = '';
+                if (!isNum(get, 'mwS' + m)) continue;
+                var pm = String(get('mwP' + m) || '').trim();
+                if (/^no/i.test(pm)) { o['mwQ' + m] = 'No'; continue; }
+                var pv = 3 + Math.floor(num(get('mwS' + m)) / 2) + (/\d/.test(pm) ? num(pm) : 0);
+                o['mwQ' + m] = fmt(pv) + (/f/i.test(pm) ? 'F' : '') + (/u/i.test(pm) ? 'U' : '');
+                if (best == null || pv > best) best = pv;
+            }
+            o.parryBest = best == null ? '' : fmt(best);
+            for (var r = 1; r <= NRAN; r++) o['rwX' + r] = weaponRoll(get('rwD' + r), row);
+            // skills and spells
+            var attrVal = { ST: v.st, DX: v.dx, IQ: v.iq, HT: v.ht, Will: v.will, Per: v.per }, skT = 0, skAny = false;
+            for (var s = 1; s <= NSK; s++) {
+                o['skR' + s] = o['skL' + s] = '';
+                if (!isNum(get, 'skP' + s)) continue;
+                var pts = num(get('skP' + s)); skAny = true; skT += pts;
+                var at = get('skA' + s), rl = relLevel(get('skD' + s), pts);
+                if (rl == null || !at) continue;
+                o['skR' + s] = at + (rl ? sgn(rl) : '+0');
+                if (attrVal[at] != null) o['skL' + s] = fmt(attrVal[at] + rl);
+            }
+            var mag = num(get('magery')), spT = 0, spAny = false;
+            for (var q = 1; q <= NSP; q++) {
+                o['spL' + q] = '';
+                if (!isNum(get, 'spP' + q)) continue;
+                var sp = num(get('spP' + q)); spAny = true; spT += sp;
+                var srl = relLevel(get('spD' + q) || 'H', sp);
+                if (srl != null && v.iq != null) o['spL' + q] = fmt(v.iq + mag + srl);
+            }
+            // totals
+            var ad = sumRows(get, 'adP', NADV), cf = sumRows(get, 'cfP', NCULT), la = sumRows(get, 'laP', NLANG), di = sumRows(get, 'diP', NDIS, true);
+            var nq = 0; for (var k = 1; k <= NQ; k++) if (has(get, 'quN' + k)) nq++;
+            var anySpent = attrAny || secAny || ad.any || cf.any || la.any || di.any || nq || skAny || spAny, z = function (x) { return anySpent ? fmt(x) : ''; };
+            o.tAttr = z(attrT); o.tSec = z(secT); o.tAdv = o.tAdv2 = z(ad.t + cf.t); o.tLang = z(la.t); o.tDis = o.tDis2 = z(di.t);
+            o.tQuirk = o.tQuirk2 = z(-nq); o.tSkill = o.tSkill2 = z(skT); o.tSpell = o.tSpell2 = z(spT);
+            var spent = attrT + secT + ad.t + cf.t + la.t + di.t - nq + skT + spT;
+            o.tSpent = z(spent);
+            var start = isNum(get, 'startPts') ? num(get('startPts')) : null;
+            o.unspent = o.unspent2 = start == null ? '' : fmt(start - spent);
+            o.budgetWarn = start != null && spent > start ? 'Overspent by ' + fmt(spent - start) + ' points.' : '';
+            var lim = isNum(get, 'disLimit') ? Math.abs(num(get('disLimit'))) : start != null ? start / 2 : 50;
+            o.disWarn = -di.t > lim ? 'Disadvantages are ' + fmt(-di.t - lim) + ' over the −' + fmt(lim) + ' limit.' : '';
+            return o;
+        }
+        function paint(root, get) {
+            var o = derive(get);
+            root.querySelectorAll('[data-out]').forEach(function (el) { var k = el.getAttribute('data-out'); if (o[k] != null) el.textContent = o[k]; });
+            root.querySelectorAll('[data-mirror]').forEach(function (el) { el.textContent = get(el.getAttribute('data-mirror')) || ''; });
+            root.querySelectorAll('[data-enc]').forEach(function (el) { el.classList.toggle('on', +el.getAttribute('data-enc') === o.encLevel); });
+            var ph = root.querySelector('[name="disLimit"]');
+            if (ph) { var sp = get('startPts'); ph.placeholder = /\d/.test(String(sp || '')) ? fmt(Math.abs(num(sp)) / 2) : '75'; }
+            return o;
+        }
+
+        // ----- form plumbing -----
+        function field(nm) { return sheet.querySelector('[name="' + nm + '"]'); }
+        function getVal(nm) { var el = field(nm); return !el ? '' : el.type === 'checkbox' ? el.checked : el.value; }
+        function setVal(nm, v) {
+            var el = field(nm); if (!el) return;
+            if (el.type === 'checkbox') { el.checked = v === true || v === 'true'; return; }
+            v = v == null ? '' : String(v);
+            if (el.tagName === 'SELECT' && !Array.prototype.some.call(el.options, function (op) { return op.value === v; })) v = '';
+            el.value = v;
+        }
+        function currentName() { return String(getVal('name')).trim(); }
+        function say(msg) { $('status').textContent = msg; }
+        function sanitize(raw) {
+            if (!raw || typeof raw !== 'object' || Array.isArray(raw)) return null;
+            var out = {};
+            FIELDS.forEach(function (f) { var v = raw[f]; out[f] = BOOLS[f] ? (v === true || v === 'true') : ((typeof v === 'string' || typeof v === 'number') ? String(v).slice(0, 6000) : ''); });
+            return out;
+        }
+        function safeName(x) { return typeof x === 'string' && x.trim() !== '' && ['__proto__', 'constructor', 'prototype'].indexOf(x) < 0; }
+        function load() {
+            var out = {};
+            try {
+                var p = JSON.parse(localStorage.getItem(KEY));
+                if (p && typeof p === 'object' && !Array.isArray(p)) Object.keys(p).forEach(function (k) { var d = sanitize(p[k]); if (safeName(k) && d) out[k] = d; });
+            } catch (err) { /* storage blocked or corrupt */ }
+            return out;
+        }
+        function store(all) { try { localStorage.setItem(KEY, JSON.stringify(all)); return true; } catch (err) { say('Could not save: browser storage is unavailable or full.'); return false; } }
+        function read() { var d = {}; FIELDS.forEach(function (f) { d[f] = getVal(f); }); return d; }
+        function repaint() { paint(sheet, getVal); }
+        function clearAll() { FIELDS.forEach(function (f) { setVal(f, BOOLS[f] ? false : ''); }); repaint(); }
+        function fill(d) { clearAll(); FIELDS.forEach(function (f) { setVal(f, d[f]); }); repaint(); }
+        function refreshSelect(sel) {
+            var all = load();
+            select.innerHTML = '<option value="">— Select Sheet —</option>';
+            Object.keys(all).sort().forEach(function (k) { var o = document.createElement('option'); o.value = k; o.textContent = k; if (k === sel) o.selected = true; select.appendChild(o); });
+        }
+        var currentKey = null, timer = null, armed = false;
+        function disarm() { armed = false; $('deleteBtn').classList.remove('armed'); $('deleteBtn').textContent = '🗑️ Delete'; }
+        function storeCurrent(name) {
+            var all = load();
+            if (currentKey && currentKey !== name) delete all[currentKey];
+            all[name] = read();
+            if (!store(all)) return false;
+            currentKey = name; refreshSelect(name); return true;
+        }
+        function autoSave() {
+            timer = null;
+            var name = currentName();
+            if (!safeName(name)) return;
+            var all = load();
+            if (all[name] && name !== currentKey) { say('A sheet named “' + name + '” already exists. Rename this one, or press Save to replace it.'); return; }
+            if (storeCurrent(name)) say('Saved “' + name + '”.');
+        }
+        function flush() { if (timer) { clearTimeout(timer); autoSave(); } }
+        function onEdit() { disarm(); repaint(); clearTimeout(timer); timer = setTimeout(autoSave, 800); }
+        sheet.addEventListener('input', onEdit);
+        sheet.addEventListener('change', onEdit);
+
+        var tabs = document.querySelectorAll('.tabs [role="tab"]');
+        function show(page) {
+            sheet.setAttribute('data-page', page);
+            tabs.forEach(function (t) { var on = t.getAttribute('data-page') === page; t.setAttribute('aria-selected', String(on)); t.tabIndex = on ? 0 : -1; });
+        }
+        tabs.forEach(function (t, i) {
+            t.addEventListener('click', function () { show(t.getAttribute('data-page')); });
+            t.addEventListener('keydown', function (ev) {
+                if (ev.key !== 'ArrowRight' && ev.key !== 'ArrowLeft') return;
+                var nx = tabs[(i + (ev.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length]; nx.focus(); show(nx.getAttribute('data-page'));
+            });
+        });
+
+        $('newBtn').addEventListener('click', function () { flush(); clearAll(); currentKey = null; select.value = ''; disarm(); show('char'); field('name').focus(); say('New blank sheet.'); });
+        $('saveBtn').addEventListener('click', function () {
+            clearTimeout(timer); timer = null;
+            var name = currentName();
+            if (!safeName(name)) { say('Give the character a name first.'); show('char'); field('name').focus(); return; }
+            if (storeCurrent(name)) say('Saved “' + name + '”.');
+        });
+        $('copyBtn').addEventListener('click', function () {
+            flush();
+            var base = currentName();
+            if (!base) { say('Give the character a name first.'); return; }
+            var all = load(), name = base + ' (copy)', i = 2;
+            while (all[name]) name = base + ' (copy ' + (i++) + ')';
+            var d = read(); d.name = name; all[name] = d;
+            if (!store(all)) return;
+            fill(d); currentKey = name; refreshSelect(name); say('Copied as “' + name + '”.');
+        });
+        $('deleteBtn').addEventListener('click', function () {
+            var name = select.value;
+            if (!name) { say('Choose a saved sheet to delete.'); return; }
+            if (!armed) { armed = true; this.classList.add('armed'); this.textContent = '🗑️ Click again to delete'; say('Click Delete again to remove “' + name + '”.'); return; }
+            clearTimeout(timer); timer = null;
+            var all = load(); delete all[name];
+            if (!store(all)) return;
+            clearAll(); currentKey = null; refreshSelect(''); disarm(); say('Deleted “' + name + '”.');
+        });
+        select.addEventListener('change', function () {
+            flush(); disarm();
+            var name = select.value, all = load();
+            if (!name || !all[name]) { clearAll(); currentKey = null; return; }
+            fill(all[name]); currentKey = name; refreshSelect(name); say('Loaded “' + name + '”.');
+        });
+
+        // ----- print: clone the form and turn every field into plain text -----
+        function staticSheet(d) {
+            var cl = sheet.cloneNode(true), get = function (k) { return d[k] == null ? '' : d[k]; };
+            cl.removeAttribute('id'); cl.querySelectorAll('[id]').forEach(function (el) { el.removeAttribute('id'); });
+            paint(cl, get);
+            cl.querySelectorAll('input, select, textarea').forEach(function (el) {
+                var nm = el.getAttribute('name'), v = d[nm];
+                var span = document.createElement('span');
+                span.className = 'val' + (el.tagName === 'TEXTAREA' ? ' tx' : '');
+                span.textContent = v == null ? '' : String(v);
+                el.replaceWith(span);
+            });
+            return cl;
+        }
+        function doPrint(list) {
+            var box = $('printContainer'); box.innerHTML = '';
+            list.forEach(function (d) { box.appendChild(staticSheet(d)); });
+            window.print();
+        }
+        window.addEventListener('afterprint', function () { $('printContainer').innerHTML = ''; });
+        $('printBtn').addEventListener('click', function () { if (!currentName()) { say('Give the character a name first.'); return; } doPrint([read()]); });
+        $('printAllBtn').addEventListener('click', function () {
+            var all = load(), names = Object.keys(all).sort();
+            if (!names.length) { say('No saved sheets to print yet.'); return; }
+            doPrint(names.map(function (k) { return all[k]; }));
+        });
+        $('blankBtn').addEventListener('click', function () { doPrint([{}]); });
+
+        // ----- export / import (local JSON files) -----
+        $('exportBtn').addEventListener('click', function () {
+            flush();
+            var all = load(), cnt = Object.keys(all).length;
+            if (!cnt) { say('No sheets to export yet.'); return; }
+            var url = URL.createObjectURL(new Blob([JSON.stringify(all, null, 2)], { type: 'application/json' }));
+            var a = document.createElement('a'); a.href = url; a.download = 'gurps-character-sheets.json';
+            document.body.appendChild(a); a.click(); a.remove();
+            setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+            say('Exported ' + cnt + (cnt === 1 ? ' sheet.' : ' sheets.'));
+        });
+        $('importBtn').addEventListener('click', function () { $('importFile').click(); });
+        $('importFile').addEventListener('change', function (ev) {
+            var file = ev.target.files && ev.target.files[0];
+            ev.target.value = '';
+            if (!file) return;
+            if (file.size > 5 * 1024 * 1024) { say('That file is too large to be a sheet file.'); return; }
+            flush();
+            var r = new FileReader();
+            r.onload = function () {
+                try {
+                    var data = JSON.parse(r.result);
+                    if (!data || typeof data !== 'object' || Array.isArray(data)) { say('That is not a sheet file.'); return; }
+                    var all = load(), count = 0;
+                    Object.keys(data).forEach(function (k) {
+                        var d = sanitize(data[k]); if (!d) return;
+                        var name = String(d.name || '').trim().slice(0, 200);
+                        if (!safeName(name)) return;
+                        all[name] = d; count++;
+                    });
+                    if (!count) { say('No valid sheets found in that file.'); return; }
+                    if (!store(all)) return;
+                    refreshSelect(currentKey || ''); say('Imported ' + count + (count === 1 ? ' sheet.' : ' sheets.'));
+                } catch (err) { say('Could not read that file.'); }
+            };
+            r.onerror = function () { say('Could not read that file.'); };
+            r.readAsText(file);
+        });
+
+        window.gurpsSheet = { derive: derive, relLevel: relLevel, dmgRow: dmgRow, basicLift: basicLift, weaponRoll: weaponRoll };
+        clearAll(); refreshSelect('');
+    })();
+    </script>
+</body>
+</html>
