@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Character Sheets - The GURPS Guide</title>
-    <meta name="description" content="Fillable GURPS 4th Edition character sheets: attributes and secondary characteristics with point costs, Basic Lift, thrust and swing, Dodge and encumbrance, skills and spells with automatic levels, traits, languages, weapons and gear, with save, print and file import/export.">
+    <meta name="description" content="Fillable GURPS 4th Edition character sheets: attributes and secondary characteristics with point costs, Basic Lift, thrust and swing, Dodge and encumbrance, skills and spells with automatic levels, traits, languages, weapons and gear, with save, print, file import/export and one-click sample characters.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
@@ -129,6 +129,7 @@
             .print-container .gu-sheet .stack > * + * { margin-top: 5px; }
             .print-container .gu-sheet .head { margin-bottom: 6px; }
             .print-container .gu-sheet .head .name .val { font-size: 1.3rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+            .print-container .gu-sheet .head .name .val.long { font-size: 1.05rem; }
             .print-container .gu-sheet table.t { font-size: 10.5px; min-width: 0; }
             .print-container .gu-sheet table.t td { padding: 0 3px; }
             .print-container .gu-sheet table.t td .val { min-height: 1.3em; line-height: 1.3; }
@@ -171,6 +172,7 @@
             <button type="button" id="blankBtn">📄 Print Blank</button>
             <button type="button" id="exportBtn">📤 Export</button>
             <button type="button" id="importBtn">📥 Import</button>
+            <button type="button" id="sampleBtn">🗂️ Load sample characters</button>
             <input type="file" id="importFile" accept=".json,application/json">
         </div>
         <p class="sheet-status" id="status" role="status" aria-live="polite"></p>
@@ -355,6 +357,7 @@
 
         <div class="sheet-help">
             <p><strong>How it works.</strong> A sheet auto-saves in this browser once it has a name. Renaming a sheet renames its save. Use the tabs to move between the three pages. <strong>Print</strong> prints all three pages of the current character, one per US Letter sheet, and <strong>Print Blank</strong> prints an empty set. <strong>Export</strong> downloads every sheet as a JSON file and <strong>Import</strong> merges a file like that back in (a sheet with the same name is replaced). Nothing leaves your browser.</p>
+            <p><strong>Sample sheets.</strong> <strong>Load sample characters</strong> adds all 97 characters from <a href="/gurps_100.html">97 Characters and Adventure Groups</a> (23 solo operators and 74 members of 20 groups, with each group's roster and dynamic in Notes), replacing any saved sheet with the same name just as Import does and leaving your other sheets alone; you can also <a href="/gurps_sample_sheets.json" download>download the sample sheet file</a> and import it yourself. The cards are highlights, so each sheet shows the rest of the character's points as unspent for you to finish the build.</p>
             <p><strong>Worked out for you.</strong> ST and HT cost 10 points per level above or below 10, DX and IQ 20. Secondary characteristics start from your attributes: HP from ST (2 points each), Will and Per from IQ (5 each), FP from HT (3 each), Basic Speed is (HT + DX) ÷ 4 (5 points per 0.25) and Basic Move is Basic Speed without fractions (5 points per yard). Basic Lift is ST × ST ÷ 5 pounds, rounded to a whole number once it reaches 10, and thrust and swing come from the ST table. Encumbrance compares your gear's weight with Basic Lift ×1, 2, 3, 6 and 10. Skill and spell levels follow the cost ladder on <a href="/gurps_char.html">Character Creation</a>; see also <a href="/gurps_combat.html">Combat</a>, <a href="/gurps_magic.html">Magic &amp; the Supernatural</a> and the <a href="/gurps_dice_roller.html">Dice Roller</a>.</p>
         </div>
 
@@ -718,10 +721,11 @@
             cl.querySelectorAll('input, select, textarea').forEach(function (el) {
                 var nm = el.getAttribute('name'), v = d[nm];
                 var span = document.createElement('span');
-                span.className = 'val' + (el.tagName === 'TEXTAREA' ? ' tx' : '');
+                span.className = 'val' + (el.tagName === 'TEXTAREA' ? ' tx' : '') + (nm === 'name' && String(v || '').length > 38 ? ' long' : '');
                 span.textContent = v == null ? '' : String(v);
                 el.replaceWith(span);
             });
+            cl.querySelectorAll('[data-mirror="name"]').forEach(function (el) { if (String(d.name || '').length > 38) el.classList.add('long'); });
             return cl;
         }
         function doPrint(list) {
@@ -749,7 +753,41 @@
             setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
             say('Exported ' + cnt + (cnt === 1 ? ' sheet.' : ' sheets.'));
         });
+        // Merge a {name: sheet} object into saved sheets; a sheet with the same name is replaced and other sheets are kept.
+        // Returns { count, added, replaced } (replaced = names already saved before the merge), or null if storage failed.
+        function mergeSheets(data) {
+            var all = load(), before = {}, seen = {}, count = 0, replaced = 0;
+            Object.keys(all).forEach(function (k) { before[k] = true; });
+            Object.keys(data).forEach(function (k) {
+                var d = sanitize(data[k]); if (!d) return;
+                var name = String(d.name || '').trim().slice(0, 200);
+                if (!safeName(name)) return;
+                d.name = name;
+                if (!seen[name]) { seen[name] = true; count++; if (before[name]) replaced++; }
+                all[name] = d;
+            });
+            if (!count) return { count: 0, added: 0, replaced: 0 };
+            if (!store(all)) return null;
+            if (currentKey && seen[currentKey] && all[currentKey]) fill(all[currentKey]);   // the open sheet was replaced: show the new copy
+            refreshSelect(currentKey || '');
+            return { count: count, added: count - replaced, replaced: replaced };
+        }
         $('importBtn').addEventListener('click', function () { $('importFile').click(); });
+        $('sampleBtn').addEventListener('click', function () {
+            var btn = this;
+            flush(); disarm(); btn.disabled = true; say('Loading the sample sheets…');
+            fetch('/gurps_sample_sheets.json', { cache: 'no-cache' })
+                .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+                .then(function (data) {
+                    if (!data || typeof data !== 'object' || Array.isArray(data)) throw new Error('bad file');
+                    var res = mergeSheets(data);
+                    if (!res) return;
+                    if (!res.count) { say('No valid sheets found in the sample file.'); return; }
+                    say('Loaded ' + res.count + ' sample sheets: ' + res.added + ' added, ' + res.replaced + ' replaced.');
+                })
+                .catch(function () { say('Could not load the sample sheets. Check your connection, or download the file and use Import.'); })
+                .then(function () { btn.disabled = false; });
+        });
         $('importFile').addEventListener('change', function (ev) {
             var file = ev.target.files && ev.target.files[0];
             ev.target.value = '';
@@ -761,23 +799,17 @@
                 try {
                     var data = JSON.parse(r.result);
                     if (!data || typeof data !== 'object' || Array.isArray(data)) { say('That is not a sheet file.'); return; }
-                    var all = load(), count = 0;
-                    Object.keys(data).forEach(function (k) {
-                        var d = sanitize(data[k]); if (!d) return;
-                        var name = String(d.name || '').trim().slice(0, 200);
-                        if (!safeName(name)) return;
-                        all[name] = d; count++;
-                    });
-                    if (!count) { say('No valid sheets found in that file.'); return; }
-                    if (!store(all)) return;
-                    refreshSelect(currentKey || ''); say('Imported ' + count + (count === 1 ? ' sheet.' : ' sheets.'));
+                    var res = mergeSheets(data);
+                    if (!res) return;
+                    if (!res.count) { say('No valid sheets found in that file.'); return; }
+                    say('Imported ' + res.count + (res.count === 1 ? ' sheet.' : ' sheets.'));
                 } catch (err) { say('Could not read that file.'); }
             };
             r.onerror = function () { say('Could not read that file.'); };
             r.readAsText(file);
         });
 
-        window.gurpsSheet = { derive: derive, relLevel: relLevel, dmgRow: dmgRow, basicLift: basicLift, weaponRoll: weaponRoll };
+        window.gurpsSheet = { derive: derive, relLevel: relLevel, dmgRow: dmgRow, basicLift: basicLift, weaponRoll: weaponRoll, sanitize: sanitize, fields: FIELDS };
         clearAll(); refreshSelect('');
     })();
     </script>
