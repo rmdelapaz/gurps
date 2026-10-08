@@ -142,6 +142,8 @@
             .print-container .gu-sheet .grow { flex: 1; display: flex; flex-direction: column; min-height: 0; }
             .print-container .gu-sheet .grow .tx.val { flex: 1; }
             .print-container .gu-sheet .cols.grow { display: grid; }
+            /* print fit: a long campaign name wraps the header, so the one-line Combat Notes box may shrink */
+            .print-container .gu-sheet .p-char > .grow .tx.val { min-height: 1.2em; }
             .print-container .gu-sheet .cols > .stack { display: flex; flex-direction: column; }
             .print-container .gu-sheet .top > .stack { display: flex; flex-direction: column; }
             .print-container .gu-sheet .top > .stack > .box:last-child { flex: 1; }
@@ -336,7 +338,7 @@
                         <div class="box">
                             <span class="lbl">Quirks (−1 each, up to five)</span>
                             <table class="t"><tbody id="quirks"></tbody></table>
-                            <p class="note">Quirks don't count against the disadvantage limit.</p>
+                            <p class="note">Quirks don't count against the disadvantage limit; low attributes and secondary characteristics bought down do.</p>
                         </div>
                         <div class="box grow"><span class="lbl">Background</span><textarea name="background" rows="3"></textarea></div>
                     </div>
@@ -357,7 +359,7 @@
 
         <div class="sheet-help">
             <p><strong>How it works.</strong> A sheet auto-saves in this browser once it has a name. Renaming a sheet renames its save. Use the tabs to move between the three pages. <strong>Print</strong> prints all three pages of the current character, one per US Letter sheet, and <strong>Print Blank</strong> prints an empty set. <strong>Export</strong> downloads every sheet as a JSON file and <strong>Import</strong> merges a file like that back in (a sheet with the same name is replaced). Nothing leaves your browser.</p>
-            <p><strong>Sample sheets.</strong> <strong>Load sample characters</strong> adds all 97 characters from <a href="/gurps_100.html">97 Characters and Adventure Groups</a> (23 solo operators and 74 members of 20 groups, with each group's roster and dynamic in Notes), replacing any saved sheet with the same name just as Import does and leaving your other sheets alone; you can also <a href="/gurps_sample_sheets.json" download>download the sample sheet file</a> and import it yourself. The cards are highlights, so each sheet shows the rest of the character's points as unspent for you to finish the build.</p>
+            <p><strong>Sample sheets.</strong> <strong>Load sample characters</strong> adds all 97 characters from <a href="/gurps_100.html">97 Characters and Adventure Groups</a> (23 solo operators and 74 members of 20 groups, with each group's roster and dynamic in Notes), replacing any saved sheet with the same name just as Import does and leaving your other sheets alone; you can also <a href="/gurps_sample_sheets.json" download>download the sample sheet file</a> and import it yourself. Each sample is a finished, legal build at its point total, with the card's values kept, more skills (and spells for mages), weapons, armor DR and Basic Set gear bought with the character's starting wealth.</p>
             <p><strong>Worked out for you.</strong> ST and HT cost 10 points per level above or below 10, DX and IQ 20. Secondary characteristics start from your attributes: HP from ST (2 points each), Will and Per from IQ (5 each), FP from HT (3 each), Basic Speed is (HT + DX) ÷ 4 (5 points per 0.25) and Basic Move is Basic Speed without fractions (5 points per yard). Basic Lift is ST × ST ÷ 5 pounds, rounded to a whole number once it reaches 10, and thrust and swing come from the ST table. Encumbrance compares your gear's weight with Basic Lift ×1, 2, 3, 6 and 10. Skill and spell levels follow the cost ladder on <a href="/gurps_char.html">Character Creation</a>; see also <a href="/gurps_combat.html">Combat</a>, <a href="/gurps_magic.html">Magic &amp; the Supernatural</a> and the <a href="/gurps_dice_roller.html">Dice Roller</a>.</p>
         </div>
 
@@ -483,12 +485,12 @@
         function sumRows(get, prefix, count, neg) { var t = 0, any = false; for (var i = 1; i <= count; i++) if (isNum(get, prefix + i)) { any = true; t += neg ? -Math.abs(num(get(prefix + i))) : num(get(prefix + i)); } return { t: t, any: any }; }
 
         function derive(get) {
-            var o = {}, v = {}, attrT = 0, attrAny = false, secT = 0, secAny = false;
+            var o = {}, v = {}, attrT = 0, attrAny = false, secT = 0, secAny = false, lowT = 0;
             ATTRS.forEach(function (a) {
                 o['p_' + a[0]] = '';
                 v[a[0]] = isNum(get, a[0]) ? num(get(a[0])) : null;
                 if (v[a[0]] == null) return;
-                attrAny = true; var p = (v[a[0]] - 10) * a[2]; attrT += p; o['p_' + a[0]] = fmt(p);
+                attrAny = true; var p = (v[a[0]] - 10) * a[2]; attrT += p; if (p < 0) lowT -= p; o['p_' + a[0]] = fmt(p);
             });
             var adj = {};
             SECS.forEach(function (s) { adj[s[0]] = isNum(get, s[0] + 'Adj') ? num(get(s[0] + 'Adj')) : 0; if (isNum(get, s[0] + 'Adj')) secAny = true; });
@@ -499,7 +501,7 @@
                 o['b_' + k] = b == null ? '' : fmt(b);
                 v[k] = b == null ? null : b + adj[k];
                 o['v_' + k] = v[k] == null ? '' : fmt(v[k]);
-                var p = adj[k] * s[2]; secT += p;
+                var p = adj[k] * s[2]; secT += p; if (p < 0) lowT -= p;
                 o['p_' + k] = isNum(get, k + 'Adj') ? fmt(p) : (b == null ? '' : '0');
             });
             // Strength
@@ -595,7 +597,8 @@
             o.unspent = o.unspent2 = start == null ? '' : fmt(start - spent);
             o.budgetWarn = start != null && spent > start ? 'Overspent by ' + fmt(spent - start) + ' points.' : '';
             var lim = isNum(get, 'disLimit') ? Math.abs(num(get('disLimit'))) : start != null ? start / 2 : 50;
-            o.disWarn = -di.t > lim ? 'Disadvantages are ' + fmt(-di.t - lim) + ' over the −' + fmt(lim) + ' limit.' : '';
+            var disAll = -di.t + lowT;   // B11: low attributes and reduced secondary characteristics count as disadvantages
+            o.disWarn = disAll > lim ? 'Disadvantages' + (lowT ? ' (with ' + fmt(lowT) + ' from low attributes and secondary characteristics)' : '') + ' are ' + fmt(disAll - lim) + ' over the −' + fmt(lim) + ' limit.' : '';
             return o;
         }
         function paint(root, get) {
