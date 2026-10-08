@@ -186,12 +186,12 @@
             <!-- ===================== PAGE 1: CHARACTER ===================== -->
             <div class="page p-char">
                 <div class="head">
-                    <label class="name"><span class="lbl">Name</span><input type="text" name="name" maxlength="60" placeholder="Dr. Rita Anderson"></label>
+                    <label class="name"><span class="lbl">Name</span><input type="text" name="name" maxlength="60"></label>
                     <label><small class="k">Player</small><input type="text" name="player"></label>
-                    <label><small class="k">Concept</small><input type="text" name="concept" placeholder="Archaeologist"></label>
+                    <label><small class="k">Concept</small><input type="text" name="concept"></label>
                     <label><small class="k">Campaign</small><input type="text" name="campaign"></label>
-                    <label><small class="k">Starting points</small><input type="text" name="startPts" maxlength="5" inputmode="numeric" placeholder="150"></label>
-                    <label><small class="k">Tech Level</small><input type="text" name="tl" maxlength="6" placeholder="TL8"></label>
+                    <label><small class="k">Starting points</small><input type="text" name="startPts" maxlength="5" inputmode="numeric"></label>
+                    <label><small class="k">Tech Level</small><input type="text" name="tl" maxlength="6"></label>
                     <label><small class="k">Size Modifier</small><input type="text" name="sm" maxlength="4" placeholder="0"></label>
                     <label><small class="k">Age</small><input type="text" name="age" maxlength="12"></label>
                     <div><small class="k">Unspent points</small><span class="out" data-out="unspent"></span></div>
@@ -211,7 +211,7 @@
                     </div>
                     <div class="box">
                             <span class="lbl">Protection &amp; Reactions</span>
-                            <label><small class="k">Damage Resistance (DR)</small><input type="text" name="dr" placeholder="Leather jacket: DR 1 torso, arms, legs"></label>
+                            <label><small class="k">Damage Resistance (DR)</small><input type="text" name="dr"></label>
                             <label><small class="k">Reaction modifiers</small><input type="text" name="reactions" placeholder="Appearance, Charisma, Status, Reputation"></label>
                         </div>
                     </div>
@@ -278,7 +278,7 @@
                     <div class="scroll"><table class="t wide"><thead><tr><th>Weapon</th><th style="width:14%">Damage</th><th style="width:10%">Rolls</th><th class="c">Acc</th><th class="c" style="width:5.5em">Range</th><th class="c">RoF</th><th class="c">Shots</th><th class="c">ST</th><th class="c">Bulk</th><th class="c">Rcl</th><th class="c">Skill</th></tr></thead><tbody id="ranged"></tbody></table></div>
                     <p class="note">Write damage as thr or sw plus or minus (sw+1 cut) and the Rolls column works it out from your ST. Parry mod: 0, −1, F (fencing) or No.</p>
                 </div>
-                <div class="box grow" style="margin-top:8px"><span class="lbl">Combat Notes</span><textarea name="combatNotes" rows="2" placeholder="Retreat: +3 Dodge, +1 Parry or Block. All-Out Defense: +2 to one defense."></textarea></div>
+                <div class="box grow" style="margin-top:8px"><span class="lbl">Combat Notes</span><textarea name="combatNotes" rows="2"></textarea></div>
             </div>
 
             <!-- ===================== PAGE 2: SKILLS & SPELLS ===================== -->
@@ -420,7 +420,7 @@
             var out = '';
             for (var i = 1; i <= count; i++) {
                 out += '<tr>' + cols.map(function (c) {
-                    var nm = c[0] + i, ph = (i === 1 && c[4]) ? ' placeholder="' + c[4] + '"' : '';
+                    var nm = c[0] + i, ph = '';
                     if (c[2] === 'out') return '<td class="c"><span class="out" data-out="' + nm + '"></span></td>';
                     if (c[2] === 'outl') return '<td><span class="out" style="text-align:left" data-out="' + nm + '"></span></td>';
                     FIELDS.push(nm);
